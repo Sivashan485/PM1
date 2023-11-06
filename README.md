@@ -10,10 +10,51 @@ Welcome to the texteditor created by !False
 
 ## Table of Contents
 - [Getting Started](#getting-started)
-- [Editor Fonts](#editor-fonts)
+- [Text Settings](#text_settings)
 - [Editor Test](#editor-Test)
 - [Compatibility](#compatibility)
 
+## Getting Started
+
+## Text Settings
+
+## Editor Test
+
+# Compatibility
+- [Overview](#overview)
+- [System Requirements](#system-requirements)
+- [Recommended Environment](#recommended-environment)
+- [Getting Started](#getting-started)
+- [Running in Other IDEs](#running-in-other-ides)
+
+## Overview
+
+The texteditor is concepted primarily for IntelliJ IDEA. While you are free to run the texteditor in other Integrated Development Environments (IDEs), it's important to note that doing so may result in graphical issues due to the inherent differences in the way various IDEs handle graphical rendering.
+
+## System Requirements
+
+To ensure a smooth experience, we recommend using IntelliJ IDEA as your primary IDE for running the editor. If you decide to use a different IDE, please be aware of the potential graphical issues that may arise, such as:
+
+1. **UI Distortion:** Some graphical elements, including the user interface, may appear distorted or misaligned when viewed in IDEs other than IntelliJ IDEA.
+
+2. **Performance Variability:** The performance may vary across different IDEs, potentially leading to lower frame rates or unexpected lag.
+
+3. **Incompatibility:** Certain features and graphical effects that rely on IntelliJ IDEA-specific functionality may not work as intended or may be disabled when using other IDEs.
+
+## Recommended Environment
+
+For the best possible experience while using the texteditor, we strongly recommend the following environment:
+
+ - **IDE:** IntelliJ IDEA
+ - **Operating System:** [Compatible with your OS]
+ - **Java Version:** [Recommended Java version, if applicable]
+ - **Graphics Card:** [If applicable, mention any GPU recommendations]
+
+## Getting Started
+
+ 1. Ensure you have IntelliJ IDEA installed on your system. You can download it from here. **[IntelliJ](https://www.jetbrains.com/idea/download/)**
+
+ 2. Open the project in IntelliJ IDEA and run the game from within the IDE to enjoy the optimal experience.
 ## Running in Other IDEs
 
 If you choose to run the text-editor in a different IDE, please be aware of the potential graphical issues mentioned earlier. While we strive to provide a seamless experience, we cannot guarantee the same level of performance and graphical fidelity as when using IntelliJ IDEA.

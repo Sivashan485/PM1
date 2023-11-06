@@ -82,4 +82,4 @@ Thank you for choosing our texteditor created by **!False**, and we hope you enj
  
  
  
-*Disclaimer: "IntelliJ IDEA" is a trademark of JetBrains s.r.o., which is not affiliated with the developers of this game. This readme is provided for informational purposes only and does not imply any endorsement or sponsorship by JetBrains s.r.o.*
+##### *Disclaimer: "IntelliJ IDEA" is a trademark of JetBrains s.r.o., which is not affiliated with the developers of this game. This readme is provided for informational purposes only and does not imply any endorsement or sponsorship by JetBrains s.r.o.*

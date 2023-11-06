@@ -19,7 +19,7 @@ To run the Texteditor in Intellij, follow these steps:
 
 1. **Clone the Repository**: Start by cloning this GitHub repository to your local machine using the following command:
    ```
-   git clone [https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-text_editor.git]
+   git clone https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-text_editor.git
    ```
 2. **Open in Intellij**: Open the project in your Intellij IDE.
 

@@ -15,6 +15,21 @@ Welcome to the texteditor created by !False
 - [Compatibility](#compatibility)
 
 ## Getting Started
+To run the Texteditor in Intellij, follow these steps:
+
+1. **Clone the Repository**: Start by cloning this GitHub repository to your local machine using the following command:
+   ```
+   git clone [https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-text_editor.git]
+   ```
+2. **Open in Intellij**: Open the project in your Intellij IDE.
+
+3. **Navigate to the `module_text_editor` Module**:
+
+4. **Navigate to the `TextEditorMain` Class**: Locate and open the `TextEditorMain.java` class.
+
+5. **Run the Editor**: Right-click within the `TextEditorMain` class and choose the "Run" option to start the game.
+
+6. **Edit Your Text**: Write some text in the editor. You can change the colour, the font and the size in the settings on top.
 
 ## Text Settings
 

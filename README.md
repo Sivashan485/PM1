@@ -6,7 +6,7 @@
 
 # Texteditor 
 
-Welcome to the texteditor from !False
+Welcome to the texteditor created by !False
 
 ## Table of Contents
 - [Getting Started](#getting-started)

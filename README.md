@@ -10,7 +10,7 @@ Welcome to the texteditor created by !False
 
 ## Table of Contents
 - [Getting Started](#getting-started)
-- [Text Settings](#text_settings)
+- [Text Manipulation Tool](#text_manipulation_tool)
 - [Editor Test](#editor-Test)
 - [Compatibility](#compatibility)
 
@@ -31,7 +31,47 @@ To run the Texteditor in Intellij, follow these steps:
 
 6. **Edit Your Text**: Write some text in the editor. You can change the colour, the font and the size in the settings on top.
 
-## Text Settings
+# Text Manipulation Tool
+
+A simple command-line tool for manipulating and formatting text paragraphs. This tool allows users to perform various operations on text, such as adding, deleting, formatting paragraphs, generating indices, and more.
+
+## Usage
+
+### Commands
+
+- `ADD [n]`: Add a new paragraph at position `n`. If `n` is not provided, the paragraph is added at the end.
+
+- `DEL [n]`: Delete a paragraph. If `n` is not provided, the last paragraph is deleted.
+
+- `DUMMY [n]`: Insert pre-programmed placeholder text. If `n` is not provided, the paragraph is added at the end.
+
+- `EXIT`: Quit the program.
+
+- `FORMAT RAW`: Set the output format to display paragraphs with prefixed paragraph numbers (default).
+
+- `FORMAT FIX <b>`: Set the output format with a maximum column width of `b` characters. Line breaks occur only after spaces.
+
+- `INDEX`: Generate an index of terms that appear more than three times across all paragraphs.
+
+- `PRINT`: Display the text according to the current output format.
+
+- `REPLACE [n]`: Replace text in paragraph `n`. If `n` is not provided, replace text in the last paragraph.
+
+### Example
+
+```bash
+$ ./text-manipulation-tool
+> ADD
+Enter text for the new paragraph:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+> FORMAT FIX 20
+> PRINT
+1: Lorem ipsum dolor
+   sit amet,
+   consectetur
+   adipiscing elit.
+> EXIT
+```
 
 ## Editor Test
 

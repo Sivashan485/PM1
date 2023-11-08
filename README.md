@@ -10,7 +10,7 @@ Welcome to the texteditor created by !False
 
 ## Table of Contents
 - [Getting Started](#getting-started)
-- [Text Manipulation Tool](#text_manipulation_tool)
+- [Text Manipulation Tool](#text-manipulation-tool)
 - [Editor Test](#editor-Test)
 - [Compatibility](#compatibility)
 

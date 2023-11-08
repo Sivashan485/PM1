@@ -1,4 +1,4 @@
-# team01-NotFalse-projekt2-text_editor
+# team01-NotFalse-projekt2-texteditor
 
 ## Table of Documents
 - [Klassenmodell]()

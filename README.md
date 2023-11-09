@@ -1,9 +1,9 @@
 # team01-NotFalse-projekt2-texteditor
 
 ## Table of Documents
-- [Klassenmodell]()
-- [Testkonzept]()
+
 - [Diagrams and Class description](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/Test-Editor-classdiagram-and-class-description)
+- [Testkonzept](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/TestConcept)
 
 # Texteditor 
 

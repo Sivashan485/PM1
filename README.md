@@ -12,7 +12,7 @@ Welcome to the texteditor created by NotFalse
 ## Table of Contents
 - [Getting Started](#getting-started)
 - [Text Manipulation Tool](#text-manipulation-tool)
-- [Editor Test](#texteditor-Test)
+- [Texteditor Test](#texteditor-Test)
 - [Compatibility](#compatibility)
 
 # Getting Started
@@ -24,7 +24,7 @@ To run the Texteditor in Intellij, follow these steps:
    ```
 2. **Open in Intellij**: Open the project in your Intellij IDE.
 
-3. **Navigate to the `src` -> `main`-> `com.NotFalse.app` Package**:
+3. **Navigate to the `src` -> `main`-> `com.NotFalse.app` folder**:
 
 4. **Navigate to the `TextEditorMain` Class**: Locate and open the `TextEditorMain.java` class.
 
@@ -83,9 +83,9 @@ To test the texteditor in IntelliJ, follow these steps:
 
 3. **Navigate to the `src` -> `test`-> `com.NotFalse.app` folder**:
 
-4. **Right-Click on the`com.NotFalse.app`folder**: Locate and navigate to `Run ´Tests in app´`.
+4. **Right-Click on the`com.NotFalse.app` folder**: Locate and navigate to `´Run Tests in app´`.
 
-5. **Run the Test** Left-Click on the `Run ´Tests in app´`.
+5. **Run the Test** Left-Click on the `Run Tests in app`.
 
 6. **Documetation**: The Testdocumentation can be found on the top [Table of Documents](#table-of-documents)
 

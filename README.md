@@ -3,11 +3,11 @@
 ## Table of Documents
 
 - [Diagrams and Class description](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/Test-Editor-classdiagram-and-class-description)
-- [Testkonzept](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/TestConcept)
+- [test concept](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/TestConcept)
 
 # Texteditor 
 
-Welcome to the texteditor created by !False
+Welcome to the texteditor created by NotFalse
 
 ## Table of Contents
 - [Getting Started](#getting-started)

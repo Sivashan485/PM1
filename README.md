@@ -2,7 +2,7 @@
 
 ## Table of Documents
 
-- [ClassDiagram and Class description](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/Test-Editor-classdiagram-and-class-description)
+- [Class diagram and Class description](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/Test-Editor-classdiagram-and-class-description)
 - [TestConcept](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/TestConcept)
 
 # Texteditor 

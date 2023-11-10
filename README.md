@@ -40,11 +40,11 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 
 ### Commands
 
-- `ADD [n]`: Add a new text.
+- `ADD [n]`: Add a new paragraph at position n. If `n` is not provided, the paragraph is added at the end.
 
-- `DEL [n]`: Delete a paragraph. 
+- `DEL [n]`: Delete a paragraph. If `n` is not provided, the last paragraph is deleted.
 
-- `DUMMY [n]`: Insert pre-programmed placeholder text. 
+- `DUMMY [n]`: Delete a paragraph. If `n` is not provided, the last paragraph is deleted.
 
 - `EXIT`: Quit the program.
 
@@ -56,7 +56,7 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 
 - `PRINT`: Display the text according to the current output format.
 
-- `REPLACE`: Replace text. 
+- `REPLACE`: Replace text in paragraph n. If `n` is not provided, replace text in the last paragraph.
 
 ### Example
 

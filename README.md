@@ -76,8 +76,23 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 > EXIT
 ```
 
-## Editor Test
+## Texteditor Test
+To test the texteditor in IntelliJ, follow these steps:
+1. **Clone the Repository**: Start by cloning this GitHub repository to your local machine using the following command:
+   ```
+   git clone [https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor.git]
+   ```
+2. **Open in Intellij**: Open the project in your Intellij IDE.
 
+3. **Navigate to the `src` -> `test`-> `com.NotFalse.app` folder**:
+
+4. **Right-Click on the`com.NotFalse.app`folder**: Locate and navigate to `Run ´Tests in app´`.
+
+5. **Run the Test** Left-Click on the `Run ´Tests in app´`.
+
+6. **Documetation**: The Testdocumentation can be found on the top [Table of Documents](#table-of-documents)
+
+We have conducted various manual tests to assess the stability and efficiency of the program. We have also checked for minimum, maximum, and special character values for the input."
 # Compatibility
 - [Overview](#overview)
 - [System Requirements](#system-requirements)

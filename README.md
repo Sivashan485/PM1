@@ -55,7 +55,7 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 
 - `PRINT`: Display the text according to the current output format.
 
-- `REPLACE`: Replace text in paragraph n. If `n` is not provided, replace text in the last paragraph.
+- `REPLACE [n]`: Replace text in paragraph n. If `n` is not provided, replace text in the last paragraph.
 
 ## Example
 

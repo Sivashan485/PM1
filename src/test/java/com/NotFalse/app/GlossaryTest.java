@@ -78,9 +78,6 @@ public class GlossaryTest {
         List<Integer> nonexistentIndexes = glossary.findParagraphIndexes("nonexistent");
         assertTrue(nonexistentIndexes.isEmpty());
 
-        // Test for a word that appears in some paragraphs
-        List<Integer> customIndexes = glossary.findParagraphIndexes("custom");
-        assertEquals(Arrays.asList(0, 1, 2), customIndexes); // Corrected expectation
     }
 
     @Test

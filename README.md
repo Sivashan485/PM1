@@ -60,13 +60,13 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 ## Example
 
 ```bash
-> **PRINT**
+> PRINT
 1: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis 
 
-> **ADD 1**
+> ADD 1
 Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-> **FORMAT FIX 20**
-> **PRINT**
+> FORMAT FIX 20
+> PRINT
 Lorem ipsum dolor sit
 amet, consectetur adipiscing 
 elit.
@@ -76,14 +76,14 @@ quoque reliquos Gallos
 virtute praecedunt,
 quod fere cotidianis
 proeliis 
-> **FORMAT RAW**
-> **PRINT**
+> FORMAT RAW
+> PRINT
 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 2: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis
-> **INDEX**
+> INDEX
 ERROR: No word is used more then 3 times. (null)
-> **EXIT**
-*Thank you for using our TextEditor. This was created by the group NotFalse.
+> EXIT
+Thank you for using our TextEditor. This was created by the group NotFalse.
 ```
 
 # Texteditor Test

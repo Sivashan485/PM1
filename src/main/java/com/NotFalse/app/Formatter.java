@@ -3,79 +3,80 @@ package com.NotFalse.app;
 import java.util.ArrayList;
 
 public class Formatter {
-    private FormatType formatType;
+
     private String formattedText;
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Formatter formatter = new Formatter();
 
-        ArrayList<String> testText = new ArrayList<>();
-        testText.add("01234567890123456789 01 234 567 89 0123456789");
-        testText.add("012345678901234567890123456789");
-        testText.add("01234567890123456789012345678901234567890123456789012345678901234567890123456789");
+        ArrayList<String> paragraphs = new ArrayList<>();
+        paragraphs.add(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris.");
+        paragraphs.add("Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor.");
+        paragraphs.add("Praesent et diam eget libero egestas mattis sit amet vitae augue.");
+        paragraphs.add("Nam tincidunt congue enim, ut porta lorem lacinia consectetur.");
 
-        String result = formatter.formatTextRaw(testText, 80);
-        System.out.println(result);
+        String rawText = formatter.formatTextRaw(paragraphs);
+        String fixedText = formatter.formatTextFix(paragraphs, 30);
+
+        System.out.println("This is the Text in fixesFormat\n\n" + fixedText);
+        System.out.println("\n\n\n");
+        System.out.println("This is the Text in rawFormat\n\n" + rawText);
+
     }
-    public Formatter() {
 
-    }
-
-    public String formatTextRaw(ArrayList<String> text, int maxWidth) {
+    public String formatTextFix(ArrayList<String> text, int maxWidth) {
         if (text == null) {
             return ""; // Handle null input by returning an empty string
         }
-    
-        StringBuilder formatted = new StringBuilder();
+
+        StringBuilder fixFormatted = new StringBuilder();
         String[] words = String.join(" ", text).split("\\s+"); // Splits the text into words
         int currentWidth = 0;
-    
+
         for (String word : words) {
             // If the word itself is longer than maxWidth, break it down.
             while (word.length() > maxWidth) {
                 if (currentWidth > 0) {
-                    formatted.append("\n");
+                    fixFormatted.append("\n");
                     currentWidth = 0;
                 }
-                formatted.append(word, 0, maxWidth).append("\n");
+                fixFormatted.append(word, 0, maxWidth).append("\n");
                 word = word.substring(maxWidth);
             }
-    
+
             // Check if adding the current word exceeds maxWidth
             if (currentWidth + (currentWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
-                formatted.append("\n");
+                fixFormatted.append("\n");
                 currentWidth = 0;
             }
-    
+
             // Add a space if it's not the first word on the line
             if (currentWidth > 0) {
-                formatted.append(" ");
+                fixFormatted.append(" ");
                 currentWidth++;
             }
-    
-            formatted.append(word);
+
+            fixFormatted.append(word);
             currentWidth += word.length();
         }
-    
-        return formatted.toString();
-    }
-    
 
-    public String formatTextFixed(ArrayList<String> text) {
-        // implementation
+        return fixFormatted.toString();
+    }
+
+    public String formatTextRaw(ArrayList<String> textList) {
+        // Check if the input is null and return an empty string if it is
+        if (textList == null) {
+            return "";
+        }
+
+        StringBuilder rawFormatted = new StringBuilder();
+        int paragraphNumber = 1;
+        for (String text : textList) {
+            rawFormatted.append("<").append(paragraphNumber).append(">: ").append(text).append("\n");
+            paragraphNumber++;
+        }
+        this.formattedText = rawFormatted.toString();
         return formattedText;
     }
-
-    public String getFormattedText() {
-        return formattedText;
-    }
-
-    public FormatType getFormatType() {
-        return formatType;
-    }
-
-    public void setFormatType(FormatType formatType) {
-        this.formatType = formatType;
-    }
-
 }

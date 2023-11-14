@@ -59,7 +59,7 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 
 ## Example
 
-```bash
+
 > **PRINT**
 1: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis 
 
@@ -67,15 +67,15 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 > **FORMAT FIX 20**
 > **PRINT**
-   Lorem ipsum dolor sit
-   amet, consectetur adipiscing 
-   elit.
+Lorem ipsum dolor sit
+amet, consectetur adipiscing 
+elit.
    
-   Qua de causa Helvetii
-   quoque reliquos Gallos
-   virtute praecedunt,
-   quod fere cotidianis
-   proeliis 
+Qua de causa Helvetii
+quoque reliquos Gallos
+virtute praecedunt,
+quod fere cotidianis
+proeliis 
 > **FORMAT RAW**
 > **PRINT**
 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -84,7 +84,7 @@ Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ERROR: No word is used more then 3 times. (null)
 > **EXIT**
 *Thank you for using our TextEditor. This was created by the group NotFalse.*
-```
+
 
 # Texteditor Test
 To test the texteditor in IntelliJ, follow these steps:

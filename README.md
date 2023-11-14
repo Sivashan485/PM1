@@ -62,7 +62,8 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 ```bash
 > PRINT
 1: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis 
-
+> HELP 
+Commands: ADD, DEL, DUMMY, EXIT, FORMAT RAW, FORMAT FIX, INDEX, PRINT, PREPLACE, HELP
 > ADD 1
 Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 > FORMAT FIX 20

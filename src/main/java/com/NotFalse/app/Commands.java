@@ -1,15 +1,68 @@
 package com.NotFalse.app;
 
+/**
+ * Enum class for all commands, which are used in the application.
+ */
 public enum Commands {
-    EXIT, ADD, DEL, DUMMY, INDEX, PRINT, REPLACE, HELP, FORMAT_RAW, FORMAT_FIX;
+    EXIT("exit"),
+    ADD("add"),
+    DEL("del"),
+    DUMMY("dummy"),
+    INDEX("index"),
+    PRINT("print"),
+    REPLACE("replace"),
+    HELP("help"),
+    FORMAT_RAW("format_raw"),
+    FORMAT_FIX("format_fix");
 
-    private String command;
+    private final String command;
 
-    private void isCommand() {
-        // implementation
+    /**
+     * Constructor for the enum class.
+     *
+     * @param command
+     */
+    Commands(String command) {
+        this.command = command;
     }
 
-    private void getCommandsAsString() {
-        // implementation
+    /**
+     * Getter for the command, as a String.
+     *
+     * @return command
+     */
+    public String getCommand() {
+        return command;
+    }
+
+    /**
+     * Checks if the input is a command.
+     *
+     * @param input
+     * @return boolean
+     */
+    static boolean isCommand(String input) {
+        for (Commands command : Commands.values()) {
+            if (command.getCommand().equals(input)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the input is a command, and if it is,
+     * returns the command as a String.
+     *
+     * @return command
+     */
+    static String getCommandsAsString() {
+        StringBuilder sb = new StringBuilder("Valid commands: ");
+        for (Commands command : Commands.values()) {
+            sb.append(command.getCommand()).append(", ");
+        }
+        //Remove the trailing comma and space
+        return sb.substring(0, sb.length() - 2);
+
     }
 }

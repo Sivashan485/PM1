@@ -5,15 +5,16 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Glossary {
-    public TreeMap<String, ArrayList<Integer>> glossary;
+
+    private TreeMap<String, ArrayList<Integer>> glossary;
 
     public Glossary(ArrayList<String> text) {
-        // Constructor implementation
+        glossary = new TreeMap<String, ArrayList<Integer>>();
     }
 
-    public TreeMap<String, ArrayList<Integer>> updateGlossary(ArrayList<String> text) {
+    public Glossary updateGlossary(ArrayList<String> text) {
         // updateGlossary implementation
-        return glossary;
+        return new Glossary(text);
     }
 
     public HashMap<String, Integer> checkWordFrequency() {
@@ -34,4 +35,13 @@ public class Glossary {
         // isIndexValid implementation
         return false;
     }
+
+    public TreeMap<String, ArrayList<Integer>> getGlossary() {
+        return glossary;
+    }
+
+    public void setGlossary(TreeMap<String, ArrayList<Integer>> glossary) {
+        this.glossary = glossary;
+    }
+
 }

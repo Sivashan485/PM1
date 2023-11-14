@@ -7,7 +7,7 @@ public class Formatter {
     private String formattedText;
 
     public Formatter(FormatType formatType) {
-        this.formatType = formatType;
+        // initialization
     }
 
     public String formatTextRaw(ArrayList<String> text) {
@@ -19,4 +19,17 @@ public class Formatter {
         // implementation
         return formattedText;
     }
+
+    public String getFormattedText() {
+        return formattedText;
+    }
+
+    public FormatType getFormatType() {
+        return formatType;
+    }
+
+    public void setFormatType(FormatType formatType) {
+        this.formatType = formatType;
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.NotFalse.app;
 
 public class Logger {
-    public enum LEVEL {
+    private enum LEVEL {
         // define levels
     }
 

@@ -10,15 +10,15 @@ public class TextEditor {
     private InputReceiver input;
     private OutputManager output;
     private Glossary glossary;
-    public boolean isFormatterRaw;
-    public boolean isExitTriggered;
-
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+    private boolean isFormatterRaw;
+    private boolean isExitTriggered;
 
     public TextEditor() {
         // Constructor implementation
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
     }
 
     private void startTextEditor() {
@@ -68,5 +68,29 @@ public class TextEditor {
 
     private void showHelpMessage() {
         // showHelpMessage implementation
+    }
+
+    public ArrayList<String> getText() {
+        return text;
+    }
+
+    public void setText(ArrayList<String> text) {
+        this.text = text;
+    }
+
+    public boolean getIsFormatterRaw() {
+        return isFormatterRaw;
+    }
+
+    public void setIsFormatterRaw(boolean isFormatterRaw) {
+        this.isFormatterRaw = isFormatterRaw;
+    }
+
+    public boolean getIsExitTriggered() {
+        return isExitTriggered;
+    }
+
+    public void setIsExitTriggered(boolean isExitTriggered) {
+        this.isExitTriggered = isExitTriggered;
     }
 }

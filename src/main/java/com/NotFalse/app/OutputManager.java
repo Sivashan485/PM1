@@ -17,6 +17,10 @@ public class OutputManager {
         // Method implementation here
     }
 
+    public void createMaxIntWaring() {
+        // Method implementation here
+    }
+
     public void createExitMessage() {
         // Method implementation here
     }

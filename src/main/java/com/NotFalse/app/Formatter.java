@@ -6,7 +6,7 @@ public class Formatter {
     private FormatType formatType;
     private String formattedText;
 
-    public Formatter(FormatType formatType) {
+    public Formatter() {
         // initialization
     }
 

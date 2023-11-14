@@ -55,22 +55,36 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 
 - `PRINT`: Display the text according to the current output format.
 
-- `REPLACE`: Replace text in paragraph n. If `n` is not provided, replace text in the last paragraph.
+- `REPLACE [n]`: Replace text in paragraph n. If `n` is not provided, replace text in the last paragraph.
 
 ## Example
 
 ```bash
-$ ./text-manipulation-tool
-> ADD
-Enter text for the new paragraph:
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+> PRINT
+1: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis 
+> HELP 
+Commands: ADD, DEL, DUMMY, EXIT, FORMAT RAW, FORMAT FIX, INDEX, PRINT, PREPLACE, HELP
+> ADD 1
+Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 > FORMAT FIX 20
 > PRINT
-1: Lorem ipsum dolor
-   sit amet,
-   consectetur
-   adipiscing elit.
+Lorem ipsum dolor sit
+amet, consectetur adipiscing 
+elit.
+   
+Qua de causa Helvetii
+quoque reliquos Gallos
+virtute praecedunt,
+quod fere cotidianis
+proeliis 
+> FORMAT RAW
+> PRINT
+1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+2: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis
+> INDEX
+ERROR: No word is used more then 3 times. (null)
 > EXIT
+Thank you for using our TextEditor. This was created by the group NotFalse.
 ```
 
 # Texteditor Test

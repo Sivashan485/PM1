@@ -59,7 +59,7 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 
 ## Example
 
-
+```bash
 > **PRINT**
 1: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis 
 
@@ -83,8 +83,8 @@ proeliis
 > **INDEX**
 ERROR: No word is used more then 3 times. (null)
 > **EXIT**
-*Thank you for using our TextEditor. This was created by the group NotFalse.*
-
+*Thank you for using our TextEditor. This was created by the group NotFalse.
+```
 
 # Texteditor Test
 To test the texteditor in IntelliJ, follow these steps:

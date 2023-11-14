@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.TreeMap;
 
 
-public class GlossaryApp {
+public class Glossary {
 
     private TreeMap<String, ArrayList<Integer>> glossary;
     private List<String> text;
     private Map<String,Integer> wordFrequency;
 
-    public GlossaryApp(List<String> text) {
+    public Glossary(List<String> text) {
         if (text == null) {
             throw new IllegalArgumentException("Text cannot be null");
         }
@@ -24,8 +24,8 @@ public class GlossaryApp {
         
     }
 
-    public GlossaryApp updateGlossary() {
-        GlossaryApp newGlossary = new GlossaryApp(text);
+    public Glossary updateGlossary() {
+        Glossary newGlossary = new Glossary(text);
 
         newGlossary.calculateWordFrequency();
         newGlossary.insertEntriesToGlossary();

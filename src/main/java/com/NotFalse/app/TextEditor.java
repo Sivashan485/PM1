@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 public class TextEditor {
 
-    private TextManager textManager;
+    private TextManagerTest textManager;
 
     public TextEditor() {
-        textManager = new TextManager();
+        textManager = new TextManagerTest();
         // Constructor implementation
     }
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        TextEditor a = new TextEditor();
+        a.runTextEditor();
+        a.runTextEditor();
+
     }
 
     private void startTextEditor() {
@@ -20,6 +24,7 @@ public class TextEditor {
     }
 
     private void runTextEditor() {
+        textManager.editText();;
         // runTextEditor implementation
     }
 
@@ -27,5 +32,6 @@ public class TextEditor {
         // showHelpMessage implementation
     }
 
+    
 
 }

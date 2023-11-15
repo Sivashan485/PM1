@@ -1,7 +1,7 @@
 package com.NotFalse.app;
 
 public class OutputManager {
-    private Logger logger;
+
 
     // Constructor
     public OutputManager() {

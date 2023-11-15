@@ -43,19 +43,14 @@ public class OutputManager {
         Commands.getAllCommands();
     }
 
-    // Methods
-    public void createHelpMessage() {
-        System.out.println("Here are the commands you can use:");
-        Commands.getAllCommands();
-    }
 
     public void createMaxStringWarning() {
-        System.out.println("The text you have entered is too long! Please try again or " +
+        System.err.println("The text you have entered is too long! Please try again or " +
                 "fix the text length.");
     }
 
     public void createMaxIntWarning() {
-        System.out.println("The index you have entered is too large! Please try again.");
+        System.err.println("The index you have entered is too large! Please try again.");
     }
 
     public void createExitMessage() {

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class TextEditor {
 
-    private TextManager textManager;
+    private TextManagerTest textManager;
 
     public TextEditor() {
-        textManager = new TextManager();
+        textManager = new TextManagerTest();
         // Constructor implementation
     }
 
@@ -27,5 +27,6 @@ public class TextEditor {
         // showHelpMessage implementation
     }
 
+    
 
 }

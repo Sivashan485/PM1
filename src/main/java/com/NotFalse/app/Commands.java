@@ -51,6 +51,7 @@ public enum Commands {
         return false;
     }
 
+    //is this method really necessary?
     public static Commands getCommandsEnum(String command) {
         Commands[] commands = Commands.values();
         for (Commands value : commands) {

@@ -60,7 +60,7 @@ public class TextManager {
                 formatTextRaw();
                 break;
             case FORMAT_FIX:
-                formatTextFix();
+                formatTextFix(fixedWidth);
                 break;
             default:
                 System.err.println("UNKOWN ERROR");
@@ -79,10 +79,6 @@ public class TextManager {
         // addText implementation
     }
 
-    private void moveText() {
-        // moveText implementation
-    }
-
     private void deleteText() {
         // deleteText implementation
     }
@@ -91,9 +87,10 @@ public class TextManager {
      * Formats the given ArrayList of Strings into a single String with each element
      * of the ArrayList
      * preceded by its index in the ArrayList enclosed in angle brackets.
+     * 
      * @return the formatted String
      */
-    String formatTextRaw(){
+    String formatTextRaw() {
 
         String newText = "";
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
@@ -104,9 +101,10 @@ public class TextManager {
 
     /**
      * Formats the given text to fit within the specified maximum width.
+     * 
      * @return The formatted text.
      */
-    String formatTextFix() {
+    String formatTextFix(int fixedWidth) {
 
         StringBuilder fixFormatted = new StringBuilder();
         int currentWidth = 0;
@@ -160,6 +158,10 @@ public class TextManager {
         return currentWidth;
     }
 
+    public void setText(List<String> text) {
+        this.text = text;
+    }
+
     private void printText() {
         System.out.println(Arrays.toString(text.toArray()));
         // printText implementation
@@ -176,7 +178,6 @@ public class TextManager {
     private void addDummyText() {
         text.add(DUMMYTEXT);
     }
-
 
     public boolean getIsFormatterRaw() {
         return isFormatterRaw;

@@ -4,33 +4,32 @@ import java.util.Scanner;
 
 public class InputReceiver {
 
-    private Scanner input;
-    private String allowedRegex;
+    private final Scanner input;
+    private final String allowedRegex = "([^A-z äöüÄÖÜ 0-9 .,:;\\-!?'()\\\"%@+*\\\\[\\\\]{}\\\\\\\\&#$])";
 
     public InputReceiver() {
-        // initialization
+        input = new Scanner(System.in);
     }
 
-    public String filterInput() {
+    public String filterInput(String textToFilter) {
         // implementation
-        return null;
+        return textToFilter.replaceAll(allowedRegex, "");
     }
 
-    public String[][] splitInput() {
-        // implementation
-        return null;
+    public String[] splitInput() {
+        String[] splitedtext = new String[1];
+        String inputText = input.nextLine();
+        inputText = filterInput(inputText.trim());
+        splitedtext[0] = inputText;
+        for (Commands command : Commands.values()) {
+            if (inputText.contains(command.name() + " ")) {
+                // if a command contains then split it in two parts
+                splitedtext = inputText.split(command.name());
+                splitedtext[0] = command.name();
+            }
+        }
+
+        return splitedtext;
     }
 
-    public boolean isInputValid() {
-        // implementation
-        return false;
-    }
-
-    public String getAllowedRegex() {
-        return allowedRegex;
-    }
-
-    public void setAllowedRegex(String allowedRegex) {
-        this.allowedRegex = allowedRegex;
-    }
 }

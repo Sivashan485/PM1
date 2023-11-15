@@ -5,62 +5,74 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class FormatterTest {
+public class TextManagerTest {
 
-    // Test for Method formatTextFix
-    @Test
-    public void testSingleShortWord() {
-        ArrayList<String> input = new ArrayList<>(Arrays.asList("test"));
-        String expected = "tes\n" +
-                "t";
-        assertEquals(expected, new Formatter().formatTextFix(input, 3));
+    TextManager textManager;
+
+    @BeforeEach
+    void setUp() {
+        textManager = new TextManager();
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testEmptyInput() {
+    void testSingleShortWord() {
+        ArrayList<String> input = new ArrayList<>(Arrays.asList("test"));
+        String expected = "test";
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(4));
+    }
+
+    // Test for Method formatTextFix
+    @Test
+    void testEmptyInput() {
         ArrayList<String> input = new ArrayList<>();
         String expected = "";
-        assertEquals(expected, new Formatter().formatTextFix(input, 5));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(5));
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testSingleLongWord() {
+    void testSingleLongWord() {
         ArrayList<String> input = new ArrayList<>(
                 Arrays.asList(
                         "01234567890123456789"));
         String expected = "0123456\n" +
                 "7890123\n" +
                 "456789";
-        assertEquals(expected, new Formatter().formatTextFix(input, 7));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(7));
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testMultipleShortWords() {
+    void testMultipleShortWords() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("hello", "world"));
         String expected = "hello\n" +
                 "world";
-        assertEquals(expected, new Formatter().formatTextFix(input, 7));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(7));
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testMultipleLongWords() {
+    void testMultipleLongWords() {
         ArrayList<String> input = new ArrayList<>(
                 Arrays.asList("abcdefghij", "jiwer", "klmnopqrstuvwxy", "zabcdefghij"));
         String expected = "abcdefghij jiwer\n" +
                 "klmnopqrstuvwxy\n" +
                 "zabcdefghij";
-        assertEquals(expected, new Formatter().formatTextFix(input, 20));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(20));
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testWordsExactlyMatchingMaxWidth() {
+    void testWordsExactlyMatchingMaxWidth() {
         ArrayList<String> input = new ArrayList<>(
                 Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabcd", "efghijklmn", "opqrstuvwx"));
         String expected = "abcdefghij\n" +
@@ -68,12 +80,13 @@ public class FormatterTest {
                 "uvwxyzabcd\n" +
                 "efghijklmn\n" +
                 "opqrstuvwx";
-        assertEquals(expected, new Formatter().formatTextFix(input, 10));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(10));
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testLineBreakOnWordBoundary() {
+    void testLineBreakOnWordBoundary() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabc", "efghijkl",
                 "opqrstu", "yzabcd", "ijklm", "stuv", "cde", "mn", "o"));
         String expected = "abcdefghij\n" +
@@ -81,65 +94,55 @@ public class FormatterTest {
                 "efghijkl opqrstu\n" +
                 "yzabcd ijklm stuv\n" +
                 "cde mn o";
-        assertEquals(expected, new Formatter().formatTextFix(input, 20));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(20));
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testSpacesNotPreserved() {
+    void testSpacesNotPreserved() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("hello", " ", "world"));
         String expected = "hello world";
-        assertEquals(expected, new Formatter().formatTextFix(input, 20));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(20));
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testNullInput() {
-        ArrayList<String> input = null;
-        String expected = "";
-        assertEquals(expected, new Formatter().formatTextFix(input, 20));
-    }
-
-    // Test for Method formatTextFix
-    @Test
-    public void testMaximumWidthBoundary() {
+    void testMaximumWidthBoundary() {
         String longWord = "a".repeat(80);
         ArrayList<String> input = new ArrayList<>(Arrays.asList(longWord, "b"));
         String expected = longWord + "\nb";
-        assertEquals(expected, new Formatter().formatTextFix(input, 80));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextFix(80));
     }
 
     // Test for Method formatTextRaw
     @Test
-    public void testFormatTextRawWithSingleLine() {
+    void testFormatTextRawWithSingleLine() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("This is a single line of text."));
         String expected = "<1>: This is a single line of text.\n";
-        assertEquals(expected, new Formatter().formatTextRaw(input));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextRaw());
     }
 
     // Test for Method formatTextRaw
     @Test
-    public void testFormatTextRawWithMultipleLines() {
+    void testFormatTextRawWithMultipleLines() {
         ArrayList<String> input = new ArrayList<>(
                 Arrays.asList("This is the first line of text.", "This is the second line of text."));
         String expected = "<1>: This is the first line of text.\n" +
                 "<2>: This is the second line of text.\n";
-        assertEquals(expected, new Formatter().formatTextRaw(input));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextRaw());
     }
 
     // Test for Method formatTextRaw
     @Test
-    public void testFormatTextRawWithEmptyList() {
+    void testFormatTextRawWithEmptyList() {
         ArrayList<String> input = new ArrayList<>();
         String expected = "";
-        assertEquals(expected, new Formatter().formatTextRaw(input));
-    }
-
-    // Test for Method formatTextRaw
-    @Test
-    public void testFormatTextRawWithNullList() {
-        ArrayList<String> input = null;
-        String expected = "";
-        assertEquals(expected, new Formatter().formatTextRaw(input));
+        textManager.setText(input);
+        assertEquals(expected, textManager.formatTextRaw());
     }
 }

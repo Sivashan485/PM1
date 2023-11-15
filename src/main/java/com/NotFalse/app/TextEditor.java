@@ -30,6 +30,4 @@ public class TextEditor {
         // showHelpMessage implementation
     }
 
-    
-
 }

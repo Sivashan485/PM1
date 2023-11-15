@@ -30,13 +30,32 @@ public class TextManager {
          texts = new ArrayList<String>();
     }
 
+
     public void editText(){
+
         String userInput[] = input.splitInput();
-        switch(Commands.getCommand(userInput[0])){
-            case Commands.DUMMY:
-                addDummyText();
+        switch(Commands.getCommandsEnum(userInput[0])){
+            case DUMMY: addDummyText();
                 break;
+            case EXIT: isExitTriggered = true;
+                break;
+            case ADD:  addText();
+                break;
+            case DEL: deleteText();
+                break;
+            case INDEX: showIndex();
+                break;
+            case PRINT:printText();
+                break;
+            case REPLACE:replaceText();
+            break;
+            case HELP:Commands.getCommandsAsString();
+            break;
+            case FORMAT_RAW:
+            break;
+            case FORMAT_FIX:break;
             default:
+                System.out.println("UNKOWN ERROR");
                 break;
         }
     }
@@ -65,10 +84,10 @@ public class TextManager {
         switch (commands) {
             case FORMAT_FIX:
                 isFormatterRaw = false;
-                return formatTextFix(text, maxWidth);
+               // return formatTextFix(text, maxWidth);
             case FORMAT_RAW:
                 isFormatterRaw = true;
-                return formatTextRaw(text);
+                //return formatTextRaw(text);
             default:
                 throw new IllegalArgumentException("Invalid command: " + commands.toString());
         }

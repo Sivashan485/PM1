@@ -1,7 +1,5 @@
 package com.NotFalse.app;
 
-import java.util.ArrayList;
-
 public class TextEditor {
 
     private TextManager textManager;

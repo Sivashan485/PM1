@@ -40,8 +40,7 @@ public class OutputManager {
 
     public void createMenuOptions() {
         System.out.println("Here are the commands you can use:");
-        System.out.println("1. ADD\n2. DEL\n3. DUMMY\n4. FORMAT RAW\n5. FORMAT FIX\n" +
-                "6. PRINT\n7. INDEX\n8. REPLACE\n9. EXIT\n10. HELP\n11.");
+        Commands.getCommandsAsString();
     }
 
     // Methods
@@ -55,13 +54,13 @@ public class OutputManager {
                 "fix the text length.");
     }
 
-    public void createMaxIntWaring() {
+    public void createMaxIntWarning() {
         System.out.println("The index you have entered is too large! Please try again.");
     }
 
     public void createExitMessage() {
-        System.out.println("Exiting TextEditor...");
-        System.out.println("Thank you for using TextEditor! Created by NotFalse.");
+        System.out.println("Exiting TextEditor...\n" +
+                "Thank you for using TextEditor! Created by NotFalse.");
     }
 
     public void createAddMessage(boolean success) {

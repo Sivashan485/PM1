@@ -2,9 +2,15 @@ package com.NotFalse.app;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.Handler;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OutputManagerTest {
 
@@ -18,13 +24,130 @@ public class OutputManagerTest {
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         System.setErr(new PrintStream(errContent));
+        Logger.getLogger(OutputManager.class.getName()).setLevel(Level.OFF);
     }
 
     @AfterEach
     public void restoreStreams() {
         System.setOut(originalOut);
-
+        System.setErr(originalErr);
+        Logger.getLogger(OutputManager.class.getName()).setLevel(Level.ALL);
     }
 
+    @Test
+    public void testCreateUserInfoMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createUserInfoMessage("Test Info Message");
+        assertEquals("Test Info Message", outContent.toString().trim());
+    }
 
+    @Test
+    public void testCreateUserErrorMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createUserErrorMessage("Test Error Message");
+        assertEquals("Test Error Message", errContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateWelcomeMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createWelcomeMessage();
+        assertEquals("Welcome to the TextEditor! Created by NotFalse.", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateMenuOptions() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createMenuOptions();
+        assertEquals("Here are the commands you can use:\n" +
+                "addText\n" +
+                "moveText\n" +
+                "deleteText\n" +
+                "formatText\n" +
+                "printText", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateHelpMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createHelpMessage();
+        assertEquals("Here are the commands you can use:\n" +
+                "addText\n" +
+                "moveText\n" +
+                "deleteText\n" +
+                "formatText\n" +
+                "printText", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateMaxStringWarning() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createMaxStringWarning();
+        assertEquals("The text you have entered is too long! Please try again or " +
+                "fix the text length.", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateMaxIntWarning() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createMaxIntWarning();
+        assertEquals("The index you have entered is too large! Please try again.", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateExitMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createExitMessage();
+        assertEquals("Exiting TextEditor...\n" +
+                "Thank you for using TextEditor! Created by NotFalse.", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateAddMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createAddMessage(true);
+        assertEquals("Text has been added", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateDeleteMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createDeleteMessage(true);
+        assertEquals("Text deleted successfully!", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateDummyMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createDummyMessage(true);
+        assertEquals("Dummy text generated successfully!", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateIndexMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createIndexMessage(true);
+        assertEquals("Index generated successfully!", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreatePrintMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createPrintMessage(true);
+        assertEquals("Printing text...", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateReplaceMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createReplaceMessage(true);
+        assertEquals("Text replaced successfully!", outContent.toString().trim());
+    }
+
+    @Test
+    public void testCreateInvalidCommandMessage() {
+        OutputManager outputManager = new OutputManager();
+        outputManager.createInvalidCommandMessage();
+        assertEquals("Invalid command! Please try again.", outContent.toString().trim());
+    }
 }

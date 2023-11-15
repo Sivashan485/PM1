@@ -21,15 +21,8 @@ public class TextEditor {
      */
     public static void main(String[] args) {
         TextEditor a = new TextEditor();
-        a.startTextEditor();
-        a.runTextEditor();
-    }
 
-    /**
-     * Prints a welcome message.
-     */
-    private void startTextEditor() {
-        System.out.println("Welcome to the TextEditor!");
+        a.runTextEditor();
     }
 
     /**
@@ -41,7 +34,7 @@ public class TextEditor {
             textManager.editText();
             isRunning = !textManager.getIsExitTriggered();
         } while (isRunning);
-        System.out.println("Goodbye!");
+
 
     }
 

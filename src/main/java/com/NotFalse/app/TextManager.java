@@ -31,15 +31,18 @@ public class TextManager {
         text.add("Another New test paragraph.\n");
         text.add("Another weird useless nEw test paragraph");
         isExitTriggered = false;
+        output.createWelcomeMessage();
     }
 
     public void editText() {
+
         String userInput[] = input.splitInput();
         switch (Commands.getCommandsEnum(userInput[0])) {
             case DUMMY:
                 addDummyParagraph();
                 break;
             case EXIT:
+                output.createExitMessage();
                 isExitTriggered = true;
                 break;
             case ADD:
@@ -59,6 +62,7 @@ public class TextManager {
                 break;
             case HELP:
                 output.createMenuOptions();
+                System.out.println(Commands.getAllCommands());
                 break;
             case FORMAT_RAW:
                 formatTextRaw();

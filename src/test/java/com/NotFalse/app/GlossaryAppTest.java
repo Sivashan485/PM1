@@ -10,9 +10,9 @@ import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GlossaryTest {
+public class GlossaryAppTest {
 
-    private Glossary glossary;
+    private GlossaryApp glossary;
 
     @BeforeEach
     void setUp() {
@@ -20,7 +20,7 @@ public class GlossaryTest {
         text.add("This is a test paragraph.");
         text.add("Another test paragraph.");
         text.add("Another weird useless test paragraph");
-        glossary = new Glossary(text);
+        glossary = new GlossaryApp(text);
         // You should calculate word frequency here
         glossary.calculateWordFrequency();
     }
@@ -32,7 +32,7 @@ public class GlossaryTest {
         newText.add("Another custom test paragraph.");
         newText.add("Yet another custom test paragraph.");
         newText.add("A totally new sentence with so many custom characters");
-        Glossary newGlossaryApp = new Glossary(newText);
+        GlossaryApp newGlossaryApp = new GlossaryApp(newText);
         newGlossaryApp.calculateWordFrequency();
 
         Map<String, Integer> wordFrequency = newGlossaryApp.updateGlossary().getWordFrequency();
@@ -92,7 +92,7 @@ public class GlossaryTest {
     @Test
     void testNullText() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Glossary(null);
+            new GlossaryApp(null);
         });
     }
 }

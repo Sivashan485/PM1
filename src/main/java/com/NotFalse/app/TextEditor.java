@@ -9,7 +9,7 @@ public class TextEditor {
     private Formatter formatter;
     private InputReceiver input;
     private OutputManager output;
-    private Glossary glossary;
+    private GlossaryApp glossary;
     private boolean isFormatterRaw;
     private boolean isExitTriggered;
 

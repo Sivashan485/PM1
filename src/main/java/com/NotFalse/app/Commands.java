@@ -55,7 +55,7 @@ public enum Commands {
     public static Commands getCommandsEnum(String command){
         Commands[] commands = Commands.values();
         for (Commands value : commands) {
-            if (value.name().equals(command.toUpperCase())) {
+            if (value.getCommand().equals(command.toUpperCase())) {
                 return value;
             }
         }

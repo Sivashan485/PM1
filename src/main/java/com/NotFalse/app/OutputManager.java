@@ -32,7 +32,7 @@ public class OutputManager {
 
     // Methods
     public void createHelpMessage() {
-        // Method implementation here
+        Commands.getCommandsAsString();
     }
 
     public void createMaxStringWarning() {

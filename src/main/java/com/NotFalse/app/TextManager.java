@@ -2,6 +2,7 @@ package com.NotFalse.app;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TextManager {
     final static String DUMMYTEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
@@ -17,18 +18,17 @@ public class TextManager {
     private GlossaryApp glossary;
     private boolean isFormatterRaw;
     private boolean isExitTriggered;
-    private ArrayList texts;
+    private List<String> text;
     private int fixedWidth;
 
     TextManager() {
         input = new InputReceiver();
         output = new OutputManager();
         glossary = new GlossaryApp();
-        texts = new ArrayList<String>();
+        text = new ArrayList<>();
     }
 
     public void editText() {
-
         String userInput[] = input.splitInput();
         switch (Commands.getCommandsEnum(userInput[0])) {
             case DUMMY:
@@ -38,7 +38,7 @@ public class TextManager {
                 isExitTriggered = true;
                 break;
             case ADD:
-                addText(userInput[1]);
+                addNewText(userInput[1]);
                 break;
             case DEL:
                 deleteText();
@@ -53,23 +53,23 @@ public class TextManager {
                 replaceText();
                 break;
             case HELP:
-                Commands.getCommandsAsString();
+                output.createHelpMessage();
                 break;
             case FORMAT_RAW:
-                formatTextRaw(texts);
+                formatTextRaw();
                 break;
             case FORMAT_FIX:
-                formatTextFix(texts, fixedWidth);
+                formatTextFix();
                 break;
             default:
-                System.out.println("UNKOWN ERROR");
+                System.err.println("UNKOWN ERROR");
                 break;
         }
     }
 
-    private void addText(String inputText) {
+    private void addNewText(String inputText) {
         try {
-            texts.add(inputText);
+            text.add(inputText);
             output.createAddMessage(true);
         } catch (Exception e) {
             output.createAddMessage(false);
@@ -90,24 +90,19 @@ public class TextManager {
      * Formats the given ArrayList of Strings into a single String with each element
      * of the ArrayList
      * preceded by its index in the ArrayList enclosed in angle brackets.
-     *
-     * @param text the ArrayList of Strings to be formatted
      * @return the formatted String
      */
     String formatTextRaw(){
 
         String newText = "";
-        for (int paragraph = 0; paragraph < texts.size(); paragraph++) {
-            newText += "<" + (paragraph + 1) + ">: " + texts.get(paragraph) + "\n";
+        for (int paragraph = 0; paragraph < text.size(); paragraph++) {
+            newText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
         }
         return newText;
     }
 
     /**
      * Formats the given text to fit within the specified maximum width.
-     *
-     * @param text     The text to format.
-     * @param maxWidth The maximum width of each line.
      * @return The formatted text.
      */
     String formatTextFix() {
@@ -119,10 +114,10 @@ public class TextManager {
             String[] words = paragraph.split("\\s+");
             for (String word : words) {
                 // If the word itself is longer than maxWidth, break it down.
-                word = breakDownLongWord(word, maxWidth, fixFormatted, currentWidth);
+                word = breakDownLongWord(word, fixedWidth, fixFormatted, currentWidth);
 
                 // Check if adding the current word exceeds maxWidth
-                currentWidth = appendNewLineIfNecessary(word, maxWidth, fixFormatted, currentWidth);
+                currentWidth = appendNewLineIfNecessary(word, fixedWidth, fixFormatted, currentWidth);
 
                 // Add a space if it's not the first word on the paragraph
                 currentWidth = appendSpaceIfNotFirstWord(fixFormatted, currentWidth);
@@ -165,7 +160,7 @@ public class TextManager {
     }
 
     private void printText() {
-        System.out.println(Arrays.toString(texts.toArray()));
+        System.out.println(Arrays.toString(text.toArray()));
         // printText implementation
     }
 
@@ -178,21 +173,9 @@ public class TextManager {
     }
 
     private void addDummyText() {
-        texts.add(DUMMYTEXT);
+        text.add(DUMMYTEXT);
     }
 
-    private boolean checkForExit() {
-        // checkForExit implementation
-        return false;
-    }
-
-    public ArrayList<String> getText() {
-        return texts;
-    }
-
-    public void setText(ArrayList<String> texts) {
-        this.texts = texts;
-    }
 
     public boolean getIsFormatterRaw() {
         return isFormatterRaw;

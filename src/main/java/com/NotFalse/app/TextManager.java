@@ -28,30 +28,38 @@ public class TextManager {
         texts = new ArrayList<String>();
     }
 
-
-    public void editText(){
+    public void editText() {
 
         String userInput[] = input.splitInput();
-        switch(Commands.getCommandsEnum(userInput[0])){
-            case DUMMY: addDummyText();
+        switch (Commands.getCommandsEnum(userInput[0])) {
+            case DUMMY:
+                addDummyText();
                 break;
-            case EXIT: isExitTriggered = true;
+            case EXIT:
+                isExitTriggered = true;
                 break;
-            case ADD:  addText(userInput[1]);
+            case ADD:
+                addText(userInput[1]);
                 break;
-            case DEL: deleteText();
+            case DEL:
+                deleteText();
                 break;
-            case INDEX: showIndex();
+            case INDEX:
+                showIndex();
                 break;
-            case PRINT:printText();
+            case PRINT:
+                printText();
                 break;
-            case REPLACE:replaceText();
-            break;
-            case HELP:Commands.getCommandsAsString();
-            break;
+            case REPLACE:
+                replaceText();
+                break;
+            case HELP:
+                Commands.getCommandsAsString();
+                break;
             case FORMAT_RAW:
-            break;
-            case FORMAT_FIX:break;
+                break;
+            case FORMAT_FIX:
+                break;
             default:
                 System.out.println("UNKOWN ERROR");
                 break;
@@ -59,13 +67,12 @@ public class TextManager {
     }
 
     private void addText(String inputText) {
-        try{
+        try {
             texts.add(inputText);
             output.createAddMessage(true);
-        }catch (Exception e){
+        } catch (Exception e) {
             output.createAddMessage(false);
         }
-
 
         // addText implementation
     }
@@ -84,16 +91,14 @@ public class TextManager {
      * }
      */
 
-
-
     private String formatText(ArrayList<String> text, int maxWidth, Commands commands) {
         switch (commands) {
             case FORMAT_FIX:
                 isFormatterRaw = false;
-               // return formatTextFix(text, maxWidth);
+                // return formatTextFix(text, maxWidth);
             case FORMAT_RAW:
                 isFormatterRaw = true;
-                //return formatTextRaw(text);
+                // return formatTextRaw(text);
             default:
                 throw new IllegalArgumentException("Invalid command: " + commands.toString());
         }

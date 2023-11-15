@@ -3,7 +3,7 @@ package com.NotFalse.app;
 import java.util.ArrayList;
 
 public class Formatter {
-    private FormatType formatType;
+
     private String formattedText;
 
     public Formatter() {
@@ -24,12 +24,6 @@ public class Formatter {
         return formattedText;
     }
 
-    public FormatType getFormatType() {
-        return formatType;
-    }
 
-    public void setFormatType(FormatType formatType) {
-        this.formatType = formatType;
-    }
 
 }

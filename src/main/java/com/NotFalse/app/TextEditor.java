@@ -1,13 +1,11 @@
 package com.NotFalse.app;
 
-import java.util.ArrayList;
-
 public class TextEditor {
 
-    private TextManagerTest textManager;
+    private TextManager textManager;
 
     public TextEditor() {
-        textManager = new TextManagerTest();
+        textManager = new TextManager();
         // Constructor implementation
     }
 
@@ -24,7 +22,7 @@ public class TextEditor {
     }
 
     private void runTextEditor() {
-        textManager.editText();;
+        textManager.editText();
         // runTextEditor implementation
     }
 

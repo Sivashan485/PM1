@@ -65,6 +65,7 @@ public class Formatter {
         return word;
     }
 
+
     private int appendNewLineIfNecessary(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
         if (currentWidth + (currentWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
             fixFormatted.append("\n");

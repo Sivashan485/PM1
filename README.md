@@ -7,7 +7,7 @@
 
 # Texteditor 
 
-Welcome to the texteditor created by !False, it´s funny because it´s true ;)
+Welcome to the texteditor created by !False, it´s funny because it´s true ; )
 
 ## Table of Contents
 - [Getting Started](#getting-started)

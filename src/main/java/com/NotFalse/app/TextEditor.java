@@ -16,6 +16,7 @@ public class TextEditor {
 
     /**
      * Main method for the TextEditor application.
+     * 
      * @param args
      */
     public static void main(String[] args) {
@@ -36,14 +37,12 @@ public class TextEditor {
      */
     private void runTextEditor() {
         boolean isRunning;
-        do{
+        do {
             textManager.editText();
             isRunning = !textManager.getIsExitTriggered();
-        }
-        while(isRunning);
+        } while (isRunning);
         System.out.println("Goodbye!");
 
     }
-
 
 }

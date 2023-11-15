@@ -1,6 +1,5 @@
 package com.NotFalse.app;
 
-
 import java.util.logging.*;
 
 public class OutputManager {
@@ -8,6 +7,7 @@ public class OutputManager {
     private static final Logger LOGGER = Logger.getLogger(OutputManager.class.getName());
 
     Handler consoleHandler = new ConsoleHandler();
+
     public OutputManager() {
         // Initialization code here
         // Set the logging level for the handler
@@ -21,11 +21,12 @@ public class OutputManager {
         LOGGER.addHandler(consoleHandler);
     }
 
-    public void createUserInfoMessage(String logText){
+    public void createUserInfoMessage(String logText) {
         System.out.println(logText);
         LOGGER.log(Level.INFO, logText);
     }
-    public void createUserErrorMessage(String logText){
+
+    public void createUserErrorMessage(String logText) {
         System.err.println(logText);
         LOGGER.log(Level.WARNING, logText);
     }
@@ -49,7 +50,7 @@ public class OutputManager {
 
     public void createAddMessage(boolean success) {
         // Method implementation here
-        if(success)
+        if (success)
             createUserInfoMessage("Text has been added");
         else
             createUserErrorMessage("Text has not been added");

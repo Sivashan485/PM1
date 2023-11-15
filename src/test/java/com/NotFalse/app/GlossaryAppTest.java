@@ -18,7 +18,7 @@ public class GlossaryAppTest {
 
     @BeforeEach
     void setUp() {
-        //1 Setup
+        // 1 Setup
         glossaryOne = new GlossaryApp();
         textOne = new ArrayList<>();
         textOne.add("This is a test paragraph.");
@@ -26,7 +26,7 @@ public class GlossaryAppTest {
         textOne.add("Another weird useless test paragraph");
         glossaryOne.insertEntriesToGlossary(textOne);
 
-        //2 Setup
+        // 2 Setup
         glossaryTwo = new GlossaryApp();
         textTwo = new ArrayList<>();
         textTwo.add("This is a test paragraph.");
@@ -34,7 +34,7 @@ public class GlossaryAppTest {
         textTwo.add("Another weird useless test paragraph. This is a ParaGrAPh:, and this one para.graph isnt.");
         glossaryTwo.insertEntriesToGlossary(textTwo);
 
-        //3 Setup
+        // 3 Setup
         glossaryThree = new GlossaryApp();
         textThree = new ArrayList<>();
         textThree.add("This is a new test paragraph.");
@@ -44,7 +44,6 @@ public class GlossaryAppTest {
 
     }
 
-
     @Test
     void testCheckWordFrequencyOne() {
         Map<String, Integer> wordFrequency = glossaryOne.computeWordFrequency(textOne);
@@ -52,6 +51,7 @@ public class GlossaryAppTest {
         assertEquals(3, wordFrequency.get("test"));
 
     }
+
     @Test
     void testCheckWordFrequencyTwo() {
         Map<String, Integer> wordFrequency = glossaryOne.computeWordFrequency(textOne);
@@ -65,6 +65,7 @@ public class GlossaryAppTest {
         assertEquals(Arrays.asList(0, 1, 2), testIndexes);
 
     }
+
     @Test
     void testFindParagraphIndexesTwo() {
         List<Integer> nonexistentIndexes = glossaryOne.findParagraphIndexes(textOne, "nonexistent");
@@ -76,11 +77,13 @@ public class GlossaryAppTest {
         Map<String, Integer> wordFrequency = glossaryTwo.computeWordFrequency(textTwo);
         assertEquals(3, wordFrequency.get("test"));
     }
+
     @Test
     void testComputeWordFrequencyTwo() {
         Map<String, Integer> wordFrequency = glossaryTwo.computeWordFrequency(textTwo);
         assertEquals(4, wordFrequency.get("paragraph"));
     }
+
     @Test
     void testComputeWordFrequencyThree() {
         Map<String, Integer> wordFrequency = glossaryTwo.computeWordFrequency(textTwo);
@@ -95,6 +98,7 @@ public class GlossaryAppTest {
         assertEquals(Arrays.asList(0, 1, 2), glossaryMap.get("Test"));
 
     }
+
     @Test
     void testInsertEntriesToGlossaryTwo() {
         TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
@@ -102,6 +106,7 @@ public class GlossaryAppTest {
         assertTrue(glossaryMap.containsKey("Paragraph"));
         assertEquals(Arrays.asList(0, 1, 2), glossaryMap.get("Paragraph"));
     }
+
     @Test
     void testInsertEntriesToGlossaryThree() {
         TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
@@ -117,6 +122,7 @@ public class GlossaryAppTest {
         assertTrue(glossaryMap.containsKey("Test"));
         assertEquals(Arrays.asList(0, 1), glossaryMap.get("Test"));
     }
+
     @Test
     void testRebuildGlossaryTwo() {
         GlossaryApp newGlossary = glossaryThree.rebuildGlossary(textThree);
@@ -125,6 +131,7 @@ public class GlossaryAppTest {
         assertFalse(glossaryMap.containsKey("new"));
 
     }
+
     @Test
     void testRebuildGlossaryThree() {
         GlossaryApp newGlossary = glossaryThree.rebuildGlossary(textThree);
@@ -132,8 +139,8 @@ public class GlossaryAppTest {
 
         assertFalse(glossaryMap.containsKey("paragraph"));
 
-
     }
+
     @Test
     void testRebuildGlossaryFour() {
         GlossaryApp newGlossary = glossaryThree.rebuildGlossary(textThree);

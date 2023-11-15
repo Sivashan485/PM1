@@ -51,7 +51,7 @@ public class TextManager {
                 printText();
                 break;
             case REPLACE:
-                replaceTextSection();
+                replaceParagraphSection();
                 break;
             case HELP:
                 output.createHelpMessage();
@@ -157,6 +157,7 @@ public class TextManager {
         }
         return currentWidth;
     }
+
     // for being able to test the methods
     public void setText(List<String> text) {
         this.text = text;
@@ -170,7 +171,7 @@ public class TextManager {
         // showIndex implementation
     }
 
-    private void replaceTextSection() {
+    private void replaceParagraphSection() {
         // replaceText implementation
     }
 

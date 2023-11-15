@@ -16,7 +16,7 @@ public enum Commands {
     FORMAT_FIX("format_fix"),
     UNKNOWN("unknown");
 
-    public  final String command;
+    public final String command;
 
     /**
      * Constructor for the enum class.
@@ -32,10 +32,9 @@ public enum Commands {
      *
      * @return command
      */
-    public  String getCommand() {
+    public String getCommand() {
         return command;
     }
-
 
     /**
      * Checks if the input is a command.
@@ -52,14 +51,14 @@ public enum Commands {
         return false;
     }
 
-    public static Commands getCommandsEnum(String command){
+    public static Commands getCommandsEnum(String command) {
         Commands[] commands = Commands.values();
         for (Commands value : commands) {
             if (value.getCommand().equals(command.toLowerCase())) {
                 return value;
             }
         }
-        return  Commands.UNKNOWN;
+        return Commands.UNKNOWN;
     }
 
     /**
@@ -73,7 +72,7 @@ public enum Commands {
         for (Commands command : Commands.values()) {
             sb.append(command.getCommand()).append(", ");
         }
-        //Remove the trailing comma and space
+        // Remove the trailing comma and space
         return sb.substring(0, sb.length() - 2);
 
     }

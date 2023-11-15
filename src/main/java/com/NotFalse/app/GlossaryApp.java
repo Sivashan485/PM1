@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-
+/**
+ * This class is responsible for creating the glossary and updating it.
+ */
 public class GlossaryApp {
 
     private TreeMap<String, ArrayList<Integer>> glossary;

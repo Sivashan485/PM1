@@ -1,35 +1,49 @@
 package com.NotFalse.app;
 
+/**
+ * Main class for the TextEditor application.
+ */
 public class TextEditor {
 
     private TextManager textManager;
 
+    /**
+     * Constructor for the TextEditor class.
+     */
     public TextEditor() {
         textManager = new TextManager();
-        // Constructor implementation
     }
 
+    /**
+     * Main method for the TextEditor application.
+     * @param args
+     */
     public static void main(String[] args) {
-        System.out.println("Hello World!");
         TextEditor a = new TextEditor();
+        a.startTextEditor();
         a.runTextEditor();
-        a.runTextEditor();
-
     }
 
+    /**
+     * Prints a welcome message.
+     */
     private void startTextEditor() {
-        // startTextEditor implementation
+        System.out.println("Welcome to the TextEditor!");
     }
 
+    /**
+     * Runs the TextEditor application.
+     */
     private void runTextEditor() {
-        textManager.editText();
-        // runTextEditor implementation
+        boolean isRunning = true;
+        do{
+            textManager.editText();
+            isRunning = !textManager.getIsExitTriggered();
+        }
+        while(isRunning);
+        System.out.println("Goodbye!");
+
     }
 
-    private void showHelpMessage() {
-        // showHelpMessage implementation
-    }
-
-    
 
 }

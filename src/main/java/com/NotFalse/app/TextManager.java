@@ -26,6 +26,7 @@ public class TextManager {
         output = new OutputManager();
         glossary = new GlossaryApp();
         text = new ArrayList<>();
+        isExitTriggered = false;
     }
 
     public void editText() {

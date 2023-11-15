@@ -9,7 +9,6 @@ import java.util.logging.SimpleFormatter;
 public class OutputManager {
 
     private static final Logger LOGGER = Logger.getLogger(OutputManager.class.getName());
-
     Handler consoleHandler = new ConsoleHandler();
 
     public OutputManager() {

@@ -3,6 +3,7 @@ package com.NotFalse.app;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TextManager {
     final static String DUMMYTEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
@@ -94,6 +95,7 @@ public class TextManager {
     }
 
     private void printText() {
+        System.out.println(Arrays.toString(texts.toArray()));
         // printText implementation
     }
 

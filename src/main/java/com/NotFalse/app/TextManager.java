@@ -171,12 +171,11 @@ public class TextManager {
         System.out.println(Arrays.toString(text.toArray()));
     }
 
-    private void showGlossary() {
-        System.out.println("Glossary: ");
+    void showGlossary() {
+        System.out.println("Glossary:\n");
         glossary = glossary.rebuildGlossary(text);
         for(String word : glossary.getGlossary().keySet()) {
             System.out.println(word + ": " + glossary.getGlossary().get(word));
-
         }
     }
 

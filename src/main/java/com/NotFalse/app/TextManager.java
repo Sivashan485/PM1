@@ -30,6 +30,17 @@ public class TextManager {
          texts = new ArrayList<String>();
     }
 
+    public void editText(){
+        String userInput[] = input.splitInput();
+        switch(Commands.getCommand(userInput[0])){
+            case Commands.DUMMY:
+                addDummyText();
+                break;
+            default:
+                break;
+        }
+    }
+
     private void addText() {
         // addText implementation
     }
@@ -47,6 +58,8 @@ public class TextManager {
      * return formatter.formatText(texts, maxWidth, command, output);
      * }
      */
+
+
 
     private String formatText(ArrayList<String> text, int maxWidth, Commands commands) {
         switch (commands) {
@@ -74,7 +87,7 @@ public class TextManager {
     }
 
     private void addDummyText() {
-        // addDummyText implementation
+        texts.add(DUMMYTEXT);
     }
 
     private boolean checkForExit() {
@@ -107,6 +120,8 @@ public class TextManager {
     public void setIsExitTriggered(boolean isExitTriggered) {
         this.isExitTriggered = isExitTriggered;
     }
+
+
 
 
 }

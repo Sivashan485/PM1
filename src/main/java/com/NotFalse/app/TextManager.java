@@ -105,7 +105,7 @@ public class TextManager {
      * Formats the given text to fit within the specified maximum width.
      * @return The formatted text.
      */
-    String formatTextFix() {
+    String formatTextFix(int fixedWidth) {
 
         StringBuilder fixFormatted = new StringBuilder();
         int currentWidth = 0;
@@ -158,6 +158,11 @@ public class TextManager {
         }
         return currentWidth;
     }
+
+    public void setText(List<String> text) {
+        this.text = text;
+    }
+
 
     private void printText() {
         System.out.println(Arrays.toString(text.toArray()));

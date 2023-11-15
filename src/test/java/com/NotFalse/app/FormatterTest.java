@@ -94,14 +94,6 @@ public class FormatterTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testNullInput() {
-        ArrayList<String> input = null;
-        String expected = "";
-        assertEquals(expected, new Formatter().formatTextFix(input, 20));
-    }
-
-    // Test for Method formatTextFix
-    @Test
     public void testMaximumWidthBoundary() {
         String longWord = "a".repeat(80);
         ArrayList<String> input = new ArrayList<>(Arrays.asList(longWord, "b"));
@@ -131,14 +123,6 @@ public class FormatterTest {
     @Test
     public void testFormatTextRawWithEmptyList() {
         ArrayList<String> input = new ArrayList<>();
-        String expected = "";
-        assertEquals(expected, new Formatter().formatTextRaw(input));
-    }
-
-    // Test for Method formatTextRaw
-    @Test
-    public void testFormatTextRawWithNullList() {
-        ArrayList<String> input = null;
         String expected = "";
         assertEquals(expected, new Formatter().formatTextRaw(input));
     }

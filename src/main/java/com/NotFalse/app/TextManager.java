@@ -32,7 +32,11 @@ public class TextManager {
         text.add("Another New test paragraph.\n");
         text.add("Another weird useless nEw test paragraph");
         isExitTriggered = false;
+        isFormatterRaw = true;
+        fixedWidth = 80;
+        formatTextRaw();
         output.createWelcomeMessage();
+
     }
 
     public void editText() {
@@ -176,7 +180,7 @@ public class TextManager {
         for(String paragraph : text) {
             sb.append(paragraph);
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
 
     }
 

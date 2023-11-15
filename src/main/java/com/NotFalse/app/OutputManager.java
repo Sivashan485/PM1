@@ -8,6 +8,15 @@ public class OutputManager {
         // Initialization code here
     }
 
+    public void createWelcomeMessage() {
+        System.out.println("Welcome to the TextEditor! Created by NotFalse.");
+    }
+
+    public void createMenuOptions() {
+        System.out.println("Here are the commands you can use:");
+        System.out.println("1. ADD\n2. DEL\n3. DUMMY\n4. FORMAT RAW\n5. FORMAT FIX\n" +
+                "6. PRINT\n7. INDEX\n8. REPLACE\n9. EXIT\n10. HELP\n11.");
+    }
     // Methods
     public void createHelpMessage() {
         // Method implementation here

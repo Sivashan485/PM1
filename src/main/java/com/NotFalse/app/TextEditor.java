@@ -1,6 +1,7 @@
 package com.NotFalse.app;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TextEditor {
 
@@ -22,7 +23,16 @@ public class TextEditor {
     }
 
     private void startTextEditor() {
-        // startTextEditor implementation
+        output.createWelcomeMessage();
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (!isExitTriggered) {
+            output.createMenuOptions();
+
+            String input = scanner.nextLine();
+            scanner.nextLine();
+        }
     }
 
     private void runTextEditor() {

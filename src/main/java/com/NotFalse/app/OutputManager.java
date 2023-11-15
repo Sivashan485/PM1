@@ -2,6 +2,7 @@ package com.NotFalse.app;
 
 public class OutputManager {
 
+
     // Constructor
     public OutputManager() {
         // Initialization code here

@@ -13,6 +13,10 @@ public class TextEditor {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        TextEditor a = new TextEditor();
+        a.runTextEditor();
+        a.runTextEditor();
+
     }
 
     private void startTextEditor() {
@@ -20,6 +24,7 @@ public class TextEditor {
     }
 
     private void runTextEditor() {
+        textManager.editText();;
         // runTextEditor implementation
     }
 

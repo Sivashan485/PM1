@@ -13,9 +13,10 @@ public enum Commands {
     REPLACE("replace"),
     HELP("help"),
     FORMAT_RAW("format_raw"),
-    FORMAT_FIX("format_fix");
+    FORMAT_FIX("format_fix"),
+    UNKNOWN("unknown");
 
-    private final String command;
+    public  final String command;
 
     /**
      * Constructor for the enum class.
@@ -31,9 +32,10 @@ public enum Commands {
      *
      * @return command
      */
-    public String getCommand() {
+    public  String getCommand() {
         return command;
     }
+
 
     /**
      * Checks if the input is a command.
@@ -48,6 +50,16 @@ public enum Commands {
             }
         }
         return false;
+    }
+
+    public static Commands getCommandsEnum(String command){
+        Commands[] commands = Commands.values();
+        for (Commands value : commands) {
+            if (value.name().equals(command.toUpperCase())) {
+                return value;
+            }
+        }
+        return  Commands.UNKNOWN;
     }
 
     /**

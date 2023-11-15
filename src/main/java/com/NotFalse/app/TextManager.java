@@ -62,7 +62,6 @@ public class TextManager {
                 break;
             case HELP:
                 output.createMenuOptions();
-                System.out.println(Commands.getAllCommands());
                 break;
             case FORMAT_RAW:
                 formatTextRaw();

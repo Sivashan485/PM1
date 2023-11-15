@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class TextEditor {
 
-    private ArrayList<String> text;
+    private ArrayList<String> texts;
     private DummyGenerator generator;
     private Formatter formatter;
     private InputReceiver input;
     private OutputManager output;
-    private Glossary glossary;
+    private GlossaryApp glossary;
     private boolean isFormatterRaw;
     private boolean isExitTriggered;
 
     public TextEditor() {
+
+        this.formatter = new Formatter();
         // Constructor implementation
     }
 
@@ -40,12 +42,27 @@ public class TextEditor {
     private void deleteText() {
         // deleteText implementation
     }
+    /*
+     * public String formatTexts(ArrayList<String> texts, int maxWidth, Commands
+     * command, OutputManager output) {
+     * return formatter.formatText(texts, maxWidth, command, output);
+     * }
+     */
 
-    private void formatText() {
-        // formatText implementation
-    }
+    private String formatText(ArrayList<String> text, int maxWidth, Commands commands) {
+        switch (commands) {
+                case FORMAT_FIX:
+                    isFormatterRaw = false;
+                    return formatter.formatTextFix(text, maxWidth);
+                case FORMAT_RAW:
+                    isFormatterRaw = true;
+                    return formatter.formatTextRaw(text);
+                default:
+                    throw new IllegalArgumentException("Invalid command: " + commands.toString());
+        }
+    }    
 
-    private void printText() {
+    private void printText() {  
         // printText implementation
     }
 
@@ -71,11 +88,11 @@ public class TextEditor {
     }
 
     public ArrayList<String> getText() {
-        return text;
+        return texts;
     }
 
-    public void setText(ArrayList<String> text) {
-        this.text = text;
+    public void setText(ArrayList<String> texts) {
+        this.texts = texts;
     }
 
     public boolean getIsFormatterRaw() {

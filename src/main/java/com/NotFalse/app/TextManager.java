@@ -1,6 +1,5 @@
 package com.NotFalse.app;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -57,8 +56,10 @@ public class TextManager {
                 Commands.getCommandsAsString();
                 break;
             case FORMAT_RAW:
+                formatTextRaw(texts);
                 break;
             case FORMAT_FIX:
+                formatTextFix(texts, fixedWidth);
                 break;
             default:
                 System.out.println("UNKOWN ERROR");
@@ -83,25 +84,6 @@ public class TextManager {
 
     private void deleteText() {
         // deleteText implementation
-    }
-    /*
-     * public String formatTexts(ArrayList<String> texts, int maxWidth, Commands
-     * command, OutputManager output) {
-     * return formatter.formatText(texts, maxWidth, command, output);
-     * }
-     */
-
-    private String formatText(ArrayList<String> text, int maxWidth, Commands commands) {
-        switch (commands) {
-            case FORMAT_FIX:
-                isFormatterRaw = false;
-                // return formatTextFix(text, maxWidth);
-            case FORMAT_RAW:
-                isFormatterRaw = true;
-                // return formatTextRaw(text);
-            default:
-                throw new IllegalArgumentException("Invalid command: " + commands.toString());
-        }
     }
 
     /**

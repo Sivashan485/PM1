@@ -4,18 +4,22 @@ import java.util.ArrayList;
 
 public class Formatter {
 
+
+    public Formatter(){
+  
+    }
+
     public String formatTextFix(ArrayList<String> text, int maxWidth) {
 
-        String nullInputResult = handleNullInput(text);
-        if (nullInputResult != null) {
-            return nullInputResult;
+        if (text == null) {
+            throw new IllegalArgumentException("Text cannot be null");
         }
 
         StringBuilder fixFormatted = new StringBuilder();
         int currentWidth = 0;
 
-        for (String line : text) {
-            String[] words = line.split("\\s+");
+        for (String paragraph : text) {
+            String[] words = paragraph.split("\\s+");
             for (String word : words) {
                 // If the word itself is longer than maxWidth, break it down.
                 while (word.length() > maxWidth) {
@@ -33,7 +37,7 @@ public class Formatter {
                     currentWidth = 0;
                 }
 
-                // Add a space if it's not the first word on the line
+                // Add a space if it's not the first word on the paragraph
                 if (currentWidth > 0) {
                     fixFormatted.append(" ");
                     currentWidth++;
@@ -46,26 +50,23 @@ public class Formatter {
         return fixFormatted.toString();
     }
 
-    public String formatTextRaw(ArrayList<String> textList) {
+    private void breakLongWords(String word){}
 
-        String nullInputResult = handleNullInput(textList);
-        if (nullInputResult != null) {
-            return nullInputResult;
+
+
+    public String formatTextRaw(ArrayList<String> text) {
+        if (text == null) {
+            throw new IllegalArgumentException("Text cannot be null");
         }
 
         StringBuilder rawFormatted = new StringBuilder();
         int paragraphNumber = 1;
-        for (String text : textList) {
-            rawFormatted.append("<").append(paragraphNumber).append(">: ").append(text).append("\n");
+        for (String paragraph : text) {
+            rawFormatted.append("<").append(paragraphNumber).append(">: ").append(paragraph).append("\n");
             paragraphNumber++;
         }
         return rawFormatted.toString();
     }
 
-    private String handleNullInput(ArrayList<String> textList) {
-        if (textList == null) {
-            return "";
-        }
-        return null;
-    }
+
 }

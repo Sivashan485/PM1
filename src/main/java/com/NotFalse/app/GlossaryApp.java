@@ -3,65 +3,55 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
 import java.util.TreeMap;
 
 
 public class GlossaryApp {
 
     private TreeMap<String, ArrayList<Integer>> glossary;
-    private List<String> text;
     private Map<String,Integer> wordFrequency;
 
-    public GlossaryApp(List<String> text) {
-        if (text == null) {
-            throw new IllegalArgumentException("Text cannot be null");
-        }
-
+    public GlossaryApp() {
         glossary = new TreeMap<>();
         wordFrequency = new HashMap<>();
-        this.text = text;
-        
     }
 
-    public GlossaryApp updateGlossary() {
-        GlossaryApp newGlossary = new GlossaryApp(text);
-
-        newGlossary.calculateWordFrequency();
-        newGlossary.insertEntriesToGlossary();
-
+    public GlossaryApp updateGlossary(ArrayList<String> text) {
+        GlossaryApp newGlossary = new GlossaryApp();
+        newGlossary.calculateWordFrequency(text);
+        newGlossary.insertEntriesToGlossary(text);
         return newGlossary;
     }
 
-    void calculateWordFrequency() {
+    void calculateWordFrequency(ArrayList<String> text) {
         for (String paragraph : text) {
             String[] words = paragraph.split(" ");
             for (String word : words) {
-                wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+                if(!wordFrequency.containsKey(word)){
+                    wordFrequency.put(word,0);
+                }
+                int counter = wordFrequency.get(word);
+                wordFrequency.put(word,++counter);
             }
         }
         filterWordFrequency();
-       
     }
 
+    /**
+     * Removes all entries with a value less than 3.
+     */
     void filterWordFrequency(){
-        //removes all entries with a value less then 3
         wordFrequency.entrySet().removeIf(entry -> entry.getValue() < 3);
     }
 
 
-    public Map<String, Integer> getWordFrequency() {
-        return wordFrequency;
-    }
-
-
-    void insertEntriesToGlossary() {
+    void insertEntriesToGlossary(ArrayList<String> text) {
         for (String word : wordFrequency.keySet()) {
-            glossary.computeIfAbsent(word, k -> findParagraphIndexes(word));
+            glossary.computeIfAbsent(word, k -> findParagraphIndexes(text, word));
         }
     }
 
-    ArrayList<Integer> findParagraphIndexes(String word) {
+    ArrayList<Integer> findParagraphIndexes(ArrayList<String> text, String word) {
         ArrayList<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < text.size(); i++) {
             if (text.get(i).contains(word)) {
@@ -73,8 +63,16 @@ public class GlossaryApp {
         return indexes;
     }
   
-    boolean isIndexValid(int index) {
+    /*boolean isIndexValid(int index) {
         return index >= 0 && index < text.size();
+    }*/
+
+    /**
+     * Returns the word frequency map.
+     * @return
+     */
+    public Map<String, Integer> getWordFrequency() {
+        return wordFrequency;
     }
 
     TreeMap<String, ArrayList<Integer>> getGlossary() {

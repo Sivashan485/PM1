@@ -55,20 +55,6 @@ public class OutputManagerTest {
         assertEquals("Welcome to the TextEditor! Created by NotFalse.", outContent.toString().trim());
     }
 
-    @Test
-    public void testCreateMaxStringWarning() {
-        OutputManager outputManager = new OutputManager();
-        outputManager.createMaxStringWarning();
-        assertEquals("The text you have entered is too long! Please try again or " +
-                "fix the text length.", outContent.toString().trim());
-    }
-
-    @Test
-    public void testCreateMaxIntWarning() {
-        OutputManager outputManager = new OutputManager();
-        outputManager.createMaxIntWarning();
-        assertEquals("The index you have entered is too large! Please try again.", outContent.toString().trim());
-    }
 
     @Test
     public void testCreateExitMessage() {

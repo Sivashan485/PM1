@@ -9,11 +9,6 @@ import java.io.ByteArrayInputStream;
 public class InputReceiverTest {
 
     InputReceiver input;
-    @BeforeEach
-    void setupInputReceiverTest(){
-        input = new InputReceiver();
-
-    }
 
     @Test
     void allowedCharactersUmlauts(){

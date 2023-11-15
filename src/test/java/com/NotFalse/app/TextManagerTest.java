@@ -13,13 +13,13 @@ public class TextManagerTest {
     TextManager textManager;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         textManager = new TextManager();
     }
 
     // Test for Method formatTextFix
     @Test
-    public void testSingleShortWord() {
+    void testSingleShortWord() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("test"));
         String expected = "test";
         assertEquals(expected, textManager.formatTextFix(input, 4));
@@ -27,7 +27,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testEmptyInput() {
+    void testEmptyInput() {
         ArrayList<String> input = new ArrayList<>();
         String expected = "";
         assertEquals(expected, textManager.formatTextFix(input, 5));
@@ -35,7 +35,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testSingleLongWord() {
+    void testSingleLongWord() {
         ArrayList<String> input = new ArrayList<>(
                 Arrays.asList(
                         "01234567890123456789"));
@@ -47,7 +47,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testMultipleShortWords() {
+    void testMultipleShortWords() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("hello", "world"));
         String expected = "hello\n" +
                 "world";
@@ -56,7 +56,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testMultipleLongWords() {
+    void testMultipleLongWords() {
         ArrayList<String> input = new ArrayList<>(
                 Arrays.asList("abcdefghij", "jiwer", "klmnopqrstuvwxy", "zabcdefghij"));
         String expected = "abcdefghij jiwer\n" +
@@ -67,7 +67,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testWordsExactlyMatchingMaxWidth() {
+    void testWordsExactlyMatchingMaxWidth() {
         ArrayList<String> input = new ArrayList<>(
                 Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabcd", "efghijklmn", "opqrstuvwx"));
         String expected = "abcdefghij\n" +
@@ -80,7 +80,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testLineBreakOnWordBoundary() {
+    void testLineBreakOnWordBoundary() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabc", "efghijkl",
                 "opqrstu", "yzabcd", "ijklm", "stuv", "cde", "mn", "o"));
         String expected = "abcdefghij\n" +
@@ -93,7 +93,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testSpacesNotPreserved() {
+    void testSpacesNotPreserved() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("hello", " ", "world"));
         String expected = "hello world";
         assertEquals(expected, textManager.formatTextFix(input, 20));
@@ -101,7 +101,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
-    public void testMaximumWidthBoundary() {
+    void testMaximumWidthBoundary() {
         String longWord = "a".repeat(80);
         ArrayList<String> input = new ArrayList<>(Arrays.asList(longWord, "b"));
         String expected = longWord + "\nb";
@@ -110,7 +110,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextRaw
     @Test
-    public void testFormatTextRawWithSingleLine() {
+    void testFormatTextRawWithSingleLine() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("This is a single line of text."));
         String expected = "<1>: This is a single line of text.\n";
         assertEquals(expected, textManager.formatTextRaw(input));
@@ -118,7 +118,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextRaw
     @Test
-    public void testFormatTextRawWithMultipleLines() {
+    void testFormatTextRawWithMultipleLines() {
         ArrayList<String> input = new ArrayList<>(
                 Arrays.asList("This is the first line of text.", "This is the second line of text."));
         String expected = "<1>: This is the first line of text.\n" +
@@ -128,7 +128,7 @@ public class TextManagerTest {
 
     // Test for Method formatTextRaw
     @Test
-    public void testFormatTextRawWithEmptyList() {
+    void testFormatTextRawWithEmptyList() {
         ArrayList<String> input = new ArrayList<>();
         String expected = "";
         assertEquals(expected, textManager.formatTextRaw(input));

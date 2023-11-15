@@ -9,7 +9,7 @@ public enum Commands {
         // implementation
     }
 
-    private void getCommandsAsString() {
+    static void getCommandsAsString() {
         // implementation
     }
 }

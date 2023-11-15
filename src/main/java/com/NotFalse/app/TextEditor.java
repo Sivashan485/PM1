@@ -21,7 +21,6 @@ public class TextEditor {
      */
     public static void main(String[] args) {
         TextEditor a = new TextEditor();
-
         a.runTextEditor();
     }
 

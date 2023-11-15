@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class TextManager {
     final static String DUMMYTEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
@@ -27,7 +28,7 @@ public class TextManager {
         output = new OutputManager();
         glossary = new GlossaryApp();
         text = new ArrayList<>();
-        text.add("This is a new test paragraph.\n");
+        text.add("This three thrEE Threeis a new test paragraph.\n");
         text.add("Another New test paragraph.\n");
         text.add("Another weird useless nEw test paragraph");
         isExitTriggered = false;
@@ -175,10 +176,14 @@ public class TextManager {
     }
 
     void showGlossary() {
-        System.out.println("Glossary:\n");
+        System.out.println("Glossary:");
         glossary = glossary.rebuildGlossary(text);
-        for(String word : glossary.getGlossary().keySet()) {
-            System.out.println(word + ": " + glossary.getGlossary().get(word));
+        for (String word : glossary.getGlossary().keySet()) {
+            List<Integer> indexes = glossary.getGlossary().get(word);
+            String indexesStr = indexes.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", "));
+            System.out.printf("%-10s %s%n", word, indexesStr);
         }
     }
 

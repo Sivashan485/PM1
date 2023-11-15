@@ -33,25 +33,25 @@ public class TextManager {
         String userInput[] = input.splitInput();
         switch (Commands.getCommandsEnum(userInput[0])) {
             case DUMMY:
-                addDummyText();
+                addDummyParagraph();
                 break;
             case EXIT:
                 isExitTriggered = true;
                 break;
             case ADD:
-                addNewText(userInput[1]);
+                addNewParagraph(userInput[1]);
                 break;
             case DEL:
-                deleteText();
+                deleteParagraph();
                 break;
             case INDEX:
-                showIndex();
+                showGlossary();
                 break;
             case PRINT:
                 printText();
                 break;
             case REPLACE:
-                replaceText();
+                replaceTextSection();
                 break;
             case HELP:
                 output.createHelpMessage();
@@ -68,7 +68,7 @@ public class TextManager {
         }
     }
 
-    private void addNewText(String inputText) {
+    private void addNewParagraph(String inputText) {
         try {
             text.add(inputText);
             output.createAddMessage(true);
@@ -79,7 +79,7 @@ public class TextManager {
         // addText implementation
     }
 
-    private void deleteText() {
+    private void deleteParagraph() {
         // deleteText implementation
     }
 
@@ -157,25 +157,24 @@ public class TextManager {
         }
         return currentWidth;
     }
-
+    // for being able to test the methods
     public void setText(List<String> text) {
         this.text = text;
     }
 
     private void printText() {
         System.out.println(Arrays.toString(text.toArray()));
-        // printText implementation
     }
 
-    private void showIndex() {
+    private void showGlossary() {
         // showIndex implementation
     }
 
-    private void replaceText() {
+    private void replaceTextSection() {
         // replaceText implementation
     }
 
-    private void addDummyText() {
+    private void addDummyParagraph() {
         text.add(DUMMYTEXT);
     }
 

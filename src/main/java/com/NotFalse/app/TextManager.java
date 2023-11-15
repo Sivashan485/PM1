@@ -94,11 +94,11 @@ public class TextManager {
      * @param text the ArrayList of Strings to be formatted
      * @return the formatted String
      */
-    String formatTextRaw(ArrayList<String> text) {
+    String formatTextRaw(){
 
         String newText = "";
-        for (int paragraph = 0; paragraph < text.size(); paragraph++) {
-            newText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
+        for (int paragraph = 0; paragraph < texts.size(); paragraph++) {
+            newText += "<" + (paragraph + 1) + ">: " + texts.get(paragraph) + "\n";
         }
         return newText;
     }
@@ -110,7 +110,7 @@ public class TextManager {
      * @param maxWidth The maximum width of each line.
      * @return The formatted text.
      */
-    String formatTextFix(ArrayList<String> text, int maxWidth) {
+    String formatTextFix() {
 
         StringBuilder fixFormatted = new StringBuilder();
         int currentWidth = 0;

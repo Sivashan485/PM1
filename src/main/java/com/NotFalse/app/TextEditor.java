@@ -33,8 +33,6 @@ public class TextEditor {
             textManager.editText();
             isRunning = !textManager.getIsExitTriggered();
         } while (isRunning);
-
-
     }
 
 }

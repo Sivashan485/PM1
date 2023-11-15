@@ -40,7 +40,6 @@ public class TextManager {
     }
 
     public void editText() {
-
         String userInput[] = input.splitInput();
         switch (Commands.getCommandsEnum(userInput[0])) {
             case DUMMY:
@@ -69,9 +68,12 @@ public class TextManager {
                 output.createMenuOptions();
                 break;
             case FORMAT_RAW:
+                isFormatterRaw = true;
                 formatTextRaw();
                 break;
             case FORMAT_FIX:
+                isFormatterRaw = false;
+                //setFixedWidth(Integer.parseInt(userInput[1]));
                 formatTextFix(fixedWidth);
                 break;
             default:
@@ -210,6 +212,14 @@ public class TextManager {
 
     public void setIsFormatterRaw(boolean isFormatterRaw) {
         this.isFormatterRaw = isFormatterRaw;
+    }
+
+    public int getFixedWidth() {
+        return fixedWidth;
+    }
+
+    public void setFixedWidth(int fixedWidth) {
+        this.fixedWidth = fixedWidth;
     }
 
     public boolean getIsExitTriggered() {

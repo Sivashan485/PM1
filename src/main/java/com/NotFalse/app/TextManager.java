@@ -54,7 +54,7 @@ public class TextManager {
                 replaceParagraphSection();
                 break;
             case HELP:
-                output.createHelpMessage();
+                output.createMenuOptions();
                 break;
             case FORMAT_RAW:
                 formatTextRaw();

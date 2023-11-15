@@ -62,7 +62,7 @@ public class GlossaryAppTest {
     @Test
     void testFindParagraphIndexesOne() {
         List<Integer> testIndexes = glossaryOne.findParagraphIndexes(textOne, "test");
-        assertEquals(Arrays.asList(0, 1, 2), testIndexes);
+        assertEquals(Arrays.asList(1, 2, 3), testIndexes);
 
     }
 
@@ -95,7 +95,7 @@ public class GlossaryAppTest {
         TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
 
         assertTrue(glossaryMap.containsKey("Test"));
-        assertEquals(Arrays.asList(0, 1, 2), glossaryMap.get("Test"));
+        assertEquals(Arrays.asList(1, 2, 3), glossaryMap.get("Test"));
 
     }
 
@@ -104,7 +104,7 @@ public class GlossaryAppTest {
         TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
 
         assertTrue(glossaryMap.containsKey("Paragraph"));
-        assertEquals(Arrays.asList(0, 1, 2), glossaryMap.get("Paragraph"));
+        assertEquals(Arrays.asList(1, 2, 3), glossaryMap.get("Paragraph"));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class GlossaryAppTest {
         TreeMap<String, List<Integer>> glossaryMap = newGlossary.getGlossary();
 
         assertTrue(glossaryMap.containsKey("Test"));
-        assertEquals(Arrays.asList(0, 1), glossaryMap.get("Test"));
+        assertEquals(Arrays.asList(1, 2), glossaryMap.get("Test"));
     }
 
     @Test

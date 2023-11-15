@@ -89,7 +89,7 @@ public class GlossaryApp {
         for (int i = 0; i < text.size(); i++) {
             String cleanedParagraph = filterParagraph(text.get(i));
             if (cleanedParagraph.contains(word)) {
-                indexes.add(i);
+                indexes.add(i+1);
             }
         }
         // sorts the indexes

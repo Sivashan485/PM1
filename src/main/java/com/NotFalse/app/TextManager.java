@@ -3,6 +3,7 @@ package com.NotFalse.app;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TreeMap;
 
 public class TextManager {
     final static String DUMMYTEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
@@ -26,6 +27,9 @@ public class TextManager {
         output = new OutputManager();
         glossary = new GlossaryApp();
         text = new ArrayList<>();
+        text.add("This is a new test paragraph.\n");
+        text.add("Another New test paragraph.\n");
+        text.add("Another weird useless nEw test paragraph");
         isExitTriggered = false;
     }
 
@@ -168,7 +172,12 @@ public class TextManager {
     }
 
     private void showGlossary() {
-        // showIndex implementation
+        System.out.println("Glossary: ");
+        glossary = glossary.rebuildGlossary(text);
+        for(String word : glossary.getGlossary().keySet()) {
+            System.out.println(word + ": " + glossary.getGlossary().get(word));
+
+        }
     }
 
     void replaceParagraphSection() {

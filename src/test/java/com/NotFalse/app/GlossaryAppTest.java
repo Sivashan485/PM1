@@ -1,10 +1,9 @@
 package com.NotFalse.app;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.TreeMap;
+
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GlossaryAppTest {
@@ -19,7 +18,7 @@ public class GlossaryAppTest {
         text.add("Another test paragraph.");
         text.add("Another weird useless test paragraph");
         glossary = new GlossaryApp();
-        glossary.calculateWordFrequency(text);
+        glossary.computeWordFrequency(text);
     }
 
     @Test
@@ -30,7 +29,7 @@ public class GlossaryAppTest {
         newText.add("Yet another custom test paragraph.");
         newText.add("A totally new sentence with so many custom characters");
 
-        GlossaryApp newGlossaryApp = glossary.updateGlossary(newText);
+        GlossaryApp newGlossaryApp = glossary.rebuildGlossary(newText);
         Map<String, Integer> wordFrequency = newGlossaryApp.getWordFrequency();
 
         assertEquals(4, wordFrequency.get("custom"));
@@ -52,7 +51,7 @@ public class GlossaryAppTest {
     @Test
     void testInsertEntriesToGlossary() {
         glossary.insertEntriesToGlossary(text);
-        TreeMap<String, ArrayList<Integer>> glossaryMap = glossary.getGlossary();
+        TreeMap<String,List<Integer>> glossaryMap = glossary.getGlossary();
 
         assertTrue(glossaryMap.containsKey("test"));
         assertFalse(glossaryMap.containsKey("Another"));
@@ -64,11 +63,11 @@ public class GlossaryAppTest {
         glossary.insertEntriesToGlossary(text);
 
         // Test for a word that exists in the text
-        ArrayList<Integer> testIndexes = glossary.findParagraphIndexes(text, "test");
+        List<Integer> testIndexes = glossary.findParagraphIndexes(text, "test");
         assertEquals(Arrays.asList(0, 1, 2), testIndexes);
 
         // Test for a word that doesn't exist in the text
-        ArrayList<Integer> nonexistentIndexes = glossary.findParagraphIndexes(text, "nonexistent");
+        List<Integer> nonexistentIndexes = glossary.findParagraphIndexes(text, "nonexistent");
         assertTrue(nonexistentIndexes.isEmpty());
     }
 }

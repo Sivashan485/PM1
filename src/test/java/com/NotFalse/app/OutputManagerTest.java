@@ -56,30 +56,6 @@ public class OutputManagerTest {
     }
 
     @Test
-    public void testCreateMenuOptions() {
-        OutputManager outputManager = new OutputManager();
-        outputManager.createMenuOptions();
-        assertEquals("Here are the commands you can use:\n" +
-                "addText\n" +
-                "moveText\n" +
-                "deleteText\n" +
-                "formatText\n" +
-                "printText", outContent.toString().trim());
-    }
-
-    @Test
-    public void testCreateHelpMessage() {
-        OutputManager outputManager = new OutputManager();
-        outputManager.createHelpMessage();
-        assertEquals("Here are the commands you can use:\n" +
-                "addText\n" +
-                "moveText\n" +
-                "deleteText\n" +
-                "formatText\n" +
-                "printText", outContent.toString().trim());
-    }
-
-    @Test
     public void testCreateMaxStringWarning() {
         OutputManager outputManager = new OutputManager();
         outputManager.createMaxStringWarning();

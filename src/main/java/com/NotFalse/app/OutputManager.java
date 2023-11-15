@@ -40,13 +40,13 @@ public class OutputManager {
 
     public void createMenuOptions() {
         System.out.println("Here are the commands you can use:");
-        Commands.getCommandsAsString();
+        Commands.getAllCommands();
     }
 
     // Methods
     public void createHelpMessage() {
         System.out.println("Here are the commands you can use:");
-        Commands.getCommandsAsString();
+        Commands.getAllCommands();
     }
 
     public void createMaxStringWarning() {

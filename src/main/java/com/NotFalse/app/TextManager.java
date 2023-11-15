@@ -172,7 +172,12 @@ public class TextManager {
     }
 
     private void printText() {
-        System.out.println(Arrays.toString(text.toArray()));
+        StringBuilder sb = new StringBuilder();
+        for(String paragraph : text) {
+            sb.append(paragraph);
+        }
+        System.out.println(sb.toString());
+
     }
 
     void showGlossary() {

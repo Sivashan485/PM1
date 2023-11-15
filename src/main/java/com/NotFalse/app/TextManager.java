@@ -37,7 +37,7 @@ public class TextManager {
                 break;
             case EXIT: isExitTriggered = true;
                 break;
-            case ADD:  addText();
+            case ADD:  addText(userInput[1]);
                 break;
             case DEL: deleteText();
                 break;
@@ -58,7 +58,15 @@ public class TextManager {
         }
     }
 
-    private void addText() {
+    private void addText(String inputText) {
+        try{
+            texts.add(inputText);
+            output.createAddMessage(true);
+        }catch (Exception e){
+            output.createAddMessage(false);
+        }
+
+
         // addText implementation
     }
 

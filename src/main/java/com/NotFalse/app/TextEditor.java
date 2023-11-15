@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class TextEditor {
 
-    private TextManagerTest textManager;
+    private TextManager textManager;
 
     public TextEditor() {
-        textManager = new TextManagerTest();
+        textManager = new TextManager();
         // Constructor implementation
     }
 

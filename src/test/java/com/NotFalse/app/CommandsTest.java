@@ -18,6 +18,7 @@ public class CommandsTest {
         assertEquals("help", Commands.HELP.getCommand());
         assertEquals("format_raw", Commands.FORMAT_RAW.getCommand());
         assertEquals("format_fix", Commands.FORMAT_FIX.getCommand());
+        assertEquals("unknown", Commands.UNKNOWN.getCommand());
     }
 
     @Test
@@ -32,6 +33,7 @@ public class CommandsTest {
         assertTrue(Commands.isCommand("help"));
         assertTrue(Commands.isCommand("format_raw"));
         assertTrue(Commands.isCommand("format_fix"));
+        assertTrue(Commands.isCommand("unknown"));
         assertFalse(Commands.isCommand("not a command"));
     }
 /* 

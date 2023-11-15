@@ -1,11 +1,33 @@
 package com.NotFalse.app;
 
+
+import java.util.logging.*;
+
 public class OutputManager {
 
+    private static final Logger LOGGER = Logger.getLogger(OutputManager.class.getName());
 
-    // Constructor
+    Handler consoleHandler = new ConsoleHandler();
     public OutputManager() {
         // Initialization code here
+        // Set the logging level for the handler
+        consoleHandler.setLevel(Level.ALL);
+
+        // Create a formatter for the handler
+        SimpleFormatter formatter = new SimpleFormatter();
+        consoleHandler.setFormatter(formatter);
+
+        // Add the handler to the logger
+        LOGGER.addHandler(consoleHandler);
+    }
+
+    public void createUserInfoMessage(String logText){
+        System.out.println(logText);
+        LOGGER.log(Level.INFO, logText);
+    }
+    public void createUserErrorMessage(String logText){
+        System.err.println(logText);
+        LOGGER.log(Level.WARNING, logText);
     }
 
     // Methods
@@ -25,8 +47,13 @@ public class OutputManager {
         // Method implementation here
     }
 
-    public void createAddMessage() {
+    public void createAddMessage(boolean success) {
         // Method implementation here
+        if(success)
+            createUserInfoMessage("Text has been added");
+        else
+            createUserErrorMessage("Text has not been added");
+
     }
 
     public void createDeleteMessage() {

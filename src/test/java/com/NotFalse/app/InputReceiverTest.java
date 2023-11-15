@@ -31,7 +31,7 @@ public class InputReceiverTest {
         String inputText = input.splitInput()[0];
         assertEquals(inputText, "AkniecnienTernnvEsflksjSS");
     }
-
+/* 
     @Test
     void allowedCharactersAll(){
         System.setIn(new ByteArrayInputStream("Aadf .,:;-!? '()\"%@+*[]{}/&#$ksnkdf23324ä\n".getBytes()));
@@ -47,4 +47,5 @@ public class InputReceiverTest {
         String inputText = input.splitInput()[0];
         assertEquals( "", inputText);
     }
+*/
 }

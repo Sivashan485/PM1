@@ -116,10 +116,10 @@ public class TextManager {
                 word = breakDownLongWord(word, fixedWidth, fixFormatted, currentWidth);
 
                 // Check if adding the current word exceeds maxWidth
-                currentWidth = appendNewLineIfNecessary(word, fixedWidth, fixFormatted, currentWidth);
+                currentWidth = appendNewLine(word, fixedWidth, fixFormatted, currentWidth);
 
                 // Add a space if it's not the first word on the paragraph
-                currentWidth = appendSpaceIfNotFirstWord(fixFormatted, currentWidth);
+                currentWidth = appendSpace(fixFormatted, currentWidth);
 
                 fixFormatted.append(word);
                 currentWidth += word.length();
@@ -128,7 +128,7 @@ public class TextManager {
         return fixFormatted.toString();
     }
 
-    private String breakDownLongWord(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
+    String breakDownLongWord(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
         // If the word itself is longer than maxWidth, break it down.
         while (word.length() > maxWidth) {
             if (currentWidth > 0) {
@@ -141,7 +141,7 @@ public class TextManager {
         return word;
     }
 
-    private int appendNewLineIfNecessary(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
+    private int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
         if (currentWidth + (currentWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
             fixFormatted.append("\n");
             currentWidth = 0;
@@ -149,7 +149,7 @@ public class TextManager {
         return currentWidth;
     }
 
-    private int appendSpaceIfNotFirstWord(StringBuilder fixFormatted, int currentWidth) {
+    private int appendSpace(StringBuilder fixFormatted, int currentWidth) {
         // Add a space if it's not the first word on the paragraph
         if (currentWidth > 0) {
             fixFormatted.append(" ");
@@ -171,7 +171,7 @@ public class TextManager {
         // showIndex implementation
     }
 
-    private void replaceParagraphSection() {
+    void replaceParagraphSection() {
         // replaceText implementation
     }
 

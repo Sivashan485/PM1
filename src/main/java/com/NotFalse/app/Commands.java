@@ -67,7 +67,7 @@ public enum Commands {
      *
      * @return command
      */
-    static String getCommandsAsString() {
+    static String getAllCommands() {
         StringBuilder sb = new StringBuilder("Valid commands: ");
         for (Commands command : Commands.values()) {
             sb.append(command.getCommand()).append(", ");

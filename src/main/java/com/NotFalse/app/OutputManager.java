@@ -1,6 +1,10 @@
 package com.NotFalse.app;
 
-import java.util.logging.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class OutputManager {
 
@@ -33,7 +37,7 @@ public class OutputManager {
 
     // Methods
     public void createHelpMessage() {
-        Commands.getCommandsAsString();
+        Commands.getAllCommands();
     }
 
     public void createMaxStringWarning() {

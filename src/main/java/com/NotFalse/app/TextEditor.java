@@ -35,7 +35,7 @@ public class TextEditor {
      * Runs the TextEditor application.
      */
     private void runTextEditor() {
-        boolean isRunning = true;
+        boolean isRunning;
         do{
             textManager.editText();
             isRunning = !textManager.getIsExitTriggered();

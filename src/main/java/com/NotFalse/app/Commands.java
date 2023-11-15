@@ -68,9 +68,12 @@ public enum Commands {
      * @return command
      */
     static String getAllCommands() {
-        StringBuilder sb = new StringBuilder("Valid commands: ");
+        StringBuilder sb = new StringBuilder();
         for (Commands command : Commands.values()) {
-            sb.append(command.getCommand()).append(", ");
+            if(!command.getCommand().equals("unknown")){
+                sb.append(command.getCommand()).append(", ");
+            }
+
         }
         // Remove the trailing comma and space
         return sb.substring(0, sb.length() - 2);

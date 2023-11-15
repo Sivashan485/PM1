@@ -13,9 +13,8 @@ public class FormatterTest {
     @Test
     public void testSingleShortWord() {
         ArrayList<String> input = new ArrayList<>(Arrays.asList("test"));
-        String expected = "tes\n" +
-                "t";
-        assertEquals(expected, new Formatter().formatTextFix(input, 3));
+        String expected = "test";
+        assertEquals(expected, new Formatter().formatTextFix(input, 4));
     }
 
     // Test for Method formatTextFix

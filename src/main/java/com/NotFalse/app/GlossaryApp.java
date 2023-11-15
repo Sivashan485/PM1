@@ -35,7 +35,8 @@ public class GlossaryApp {
     Map<String,Integer> computeWordFrequency(List<String> text) {
         Map<String,Integer> wordFrequency = new HashMap<>();
         for (String paragraph : text) {
-            String[] words = paragraph.split(" ");
+            String cleanedParagraph = paragraph.replaceAll("[^A-Za-z ]", " ").toLowerCase();
+            String[] words = cleanedParagraph.split(" ");
             for (String word : words) {
                 if(!wordFrequency.containsKey(word)){
                     wordFrequency.put(word,0);

@@ -43,7 +43,7 @@ public class TextManager {
         String userInput[] = input.splitInput();
         switch (Commands.getCommandsEnum(userInput[0])) {
             case DUMMY:
-                addDummyParagraph();
+                addDummyParagraph(userInput[1]);
                 break;
             case EXIT:
                 output.createExitMessage();
@@ -202,8 +202,15 @@ public class TextManager {
         // replaceText implementation
     }
 
-    private void addDummyParagraph() {
-        text.add(DUMMYTEXT);
+    private void addDummyParagraph(String inputText) {
+        if(inputText!=null){
+            int convertToInteger = Integer.parseInt(inputText);
+            if(convertToInteger>= text.size()){
+                text.add(DUMMYTEXT);
+            }else{
+                text.add(convertToInteger,DUMMYTEXT);
+            }
+        }
     }
 
     public boolean getIsFormatterRaw() {

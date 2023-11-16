@@ -3,7 +3,6 @@ package com.NotFalse.app;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
@@ -56,7 +55,7 @@ public class TextManager {
     public void editText() {
         String userInput[] = input.splitInput();
 
-        switch (Commands.getCommandsEnum(userInput[0])) {
+        switch (Commands.lookupCommand(userInput[0])) {
             case DUMMY:
                 System.out.println(Arrays.toString(text.toArray()));
                 addDummyParagraph(userInput);

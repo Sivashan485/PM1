@@ -63,7 +63,7 @@ public enum Commands {
      * @param command
      * @return
      */
-    public static Commands getCommandsEnum(String command) {
+    public static Commands lookupCommand(String command) {
         Commands[] commands = Commands.values();
         for (Commands value : commands) {
             if (value.getCommand().equals(command.toLowerCase())) {

@@ -58,7 +58,6 @@ public class TextManager {
 
         switch (Commands.getCommandsEnum(userInput[0])) {
             case DUMMY:
-                System.out.println(Arrays.toString(text.toArray()));
                 addDummyParagraph(userInput);
                 break;
             case EXIT:
@@ -78,7 +77,7 @@ public class TextManager {
                 printText();
                 break;
             case REPLACE:
-                replaceParagraphSection();
+                replaceParagraphSection(userInput);
                 break;
             case HELP:
                 output.createMenuOptions();
@@ -155,6 +154,7 @@ public class TextManager {
         } else {
             output.createDeleteMessage(false);
         }
+
     }
 
     /**
@@ -296,12 +296,38 @@ public class TextManager {
         }
     }
 
+    private void replaceWord(int index, String replacingWord, String replaceWith){
+        String textToChange =text.get(index);
+        textToChange = textToChange.toLowerCase();
+        replacingWord = replacingWord.toLowerCase();
+        if(textToChange.contains(replacingWord)){
+            textToChange = " "+textToChange.replaceAll(replacingWord,replaceWith )+" ";
+            text.remove(index);
+            text.add(index,textToChange);
+        }
+    }
+
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraphSection() {
-        String[] userInput = input.splitInput();
-        if (userInput.length == 3) {
+    void replaceParagraphSection(String[] userInput) {
+        System.out.print("Replacing Word: ");
+        String wordtoReplace = input.unsplittedText();
+        System.out.print("Replacing with: ");
+        String replaceingWord = input.unsplittedText();
+
+        if (userInput.length>=1) {
+            int index = Integer.parseInt(userInput[1])-1;
+            System.out.println();
+            if (index <= text.size() && index>=0) {
+                replaceWord(index,wordtoReplace,replaceingWord );
+            } else{
+                replaceWord(text.size(),wordtoReplace,replaceingWord );
+            }
+        }
+
+        //String[] userInput = input.splitInput();
+        /*if (userInput.length == 3) {
             try {
                 int start = Integer.parseInt(userInput[1]) - 1;
                 int end = Integer.parseInt(userInput[2]) - 1;
@@ -319,7 +345,7 @@ public class TextManager {
             } catch (NumberFormatException e) {
                 output.createReplaceMessage(false);
             }
-        }
+        }*/
     }
 
     /**

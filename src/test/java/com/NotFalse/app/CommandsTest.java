@@ -21,24 +21,8 @@ public class CommandsTest {
         assertEquals("unknown", Commands.UNKNOWN.getCommand());
     }
 
-    @Test
-    public void testIsCommand() {
-        assertTrue(Commands.isCommand("exit"));
-        assertTrue(Commands.isCommand("add"));
-        assertTrue(Commands.isCommand("del"));
-        assertTrue(Commands.isCommand("dummy"));
-        assertTrue(Commands.isCommand("index"));
-        assertTrue(Commands.isCommand("print"));
-        assertTrue(Commands.isCommand("replace"));
-        assertTrue(Commands.isCommand("help"));
-        assertTrue(Commands.isCommand("format_raw"));
-        assertTrue(Commands.isCommand("format_fix"));
-        assertTrue(Commands.isCommand("unknown"));
-        assertFalse(Commands.isCommand("not a command"));
-    }
-
       @Test
-      public void testGetCommandsAsString() {
+      public void testGetAllCommands() {
       assertEquals("exit, add, del, dummy, index, print, " +
       "replace, help, format_raw, format_fix", Commands.getAllCommands());
       }

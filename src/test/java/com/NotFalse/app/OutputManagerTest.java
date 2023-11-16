@@ -106,10 +106,4 @@ public class OutputManagerTest {
         assertEquals("Text replaced successfully!", outContent.toString().trim());
     }
 
-    @Test
-    public void testCreateInvalidCommandMessage() {
-        OutputManager outputManager = new OutputManager();
-        outputManager.createInvalidCommandMessage();
-        assertEquals("Invalid command! Please try again.", outContent.toString().trim());
-    }
 }

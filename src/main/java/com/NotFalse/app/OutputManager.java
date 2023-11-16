@@ -107,7 +107,7 @@ public class OutputManager {
     }
 
     public void createInvalidCommandMessage() {
-        System.out.println("Invalid command! Please try again.");
+        System.err.println("Invalid command! Please try again.");
     }
 }
 

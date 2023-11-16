@@ -30,19 +30,10 @@ public enum Commands {
     }
 
     /**
-     * Getter for the command, as a String.
-     *
-     * @return command
-     */
-    public String getCommand() {
-        return command;
-    }
-
-
-    /**
      * Takes a command as a String and checks if it is an existing command.
+     *
      * @param command to be checked
-     * @return  returns a Command if existing, otherwise UNKNOWN
+     * @return returns a Command if existing, otherwise UNKNOWN
      */
     public static Commands lookupCommand(String command) {
         Commands[] commands = Commands.values();
@@ -70,5 +61,14 @@ public enum Commands {
         // Remove the trailing comma and space
         return sb.substring(0, sb.length() - 2);
 
+    }
+
+    /**
+     * Getter for the command, as a String.
+     *
+     * @return command
+     */
+    public String getCommand() {
+        return command;
     }
 }

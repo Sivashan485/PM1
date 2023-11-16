@@ -19,9 +19,9 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    private InputReceiver input;
+    private final InputReceiver input;
 
-    private OutputManager output;
+    private final OutputManager output;
     private GlossaryApp glossary;
     private boolean isFormatterRaw;
     private boolean isExitTriggered;
@@ -53,7 +53,7 @@ public class TextManager {
      * the methods for editing the text and formatting the text.
      */
     public void editText() {
-        String userInput[] = input.splitInput();
+        String[] userInput = input.splitInput();
 
         switch (Commands.lookupCommand(userInput[0])) {
             case DUMMY:
@@ -96,32 +96,34 @@ public class TextManager {
                 break;
         }
     }
-    private void addIndexCheck(String inputText[], String entredText){
-        try{
-            if (inputText.length>1) {
+
+    private void addIndexCheck(String[] inputText, String entredText) {
+        try {
+            if (inputText.length > 1) {
                 int convertToInteger = Integer.parseInt(inputText[1]);
-                if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
-                    text.add(convertToInteger-1, entredText);
-                } else{
+                if (convertToInteger - 1 <= text.size() && convertToInteger - 1 >= 0) {
+                    text.add(convertToInteger - 1, entredText);
+                } else {
                     text.add(entredText);
                 }
-            }else{
+            } else {
                 text.add(entredText);
             }
             output.createAddMessage(true);
-        }catch (Exception e){
+        } catch (Exception e) {
             output.createAddMessage(false);
         }
 
     }
+
     /**
      * Adds a new paragraph to the end of the text.
      */
 
-    private void addNewParagraph(String []inputText) {
+    private void addNewParagraph(String[] inputText) {
 
-            System.out.println("Text: ");
-            String entredText = input.unsplittedText();
+        System.out.println("Text: ");
+        String entredText = input.unsplittedText();
             /*if (inputText.length>1) {
                 int convertToInteger = Integer.parseInt(inputText[1]);
                 if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
@@ -132,7 +134,7 @@ public class TextManager {
             }else{
                 text.add(entredText);
             }*/
-            addIndexCheck(inputText, entredText);
+        addIndexCheck(inputText, entredText);
     }
 
     /**
@@ -325,7 +327,7 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    private void addDummyParagraph(String []inputText) {
+    private void addDummyParagraph(String[] inputText) {
         addIndexCheck(inputText, DUMMYTEXT);
         /*if (inputText.length>1) {
 

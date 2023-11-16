@@ -149,6 +149,7 @@ public class GlossaryAppTest {
         assertFalse(glossaryMap.containsKey("nonexistent"));
 
     }
+
     @Test
     void testFilterParagraphWithAlphabeticCharacters() {
         assertEquals("hello  world ", glossaryOne.filterParagraph("Hello, World!"));

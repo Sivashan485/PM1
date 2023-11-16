@@ -27,4 +27,31 @@ public class CommandsTest {
                 "replace, help, format_raw, format_fix", Commands.getAllCommands());
     }
 
+    @Test
+    public void testKnownCommand() {
+        assertEquals(Commands.HELP, Commands.lookupCommand("Help"));
+    }
+
+    @Test
+    public void testUnknownCommand() {
+        assertEquals(Commands.UNKNOWN, Commands.lookupCommand("nonExistentCommand"));
+    }
+
+    /* ->> fix bug -> this test is not working
+    @Test
+    public void testNullInput() {
+        Commands.lookupCommand(null);
+    }*/
+
+    @Test
+    public void testCaseSensitivity() {
+        assertEquals(Commands.EXIT, Commands.lookupCommand("EXIT"));
+        assertEquals(Commands.EXIT, Commands.lookupCommand("exit"));
+    }
+
+    @Test
+    public void testEmptyString() {
+        assertEquals(Commands.UNKNOWN, Commands.lookupCommand(""));
+    }
+
 }

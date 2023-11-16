@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputReceiver {
 
-    private final Scanner input;
+    final Scanner input;
     private final String allowedRegex = "([^A-z äöüÄÖÜ 0-9 .,:;\\-!?'()\\\"%@+*\\\\[\\\\]{}\\\\\\\\&#$])";
 
     public InputReceiver() {

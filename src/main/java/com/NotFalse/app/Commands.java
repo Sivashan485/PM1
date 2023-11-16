@@ -2,6 +2,8 @@ package com.NotFalse.app;
 
 /**
  * Enum class for all commands, which are used in the application.
+ * The enum class contains a constructor, a getter, a method to check if the input is a command,
+ * a method to get all commands, and a method to get the command as a String.
  */
 public enum Commands {
     EXIT("exit"),
@@ -37,7 +39,8 @@ public enum Commands {
     }
 
     /**
-     * Checks if the input is a command.
+     * Checks if the input is a command. If it is, the method returns true.
+     * Otherwise, the method returns false.
      *
      * @param input
      * @return boolean
@@ -52,6 +55,14 @@ public enum Commands {
     }
 
     //is this method really necessary?
+
+    /**
+     * Returns the command as a String. If the command is not found,
+     * the method returns "unknown".
+     *
+     * @param command
+     * @return
+     */
     public static Commands getCommandsEnum(String command) {
         Commands[] commands = Commands.values();
         for (Commands value : commands) {
@@ -71,7 +82,7 @@ public enum Commands {
     static String getAllCommands() {
         StringBuilder sb = new StringBuilder();
         for (Commands command : Commands.values()) {
-            if(!command.getCommand().equals("unknown")){
+            if (!command.getCommand().equals("unknown")) {
                 sb.append(command.getCommand()).append(", ");
             }
 

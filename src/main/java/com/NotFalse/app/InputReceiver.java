@@ -16,16 +16,24 @@ public class InputReceiver {
         return textToFilter.replaceAll(allowedRegex, "");
     }
 
+    public String unsplittedText() {
+        String inputText = input.nextLine();
+        if(inputText==null){
+            inputText =" ";
+        }
+        return inputText;
+    }
+
     public String[] splitInput() {
         String[] splitedtext = new String[1];
         String inputText = input.nextLine();
         inputText = filterInput(inputText.trim());
         splitedtext[0] = inputText;
         for (Commands command : Commands.values()) {
-            if (inputText.contains(command.name() + " ")) {
+            if (inputText.toLowerCase().contains(command.getCommand())) {
                 // if a command contains then split it in two parts
-                splitedtext = inputText.split(command.name());
-                splitedtext[0] = command.name();
+                splitedtext = inputText.toLowerCase().split(command.getCommand()+ " ");
+                splitedtext[0] = command.getCommand();
             }
         }
 

@@ -55,16 +55,18 @@ public class TextManager {
      */
     public void editText() {
         String userInput[] = input.splitInput();
+
         switch (Commands.getCommandsEnum(userInput[0])) {
             case DUMMY:
-                addDummyParagraph(userInput[1]);
+                System.out.println(Arrays.toString(text.toArray()));
+                addDummyParagraph(userInput);
                 break;
             case EXIT:
                 output.createExitMessage();
                 isExitTriggered = true;
                 break;
             case ADD:
-                addNewParagraph(userInput[1]);
+                addNewParagraph(userInput);
                 break;
             case DEL:
                 deleteParagraph();
@@ -99,9 +101,20 @@ public class TextManager {
     /**
      * Adds a new paragraph to the end of the text.
      */
-    private void addNewParagraph(String inputText) {
+    private void addNewParagraph(String []inputText) {
         try {
-            text.add(inputText);
+            System.out.println("Text: ");
+            String entredText = input.unsplittedText();
+            if (inputText.length>1) {
+                int convertToInteger = Integer.parseInt(inputText[1]);
+                if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
+                    text.add(convertToInteger-1, entredText);
+                } else{
+                    text.add(entredText);
+                }
+            }else{
+                text.add(entredText);
+            }
             output.createAddMessage(true);
         } catch (Exception e) {
             output.createAddMessage(false);
@@ -299,14 +312,16 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    private void addDummyParagraph(String inputText) {
-        if (inputText != null) {
-            int convertToInteger = Integer.parseInt(inputText);
-            if (convertToInteger >= text.size()) {
+    private void addDummyParagraph(String []inputText) {
+        if (inputText.length>1) {
+            int convertToInteger = Integer.parseInt(inputText[1]);
+            if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
+                text.add(convertToInteger-1, DUMMYTEXT);
+            } else{
                 text.add(DUMMYTEXT);
-            } else {
-                text.add(convertToInteger, DUMMYTEXT);
             }
+        }else{
+            text.add(DUMMYTEXT);
         }
     }
 

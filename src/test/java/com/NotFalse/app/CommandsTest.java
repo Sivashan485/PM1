@@ -36,11 +36,11 @@ public class CommandsTest {
         assertTrue(Commands.isCommand("unknown"));
         assertFalse(Commands.isCommand("not a command"));
     }
-    /*
-     * @Test
-     * public void testGetCommandsAsString() {
-     * assertEquals("Valid commands: exit, add, del, dummy, index, print, " +
-     * "replace, help, format_raw, format_fix", Commands.getCommandsAsString());
-     * }
-     */
+
+      @Test
+      public void testGetCommandsAsString() {
+      assertEquals("exit, add, del, dummy, index, print, " +
+      "replace, help, format_raw, format_fix", Commands.getAllCommands());
+      }
+
 }

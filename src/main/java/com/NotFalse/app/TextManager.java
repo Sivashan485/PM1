@@ -80,7 +80,7 @@ public class TextManager {
                 replaceParagraphSection();
                 break;
             case HELP:
-                output.createMenuOptions();
+                output.createMenuOptionsMessage();
                 break;
             case FORMAT_RAW:
                 isFormatterRaw = true;

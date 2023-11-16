@@ -24,7 +24,7 @@ public class GlossaryAppTest {
         textOne.add("This is a test paragraph.");
         textOne.add("Another test paragraph.");
         textOne.add("Another weird useless test paragraph");
-        glossaryOne.insertEntriesToGlossary(textOne);
+        glossaryOne.insertGlossaryEntries(textOne);
 
         // 2 Setup
         glossaryTwo = new GlossaryApp();
@@ -32,7 +32,7 @@ public class GlossaryAppTest {
         textTwo.add("This is a test paragraph.");
         textTwo.add("Another test paragraph.");
         textTwo.add("Another weird useless test paragraph. This is a ParaGrAPh:, and this one para.graph isnt.");
-        glossaryTwo.insertEntriesToGlossary(textTwo);
+        glossaryTwo.insertGlossaryEntries(textTwo);
 
         // 3 Setup
         glossaryThree = new GlossaryApp();
@@ -40,7 +40,7 @@ public class GlossaryAppTest {
         textThree.add("This is a new test paragraph.");
         textThree.add("Another new test paragraph, just for a test.");
         glossaryThree.computeWordFrequency(textThree);
-        glossaryThree.insertEntriesToGlossary(textThree);
+        glossaryThree.insertGlossaryEntries(textThree);
 
     }
 
@@ -61,14 +61,14 @@ public class GlossaryAppTest {
 
     @Test
     void testFindParagraphIndexesOne() {
-        List<Integer> testIndexes = glossaryOne.findParagraphIndexes(textOne, "test");
+        List<Integer> testIndexes = glossaryOne.searchWordInParagraphs(textOne, "test");
         assertEquals(Arrays.asList(1, 2, 3), testIndexes);
 
     }
 
     @Test
     void testFindParagraphIndexesTwo() {
-        List<Integer> nonexistentIndexes = glossaryOne.findParagraphIndexes(textOne, "nonexistent");
+        List<Integer> nonexistentIndexes = glossaryOne.searchWordInParagraphs(textOne, "nonexistent");
         assertTrue(nonexistentIndexes.isEmpty());
     }
 

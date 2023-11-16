@@ -55,7 +55,7 @@ public class OutputManager {
     /**
      * Creates a menu option message with the commands that can be used.
      */
-    public void createMenuOptions() {
+    public void createMenuOptionsMessage() {
         System.out.println("Here are the commands you can use:" + Commands.getAllCommands());
     }
 

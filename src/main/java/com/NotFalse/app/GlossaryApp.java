@@ -72,7 +72,7 @@ public class GlossaryApp {
      * @return returns the capitalized word
      */
     String capitalizeFirstLetter(String word) {
-        if (word.equals(null) || word.length() == 0)
+        if (word == null || word.isEmpty())
             return word;
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }

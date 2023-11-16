@@ -2,7 +2,7 @@ package com.NotFalse.app;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandsTest {
 
@@ -21,10 +21,10 @@ public class CommandsTest {
         assertEquals("unknown", Commands.UNKNOWN.getCommand());
     }
 
-      @Test
-      public void testGetAllCommands() {
-      assertEquals("exit, add, del, dummy, index, print, " +
-      "replace, help, format_raw, format_fix", Commands.getAllCommands());
-      }
+    @Test
+    public void testGetAllCommands() {
+        assertEquals("exit, add, del, dummy, index, print, " +
+                "replace, help, format_raw, format_fix", Commands.getAllCommands());
+    }
 
 }

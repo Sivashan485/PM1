@@ -8,7 +8,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.Handler;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

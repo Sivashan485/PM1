@@ -149,4 +149,39 @@ public class GlossaryAppTest {
         assertFalse(glossaryMap.containsKey("nonexistent"));
 
     }
+    @Test
+    void testFilterParagraphWithAlphabeticCharacters() {
+        assertEquals("hello  world ", glossaryOne.filterParagraph("Hello, World!"));
+    }
+
+    @Test
+    void testFilterParagraphWithNonAlphabeticCharacters() {
+        assertEquals("        ", glossaryOne.filterParagraph("1234!@#$"));
+    }
+
+    @Test
+    void testFilterParagraphEmptyString() {
+        assertEquals("", glossaryOne.filterParagraph(""));
+    }
+
+    // Tests for capitalizeFirstLetter method
+    @Test
+    void testCapitalizeFirstLetterNormalWord() {
+        assertEquals("Hello", glossaryOne.capitalizeFirstLetter("hello"));
+    }
+
+    @Test
+    void testCapitalizeFirstLetterEmptyString() {
+        assertEquals("", glossaryOne.capitalizeFirstLetter(""));
+    }
+
+    @Test
+    void testCapitalizeFirstLetterSingleCharacter() {
+        assertEquals("H", glossaryOne.capitalizeFirstLetter("h"));
+    }
+
+    @Test
+    void testCapitalizeFirstLetterNullInput() {
+        assertNull(glossaryOne.capitalizeFirstLetter(null));
+    }
 }

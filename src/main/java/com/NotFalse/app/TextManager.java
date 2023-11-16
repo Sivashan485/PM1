@@ -69,7 +69,7 @@ public class TextManager {
                 addNewParagraph(userInput);
                 break;
             case DEL:
-                deleteParagraph();
+                deleteParagraph(userInput);
                 break;
             case INDEX:
                 showGlossary();
@@ -97,14 +97,8 @@ public class TextManager {
                 break;
         }
     }
-
-    /**
-     * Adds a new paragraph to the end of the text.
-     */
-    private void addNewParagraph(String []inputText) {
-        try {
-            System.out.println("Text: ");
-            String entredText = input.unsplittedText();
+    private void addIndexCheck(String inputText[], String entredText){
+        try{
             if (inputText.length>1) {
                 int convertToInteger = Integer.parseInt(inputText[1]);
                 if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
@@ -116,16 +110,36 @@ public class TextManager {
                 text.add(entredText);
             }
             output.createAddMessage(true);
-        } catch (Exception e) {
+        }catch (Exception e){
             output.createAddMessage(false);
         }
+
+    }
+    /**
+     * Adds a new paragraph to the end of the text.
+     */
+
+    private void addNewParagraph(String []inputText) {
+
+            System.out.println("Text: ");
+            String entredText = input.unsplittedText();
+            /*if (inputText.length>1) {
+                int convertToInteger = Integer.parseInt(inputText[1]);
+                if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
+                    text.add(convertToInteger-1, entredText);
+                } else{
+                    text.add(entredText);
+                }
+            }else{
+                text.add(entredText);
+            }*/
+            addIndexCheck(inputText, entredText);
     }
 
     /**
      * Deletes the paragraph at the specified index.
      */
-    private void deleteParagraph() {
-        String[] userInput = input.splitInput();
+    private void deleteParagraph(String[] userInput) {
         if (userInput.length == 2) {
             try {
                 int index = Integer.parseInt(userInput[1]) - 1;
@@ -313,7 +327,9 @@ public class TextManager {
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
     private void addDummyParagraph(String []inputText) {
-        if (inputText.length>1) {
+        addIndexCheck(inputText, DUMMYTEXT);
+        /*if (inputText.length>1) {
+
             int convertToInteger = Integer.parseInt(inputText[1]);
             if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
                 text.add(convertToInteger-1, DUMMYTEXT);
@@ -322,7 +338,7 @@ public class TextManager {
             }
         }else{
             text.add(DUMMYTEXT);
-        }
+        }*/
     }
 
     /**

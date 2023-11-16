@@ -1,5 +1,4 @@
 package com.NotFalse.app;
-
 import java.util.*;
 
 /**
@@ -9,7 +8,7 @@ import java.util.*;
  */
 public class GlossaryApp {
 
-    private TreeMap<String, List<Integer>> glossary;
+    private final TreeMap<String, List<Integer>> glossary;
 
     /**
      * Constructor for GlossaryApp.

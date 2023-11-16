@@ -39,8 +39,7 @@ public class OutputManager {
     }
 
     public void createMenuOptions() {
-        System.out.println("Here are the commands you can use:");
-        System.out.println(Commands.getAllCommands());
+        System.out.println("Here are the commands you can use:" + Commands.getAllCommands());
     }
 
 

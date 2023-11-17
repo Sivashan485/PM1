@@ -5,23 +5,20 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
+
 public class OutputManager {
 
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OutputManager.class.getName());
 
-    Handler consoleHandler = new ConsoleHandler();
+    Handler consoleHandler;
 
     public OutputManager() {
-        // Initialization code here
-        // Set the logging level for the handler
-        consoleHandler.setLevel(Level.ALL);
-
-        // Create a formatter for the handler
-        SimpleFormatter formatter = new SimpleFormatter();
-        consoleHandler.setFormatter(formatter);
-
-        // Add the handler to the logger
+        LOGGER.setUseParentHandlers(false);
+        consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.OFF);
+        consoleHandler.setFormatter(new SimpleFormatter());
         LOGGER.addHandler(consoleHandler);
+        LOGGER.setLevel(Level.OFF);
     }
 
     public void createUserInfoMessage(String logText) {
@@ -44,14 +41,6 @@ public class OutputManager {
     }
 
 
-    public void createMaxStringWarning() {
-        System.err.println("The text you have entered is too long! Please try again or " +
-                "fix the text length.");
-    }
-
-    public void createMaxIntWarning() {
-        System.err.println("The index you have entered is too large! Please try again.");
-    }
 
     public void createExitMessage() {
         System.out.println("Exiting TextEditor...\n" +

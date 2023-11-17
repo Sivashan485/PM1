@@ -19,10 +19,12 @@ public class OutputManager {
      * Sets the logging level for the handler and creates a formatter for the handler.
      */
     public OutputManager() {
+        consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.ALL);
-        SimpleFormatter formatter = new SimpleFormatter();
-        consoleHandler.setFormatter(formatter);
+        consoleHandler.setFormatter(new SimpleFormatter());
         LOGGER.addHandler(consoleHandler);
+        LOGGER.setUseParentHandlers(false);
+        LOGGER.setLevel(Level.ALL);
     }
 
     /**
@@ -105,19 +107,6 @@ public class OutputManager {
             createUserInfoMessage("Text deleted successfully!");
         } else {
             createUserErrorMessage("Text has not been deleted");
-        }
-    }
-
-    /**
-     * Creates a log message for the status of creating a dummy text.
-     *
-     * @param success status of creating a dummy text
-     */
-    public void createDummyMessage(boolean success) {
-        if (success) {
-            createUserInfoMessage("Dummy text generated successfully!");
-        } else {
-            createUserErrorMessage("Dummy text has not been generated");
         }
     }
 

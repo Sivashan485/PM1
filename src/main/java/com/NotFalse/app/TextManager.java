@@ -88,8 +88,7 @@ public class TextManager {
                 break;
             case FORMAT_FIX:
                 isFormatterRaw = false;
-                //setFixedWidth(Integer.parseInt(userInput[1]));
-                formatTextFix(fixedWidth);
+                formatTextFix();
                 break;
             default:
                 System.err.println("UNKOWN ERROR");
@@ -119,7 +118,6 @@ public class TextManager {
     /**
      * Adds a new paragraph to the end of the text.
      */
-
     private void addNewParagraph(String[] inputText) {
 
         System.out.println("Text: ");
@@ -166,7 +164,6 @@ public class TextManager {
      * @return the formatted String
      */
     String formatTextRaw() {
-
         String newText = "";
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
             newText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
@@ -179,7 +176,7 @@ public class TextManager {
      *
      * @return The formatted text.
      */
-    String formatTextFix(int fixedWidth) {
+    String formatTextFix() {
 
         StringBuilder fixFormatted = new StringBuilder();
         int currentWidth = 0;
@@ -221,7 +218,7 @@ public class TextManager {
                 currentWidth = 0;
             }
             fixFormatted.append(word, 0, maxWidth).append("\n");
-            word = word.substring(maxWidth);
+            word = word.substring(fixedWidth);
         }
         return word;
     }
@@ -237,7 +234,7 @@ public class TextManager {
      * @return
      */
     private int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
-        if (currentWidth + (currentWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
+        if (currentWidth + (currentWidth > 0 ? 1 : 0) + word.length() > fixedWidth) {
             fixFormatted.append("\n");
             currentWidth = 0;
         }

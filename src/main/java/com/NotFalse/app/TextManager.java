@@ -296,15 +296,38 @@ public class TextManager {
         }
     }
 
+    /**
+     * Replaces occurrences of a specified word in the text list at the given index.
+     *
+     * @param index         The index of the text to be modified.
+     * @param replacingWord The word to be replaced.
+     * @param replaceWith   The word to replace the specified word.
+     */
     private void replaceWord(int index, String replacingWord, String replaceWith){
+        // Retrieve the text to be modified from the list
         String textToChange =text.get(index);
+        // Convert the strings to lowercase for case-insensitive comparison
         textToChange = textToChange.toLowerCase();
         replacingWord = replacingWord.toLowerCase();
-        if(textToChange.contains(replacingWord)){
-            textToChange = " "+textToChange.replaceAll(replacingWord,replaceWith )+" ";
-            text.remove(index);
-            text.add(index,textToChange);
+
+        // Check and replace at the beginning of the text
+        if(textToChange.startsWith(replacingWord)){
+            textToChange = textToChange.replace(replacingWord+" ",replaceWith+" " );
         }
+        // Check and replace at the end of the text
+        if(textToChange.endsWith(replacingWord)){
+            System.out.println("HI");
+            textToChange = textToChange.replace(" "+replacingWord," "+replaceWith);
+        }
+
+        // Check and replace in the middle of the text
+        if(textToChange.contains(replacingWord)){
+            textToChange = textToChange.replace(" "+replacingWord+" "," "+replaceWith+" ");
+        }
+        // Remove the original text and insert the modified text back into the list
+        text.remove(index);
+        text.add(index,textToChange);
+
     }
 
     /**
@@ -312,40 +335,19 @@ public class TextManager {
      */
     void replaceParagraphSection(String[] userInput) {
         System.out.print("Replacing Word: ");
-        String wordtoReplace = input.unsplittedText();
+        String wordReplace = input.unsplittedText();
         System.out.print("Replacing with: ");
-        String replaceingWord = input.unsplittedText();
+        String replacingWord = input.unsplittedText();
 
         if (userInput.length>=1) {
             int index = Integer.parseInt(userInput[1])-1;
             System.out.println();
-            if (index <= text.size() && index>=0) {
-                replaceWord(index,wordtoReplace,replaceingWord );
+            if (index < text.size() && index>=0) {
+                replaceWord(index,wordReplace,replacingWord );
             } else{
-                replaceWord(text.size(),wordtoReplace,replaceingWord );
+                replaceWord(text.size()-1,wordReplace,replacingWord );
             }
         }
-
-        //String[] userInput = input.splitInput();
-        /*if (userInput.length == 3) {
-            try {
-                int start = Integer.parseInt(userInput[1]) - 1;
-                int end = Integer.parseInt(userInput[2]) - 1;
-
-                if (start >= 0 && start < text.size() && end >= 0 && end < text.size() && start <= end) {
-                    String replacementText = input.filterInput(input.input.nextLine().trim());
-
-                    List<String> replacementParagraphs = Arrays.asList(replacementText.split("\n"));
-                    text.subList(start, end + 1).clear();
-                    text.addAll(start, replacementParagraphs);
-                    output.createReplaceMessage(true);
-                } else {
-                    output.createReplaceMessage(false);
-                }
-            } catch (NumberFormatException e) {
-                output.createReplaceMessage(false);
-            }
-        }*/
     }
 
     /**

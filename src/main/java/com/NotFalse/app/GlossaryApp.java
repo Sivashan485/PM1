@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class GlossaryApp {
 
-    private TreeMap<String, List<Integer>> glossary;
+    private final TreeMap<String, List<Integer>> glossary;
 
     /**
      * Constructor for GlossaryApp.
@@ -27,7 +27,7 @@ public class GlossaryApp {
     public GlossaryApp rebuildGlossary(List<String> text) {
         GlossaryApp newGlossary = new GlossaryApp();
         newGlossary.computeWordFrequency(text);
-        newGlossary.insertEntriesToGlossary(text);
+        newGlossary.insertGlossaryEntries(text);
         return newGlossary;
     }
 
@@ -59,11 +59,11 @@ public class GlossaryApp {
      * Filters the paragraph by removing all the non-alphabetic characters and
      * converting all the characters to lowercase.
      *
-     * @param paragraphToFilter paragraph to be filtered
+     * @param paragraph to be filtered
      * @return returns the filtered paragraph
      */
-    String filterParagraph(String paragraphToFilter) {
-        return paragraphToFilter.replaceAll("[^A-Za-z ]", " ").toLowerCase();
+    String filterParagraph(String paragraph) {
+        return paragraph.replaceAll("[^A-Za-z ]", " ").toLowerCase();
     }
 
     /**
@@ -73,7 +73,7 @@ public class GlossaryApp {
      * @return returns the capitalized word
      */
     String capitalizeFirstLetter(String word) {
-        if (word.equals(null) || word.length() == 0)
+        if (word == null || word.isEmpty())
             return word;
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
@@ -83,12 +83,13 @@ public class GlossaryApp {
      *
      * @param text text to be mapped
      */
-    void insertEntriesToGlossary(List<String> text) {
+    void insertGlossaryEntries(List<String> text) {
         for (String word : computeWordFrequency(text).keySet()) {
             String cleanedWord = capitalizeFirstLetter(word).trim();
-            glossary.computeIfAbsent(cleanedWord, k -> findParagraphIndexes(text, word));
+            glossary.computeIfAbsent(cleanedWord, k -> searchWordInParagraphs(text, word));
         }
     }
+
 
     /**
      * Finds the indexes of the paragraphs which contain the word and returns them
@@ -99,13 +100,14 @@ public class GlossaryApp {
      * @return returns a sorted ArrayList of the indexes of the paragraphs which
      * contain the word
      */
-    List<Integer> findParagraphIndexes(List<String> text, String word) {
+    List<Integer> searchWordInParagraphs(List<String> text, String word) {
         List<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < text.size(); i++) {
             String cleanedParagraph = filterParagraph(text.get(i));
             if (cleanedParagraph.contains(word)) {
                 indexes.add(i + 1);
             }
+
         }
         // sorts the indexes
         Collections.sort(indexes);

@@ -30,40 +30,12 @@ public enum Commands {
     }
 
     /**
-     * Getter for the command, as a String.
+     * Takes a command as a String and checks if it is an existing command.
      *
-     * @return command
+     * @param command to be checked
+     * @return returns a Command if existing, otherwise UNKNOWN
      */
-    public String getCommand() {
-        return command;
-    }
-
-    /**
-     * Checks if the input is a command. If it is, the method returns true.
-     * Otherwise, the method returns false.
-     *
-     * @param input
-     * @return boolean
-     */
-    static boolean isCommand(String input) {
-        for (Commands command : Commands.values()) {
-            if (command.getCommand().equals(input)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //is this method really necessary?
-
-    /**
-     * Returns the command as a String. If the command is not found,
-     * the method returns "unknown".
-     *
-     * @param command
-     * @return
-     */
-    public static Commands getCommandsEnum(String command) {
+    public static Commands lookupCommand(String command) {
         Commands[] commands = Commands.values();
         for (Commands value : commands) {
             if (value.getCommand().equals(command.toLowerCase())) {
@@ -74,10 +46,9 @@ public enum Commands {
     }
 
     /**
-     * Checks if the input is a command, and if it is,
-     * returns the command as a String.
+     * Gets all commands as a concatenation of Strings.
      *
-     * @return command
+     * @return all commands as Strings
      */
     static String getAllCommands() {
         StringBuilder sb = new StringBuilder();
@@ -90,5 +61,14 @@ public enum Commands {
         // Remove the trailing comma and space
         return sb.substring(0, sb.length() - 2);
 
+    }
+
+    /**
+     * Getter for the command, as a String.
+     *
+     * @return command
+     */
+    public String getCommand() {
+        return command;
     }
 }

@@ -3,7 +3,6 @@ package com.NotFalse.app;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
@@ -20,9 +19,9 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    private InputReceiver input;
+    private final InputReceiver input;
 
-    private OutputManager output;
+    private final OutputManager output;
     private GlossaryApp glossary;
     private boolean isFormatterRaw;
     private boolean isExitTriggered;
@@ -54,9 +53,9 @@ public class TextManager {
      * the methods for editing the text and formatting the text.
      */
     public void editText() {
-        String userInput[] = input.splitInput();
+        String[] userInput = input.splitInput();
 
-        switch (Commands.getCommandsEnum(userInput[0])) {
+        switch (Commands.lookupCommand(userInput[0])) {
             case DUMMY:
                 System.out.println(Arrays.toString(text.toArray()));
                 addDummyParagraph(userInput);
@@ -81,7 +80,7 @@ public class TextManager {
                 replaceParagraphSection();
                 break;
             case HELP:
-                output.createMenuOptions();
+                output.createMenuOptionsMessage();
                 break;
             case FORMAT_RAW:
                 isFormatterRaw = true;
@@ -89,40 +88,40 @@ public class TextManager {
                 break;
             case FORMAT_FIX:
                 isFormatterRaw = false;
-                //setFixedWidth(Integer.parseInt(userInput[1]));
-                formatTextFix(fixedWidth);
+                formatTextFix();
                 break;
             default:
                 System.err.println("UNKOWN ERROR");
                 break;
         }
     }
-    private void addIndexCheck(String inputText[], String entredText){
-        try{
-            if (inputText.length>1) {
+
+    private void addIndexCheck(String[] inputText, String entredText) {
+        try {
+            if (inputText.length > 1) {
                 int convertToInteger = Integer.parseInt(inputText[1]);
-                if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
-                    text.add(convertToInteger-1, entredText);
-                } else{
+                if (convertToInteger - 1 <= text.size() && convertToInteger - 1 >= 0) {
+                    text.add(convertToInteger - 1, entredText);
+                } else {
                     text.add(entredText);
                 }
-            }else{
+            } else {
                 text.add(entredText);
             }
             output.createAddMessage(true);
-        }catch (Exception e){
+        } catch (Exception e) {
             output.createAddMessage(false);
         }
 
     }
+
     /**
      * Adds a new paragraph to the end of the text.
      */
+    private void addNewParagraph(String[] inputText) {
 
-    private void addNewParagraph(String []inputText) {
-
-            System.out.println("Text: ");
-            String entredText = input.unsplittedText();
+        System.out.println("Text: ");
+        String entredText = input.unsplittedText();
             /*if (inputText.length>1) {
                 int convertToInteger = Integer.parseInt(inputText[1]);
                 if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
@@ -133,7 +132,7 @@ public class TextManager {
             }else{
                 text.add(entredText);
             }*/
-            addIndexCheck(inputText, entredText);
+        addIndexCheck(inputText, entredText);
     }
 
     /**
@@ -165,7 +164,6 @@ public class TextManager {
      * @return the formatted String
      */
     String formatTextRaw() {
-
         String newText = "";
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
             newText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
@@ -178,7 +176,7 @@ public class TextManager {
      *
      * @return The formatted text.
      */
-    String formatTextFix(int fixedWidth) {
+    String formatTextFix() {
 
         StringBuilder fixFormatted = new StringBuilder();
         int currentWidth = 0;
@@ -220,7 +218,7 @@ public class TextManager {
                 currentWidth = 0;
             }
             fixFormatted.append(word, 0, maxWidth).append("\n");
-            word = word.substring(maxWidth);
+            word = word.substring(fixedWidth);
         }
         return word;
     }
@@ -236,7 +234,7 @@ public class TextManager {
      * @return
      */
     private int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
-        if (currentWidth + (currentWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
+        if (currentWidth + (currentWidth > 0 ? 1 : 0) + word.length() > fixedWidth) {
             fixFormatted.append("\n");
             currentWidth = 0;
         }
@@ -326,7 +324,7 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    private void addDummyParagraph(String []inputText) {
+    private void addDummyParagraph(String[] inputText) {
         addIndexCheck(inputText, DUMMYTEXT);
         /*if (inputText.length>1) {
 

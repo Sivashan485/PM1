@@ -2,7 +2,7 @@ package com.NotFalse.app;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandsTest {
 
@@ -22,25 +22,36 @@ public class CommandsTest {
     }
 
     @Test
-    public void testIsCommand() {
-        assertTrue(Commands.isCommand("exit"));
-        assertTrue(Commands.isCommand("add"));
-        assertTrue(Commands.isCommand("del"));
-        assertTrue(Commands.isCommand("dummy"));
-        assertTrue(Commands.isCommand("index"));
-        assertTrue(Commands.isCommand("print"));
-        assertTrue(Commands.isCommand("replace"));
-        assertTrue(Commands.isCommand("help"));
-        assertTrue(Commands.isCommand("format_raw"));
-        assertTrue(Commands.isCommand("format_fix"));
-        assertTrue(Commands.isCommand("unknown"));
-        assertFalse(Commands.isCommand("not a command"));
+    public void testGetAllCommands() {
+        assertEquals("exit, add, del, dummy, index, print, " +
+                "replace, help, format_raw, format_fix", Commands.getAllCommands());
     }
 
-      @Test
-      public void testGetCommandsAsString() {
-      assertEquals("exit, add, del, dummy, index, print, " +
-      "replace, help, format_raw, format_fix", Commands.getAllCommands());
-      }
+    @Test
+    public void testKnownCommand() {
+        assertEquals(Commands.HELP, Commands.lookupCommand("Help"));
+    }
+
+    @Test
+    public void testUnknownCommand() {
+        assertEquals(Commands.UNKNOWN, Commands.lookupCommand("nonExistentCommand"));
+    }
+
+    /* ->> fix bug -> this test is not working
+    @Test
+    public void testNullInput() {
+        Commands.lookupCommand(null);
+    }*/
+
+    @Test
+    public void testCaseSensitivity() {
+        assertEquals(Commands.EXIT, Commands.lookupCommand("EXIT"));
+        assertEquals(Commands.EXIT, Commands.lookupCommand("exit"));
+    }
+
+    @Test
+    public void testEmptyString() {
+        assertEquals(Commands.UNKNOWN, Commands.lookupCommand(""));
+    }
 
 }

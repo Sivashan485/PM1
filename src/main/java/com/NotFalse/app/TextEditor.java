@@ -5,7 +5,7 @@ package com.NotFalse.app;
  */
 public class TextEditor {
 
-    private TextManager textManager;
+    private final TextManager textManager;
 
     /**
      * Constructor for the TextEditor class.
@@ -16,7 +16,7 @@ public class TextEditor {
 
     /**
      * Main method for the TextEditor application.
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {

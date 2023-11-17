@@ -166,6 +166,10 @@ public class OutputManager {
     public void createInvalidCommandMessage() {
         System.err.println("Invalid command! Please try again.");
     }
+
+    public String getOutput() {
+        return LOGGER.toString();
+    }
 }
 
 

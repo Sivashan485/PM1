@@ -1,9 +1,13 @@
 package com.NotFalse.app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -129,5 +133,20 @@ public class TextManagerTest {
         assertEquals(expected, textManager.formatTextRaw());
     }
 
+    @Test
+    void testSetFixedWidth() {
+        textManager.setFixedWidth(60);
+        assertEquals(60, textManager.getFixedWidth());
+    }
 
+    @Test
+    void testShowGlossaryWithEmptyList() {
+        String expected = "Glossary:";
+        textManager.setText(Collections.emptyList());
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new java.io.PrintStream(outputStreamCaptor));
+        textManager.showGlossary();
+        System.setOut(System.out);
+        assertEquals(expected, outputStreamCaptor.toString().trim());
+    }
 }

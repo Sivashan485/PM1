@@ -21,7 +21,7 @@ public class TextManager {
             "Aldus PageMaker including versions of Lorem Ipsum.";
     private final InputReceiver input;
 
-    private final OutputManager output;
+    final OutputManager output;
     private GlossaryApp glossary;
     private boolean isFormatterRaw;
     private boolean isExitTriggered;

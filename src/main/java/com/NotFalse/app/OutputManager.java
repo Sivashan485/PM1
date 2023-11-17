@@ -5,26 +5,26 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
-/**
- * This class is responsible for creating all the messages that are displayed to the user
- * and the log entries.
- */
+
+
 public class OutputManager {
 
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OutputManager.class.getName());
-    Handler consoleHandler = new ConsoleHandler();
+
+    Handler consoleHandler;
+
 
     /**
      * Initializes the consoleHandler and the LOGGER.
      * Sets the logging level for the handler and creates a formatter for the handler.
      */
     public OutputManager() {
+        LOGGER.setUseParentHandlers(false);
         consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.ALL);
+        consoleHandler.setLevel(Level.OFF);
         consoleHandler.setFormatter(new SimpleFormatter());
         LOGGER.addHandler(consoleHandler);
-        LOGGER.setUseParentHandlers(false);
-        LOGGER.setLevel(Level.ALL);
+        LOGGER.setLevel(Level.OFF);
     }
 
     /**
@@ -61,20 +61,6 @@ public class OutputManager {
         System.out.println("Here are the commands you can use:" + Commands.getAllCommands());
     }
 
-    /**
-     * Creates an error message that the entered text is too long.
-     */
-    public void createMaxStringWarning() {
-        System.err.println("The text you have entered is too long! Please try again or " +
-                "fix the text length.");
-    }
-
-    /**
-     * Creates an error message that the entered index is too large.
-     */
-    public void createMaxIntWarning() {
-        System.err.println("The index you have entered is too large! Please try again.");
-    }
 
     /**
      * Creates a goodbye message.

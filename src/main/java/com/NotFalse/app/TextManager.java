@@ -332,28 +332,25 @@ public class TextManager {
      * @param replacingWord The word to be replaced.
      * @param replaceWith   The word to replace the specified word.
      */
-    private void replaceWord(int index, String replacingWord, String replaceWith){
+    private void replaceWord(int index, String originalWord, String replacementWord){
         // Retrieve the text to be modified from the list
-        String textParagraph =text.get(index);
-        // Convert the strings to lowercase for case-insensitive comparison
-        textParagraph = textParagraph.toLowerCase();
-        replacingWord = replacingWord.toLowerCase();
-        replacingWord = replacingWord.trim();
-        replaceWith = replaceWith.trim();
+        String textParagraph =text.get(index).toLowerCase();
+        originalWord = originalWord.toLowerCase().trim();
+        replacementWord = replacementWord.trim();
 
-        String wordEndSyntax = separateWordSyntax(textParagraph, replacingWord);
+        String wordEndSyntax = separateWordSyntax(textParagraph, originalWord);
         // Check and replace at the beginning of the text
-        if(textParagraph.startsWith(replacingWord)){
-            textParagraph = textParagraph.replace(replacingWord+" ",replaceWith+" " );
+        if(textParagraph.startsWith(originalWord)){
+            textParagraph = textParagraph.replace(originalWord+" ",replacementWord+" " );
         }
         // Check and replace in the middle of the text
-        if(textParagraph.contains(" "+replacingWord+" ")){
-            textParagraph = textParagraph.replaceAll(" "+replacingWord+" "," "+replaceWith+" ");
+        if(textParagraph.contains(" "+originalWord+" ")){
+            textParagraph = textParagraph.replaceAll(" "+originalWord+" "," "+replacementWord+" ");
         }
         // Remove the original text and insert the modified text back into the list
-        if(textParagraph.endsWith(replacingWord+wordEndSyntax)){
+        if(textParagraph.endsWith(originalWord+wordEndSyntax)){
             // Replace the word with the replacement word
-            textParagraph = textParagraph.replace(replacingWord+wordEndSyntax, " "+replaceWith+wordEndSyntax);
+            textParagraph = textParagraph.replace(originalWord+wordEndSyntax, " "+replacementWord+wordEndSyntax);
         }
         //Adding replacement and validation for the text
         validateWordReplacement(index,textParagraph);
@@ -364,19 +361,19 @@ public class TextManager {
      */
     void replaceParagraphSection(String[] userInput) {
         System.out.print("Replacing Word: ");
-        String wordReplace = input.receiveUnsplittedParagraph();
+        String originalWord = input.receiveUnsplittedParagraph();
         System.out.print("Replacing with: ");
-        String replacingWord = input.receiveUnsplittedParagraph();
+        String replacementWord = input.receiveUnsplittedParagraph();
 
         if (userInput.length>1) {
             int index = Integer.parseInt(userInput[1])-1;
             if (index < text.size() && index>=0) {
-                replaceWord(index,wordReplace,replacingWord );
+                replaceWord(index,originalWord,replacementWord );
             } else{
-                replaceWord(text.size()-1,wordReplace,replacingWord );
+                replaceWord(text.size()-1,originalWord,replacementWord );
             }
         }else{
-            replaceWord(text.size()-1,wordReplace,replacingWord );
+            replaceWord(text.size()-1,originalWord,replacementWord );
         }
     }
 

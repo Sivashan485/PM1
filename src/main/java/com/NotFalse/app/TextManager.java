@@ -296,6 +296,68 @@ public class TextManager {
         }
     }
 
+    public String replaceWordEnd(String textParagraph,String replacingWord, String replaceWith){
+
+        // Check and replace at the end of the text
+        String []splitText = textParagraph.split(replacingWord);
+        String replacingWordEnd = "";
+        if(splitText.length>=1){
+            replacingWordEnd= " "+replacingWord+splitText[1];
+            replaceWith = replaceWith + splitText[1];
+        }else{
+            replacingWordEnd = " "+replacingWord;
+        }
+        if(textParagraph.endsWith(replacingWordEnd)){
+            // Use a regular expression to match the word at the end of the sentence
+            // Replace the word with the replacement word
+            textParagraph = textParagraph.replaceAll(replacingWordEnd, " "+replaceWith);
+        }
+        return textParagraph;
+
+    }
+
+    /**
+     * Separates a text paragraph based on a specified replacing word.
+     * If the replacing word is found in the text paragraph, the method returns the portion
+     * of the text that comes after the first occurrence of the replacing word.
+     * If the replacing word is not present, an empty string is returned.
+     *
+     * @param textParagraph   The input text paragraph to be split.
+     * @param replacingWord   The word used as a delimiter for splitting the text.
+     * @return                The portion of the text after the first occurrence of the replacing word,
+     *                        or an empty string if the replacing word is not found.
+     * @throws NullPointerException If either textParagraph or replacingWord is null.
+     */
+    private String separateWordSyntax(String textParagraph, String replacingWord){
+        String []splitText = textParagraph.split(replacingWord);
+        if(splitText.length>1){
+            return splitText[1];
+        }else{
+            return "";
+        }
+    }
+
+
+    /**
+     * Validates and performs word replacement in a text paragraph at the specified index.
+     *
+     * @param index The index in the 'text' list where the replacement should occur.
+     * @param textParagraph The new text paragraph to replace the existing one.
+     */
+    private void validateWordReplacement(int index, String textParagraph) {
+        // Check if the new text is different from the existing text at the specified index
+        if (!text.get(index).equals(textParagraph)) {
+            // If different, remove the existing text at the index and add the new text
+            text.remove(index);
+            text.add(index, textParagraph);
+            // Create a message indicating that the replacement was successful
+            output.createReplaceMessage(true);
+        } else {
+            // If the new text is the same as the existing text, create a message indicating no replacement
+            output.createReplaceMessage(false);
+        }
+    }
+
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
      *
@@ -305,28 +367,27 @@ public class TextManager {
      */
     private void replaceWord(int index, String replacingWord, String replaceWith){
         // Retrieve the text to be modified from the list
-        String textToChange =text.get(index);
+        String textParagraph =text.get(index);
         // Convert the strings to lowercase for case-insensitive comparison
-        textToChange = textToChange.toLowerCase();
+        textParagraph = textParagraph.toLowerCase();
         replacingWord = replacingWord.toLowerCase();
-
+        replacingWord = replacingWord.trim();
+        String wordEndSyntax = separateWordSyntax(textParagraph, replacingWord);
         // Check and replace at the beginning of the text
-        if(textToChange.startsWith(replacingWord)){
-            textToChange = textToChange.replace(replacingWord+" ",replaceWith+" " );
+        if(textParagraph.startsWith(replacingWord)){
+            textParagraph = textParagraph.replace(replacingWord+" ",replaceWith+" " );
         }
-        // Check and replace at the end of the text
-        if(textToChange.endsWith(replacingWord)){
-            System.out.println("HI");
-            textToChange = textToChange.replace(" "+replacingWord," "+replaceWith);
-        }
-
         // Check and replace in the middle of the text
-        if(textToChange.contains(replacingWord)){
-            textToChange = textToChange.replace(" "+replacingWord+" "," "+replaceWith+" ");
+        if(textParagraph.contains(" "+replacingWord+" ")){
+            textParagraph = textParagraph.replaceAll(" "+replacingWord+" "," "+replaceWith+" ");
         }
         // Remove the original text and insert the modified text back into the list
-        text.remove(index);
-        text.add(index,textToChange);
+        if(textParagraph.endsWith(replacingWord+wordEndSyntax)){
+            // Replace the word with the replacement word
+            textParagraph = textParagraph.replace(replacingWord+wordEndSyntax, " "+replaceWith+wordEndSyntax);
+        }
+        validateWordReplacement(index,textParagraph);
+
 
     }
 
@@ -356,17 +417,6 @@ public class TextManager {
      */
     private void addDummyParagraph(String []inputText) {
         addIndexCheck(inputText, DUMMYTEXT);
-        /*if (inputText.length>1) {
-
-            int convertToInteger = Integer.parseInt(inputText[1]);
-            if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
-                text.add(convertToInteger-1, DUMMYTEXT);
-            } else{
-                text.add(DUMMYTEXT);
-            }
-        }else{
-            text.add(DUMMYTEXT);
-        }*/
     }
 
     /**

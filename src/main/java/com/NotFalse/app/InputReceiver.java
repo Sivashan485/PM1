@@ -18,6 +18,7 @@ public class InputReceiver {
 
     public String unsplittedText() {
         String inputText = input.nextLine();
+        inputText = filterInput(inputText);
         if(inputText==null){
             inputText =" ";
         }

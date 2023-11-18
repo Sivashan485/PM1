@@ -1,7 +1,6 @@
 package com.NotFalse.app;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -120,18 +119,8 @@ public class TextManager {
     private void addNewParagraph(String[] inputText) {
 
         System.out.println("Text: ");
-        String entredText = input.unsplittedText();
-            /*if (inputText.length>1) {
-                int convertToInteger = Integer.parseInt(inputText[1]);
-                if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
-                    text.add(convertToInteger-1, entredText);
-                } else{
-                    text.add(entredText);
-                }
-            }else{
-                text.add(entredText);
-            }*/
-        addIndexCheck(inputText, entredText);
+        String enteredText = input.receiveUnsplittedParagraph();
+        addIndexCheck(inputText, enteredText);
     }
 
     /**
@@ -294,26 +283,6 @@ public class TextManager {
         }
     }
 
-    public String replaceWordEnd(String textParagraph,String replacingWord, String replaceWith){
-
-        // Check and replace at the end of the text
-        String []splitText = textParagraph.split(replacingWord);
-        String replacingWordEnd = "";
-        if(splitText.length>=1){
-            replacingWordEnd= " "+replacingWord+splitText[1];
-            replaceWith = replaceWith + splitText[1];
-        }else{
-            replacingWordEnd = " "+replacingWord;
-        }
-        if(textParagraph.endsWith(replacingWordEnd)){
-            // Use a regular expression to match the word at the end of the sentence
-            // Replace the word with the replacement word
-            textParagraph = textParagraph.replaceAll(replacingWordEnd, " "+replaceWith);
-        }
-        return textParagraph;
-
-    }
-
     /**
      * Separates a text paragraph based on a specified replacing word.
      * If the replacing word is found in the text paragraph, the method returns the portion
@@ -370,6 +339,8 @@ public class TextManager {
         textParagraph = textParagraph.toLowerCase();
         replacingWord = replacingWord.toLowerCase();
         replacingWord = replacingWord.trim();
+        replaceWith = replaceWith.trim();
+
         String wordEndSyntax = separateWordSyntax(textParagraph, replacingWord);
         // Check and replace at the beginning of the text
         if(textParagraph.startsWith(replacingWord)){
@@ -384,9 +355,8 @@ public class TextManager {
             // Replace the word with the replacement word
             textParagraph = textParagraph.replace(replacingWord+wordEndSyntax, " "+replaceWith+wordEndSyntax);
         }
+        //Adding replacement and validation for the text
         validateWordReplacement(index,textParagraph);
-
-
     }
 
     /**
@@ -394,18 +364,19 @@ public class TextManager {
      */
     void replaceParagraphSection(String[] userInput) {
         System.out.print("Replacing Word: ");
-        String wordReplace = input.unsplittedText();
+        String wordReplace = input.receiveUnsplittedParagraph();
         System.out.print("Replacing with: ");
-        String replacingWord = input.unsplittedText();
+        String replacingWord = input.receiveUnsplittedParagraph();
 
-        if (userInput.length>=1) {
+        if (userInput.length>1) {
             int index = Integer.parseInt(userInput[1])-1;
-            System.out.println();
             if (index < text.size() && index>=0) {
                 replaceWord(index,wordReplace,replacingWord );
             } else{
                 replaceWord(text.size()-1,wordReplace,replacingWord );
             }
+        }else{
+            replaceWord(text.size()-1,wordReplace,replacingWord );
         }
     }
 

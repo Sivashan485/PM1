@@ -293,15 +293,12 @@ public class TextManager {
      * @param replacingWord   The word used as a delimiter for splitting the text.
      * @return                The portion of the text after the first occurrence of the replacing word,
      *                        or an empty string if the replacing word is not found.
-     * @throws NullPointerException If either textParagraph or replacingWord is null.
      */
     private String separateWordSyntax(String textParagraph, String replacingWord){
-        String []splitText = textParagraph.split(replacingWord);
-        if(splitText.length>1){
-            return splitText[1];
-        }else{
-            return "";
-        }
+        // Split the text paragraph based on the replacing word
+        String[] splitTextParagraph = textParagraph.split("(?i)" + replacingWord);
+        // Check and return the second part of the split if it exists, otherwise an empty string
+        return (splitTextParagraph.length > 1) ? splitTextParagraph[1] : "";
     }
 
 
@@ -329,16 +326,16 @@ public class TextManager {
      * Replaces occurrences of a specified word in the text list at the given index.
      *
      * @param index         The index of the text to be modified.
-     * @param replacingWord The word to be replaced.
-     * @param replaceWith   The word to replace the specified word.
+     * @param originalWord The word to be replaced.
+     * @param replacementWord   The word to replace the specified word.
      */
     private void replaceWord(int index, String originalWord, String replacementWord){
         // Retrieve the text to be modified from the list
         String textParagraph =text.get(index).toLowerCase();
         originalWord = originalWord.toLowerCase().trim();
         replacementWord = replacementWord.trim();
-
         String wordEndSyntax = separateWordSyntax(textParagraph, originalWord);
+
         // Check and replace at the beginning of the text
         if(textParagraph.startsWith(originalWord)){
             textParagraph = textParagraph.replace(originalWord+" ",replacementWord+" " );

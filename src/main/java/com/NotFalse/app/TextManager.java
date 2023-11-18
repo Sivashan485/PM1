@@ -309,17 +309,14 @@ public class TextManager {
      * @param textParagraph The new text paragraph to replace the existing one.
      */
     private void validateWordReplacement(int index, String textParagraph) {
-        // Check if the new text is different from the existing text at the specified index
-        if (!text.get(index).equals(textParagraph)) {
-            // If different, remove the existing text at the index and add the new text
-            text.remove(index);
-            text.add(index, textParagraph);
-            // Create a message indicating that the replacement was successful
-            output.createReplaceMessage(true);
-        } else {
-            // If the new text is the same as the existing text, create a message indicating no replacement
-            output.createReplaceMessage(false);
+        // Check if the new text is different from the existing text at the specified index (case-insensitive)
+        boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(textParagraph);
+        // If different, update the text at the index
+        if (isReplacementSuccessful) {
+            text.set(index, textParagraph);
         }
+        // Create a message indicating the replacement result
+        output.createReplaceMessage(isReplacementSuccessful);
     }
 
     /**

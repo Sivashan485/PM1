@@ -275,7 +275,7 @@ public class TextManager {
      * Prints the glossary.
      */
     void showGlossary() {
-        glossary = glossary.rebuildGlossary(text);
+        glossary.rebuildGlossary(text);
         if (glossary.isEmpty()) {
             output.createEmptyGlossaryWarning();
         } else {

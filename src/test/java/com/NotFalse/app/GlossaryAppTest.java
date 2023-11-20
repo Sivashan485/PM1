@@ -143,15 +143,6 @@ public class GlossaryAppTest {
 
 
 
-    @Test
-    public void testRebuildGlossaryEmpty() {
-        List<String> text = Arrays.asList("Hello world", "Hello again", "World says hello");
-        glossaryOne.rebuildGlossary(text);
-        assertFalse(glossaryOne.isEmpty(), "Glossary should not be empty");
-        // Add more assertions to check if the glossary contains the correct data
-    }
-
-
 
 
     @Test

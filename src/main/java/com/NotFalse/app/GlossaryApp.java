@@ -1,6 +1,7 @@
 package com.NotFalse.app;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This class is responsible for creating the glossary and updating it.
@@ -17,6 +18,26 @@ public class GlossaryApp {
     public GlossaryApp() {
         glossary = new TreeMap<>();
     }
+
+    /**
+     * Prints the glossary.
+     */
+    void printGlossary(List<String> text) {
+        rebuildGlossary(text);
+        if (glossary.isEmpty()) {
+            System.err.println("Your glossary is empty...");
+        } else{
+            System.out.println("Glossary:");
+            for (String word : glossary.keySet()) {
+                List<Integer> indexes = glossary.get(word);
+                String indexStream = indexes.stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", "));
+                System.out.printf("%-10s %s%n", word, indexStream);
+            }
+        }
+    }
+
     /**
      * Rebuilds the glossary with the new text.
      *
@@ -129,13 +150,5 @@ public class GlossaryApp {
         return glossary;
     }
 
-    /**
-     * Checks if the glossary is empty.
-     *
-     * @return returns true if the glossary is empty, otherwise false
-     */
-    public boolean isEmpty() {
-        return glossary.isEmpty();
-    }
 
 }

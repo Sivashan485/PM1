@@ -143,7 +143,7 @@ public class OutputManager {
      * Creates a log message for the empty text if you try to delete a text.
      */
     public void createEmptyTextWarning() {
-        createUserErrorMessage("Your TextEditor is empty...\n "
+        createUserErrorMessage("Your TextEditor is empty...\n"
                 + "You can add new text, by calling the add function.");
     }
 

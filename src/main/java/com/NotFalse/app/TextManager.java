@@ -2,7 +2,7 @@ package com.NotFalse.app;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 /**
  * This class is responsible for managing the text. It contains the text, the
@@ -69,7 +69,7 @@ public class TextManager {
                 deleteParagraph(userInput);
                 break;
             case INDEX:
-                showGlossary();
+                glossary.printGlossary(text);
                 break;
             case PRINT:
                 printText();
@@ -268,26 +268,6 @@ public class TextManager {
             sb.append(paragraph);
         }
         System.out.println(sb);
-
-    }
-
-    /**
-     * Prints the glossary.
-     */
-    void showGlossary() {
-        glossary.rebuildGlossary(text);
-        if (glossary.isEmpty()) {
-            output.createEmptyGlossaryWarning();
-        } else {
-            System.out.println("Glossary:");
-            for (String word : glossary.getGlossary().keySet()) {
-                List<Integer> indexes = glossary.getGlossary().get(word);
-                String indexStream = indexes.stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(", "));
-                System.out.printf("%-10s %s%n", word, indexStream);
-            }
-        }
 
     }
 

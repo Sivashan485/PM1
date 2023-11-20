@@ -36,8 +36,7 @@ public enum Commands {
      * @return returns a Command if existing, otherwise UNKNOWN
      */
     public static Commands lookupCommand(String command) {
-        Commands[] commands = Commands.values();
-        for (Commands value : commands) {
+        for (Commands value : Commands.values()) {
             if (value.getCommand().equals(command.toLowerCase())) {
                 return value;
             }

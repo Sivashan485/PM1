@@ -16,7 +16,7 @@ public class InputReceiver {
         return textToFilter.replaceAll(allowedRegex, "");
     }
 
-    public String unsplittedText() {
+    public String receiveUnsplittedParagraph() {
         String inputText = input.nextLine();
         inputText = filterInput(inputText);
         if(inputText==null){

@@ -90,7 +90,7 @@ public class TextManager {
                 formatTextFix();
                 break;
             default:
-                System.err.println("UNKOWN ERROR");
+                output.createInvalidCommandMessage();
                 break;
         }
     }
@@ -418,33 +418,6 @@ public class TextManager {
     }
 
     /**
-     * Getter for the FormatterRaw text.
-     *
-     * @return the formatted text
-     */
-    public boolean getIsFormatterRaw() {
-        return isFormatterRaw;
-    }
-
-    /**
-     * Setter for the FormatterRaw text.
-     *
-     * @param isFormatterRaw
-     */
-    public void setIsFormatterRaw(boolean isFormatterRaw) {
-        this.isFormatterRaw = isFormatterRaw;
-    }
-
-    /**
-     * Getter for the fixed width.
-     *
-     * @return the fixed width
-     */
-    public int getFixedWidth() {
-        return fixedWidth;
-    }
-
-    /**
      * Setter for the fixed width.
      *
      * @param fixedWidth
@@ -462,12 +435,5 @@ public class TextManager {
         return isExitTriggered;
     }
 
-    /**
-     * Setter for the isExitTriggered boolean.
-     *
-     * @param isExitTriggered
-     */
-    public void setIsExitTriggered(boolean isExitTriggered) {
-        this.isExitTriggered = isExitTriggered;
-    }
+
 }

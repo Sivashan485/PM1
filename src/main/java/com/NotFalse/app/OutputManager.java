@@ -97,32 +97,6 @@ public class OutputManager {
     }
 
     /**
-     * Creates a log message for the status of creating an index.
-     *
-     * @param success status of creating an index
-     */
-    public void createIndexMessage(boolean success) {
-        if (success) {
-            createUserInfoMessage("Index generated successfully!");
-        } else {
-            createUserErrorMessage("Index has not been generated");
-        }
-    }
-
-    /**
-     * Creates a log message for the status of printing a text.
-     *
-     * @param success status of printing a text
-     */
-    public void createPrintMessage(boolean success) {
-        if (success) {
-            createUserInfoMessage("Printing text...");
-        } else {
-            createUserErrorMessage("Text has not been printed");
-        }
-    }
-
-    /**
      * Creates a log message for the status of replacing a text.
      *
      * @param success status of replacing a text

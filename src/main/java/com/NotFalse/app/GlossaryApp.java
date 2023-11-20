@@ -17,18 +17,35 @@ public class GlossaryApp {
     public GlossaryApp() {
         glossary = new TreeMap<>();
     }
-
     /**
-     * Updates the glossary with the new text by creating a new glossary.
+     * Rebuilds the glossary with the new text.
      *
      * @param text new text to be mapped
-     * @return returns a new GlossaryApp
      */
-    public GlossaryApp rebuildGlossary(List<String> text) {
-        GlossaryApp newGlossary = new GlossaryApp();
-        newGlossary.computeWordFrequency(text);
-        newGlossary.insertGlossaryEntries(text);
-        return newGlossary;
+    public void rebuildGlossary(List<String> text) {
+        clearGlossary(); // Clear the existing glossary data
+        Map<String, Integer> wordFrequency = computeWordFrequency(text);
+        insertGlossaryEntries(text, wordFrequency);
+    }
+
+    /**
+     * Clears the current glossary data.
+     */
+    private void clearGlossary() {
+        glossary.clear();
+    }
+
+    /**
+     * Inserts the entries to the glossary based on the word frequency.
+     *
+     * @param text          text to be mapped
+     * @param wordFrequency a map with the frequency of each word
+     */
+    void insertGlossaryEntries(List<String> text, Map<String, Integer> wordFrequency) {
+        for (String word : wordFrequency.keySet()) {
+            String cleanedWord = capitalizeFirstLetter(word).trim();
+            glossary.put(cleanedWord, searchWordInParagraphs(text, word));
+        }
     }
 
     /**
@@ -78,17 +95,6 @@ public class GlossaryApp {
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
 
-    /**
-     * Inserts the entries to the glossary.
-     *
-     * @param text text to be mapped
-     */
-    void insertGlossaryEntries(List<String> text) {
-        for (String word : computeWordFrequency(text).keySet()) {
-            String cleanedWord = capitalizeFirstLetter(word).trim();
-            glossary.computeIfAbsent(cleanedWord, k -> searchWordInParagraphs(text, word));
-        }
-    }
 
 
     /**

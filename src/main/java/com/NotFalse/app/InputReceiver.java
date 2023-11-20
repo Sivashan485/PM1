@@ -56,7 +56,6 @@ public class InputReceiver {
         for (Commands command : Commands.values()) {
             if (splitText[0].equalsIgnoreCase(command.getCommand())) {
                 // If the first part of splitText matches a command, return the split array
-                System.out.println(splitText[0]);
                 return splitText;
             }
         }

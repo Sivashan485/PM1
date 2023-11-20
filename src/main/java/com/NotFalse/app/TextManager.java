@@ -319,6 +319,7 @@ public class TextManager {
         output.createReplaceMessage(isReplacementSuccessful);
     }
 
+
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
      *
@@ -328,8 +329,8 @@ public class TextManager {
      */
     private void replaceWord(int index, String originalWord, String replacementWord){
         // Retrieve the text to be modified from the list
-        String textParagraph =text.get(index).toLowerCase();
-        originalWord = originalWord.toLowerCase().trim();
+        String textParagraph =text.get(index);
+        originalWord = originalWord.trim();
         replacementWord = replacementWord.trim();
         String wordEndSyntax = separateWordSyntax(textParagraph, originalWord);
 

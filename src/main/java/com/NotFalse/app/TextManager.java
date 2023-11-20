@@ -21,7 +21,7 @@ public class TextManager {
     private final InputReceiver input;
 
     private final OutputManager output;
-    private GlossaryApp glossary;
+    private final GlossaryApp glossary;
     private boolean isFormatterRaw;
     private boolean isExitTriggered;
     private List<String> text;

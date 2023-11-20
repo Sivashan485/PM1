@@ -26,7 +26,7 @@ public class GlossaryApp {
         rebuildGlossary(text);
         if (glossary.isEmpty()) {
             System.err.println("Your glossary is empty...");
-        } else{
+        } else {
             System.out.println("Glossary:");
             for (String word : glossary.keySet()) {
                 List<Integer> indexes = glossary.get(word);
@@ -115,7 +115,6 @@ public class GlossaryApp {
             return word;
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
-
 
 
     /**

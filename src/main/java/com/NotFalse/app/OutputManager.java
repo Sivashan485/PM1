@@ -147,13 +147,6 @@ public class OutputManager {
                 + "You can add new text, by calling the add function.");
     }
 
-
-    /**
-     * Creates a log message for the empty glossary if you try to print the glossary.
-     */
-    public void createEmptyGlossaryWarning() {
-        createUserErrorMessage("Your Glossary is empty... ");
-    }
 }
 
 

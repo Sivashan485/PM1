@@ -16,7 +16,7 @@ public class InputReceiver {
         return textToFilter.replaceAll(allowedRegex, "");
     }
 
-    public String receiveUnsplittedParagraph() {
+    public String getFilteredInputLine() {
         String inputText = input.nextLine();
         inputText = filterInput(inputText);
         if(inputText==null){
@@ -26,19 +26,19 @@ public class InputReceiver {
     }
 
     public String[] splitInput() {
-        String[] splitedtext = new String[1];
-        String inputText = input.nextLine();
-        inputText = filterInput(inputText.trim());
-        splitedtext[0] = inputText;
+        String inputText = getFilteredInputLine();
+        // Split the input text at the first space
+        String[] splitText = inputText.split("\\s+", 2);
+
         for (Commands command : Commands.values()) {
-            if (inputText.toLowerCase().contains(command.getCommand()+" ")) {
-                // if a command contains then split it in two parts
-                splitedtext = inputText.toLowerCase().split(command.getCommand()+ " ");
-                splitedtext[0] = command.getCommand();
+            if (splitText[0].equalsIgnoreCase(command.getCommand())) {
+                // If the first part of splitText matches a command, return the split array
+                System.out.println(splitText[0]);
+                return splitText;
             }
         }
-
-        return splitedtext;
+        // If no command is found, return the original input as the only element in an array
+        return new String[] { inputText };
     }
 
 }

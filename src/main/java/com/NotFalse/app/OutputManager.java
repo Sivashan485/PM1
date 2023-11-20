@@ -51,14 +51,14 @@ public class OutputManager {
      * Creates a welcome message for the user.
      */
     public void createWelcomeMessage() {
-        System.out.println("Welcome to the TextEditor! Created by NotFalse.");
+        createUserInfoMessage("Welcome to the TextEditor! Created by NotFalse.");
     }
 
     /**
      * Creates a menu option message with the commands that can be used.
      */
     public void createMenuOptionsMessage() {
-        System.out.println("Here are the commands you can use:" + Commands.getAllCommands());
+        createUserInfoMessage("Here are the commands you can use:" + Commands.getAllCommands());
     }
 
 
@@ -66,7 +66,7 @@ public class OutputManager {
      * Creates a goodbye message.
      */
     public void createExitMessage() {
-        System.out.println("Exiting TextEditor...\n" +
+        createUserInfoMessage("Exiting TextEditor...\n" +
                 "Thank you for using TextEditor! Created by NotFalse.");
     }
 
@@ -113,7 +113,16 @@ public class OutputManager {
      * Creates an error message for an invalid command.
      */
     public void createInvalidCommandMessage() {
-        System.err.println("Invalid command! Please try again.");
+        createUserErrorMessage("Invalid command! Please try again.");
+    }
+
+    public void createMaxIntWarning() {
+        createUserErrorMessage("This index is not valid. Please try again.");
+
+    }
+
+    public void createEmptyTextWarning() {
+        createUserErrorMessage("The text is empty. Please try again.");
     }
 }
 

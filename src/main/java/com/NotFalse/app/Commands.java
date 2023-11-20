@@ -14,8 +14,8 @@ public enum Commands {
     PRINT("print"),
     REPLACE("replace"),
     HELP("help"),
-    FORMAT_RAW("format_raw"),
-    FORMAT_FIX("format_fix"),
+    FORMAT_RAW("format raw"),
+    FORMAT_FIX("format fix"),
     UNKNOWN("unknown");
 
     public final String command;

@@ -88,6 +88,12 @@ public class GlossaryApp {
             String cleanedWord = capitalizeFirstLetter(word).trim();
             glossary.computeIfAbsent(cleanedWord, k -> searchWordInParagraphs(text, word));
         }
+        if(glossary.isEmpty()){
+            System.out.println("Your Glossary is empty...");
+        }
+        else{
+            System.out.println("Glossary: ");
+        }
     }
 
 

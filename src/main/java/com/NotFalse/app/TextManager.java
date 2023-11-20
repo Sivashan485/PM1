@@ -36,9 +36,9 @@ public class TextManager {
         output = new OutputManager();
         glossary = new GlossaryApp();
         text = new ArrayList<>();
-        text.add("This three thrEE Threeis a new test paragraph.\n");
+        text.add("This three thrEE Three is a new test paragraph.\n");
         text.add("Another New test paragraph.\n");
-        text.add("Another weird useless nEw test paragraph");
+        text.add("Another weird useless nEw test paragraph\n");
         isExitTriggered = false;
         isFormatterRaw = true;
         fixedWidth = 80;
@@ -94,17 +94,27 @@ public class TextManager {
         }
     }
 
-    private void addIndexCheck(String[] inputText, String enteredText) {
+    /**
+     * Adds a new paragraph to the text.
+     */
+    private void addNewParagraph(String[] userInput) {
+        System.out.println("Text: ");
+        String enteredText = input.getFilteredInputLine();
+        addIndexCheck(userInput, enteredText);
+    }
+
+    private void addIndexCheck(String[] userInput, String enteredText) {
         try {
-            if (inputText.length > 1) {
-                int convertToInteger = Integer.parseInt(inputText[1]);
-                if (convertToInteger - 1 <= text.size() && convertToInteger - 1 >= 0) {
-                    text.add(convertToInteger - 1, enteredText);
-                } else {
-                    text.add(enteredText);
+            if (userInput.length > 1) {
+                //the index is the second element of the array
+                int index = Integer.parseInt(userInput[1])-1;
+                if (index >= 0 && index <= text.size()) {
+                    text.add(index, enteredText+ "\n");
+                }else {
+                    //output.createMaxIntWarning();
                 }
             } else {
-                text.add(enteredText);
+                text.add(enteredText+ "\n");
             }
             output.createAddMessage(true);
         } catch (Exception e) {
@@ -114,35 +124,28 @@ public class TextManager {
     }
 
     /**
-     * Adds a new paragraph to the end of the text.
-     */
-    private void addNewParagraph(String[] inputText) {
-
-        System.out.println("Text: ");
-        String enteredText = input.receiveUnsplittedParagraph();
-        addIndexCheck(inputText, enteredText);
-    }
-
-    /**
      * Deletes the paragraph at the specified index.
      */
     private void deleteParagraph(String[] userInput) {
-        if (userInput.length == 2) {
-            try {
+        if(text.isEmpty()){
+            output.createEmptyTextWarning();
+        }
+        try {
+            if (userInput.length > 1) {
                 int index = Integer.parseInt(userInput[1]) - 1;
                 if (index >= 0 && index < text.size()) {
                     text.remove(index);
-                    output.createDeleteMessage(true);
-                } else {
-                    output.createDeleteMessage(false);
                 }
-            } catch (NumberFormatException e) {
-                output.createDeleteMessage(false);
+                else{
+                    //output.createMaxIntWarning();
+                }
+            }else {
+                text.remove(text.size()-1);
             }
-        } else {
-            output.createDeleteMessage(false);
+            output.createDeleteMessage(true);
+        } catch (Exception e) {
+                output.createDeleteMessage(false);
         }
-
     }
 
     /**
@@ -260,6 +263,10 @@ public class TextManager {
      * Print the text.
      */
     private void printText() {
+        if(text.isEmpty()){
+            System.out.println("Your TextEditor is empty...\n "
+                    + "You can add new text, by calling the add function.");
+        }
         StringBuilder sb = new StringBuilder();
         for (String paragraph : text) {
             sb.append(paragraph);
@@ -272,7 +279,6 @@ public class TextManager {
      * Prints the glossary.
      */
     void showGlossary() {
-        System.out.println("Glossary:");
         glossary = glossary.rebuildGlossary(text);
         for (String word : glossary.getGlossary().keySet()) {
             List<Integer> indexes = glossary.getGlossary().get(word);
@@ -356,9 +362,9 @@ public class TextManager {
      */
     void replaceParagraphSection(String[] userInput) {
         System.out.print("Replacing Word: ");
-        String originalWord = input.receiveUnsplittedParagraph();
+        String originalWord = input.getFilteredInputLine();
         System.out.print("Replacing with: ");
-        String replacementWord = input.receiveUnsplittedParagraph();
+        String replacementWord = input.getFilteredInputLine();
 
         if (userInput.length>1) {
             int index = Integer.parseInt(userInput[1])-1;
@@ -397,6 +403,7 @@ public class TextManager {
     public boolean getIsExitTriggered() {
         return isExitTriggered;
     }
+
 
 
 }

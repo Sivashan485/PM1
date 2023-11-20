@@ -88,12 +88,6 @@ public class GlossaryApp {
             String cleanedWord = capitalizeFirstLetter(word).trim();
             glossary.computeIfAbsent(cleanedWord, k -> searchWordInParagraphs(text, word));
         }
-        if(glossary.isEmpty()){
-            System.out.println("Your Glossary is empty...");
-        }
-        else{
-            System.out.println("Glossary: ");
-        }
     }
 
 
@@ -127,6 +121,15 @@ public class GlossaryApp {
      */
     TreeMap<String, List<Integer>> getGlossary() {
         return glossary;
+    }
+
+    /**
+     * Checks if the glossary is empty.
+     *
+     * @return returns true if the glossary is empty, otherwise false
+     */
+    public boolean isEmpty() {
+        return glossary.isEmpty();
     }
 
 }

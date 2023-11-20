@@ -6,7 +6,9 @@ import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
 
-
+/**
+ * Class for managing the output of the TextEditor application.
+ */
 public class OutputManager {
 
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OutputManager.class.getName());
@@ -55,20 +57,20 @@ public class OutputManager {
     }
 
     /**
-     * Creates a menu option message with the commands that can be used.
-     */
-    public void createMenuOptionsMessage() {
-        createUserInfoMessage("Here are the commands you can use:" + Commands.getAllCommands());
-    }
-
-
-    /**
      * Creates a goodbye message.
      */
     public void createExitMessage() {
         createUserInfoMessage("Exiting TextEditor...\n" +
                 "Thank you for using TextEditor! Created by NotFalse.");
     }
+
+    /**
+     * Creates a menu option message with the commands that can be used.
+     */
+    public void createMenuOptionsMessage() {
+        createUserInfoMessage("Here are the commands you can use:" + Commands.getAllCommands());
+    }
+
 
     /**
      * Creates a log message for the status of adding a text.
@@ -110,19 +112,47 @@ public class OutputManager {
     }
 
     /**
-     * Creates an error message for an invalid command.
+     * Creates a log message for the status of formatting a text.
+     *
+     * @param success status of formatting a text
+     */
+    public void createFormatMessage(boolean success) {
+        if (success) {
+            createUserInfoMessage("Text formatted successfully!");
+        } else {
+            createUserErrorMessage("Text has not been formatted");
+        }
+    }
+
+    /**
+     * Creates a log message for an invalid command.
      */
     public void createInvalidCommandMessage() {
         createUserErrorMessage("Invalid command! Please try again.");
     }
 
-    public void createMaxIntWarning() {
+    /**
+     * Creates a log message for an invalid index.
+     */
+    public void createIndexWarning() {
         createUserErrorMessage("This index is not valid. Please try again.");
 
     }
 
+    /**
+     * Creates a log message for the empty text if you try to delete a text.
+     */
     public void createEmptyTextWarning() {
-        createUserErrorMessage("The text is empty. Please try again.");
+        createUserErrorMessage("Your TextEditor is empty...\n "
+                + "You can add new text, by calling the add function.");
+    }
+
+
+    /**
+     * Creates a log message for the empty glossary if you try to print the glossary.
+     */
+    public void createEmptyGlossaryWarning() {
+        createUserErrorMessage("Your Glossary is empty... ");
     }
 }
 

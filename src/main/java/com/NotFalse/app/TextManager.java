@@ -103,18 +103,26 @@ public class TextManager {
         addIndexCheck(userInput, enteredText);
     }
 
+    /**
+     * Adds a dummy paragraph to the specified index. If the index is larger than
+     * the size of the text, the dummy paragraph is added to the end of the text.
+     */
+    private void addDummyParagraph(String[] inputText) {
+        addIndexCheck(inputText, DUMMYTEXT);
+    }
+
     private void addIndexCheck(String[] userInput, String enteredText) {
         try {
             if (userInput.length > 1) {
                 //the index is the second element of the array
-                int index = Integer.parseInt(userInput[1])-1;
+                int index = Integer.parseInt(userInput[1]) - 1;
                 if (index >= 0 && index <= text.size()) {
-                    text.add(index, enteredText+ "\n");
-                }else {
-                    //output.createMaxIntWarning();
+                    text.add(index, enteredText + "\n");
+                } else {
+                    //output.createIndexWarning();
                 }
             } else {
-                text.add(enteredText+ "\n");
+                text.add(enteredText + "\n");
             }
             output.createAddMessage(true);
         } catch (Exception e) {
@@ -127,7 +135,7 @@ public class TextManager {
      * Deletes the paragraph at the specified index.
      */
     private void deleteParagraph(String[] userInput) {
-        if(text.isEmpty()){
+        if (text.isEmpty()) {
             output.createEmptyTextWarning();
         }
         try {
@@ -135,16 +143,15 @@ public class TextManager {
                 int index = Integer.parseInt(userInput[1]) - 1;
                 if (index >= 0 && index < text.size()) {
                     text.remove(index);
+                } else {
+                    //output.createIndexWarning();
                 }
-                else{
-                    //output.createMaxIntWarning();
-                }
-            }else {
-                text.remove(text.size()-1);
+            } else {
+                text.remove(text.size() - 1);
             }
             output.createDeleteMessage(true);
         } catch (Exception e) {
-                output.createDeleteMessage(false);
+            output.createDeleteMessage(false);
         }
     }
 
@@ -250,22 +257,11 @@ public class TextManager {
     }
 
     /**
-     * Setter for the text. It is used for testing.
-     *
-     * @param text
-     */
-    // for being able to test the methods
-    public void setText(List<String> text) {
-        this.text = text;
-    }
-
-    /**
      * Print the text.
      */
     private void printText() {
-        if(text.isEmpty()){
-            System.out.println("Your TextEditor is empty...\n "
-                    + "You can add new text, by calling the add function.");
+        if (text.isEmpty()) {
+            output.createEmptyTextWarning();
         }
         StringBuilder sb = new StringBuilder();
         for (String paragraph : text) {
@@ -280,13 +276,19 @@ public class TextManager {
      */
     void showGlossary() {
         glossary = glossary.rebuildGlossary(text);
-        for (String word : glossary.getGlossary().keySet()) {
-            List<Integer> indexes = glossary.getGlossary().get(word);
-            String indexesStr = indexes.stream()
-                    .map(String::valueOf)
-                    .collect(Collectors.joining(", "));
-            System.out.printf("%-10s %s%n", word, indexesStr);
+        if (glossary.isEmpty()) {
+            output.createEmptyGlossaryWarning();
+        } else {
+            System.out.println("Glossary:");
+            for (String word : glossary.getGlossary().keySet()) {
+                List<Integer> indexes = glossary.getGlossary().get(word);
+                String indexStream = indexes.stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", "));
+                System.out.printf("%-10s %s%n", word, indexStream);
+            }
         }
+
     }
 
     /**
@@ -295,12 +297,12 @@ public class TextManager {
      * of the text that comes after the first occurrence of the replacing word.
      * If the replacing word is not present, an empty string is returned.
      *
-     * @param textParagraph   The input text paragraph to be split.
-     * @param replacingWord   The word used as a delimiter for splitting the text.
-     * @return                The portion of the text after the first occurrence of the replacing word,
-     *                        or an empty string if the replacing word is not found.
+     * @param textParagraph The input text paragraph to be split.
+     * @param replacingWord The word used as a delimiter for splitting the text.
+     * @return The portion of the text after the first occurrence of the replacing word,
+     * or an empty string if the replacing word is not found.
      */
-    private String separateWordSyntax(String textParagraph, String replacingWord){
+    private String separateWordSyntax(String textParagraph, String replacingWord) {
         // Split the text paragraph based on the replacing word
         String[] splitTextParagraph = textParagraph.split("(?i)" + replacingWord);
         // Check and return the second part of the split if it exists, otherwise an empty string
@@ -311,7 +313,7 @@ public class TextManager {
     /**
      * Validates and performs word replacement in a text paragraph at the specified index.
      *
-     * @param index The index in the 'text' list where the replacement should occur.
+     * @param index         The index in the 'text' list where the replacement should occur.
      * @param textParagraph The new text paragraph to replace the existing one.
      */
     private void validateWordReplacement(int index, String textParagraph) {
@@ -329,32 +331,32 @@ public class TextManager {
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
      *
-     * @param index         The index of the text to be modified.
-     * @param originalWord The word to be replaced.
-     * @param replacementWord   The word to replace the specified word.
+     * @param index           The index of the text to be modified.
+     * @param originalWord    The word to be replaced.
+     * @param replacementWord The word to replace the specified word.
      */
-    private void replaceWord(int index, String originalWord, String replacementWord){
+    private void replaceWord(int index, String originalWord, String replacementWord) {
         // Retrieve the text to be modified from the list
-        String textParagraph =text.get(index);
+        String textParagraph = text.get(index);
         originalWord = originalWord.trim();
         replacementWord = replacementWord.trim();
         String wordEndSyntax = separateWordSyntax(textParagraph, originalWord);
 
         // Check and replace at the beginning of the text
-        if(textParagraph.startsWith(originalWord)){
-            textParagraph = textParagraph.replace(originalWord+" ",replacementWord+" " );
+        if (textParagraph.startsWith(originalWord)) {
+            textParagraph = textParagraph.replace(originalWord + " ", replacementWord + " ");
         }
         // Check and replace in the middle of the text
-        if(textParagraph.contains(" "+originalWord+" ")){
-            textParagraph = textParagraph.replaceAll(" "+originalWord+" "," "+replacementWord+" ");
+        if (textParagraph.contains(" " + originalWord + " ")) {
+            textParagraph = textParagraph.replaceAll(" " + originalWord + " ", " " + replacementWord + " ");
         }
         // Remove the original text and insert the modified text back into the list
-        if(textParagraph.endsWith(originalWord+wordEndSyntax)){
+        if (textParagraph.endsWith(originalWord + wordEndSyntax)) {
             // Replace the word with the replacement word
-            textParagraph = textParagraph.replace(originalWord+wordEndSyntax, " "+replacementWord+wordEndSyntax);
+            textParagraph = textParagraph.replace(originalWord + wordEndSyntax, " " + replacementWord + wordEndSyntax);
         }
         //Adding replacement and validation for the text
-        validateWordReplacement(index,textParagraph);
+        validateWordReplacement(index, textParagraph);
     }
 
     /**
@@ -366,25 +368,18 @@ public class TextManager {
         System.out.print("Replacing with: ");
         String replacementWord = input.getFilteredInputLine();
 
-        if (userInput.length>1) {
-            int index = Integer.parseInt(userInput[1])-1;
-            if (index < text.size() && index>=0) {
-                replaceWord(index,originalWord,replacementWord );
-            } else{
-                replaceWord(text.size()-1,originalWord,replacementWord );
+        if (userInput.length > 1) {
+            int index = Integer.parseInt(userInput[1]) - 1;
+            if (index < text.size() && index >= 0) {
+                replaceWord(index, originalWord, replacementWord);
+            } else {
+                replaceWord(text.size() - 1, originalWord, replacementWord);
             }
-        }else{
-            replaceWord(text.size()-1,originalWord,replacementWord );
+        } else {
+            replaceWord(text.size() - 1, originalWord, replacementWord);
         }
     }
 
-    /**
-     * Adds a dummy paragraph to the specified index. If the index is larger than
-     * the size of the text, the dummy paragraph is added to the end of the text.
-     */
-    private void addDummyParagraph(String[] inputText) {
-        addIndexCheck(inputText, DUMMYTEXT);
-    }
 
     /**
      * Setter for the fixed width.
@@ -404,6 +399,15 @@ public class TextManager {
         return isExitTriggered;
     }
 
+    /**
+     * Setter for the text. It is used for testing.
+     *
+     * @param text
+     */
+    // for being able to test the methods
+    public void setText(List<String> text) {
+        this.text = text;
+    }
 
 
 }

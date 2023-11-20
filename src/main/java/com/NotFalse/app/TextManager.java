@@ -1,7 +1,6 @@
 package com.NotFalse.app;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -95,17 +94,17 @@ public class TextManager {
         }
     }
 
-    private void addIndexCheck(String[] inputText, String entredText) {
+    private void addIndexCheck(String[] inputText, String enteredText) {
         try {
             if (inputText.length > 1) {
                 int convertToInteger = Integer.parseInt(inputText[1]);
                 if (convertToInteger - 1 <= text.size() && convertToInteger - 1 >= 0) {
-                    text.add(convertToInteger - 1, entredText);
+                    text.add(convertToInteger - 1, enteredText);
                 } else {
-                    text.add(entredText);
+                    text.add(enteredText);
                 }
             } else {
-                text.add(entredText);
+                text.add(enteredText);
             }
             output.createAddMessage(true);
         } catch (Exception e) {
@@ -120,18 +119,18 @@ public class TextManager {
     private void addNewParagraph(String[] inputText) {
 
         System.out.println("Text: ");
-        String entredText = input.unsplittedText();
+        String enteredText = input.unsplittedText();
             /*if (inputText.length>1) {
                 int convertToInteger = Integer.parseInt(inputText[1]);
                 if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
-                    text.add(convertToInteger-1, entredText);
+                    text.add(convertToInteger-1, enteredText);
                 } else{
-                    text.add(entredText);
+                    text.add(enteredText);
                 }
             }else{
-                text.add(entredText);
+                text.add(enteredText);
             }*/
-        addIndexCheck(inputText, entredText);
+        addIndexCheck(inputText, enteredText);
     }
 
     /**

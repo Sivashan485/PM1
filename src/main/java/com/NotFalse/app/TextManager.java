@@ -122,16 +122,18 @@ public class TextManager {
 
         System.out.println("Text: ");
         String entredText = input.unsplittedText();
-            /*if (inputText.length>1) {
-                int convertToInteger = Integer.parseInt(inputText[1]);
-                if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
-                    text.add(convertToInteger-1, entredText);
-                } else{
-                    text.add(entredText);
-                }
-            }else{
-                text.add(entredText);
-            }*/
+        /*
+         * if (inputText.length>1) {
+         * int convertToInteger = Integer.parseInt(inputText[1]);
+         * if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
+         * text.add(convertToInteger-1, entredText);
+         * } else{
+         * text.add(entredText);
+         * }
+         * }else{
+         * text.add(entredText);
+         * }
+         */
         addIndexCheck(inputText, entredText);
     }
 
@@ -326,17 +328,19 @@ public class TextManager {
      */
     private void addDummyParagraph(String[] inputText) {
         addIndexCheck(inputText, DUMMYTEXT);
-        /*if (inputText.length>1) {
-
-            int convertToInteger = Integer.parseInt(inputText[1]);
-            if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
-                text.add(convertToInteger-1, DUMMYTEXT);
-            } else{
-                text.add(DUMMYTEXT);
-            }
-        }else{
-            text.add(DUMMYTEXT);
-        }*/
+        /*
+         * if (inputText.length>1) {
+         * 
+         * int convertToInteger = Integer.parseInt(inputText[1]);
+         * if (convertToInteger-1 <= text.size() && convertToInteger-1>=0) {
+         * text.add(convertToInteger-1, DUMMYTEXT);
+         * } else{
+         * text.add(DUMMYTEXT);
+         * }
+         * }else{
+         * text.add(DUMMYTEXT);
+         * }
+         */
     }
 
     /**

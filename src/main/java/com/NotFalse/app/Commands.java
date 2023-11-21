@@ -6,27 +6,29 @@ package com.NotFalse.app;
  * a method to get all commands, and a method to get the command as a String.
  */
 public enum Commands {
-    EXIT("exit"),
-    ADD("add"),
-    DEL("del"),
-    DUMMY("dummy"),
-    INDEX("index"),
-    PRINT("print"),
-    REPLACE("replace"),
-    HELP("help"),
-    FORMAT_RAW("format raw"),
-    FORMAT_FIX("format fix"),
-    UNKNOWN("unknown");
+    EXIT("exit", null),
+    ADD("add", 0),
+    DEL("del",0),
+    DUMMY("dummy",0),
+    INDEX("index",null),
+    PRINT("print",null),
+    REPLACE("replace",0),
+    HELP("help", null),
+    FORMAT_RAW("format raw",null),
+    FORMAT_FIX("format fix",0),
+    UNKNOWN("unknown",null);
 
     public final String command;
+    public final Integer index;
 
     /**
      * Constructor for the enum class.
      *
      * @param command
      */
-    Commands(String command) {
+    Commands(String command, Integer index) {
         this.command = command;
+        this.index = index;
     }
 
     /**
@@ -69,5 +71,13 @@ public enum Commands {
      */
     public String getCommand() {
         return command;
+    }
+
+    /**
+     * Getter for the index.
+     * @return index
+     */
+    public Integer getIndex() {
+        return index;
     }
 }

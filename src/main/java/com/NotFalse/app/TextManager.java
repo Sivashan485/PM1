@@ -99,7 +99,7 @@ public class TextManager {
      */
     private void addNewParagraph(String[] userInput) {
         System.out.println("Text: ");
-        String enteredText = input.getFilteredInputLine();
+        String enteredText = input.filterUserInput();
         addIndexCheck(userInput, enteredText);
     }
 
@@ -119,7 +119,7 @@ public class TextManager {
                 if (index >= 0 && index <= text.size()) {
                     text.add(index, enteredText + "\n");
                 } else {
-                    //output.createIndexWarning();
+                    output.createIndexWarning();
                 }
             } else {
                 text.add(enteredText + "\n");
@@ -344,9 +344,9 @@ public class TextManager {
      */
     void replaceParagraphSection(String[] userInput) {
         System.out.print("Replacing Word: ");
-        String originalWord = input.getFilteredInputLine();
+        String originalWord = input.filterUserInput();
         System.out.print("Replacing with: ");
-        String replacementWord = input.getFilteredInputLine();
+        String replacementWord = input.filterUserInput();
 
         if (userInput.length > 1) {
             int index = Integer.parseInt(userInput[1]) - 1;

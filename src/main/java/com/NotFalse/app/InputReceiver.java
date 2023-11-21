@@ -18,49 +18,61 @@ public class InputReceiver {
     }
 
     /**
-     * Filters the unwanted characters from the input and only accepts the characters within the allowedRegex.
-     *
-     * @param textToFilter input text to be filtered
-     * @return returns the filtered input text
-     */
-    public String filterInput(String textToFilter) {
-        // implementation
-        return textToFilter.replaceAll(allowedRegex, "");
-    }
-
-    /**
      * Receives the input from the user and filters it.
      *
      * @return returns the filtered input text
      */
-    public String getFilteredInputLine() {
+    public String filterUserInput() {
         String inputText = input.nextLine();
-        inputText = filterInput(inputText);
-        if (inputText == null) {
-            inputText = " ";
-        }
-        return inputText;
+        return inputText.replaceAll(allowedRegex, "");
     }
 
     /**
-     * Splits the input text at the first space and returns the split array.
-     * At the first position the Command is stored and at the second if given the index is stored.
-     *
-     * @return returns the split array with Command and index
+     * Spit
      */
     public String[] splitInput() {
-        String inputText = getFilteredInputLine();
-        // Split the input text at the first space
-        String[] splitText = inputText.split("\\s+", 2);
+        String inputText = filterUserInput();
+        String command = extractCommand(inputText);
 
-        for (Commands command : Commands.values()) {
-            if (splitText[0].equalsIgnoreCase(command.getCommand())) {
-                // If the first part of splitText matches a command, return the split array
-                return splitText;
-            }
+        if (command.isEmpty()) {
+            return new String[]{inputText};
         }
-        // If no command is found, return the original input as the only element in an array
-        return new String[]{inputText};
+
+        String restPart = inputText.substring(command.length()).trim();
+        return validateAndSplitCommand(command, restPart);
     }
 
+
+    // Extracts the command from the input
+    private String extractCommand(String inputText) {
+        for (Commands command : Commands.values()) {
+            if (inputText.toLowerCase().startsWith(command.getCommand())) {
+                return command.getCommand();
+            }
+        }
+        return "";
+    }
+
+    // Validates the command and splits the input accordingly
+    private String[] validateAndSplitCommand(String command, String restPart) {
+        // Handles commands that require an index
+        if (Commands.lookupCommand(command).getIndex() != null && !restPart.isEmpty()) {
+            return handleIndexCommand(command, restPart);
+        } else if (!restPart.isEmpty()) {
+            // Handle commands that should not have extra text
+            return new String[]{"INVALID"};
+        } else {
+            return new String[]{command};
+        }
+    }
+
+    // Handles commands that require an index
+    private String[] handleIndexCommand(String command, String restPart) {
+        try {
+            Integer.parseInt(restPart); // Validate if it's a number
+            return new String[]{command, restPart};
+        } catch (NumberFormatException e) {
+            return new String[]{"INVALID"};
+        }
+    }
 }

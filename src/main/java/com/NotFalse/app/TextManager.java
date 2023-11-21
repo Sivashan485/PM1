@@ -26,7 +26,7 @@ public class TextManager {
     private boolean isFormatterRaw;
     private boolean isExitTriggered;
     private List<String> text;
-    private int fixedWidth;
+    private int maxWidth;
 
     /**
      * Constructor for the TextManager class. It initializes the input, output,
@@ -42,7 +42,7 @@ public class TextManager {
         text.add("Another weird useless nEw test paragraph");
         isExitTriggered = false;
         isFormatterRaw = true;
-        fixedWidth = 80;
+        maxWidth = 80;
         formatTextRaw();
         output.createWelcomeMessage();
 
@@ -88,7 +88,7 @@ public class TextManager {
                 break;
             case FORMAT_FIX:
                 isFormatterRaw = false;
-                formatTextFix();
+                formatTextFix(maxWidth);
                 break;
             default:
                 System.err.println("UNKOWN ERROR");
@@ -176,25 +176,25 @@ public class TextManager {
      *
      * @return The formatted text.
      */
-    String formatTextFix() {
+    String formatTextFix(int maxWidth) {
 
         StringBuilder fixFormatted = new StringBuilder();
-        int currentWidth = 0;
+        int currentParagraphWidth = 0;
 
         for (String paragraph : text) {
             String[] words = paragraph.split("\\s+");
             for (String word : words) {
                 // If the word itself is longer than maxWidth, break it down.
-                word = breakDownLongWord(word, fixedWidth, fixFormatted, currentWidth);
+                word = breakDownLongWord(word, maxWidth, fixFormatted, currentParagraphWidth);
 
                 // Check if adding the current word exceeds maxWidth
-                currentWidth = appendNewLine(word, fixedWidth, fixFormatted, currentWidth);
+                currentParagraphWidth = appendNewLine(word, maxWidth, fixFormatted, currentParagraphWidth);
 
                 // Add a space if it's not the first word on the paragraph
-                currentWidth = appendSpace(fixFormatted, currentWidth);
+                currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
 
                 fixFormatted.append(word);
-                currentWidth += word.length();
+                currentParagraphWidth += word.length();
             }
         }
         return fixFormatted.toString();
@@ -207,18 +207,18 @@ public class TextManager {
      * @param word
      * @param maxWidth
      * @param fixFormatted
-     * @param currentWidth
+     * @param currentParagraphWidth
      * @return
      */
-    String breakDownLongWord(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
+    String breakDownLongWord(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
         // If the word itself is longer than maxWidth, break it down.
         while (word.length() > maxWidth) {
-            if (currentWidth > 0) {
+            if (currentParagraphWidth > 0) {
                 fixFormatted.append("\n");
-                currentWidth = 0;
+                currentParagraphWidth = 0;
             }
             fixFormatted.append(word, 0, maxWidth).append("\n");
-            word = word.substring(fixedWidth);
+            word = word.substring(maxWidth);
         }
         return word;
     }
@@ -230,31 +230,31 @@ public class TextManager {
      * @param word
      * @param maxWidth
      * @param fixFormatted
-     * @param currentWidth
+     * @param currentParagraphWidth
      * @return
      */
-    private int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentWidth) {
-        if (currentWidth + (currentWidth > 0 ? 1 : 0) + word.length() > fixedWidth) {
+    private int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
+        if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
             fixFormatted.append("\n");
-            currentWidth = 0;
+            currentParagraphWidth = 0;
         }
-        return currentWidth;
+        return currentParagraphWidth;
     }
 
     /**
      * Add a space if it's not the first word on the paragraph.
      *
      * @param fixFormatted
-     * @param currentWidth
+     * @param currentParagraphWidth
      * @return
      */
-    private int appendSpace(StringBuilder fixFormatted, int currentWidth) {
+    private int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
         // Add a space if it's not the first word on the paragraph
-        if (currentWidth > 0) {
+        if (currentParagraphWidth > 0) {
             fixFormatted.append(" ");
-            currentWidth++;
+            currentParagraphWidth++;
         }
-        return currentWidth;
+        return currentParagraphWidth;
     }
 
     /**
@@ -358,21 +358,12 @@ public class TextManager {
     }
 
     /**
-     * Getter for the fixed width.
+     * Getter for the maxWidth.
      *
-     * @return the fixed width
+     * @return the maxWidth
      */
-    public int getFixedWidth() {
-        return fixedWidth;
-    }
-
-    /**
-     * Setter for the fixed width.
-     *
-     * @param fixedWidth
-     */
-    public void setFixedWidth(int fixedWidth) {
-        this.fixedWidth = fixedWidth;
+    public int getMaxWidth() {
+        return maxWidth;
     }
 
     /**

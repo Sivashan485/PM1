@@ -56,7 +56,7 @@ public class InputReceiver {
     // Validates the command and splits the input accordingly
     private String[] validateAndSplitCommand(String command, String restPart) {
         // Handles commands that require an index
-        if (Commands.lookupCommand(command).getIndex() != null && !restPart.isEmpty()) {
+        if (Commands.parseCommand(command).getIndex() != null && !restPart.isEmpty()) {
             return handleIndexCommand(command, restPart);
         } else if (!restPart.isEmpty()) {
             // Handle commands that should not have extra text

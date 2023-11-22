@@ -34,14 +34,15 @@ public enum Commands {
     /**
      * Takes a command as a String and checks if it is an existing command.
      *
-     * @param command to be checked
+     * @param commandString to be checked
      * @return returns a Command if existing, otherwise UNKNOWN
      */
-    public static Commands lookupCommand(String command) {
+    public static Commands parseCommand(String commandString) {
         for (Commands value : Commands.values()) {
-            if (value.getCommand().equals(command.toLowerCase())) {
+            if (value.getCommand().equals(commandString.toLowerCase())) {
                 return value;
             }
+
         }
         return Commands.UNKNOWN;
     }

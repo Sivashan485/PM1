@@ -49,7 +49,7 @@ public class TextManager {
     public void editText() {
         String[] userInput = input.splitInput();
 
-        switch (Commands.lookupCommand(userInput[0])) {
+        switch (Commands.parseCommand(userInput[0])) {
             case DUMMY:
                 addDummyParagraph(userInput);
                 break;

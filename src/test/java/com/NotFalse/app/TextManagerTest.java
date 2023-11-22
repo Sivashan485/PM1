@@ -63,6 +63,18 @@ public class TextManagerTest {
 
     // Test for Method formatTextFix
     @Test
+    void testMultipleWordsBiggerThanMaxWidth() {
+        String expected = "abcdefghij\n" +
+                "klmnopqrst\n" +
+                "uvwxyzabcd\n" +
+                "efghijklmn\n" +
+                "opqrstuvwx";
+        textManager.setText(Arrays.asList("abcdefghijklmnopqrst", "uvwxyzabcdefghijklmn", "opqrstuvwx"));
+        assertEquals(expected, textManager.formatTextFix(10));
+    }
+
+    // Test for Method formatTextFix
+    @Test
     void testWordsExactlyMatchingMaxWidth() {
         String expected = "abcdefghij\n" +
                 "klmnopqrst\n" +

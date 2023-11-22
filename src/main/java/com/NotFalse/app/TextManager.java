@@ -26,6 +26,7 @@ public class TextManager {
     private boolean isFormatterRaw;
     private boolean isExitTriggered;
     private List<String> text;
+    private String formattedText;
     private int maxWidth;
 
     /**
@@ -37,8 +38,8 @@ public class TextManager {
         output = new OutputManager();
         glossary = new GlossaryApp();
         text = new ArrayList<>();
-        text.add("This three thrEE Threeis a new test paragraph.\n");
-        text.add("Another New test paragraph.\n");
+        text.add("This three thrEE Threeis a new test paragraph.");
+        text.add("Another New test paragraph.");
         text.add("Another weird useless nEw test paragraph");
         isExitTriggered = false;
         isFormatterRaw = true;
@@ -88,6 +89,7 @@ public class TextManager {
                 break;
             case FORMAT_FIX:
                 isFormatterRaw = false;
+                setMaxWidth(userInput);
                 formatTextFix(maxWidth);
                 break;
             default:
@@ -166,11 +168,11 @@ public class TextManager {
      * @return the formatted String
      */
     String formatTextRaw() {
-        String newText = "";
+        formattedText = "";
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
-            newText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
+            formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
         }
-        return newText;
+        return formattedText;
     }
 
     /**
@@ -195,11 +197,13 @@ public class TextManager {
                 // Add a space if it's not the first word on the paragraph
                 currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
 
+                word = word.trim();
                 fixFormatted.append(word);
                 currentParagraphWidth += word.length();
             }
         }
-        return fixFormatted.toString();
+        formattedText = fixFormatted.toString();
+        return formattedText;
     }
 
     /**
@@ -212,15 +216,22 @@ public class TextManager {
      * @param currentParagraphWidth
      * @return
      */
-    String breakDownLongWord(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
+    String breakDownLongWord( String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth ) {
         // If the word itself is longer than maxWidth, break it down.
         while (word.length() > maxWidth) {
+            // If the current line is not empty, start a new line.
             if (currentParagraphWidth > 0) {
                 fixFormatted.append("\n");
                 currentParagraphWidth = 0;
             }
-            fixFormatted.append(word, 0, maxWidth).append("\n");
+            // Add the first maxWidth characters of the word to the current line.
+            fixFormatted.append(word, 0, maxWidth);
+            // Remove the first maxWidth characters from the word.
             word = word.substring(maxWidth);
+            // If the word is not empty, start a new line.
+            if (word.length() > 0) {
+                fixFormatted.append("\n");
+            }
         }
         return word;
     }
@@ -235,22 +246,25 @@ public class TextManager {
      * @param currentParagraphWidth
      * @return
      */
-    private int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
+    int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
+        // if the word doesn't fit on the current line
         if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
+            // add a new line
             fixFormatted.append("\n");
+            // reset the current width
             currentParagraphWidth = 0;
         }
+        // return the current width
         return currentParagraphWidth;
     }
 
     /**
-     * Add a space if it's not the first word on the paragraph.
-     *
-     * @param fixFormatted
-     * @param currentParagraphWidth
-     * @return
+     * Add a space to the end of the current paragraph.
+     * @param fixFormatted The StringBuilder object to append the space to.
+     * @param currentParagraphWidth The width of the current paragraph.
+     * @return The width of the current paragraph, plus the width of the space.
      */
-    private int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
+    int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
         // Add a space if it's not the first word on the paragraph
         if (currentParagraphWidth > 0) {
             fixFormatted.append(" ");
@@ -265,7 +279,7 @@ public class TextManager {
      * @param text
      */
     // for being able to test the methods
-    public void setText(List<String> text) {
+    void setText(List<String> text) {
         this.text = text;
     }
 
@@ -273,12 +287,17 @@ public class TextManager {
      * Print the text.
      */
     private void printText() {
-        StringBuilder sb = new StringBuilder();
-        for (String paragraph : text) {
-            sb.append(paragraph);
+        if (isFormatterRaw) {
+            formatTextRaw();
+        } else {
+            formatTextFix(maxWidth);
         }
-        System.out.println(sb);
+        System.out.println(getFormattedText());
 
+    }
+
+    String getFormattedText() {
+        return formattedText;
     }
 
     /**
@@ -368,6 +387,23 @@ public class TextManager {
      */
     public int getMaxWidth() {
         return maxWidth;
+    }
+
+    /**
+     * Setter for the maxWidth.
+     *
+     * @param maxWidth
+     */
+    private void setMaxWidth(String[] inputText) {
+        if (inputText.length > 1) {
+            try {
+                this.maxWidth = Integer.parseInt(inputText[1]);
+            } catch (NumberFormatException e) {
+                System.err.println("MaxWidth argument must be an integer");
+            }
+        } else {
+            System.err.println("Missing argument for MaxWidth");
+        }
     }
 
     /**

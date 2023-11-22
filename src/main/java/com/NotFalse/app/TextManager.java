@@ -3,7 +3,6 @@ package com.NotFalse.app;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * This class is responsible for managing the text. It contains the text, the
  * glossary and the methods for editing the text. It also contains the methods
@@ -19,7 +18,6 @@ public class TextManager {
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
     private final InputReceiver input;
-
     private final OutputManager output;
     private final GlossaryApp glossary;
     private boolean isFormatterRaw;
@@ -39,12 +37,9 @@ public class TextManager {
         text = new ArrayList<>();
         text.add("12345678911234567892 12345678931234567894");
         isExitTriggered = false;
-        isFormatterRaw = false;
-        maxWidth = 10;
-        formatTextRaw();
+        isFormatterRaw = true;
+        maxWidth = 80;
         output.createWelcomeMessage();
-        printText();
-
     }
 
     /**
@@ -115,7 +110,7 @@ public class TextManager {
     private void addIndexCheck(String[] userInput, String enteredText) {
         try {
             if (userInput.length > 1) {
-                //the index is the second element of the array
+                // the index is the second element of the array
                 int index = Integer.parseInt(userInput[1]) - 1;
                 if (index >= 0 && index <= text.size()) {
                     text.add(index, enteredText + "\n");
@@ -145,7 +140,7 @@ public class TextManager {
                 if (index >= 0 && index < text.size()) {
                     text.remove(index);
                 } else {
-                    //output.createIndexWarning();
+                    // output.createIndexWarning();
                 }
             } else {
                 text.remove(text.size() - 1);
@@ -208,7 +203,7 @@ public class TextManager {
                 currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
 
                 fixFormatted.append(word);
-                currentParagraphWidth += word.length(); 
+                currentParagraphWidth += word.length();
             }
         }
         formattedText = fixFormatted.toString();
@@ -283,8 +278,6 @@ public class TextManager {
         return currentParagraphWidth;
     }
 
-
-
     /**
      * Print the text.
      */
@@ -304,31 +297,36 @@ public class TextManager {
 
     /**
      * Separates a text paragraph based on a specified replacing word.
-     * If the replacing word is found in the text paragraph, the method returns the portion
+     * If the replacing word is found in the text paragraph, the method returns the
+     * portion
      * of the text that comes after the first occurrence of the replacing word.
      * If the replacing word is not present, an empty string is returned.
      *
      * @param textParagraph The input text paragraph to be split.
      * @param replacingWord The word used as a delimiter for splitting the text.
-     * @return The portion of the text after the first occurrence of the replacing word,
-     * or an empty string if the replacing word is not found.
+     * @return The portion of the text after the first occurrence of the replacing
+     *         word,
+     *         or an empty string if the replacing word is not found.
      */
     private String separateWordSyntax(String textParagraph, String replacingWord) {
         // Split the text paragraph based on the replacing word
         String[] splitTextParagraph = textParagraph.split("(?i)" + replacingWord);
-        // Check and return the second part of the split if it exists, otherwise an empty string
+        // Check and return the second part of the split if it exists, otherwise an
+        // empty string
         return (splitTextParagraph.length > 1) ? splitTextParagraph[1] : "";
     }
 
-
     /**
-     * Validates and performs word replacement in a text paragraph at the specified index.
+     * Validates and performs word replacement in a text paragraph at the specified
+     * index.
      *
-     * @param index         The index in the 'text' list where the replacement should occur.
+     * @param index         The index in the 'text' list where the replacement
+     *                      should occur.
      * @param textParagraph The new text paragraph to replace the existing one.
      */
     private void validateWordReplacement(int index, String textParagraph) {
-        // Check if the new text is different from the existing text at the specified index (case-insensitive)
+        // Check if the new text is different from the existing text at the specified
+        // index (case-insensitive)
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(textParagraph);
         // If different, update the text at the index
         if (isReplacementSuccessful) {
@@ -337,7 +335,6 @@ public class TextManager {
         // Create a message indicating the replacement result
         output.createReplaceMessage(isReplacementSuccessful);
     }
-
 
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
@@ -366,7 +363,7 @@ public class TextManager {
             // Replace the word with the replacement word
             textParagraph = textParagraph.replace(originalWord + wordEndSyntax, " " + replacementWord + wordEndSyntax);
         }
-        //Adding replacement and validation for the text
+        // Adding replacement and validation for the text
         validateWordReplacement(index, textParagraph);
     }
 
@@ -390,7 +387,6 @@ public class TextManager {
             replaceWord(text.size() - 1, originalWord, replacementWord);
         }
     }
-
 
     /**
      * Setter for the maxWidth.
@@ -427,6 +423,5 @@ public class TextManager {
     public void setText(List<String> text) {
         this.text = text;
     }
-
 
 }

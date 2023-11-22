@@ -2,21 +2,22 @@ package com.NotFalse.app;
 
 /**
  * Enum class for all commands, which are used in the application.
- * The enum class contains a constructor, a getter, a method to check if the input is a command,
+ * The enum class contains a constructor, a getter, a method to check if the
+ * input is a command,
  * a method to get all commands, and a method to get the command as a String.
  */
 public enum Commands {
     EXIT("exit", null),
     ADD("add", 0),
-    DEL("del",0),
-    DUMMY("dummy",0),
-    INDEX("index",null),
-    PRINT("print",null),
-    REPLACE("replace",0),
+    DEL("del", 0),
+    DUMMY("dummy", 0),
+    INDEX("index", null),
+    PRINT("print", null),
+    REPLACE("replace", 0),
     HELP("help", null),
-    FORMAT_RAW("format raw",null),
-    FORMAT_FIX("format fix",0),
-    UNKNOWN("unknown",null);
+    FORMAT_RAW("format raw", null),
+    FORMAT_FIX("format fix", 0),
+    UNKNOWN("unknown", null);
 
     public final String command;
     public final Integer index;
@@ -76,6 +77,7 @@ public enum Commands {
 
     /**
      * Getter for the index.
+     * 
      * @return index
      */
     public Integer getIndex() {

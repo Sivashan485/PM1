@@ -35,13 +35,12 @@ public class InputReceiver {
         String command = extractCommand(inputText);
 
         if (command.isEmpty()) {
-            return new String[]{inputText};
+            return new String[] { inputText };
         }
 
         String restPart = inputText.substring(command.length()).trim();
         return validateAndSplitCommand(command, restPart);
     }
-
 
     // Extracts the command from the input
     private String extractCommand(String inputText) {
@@ -60,9 +59,9 @@ public class InputReceiver {
             return handleIndexCommand(command, restPart);
         } else if (!restPart.isEmpty()) {
             // Handle commands that should not have extra text
-            return new String[]{"INVALID"};
+            return new String[] { "INVALID" };
         } else {
-            return new String[]{command};
+            return new String[] { command };
         }
     }
 
@@ -70,9 +69,9 @@ public class InputReceiver {
     private String[] handleIndexCommand(String command, String restPart) {
         try {
             Integer.parseInt(restPart); // Validate if it's a number
-            return new String[]{command, restPart};
+            return new String[] { command, restPart };
         } catch (NumberFormatException e) {
-            return new String[]{"INVALID"};
+            return new String[] { "INVALID" };
         }
     }
 }

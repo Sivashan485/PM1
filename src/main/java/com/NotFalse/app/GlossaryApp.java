@@ -5,13 +5,15 @@ import java.util.stream.Collectors;
 
 /**
  * This class is responsible for creating the glossary and updating it.
- * The glossary is a TreeMap, which contains the words as keys and the indexes of the paragraphs
+ * The glossary is a TreeMap, which contains the words as keys and the indexes
+ * of the paragraphs
  * which contain the word as values.
  */
 public class GlossaryApp {
 
     private final TreeMap<String, List<Integer>> glossary;
     private OutputManager output;
+
     /**
      * Constructor for GlossaryApp.
      */
@@ -118,7 +120,6 @@ public class GlossaryApp {
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
 
-
     /**
      * Finds the indexes of the paragraphs which contain the word and returns them
      * in an ArrayList.
@@ -126,7 +127,7 @@ public class GlossaryApp {
      * @param text text to be mapped
      * @param word word to be searched
      * @return returns a sorted ArrayList of the indexes of the paragraphs which
-     * contain the word
+     *         contain the word
      */
     List<Integer> searchWordInParagraphs(List<String> text, String word) {
         List<Integer> indexes = new ArrayList<>();
@@ -150,6 +151,5 @@ public class GlossaryApp {
     TreeMap<String, List<Integer>> getGlossary() {
         return glossary;
     }
-
 
 }

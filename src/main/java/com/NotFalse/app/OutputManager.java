@@ -5,20 +5,20 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
-
 /**
  * Class for managing the output of the TextEditor application.
  */
 public class OutputManager {
 
-    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OutputManager.class.getName());
+    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger
+            .getLogger(OutputManager.class.getName());
 
     Handler consoleHandler;
 
-
     /**
      * Initializes the consoleHandler and the LOGGER.
-     * Sets the logging level for the handler and creates a formatter for the handler.
+     * Sets the logging level for the handler and creates a formatter for the
+     * handler.
      */
     public OutputManager() {
         LOGGER.setUseParentHandlers(false);
@@ -71,7 +71,6 @@ public class OutputManager {
         createUserInfoMessage("Here are the commands you can use:" + Commands.getAllCommands());
     }
 
-
     /**
      * Creates a log message for the status of adding a text.
      *
@@ -111,8 +110,8 @@ public class OutputManager {
         }
     }
 
-    public void createFormatMessage(boolean success){
-        if(success){
+    public void createFormatMessage(boolean success) {
+        if (success) {
             createUserInfoMessage("Text formatted successfully!");
         } else {
             createUserErrorMessage("Text has not been formatted");
@@ -150,14 +149,8 @@ public class OutputManager {
         createUserErrorMessage("MaxWidth argument must be an integer");
     }
 
-    public void createEmptyGlossaryWarning(){
+    public void createEmptyGlossaryWarning() {
         createUserErrorMessage("Your glossary is empty...");
     }
 
-
-
 }
-
-
-
-

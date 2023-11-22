@@ -2,9 +2,7 @@ package com.NotFalse.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GlossaryAppTest {
@@ -35,7 +33,7 @@ public class GlossaryAppTest {
         textTwo.add("Another test paragraph.\n");
         textTwo.add("Another weird useless test paragraph. This is a ParaGrAPh:, and this one para.graph isnt.\n");
         Map<String, Integer> wordFrequency2 = glossaryTwo.computeWordFrequency(textTwo);
-        glossaryTwo.insertGlossaryEntries(textTwo,wordFrequency2);
+        glossaryTwo.insertGlossaryEntries(textTwo, wordFrequency2);
 
         // 3 Setup
         glossaryThree = new GlossaryApp(output);
@@ -123,7 +121,7 @@ public class GlossaryAppTest {
         TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
 
         assertTrue(glossaryMap.containsKey("Test"));
-        assertEquals(Arrays.asList(1, 2,3), glossaryMap.get("Test"));
+        assertEquals(Arrays.asList(1, 2, 3), glossaryMap.get("Test"));
     }
 
     @Test
@@ -141,10 +139,6 @@ public class GlossaryAppTest {
 
         assertFalse(glossaryMap.containsKey("paragraph"), "Glossary should not contain 'paragraph'");
     }
-
-
-
-
 
     @Test
     void testFilterParagraphWithAlphabeticCharacters() {

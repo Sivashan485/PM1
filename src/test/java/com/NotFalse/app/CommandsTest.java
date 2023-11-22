@@ -1,7 +1,6 @@
 package com.NotFalse.app;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandsTest {
@@ -37,11 +36,14 @@ public class CommandsTest {
         assertEquals(Commands.UNKNOWN, Commands.parseCommand("nonExistentCommand"));
     }
 
-    /* ->> fix bug -> this test is not working
-    @Test
-    public void testNullInput() {
-        Commands.lookupCommand(null);
-    }*/
+    /*
+     * ->> fix bug -> this test is not working
+     * 
+     * @Test
+     * public void testNullInput() {
+     * Commands.lookupCommand(null);
+     * }
+     */
 
     @Test
     public void testCaseSensitivity() {

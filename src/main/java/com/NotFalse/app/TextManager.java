@@ -133,7 +133,7 @@ public class TextManager {
                 int index = Integer.parseInt(userInput[1]) - 1;
                 if (index >= 0 && index < text.size()) {
                     text.remove(index);
-                }else{
+                } else {
                     output.createIndexWarning();
                 }
             } else {
@@ -154,13 +154,13 @@ public class TextManager {
      */
     String formatTextRaw() {
         formattedText = "";
-        try{
+        try {
             for (int paragraph = 0; paragraph < text.size(); paragraph++) {
                 formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
             }
             output.createFormatMessage(true);
             return formattedText;
-        }catch(Exception e){
+        } catch (Exception e) {
             output.createFormatMessage(false);
             return "";
         }
@@ -209,7 +209,6 @@ public class TextManager {
         formattedText = fixFormatted.toString();
         return formattedText;
 
-
     }
 
     /**
@@ -217,7 +216,7 @@ public class TextManager {
      * line.
      *
      * @param word
-
+     * 
      * @param fixFormatted
      * @param currentParagraphWidth
      * @return
@@ -253,12 +252,11 @@ public class TextManager {
      * Print the text.
      */
     private void printText() {
-        if(text.isEmpty()){
+        if (text.isEmpty()) {
             output.createEmptyTextWarning();
-        }else{
+        } else {
             System.out.println(formattedText);
         }
-
 
     }
 

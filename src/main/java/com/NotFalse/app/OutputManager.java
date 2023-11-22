@@ -112,19 +112,6 @@ public class OutputManager {
     }
 
     /**
-     * Creates a log message for the status of formatting a text.
-     *
-     * @param success status of formatting a text
-     */
-    public void createFormatMessage(boolean success) {
-        if (success) {
-            createUserInfoMessage("Text formatted successfully!");
-        } else {
-            createUserErrorMessage("Text has not been formatted");
-        }
-    }
-
-    /**
      * Creates a log message for an invalid command.
      */
     public void createInvalidCommandMessage() {

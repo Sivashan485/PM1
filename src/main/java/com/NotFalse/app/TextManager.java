@@ -218,23 +218,22 @@ public class TextManager {
     String breakDownLongWord(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
         // If the word itself is longer than maxWidth, break it down.
         while (word.length() > maxWidth) {
-// If the current line is not empty, start a new line.
+            // If the current line is not empty, start a new line.
             if (currentParagraphWidth > 0) {
                 fixFormatted.append("\n");
                 currentParagraphWidth = 0;
             }
-// Add the first maxWidth characters of the word to the current line.
+            // Add the first maxWidth characters of the word to the current line.
             fixFormatted.append(word, 0, maxWidth);
-// Remove the first maxWidth characters from the word.
+            // Remove the first maxWidth characters from the word.
             word = word.substring(maxWidth);
-// If the word is not empty, start a new line.
+            // If the word is not empty, start a new line.
             if (word.length() > 0) {
                 fixFormatted.append("\n");
             }
         }
         return word;
     }
-
 
     /**
      * Check if adding the current word exceeds maxWidth, and if it does, add a new
@@ -247,12 +246,12 @@ public class TextManager {
      * @return
      */
     int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
-// if the word doesn't fit on the current line
-        if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) { 
-            fixFormatted.append("\n"); 
-            currentParagraphWidth = 0; 
+        // if the word doesn't fit on the current line
+        if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
+            fixFormatted.append("\n");
+            currentParagraphWidth = 0;
         }
-        return currentParagraphWidth; 
+        return currentParagraphWidth;
     }
 
     /**
@@ -268,8 +267,7 @@ public class TextManager {
             fixFormatted.append(" ");
             currentParagraphWidth++;
             System.out.println("Space added to the paragraph. Current paragraph width: " + currentParagraphWidth);
-        }
-        else {
+        } else {
             System.out.println("Space not added to the paragraph. Current paragraph width: " + currentParagraphWidth);
         }
         return currentParagraphWidth;

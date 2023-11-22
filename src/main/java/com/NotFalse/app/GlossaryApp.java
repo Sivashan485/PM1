@@ -61,8 +61,7 @@ public class GlossaryApp {
      */
     void insertGlossaryEntries(List<String> text, Map<String, Integer> wordFrequency) {
         for (String word : wordFrequency.keySet()) {
-            String cleanedWord = capitalizeFirstLetter(word).trim();
-            glossary.put(cleanedWord, searchWordInParagraphs(text, word));
+            glossary.put(word.trim(), searchWordInParagraphs(text, word));
         }
     }
 
@@ -74,15 +73,19 @@ public class GlossaryApp {
      */
     Map<String, Integer> computeWordFrequency(List<String> text) {
         Map<String, Integer> wordFrequency = new HashMap<>();
+        boolean startWithUpperCase = false;
         for (String paragraph : text) {
-            String cleanedParagraph = filterParagraph(paragraph);
-            String[] words = cleanedParagraph.split(" ");
+            String[] words = paragraph.split(" ");
             for (String word : words) {
-                if (!wordFrequency.containsKey(word)) {
-                    wordFrequency.put(word, 0);
-                }
-                int counter = wordFrequency.get(word);
-                wordFrequency.put(word, ++counter);
+                word = word.trim();
+                startWithUpperCase = Character.isUpperCase(word.charAt(0));
+                if (startWithUpperCase){
+                    if (!wordFrequency.containsKey(word)) {
+                        wordFrequency.put(word, 0);
+                    }
+                    int counter = wordFrequency.get(word);
+                    wordFrequency.put(word, ++counter);
+                    }
             }
         }
         // filters the words that appear less than 3 times
@@ -90,28 +93,6 @@ public class GlossaryApp {
         return wordFrequency;
     }
 
-    /**
-     * Filters the paragraph by removing all the non-alphabetic characters and
-     * converting all the characters to lowercase.
-     *
-     * @param paragraph to be filtered
-     * @return returns the filtered paragraph
-     */
-    String filterParagraph(String paragraph) {
-        return paragraph.replaceAll("[^A-Za-z ]", " ").toLowerCase();
-    }
-
-    /**
-     * Capitalizes the first letter of the word.
-     *
-     * @param word word to be capitalized
-     * @return returns the capitalized word
-     */
-    String capitalizeFirstLetter(String word) {
-        if (word == null || word.isEmpty())
-            return word;
-        return word.substring(0, 1).toUpperCase() + word.substring(1);
-    }
 
     /**
      * Finds the indexes of the paragraphs which contain the word and returns them
@@ -125,8 +106,7 @@ public class GlossaryApp {
     List<Integer> searchWordInParagraphs(List<String> text, String word) {
         List<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < text.size(); i++) {
-            String cleanedParagraph = filterParagraph(text.get(i));
-            if (cleanedParagraph.contains(word)) {
+            if (text.get(i).contains(word)) {
                 indexes.add(i + 1);
             }
 

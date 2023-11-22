@@ -6,30 +6,30 @@ package com.NotFalse.app;
  * input is a command,
  * a method to get all commands, and a method to get the command as a String.
  */
-public enum Commands {
-    EXIT("exit", null),
-    ADD("add", 0),
-    DEL("del", 0),
-    DUMMY("dummy", 0),
-    INDEX("index", null),
-    PRINT("print", null),
-    REPLACE("replace", 0),
-    HELP("help", null),
-    FORMAT_RAW("format raw", null),
-    FORMAT_FIX("format fix", 0),
-    UNKNOWN("unknown", null);
+public enum Command {
+    EXIT("exit", false),
+    ADD("add", true),
+    DEL("del", true),
+    DUMMY("dummy", true),
+    INDEX("index", false),
+    PRINT("print", false),
+    REPLACE("replace", true),
+    HELP("help", false),
+    FORMAT_RAW("format raw", false),
+    FORMAT_FIX("format fix", true),
+    UNKNOWN("unknown", false);
 
     public final String command;
-    public  Integer index;
+    public boolean commandHasIndex;
 
     /**
      * Constructor for the enum class.
      *
      * @param command
      */
-    Commands(String command, Integer index) {
+    Command(String command, boolean commandHasIndex) {
         this.command = command;
-        this.index = index;
+        this.commandHasIndex = commandHasIndex;
     }
 
     /**
@@ -38,14 +38,14 @@ public enum Commands {
      * @param commandString to be checked
      * @return returns a Command if existing, otherwise UNKNOWN
      */
-    public static Commands parseCommand(String commandString) {
-        for (Commands value : Commands.values()) {
+    public static Command parseCommand(String commandString) {
+        for (Command value : Command.values()) {
             if (value.getCommand().equals(commandString.toLowerCase())) {
                 return value;
             }
 
         }
-        return Commands.UNKNOWN;
+        return Command.UNKNOWN;
     }
 
     /**
@@ -55,7 +55,7 @@ public enum Commands {
      */
     public static String getAllCommands() {
         StringBuilder sb = new StringBuilder();
-        for (Commands command : Commands.values()) {
+        for (Command command : Command.values()) {
             if (!command.getCommand().equals("unknown")) {
                 sb.append(command.getCommand()).append(", ");
             }
@@ -80,8 +80,8 @@ public enum Commands {
      * 
      * @return index
      */
-    public Integer getIndex() {
-        return index;
+    public boolean getCommandHasIndex() {
+        return commandHasIndex;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.NotFalse.app;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -45,21 +46,22 @@ public class TextManager {
      * the methods for editing the text and formatting the text.
      */
     public void editText() {
-        String[] userInput = input.splitInput();
+        input.splitInput();
+        Integer index = input.getIndex();
 
-        switch (Commands.parseCommand(userInput[0])) {
+        switch (Command.parseCommand(input.getCommand())) {
             case DUMMY:
-                addDummyParagraph(userInput);
+                addDummyParagraph(index);
                 break;
             case EXIT:
                 output.createExitMessage();
                 isExitTriggered = true;
                 break;
             case ADD:
-                addNewParagraph(userInput);
+                addNewParagraph(index);
                 break;
             case DEL:
-                deleteParagraph(userInput);
+                deleteParagraph(index);
                 break;
             case INDEX:
                 glossary.printGlossary(text);
@@ -68,7 +70,7 @@ public class TextManager {
                 printText();
                 break;
             case REPLACE:
-                replaceParagraph(userInput);
+                replaceParagraph(index);
                 break;
             case HELP:
                 output.createMenuOptionsMessage();
@@ -77,7 +79,7 @@ public class TextManager {
                 formatTextRaw();
                 break;
             case FORMAT_FIX:
-                setMaxWidth(userInput);
+                setMaxWidth(index);
                 formatTextFix();
                 break;
             default:
@@ -86,30 +88,44 @@ public class TextManager {
         }
     }
 
-    /**
-     * Adds a new paragraph to the text.
-     */
-    private void addNewParagraph(String[] userInput) {
-        System.out.println("Text: ");
-        String enteredText = input.filterUserInput();
-        addIndexCheck(userInput, enteredText);
+    boolean validateIndex(Integer index) {
+        return index >= 0 && index < text.size();
     }
 
     /**
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    private void addDummyParagraph(String[] userInput) {
-        addIndexCheck(userInput, DUMMYTEXT);
+    private void addDummyParagraph(Integer index) {
+        try {
+            if (index != null) {
+                // the index is the second element of the array
+                if (validateIndex(index)){
+                    text.add(index, DUMMYTEXT);
+                }
+                else {
+                    output.createIndexWarning();
+                }
+            } else {
+                text.add(DUMMYTEXT);
+            }
+            output.createAddMessage(true);
+        } catch (Exception e) {
+            output.createAddMessage(false);
+        }
     }
 
-    private void addIndexCheck(String[] userInput, String enteredText) {
+    private void addNewParagraph(Integer index) {
+        System.out.println("Text: ");
+        String enteredText = input.readAndFilterUserInput();
         try {
-            if (userInput.length > 1) {
+            if (index != null) {
                 // the index is the second element of the array
-                int index = Integer.parseInt(userInput[1]) - 1;
-                if (index >= 0 && index <= text.size()) {
+                if (validateIndex(index)){
                     text.add(index, enteredText + "\n");
+                }
+                else {
+                    output.createIndexWarning();
                 }
             } else {
                 text.add(enteredText + "\n");
@@ -124,14 +140,13 @@ public class TextManager {
     /**
      * Deletes the paragraph at the specified index.
      */
-    private void deleteParagraph(String[] userInput) {
+    private void deleteParagraph(Integer index) {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
         }
         try {
-            if (userInput.length > 1) {
-                int index = Integer.parseInt(userInput[1]) - 1;
-                if (index >= 0 && index < text.size()) {
+            if (index != null) {
+                if (validateIndex(index)) {
                     text.remove(index);
                 } else {
                     output.createIndexWarning();
@@ -143,6 +158,7 @@ public class TextManager {
         } catch (Exception e) {
             output.createDeleteMessage(false);
         }
+
     }
 
     /**
@@ -318,18 +334,17 @@ public class TextManager {
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraph(String[] userInput) {
+    void replaceParagraph(Integer index) {
         System.out.print("Replacing Word: ");
-        String originalWord = input.filterUserInput();
+        String originalWord = input.readAndFilterUserInput();
         System.out.print("Replacing with: ");
-        String replacementWord = input.filterUserInput();
+        String replacementWord = input.readAndFilterUserInput();
 
-        if (userInput.length > 1) {
-            int index =  Integer.parseInt(userInput[1]) - 1;
-            if (index < text.size() && index >= 0) {
+        if (index != null) {
+            if(validateIndex(index)) {
                 replaceWordInParagraph(index, originalWord, replacementWord);
             } else {
-                replaceWordInParagraph(text.size() - 1, originalWord, replacementWord);
+                output.createIndexWarning();
             }
         } else {
             replaceWordInParagraph(text.size() - 1, originalWord, replacementWord);
@@ -339,12 +354,12 @@ public class TextManager {
     /**
      * Setter for the maxWidth.
      *
-     * @param userInput Input from user
+     * @param index Input from user
      */
-    void setMaxWidth(String[] userInput) {
-        if (userInput.length > 1) {
+    void setMaxWidth(Integer index) {
+        if (index != null) {
             try {
-                this.maxWidth = Integer.parseInt(userInput[1]);
+                this.maxWidth = index+1;
             } catch (NumberFormatException e) {
                 output.createInvalidArgumentWarning();
             }
@@ -371,6 +386,10 @@ public class TextManager {
     // for being able to test the methods
     public void setText(List<String> text) {
         this.text = text;
+    }
+
+    public List<String> getText(){
+        return Collections.unmodifiableList(text);
     }
 
 }

@@ -53,7 +53,7 @@ public enum Commands {
      *
      * @return all commands as Strings
      */
-    static String getAllCommands() {
+    public static String getAllCommands() {
         StringBuilder sb = new StringBuilder();
         for (Commands command : Commands.values()) {
             if (!command.getCommand().equals("unknown")) {

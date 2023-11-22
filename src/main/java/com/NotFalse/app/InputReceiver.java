@@ -9,12 +9,15 @@ public class InputReceiver {
 
     private final Scanner input;
     private final static String ALLOWED_REGEX = "([^A-z äöüÄÖÜ 0-9 .,:;\\-!?'()\\\"%@+*\\\\[\\\\]{}\\\\\\\\&#$])";
-
+    private String command;
+    private Integer index;
     /**
      * Constructor for InputReceiver.
      */
     public InputReceiver() {
         input = new Scanner(System.in);
+        command = "";
+        index = null;
     }
 
     /**
@@ -22,7 +25,7 @@ public class InputReceiver {
      *
      * @return returns the filtered input text
      */
-    public String filterUserInput() {
+    public String readAndFilterUserInput() {
         String inputText = input.nextLine();
         return inputText.replaceAll(ALLOWED_REGEX, "");
     }
@@ -30,21 +33,17 @@ public class InputReceiver {
     /**
      *
      */
-    public String[] splitInput() {
-        String inputText = filterUserInput();
-        String command = extractCommand(inputText);
-        if (command.isEmpty()) {
-            return new String[] { inputText };
-        }
-
-        String restPart = inputText.substring(command.length()).trim();
-        return validateAndSplitCommand(command, restPart);
+    public void splitInput() {
+        String userInput = readAndFilterUserInput();
+        command = extractCommand(userInput);
+        String restPart = userInput.substring(command.length()).trim();
+        command += validateAndSplitCommand(command, restPart);
     }
 
     // Extracts the command from the input
-    private String extractCommand(String inputText) {
-        for (Commands command : Commands.values()) {
-            if (inputText.toLowerCase().startsWith(command.getCommand())) {
+    private String extractCommand(String userInput) {
+        for (Command command : Command.values()) {
+            if (userInput.toLowerCase().startsWith(command.getCommand())) {
                 return command.getCommand();
             }
         }
@@ -52,25 +51,33 @@ public class InputReceiver {
     }
 
     // Validates the command and splits the input accordingly
-    private String[] validateAndSplitCommand(String command, String restPart) {
+    private String validateAndSplitCommand(String command, String restPart) {
         // Handles commands that require an index
-        if (Commands.parseCommand(command).getIndex() != null && !restPart.isEmpty()) {
-            return handleIndexCommand(command, restPart);
+        if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
+            handleIndexCommand(restPart);
         } else if (!restPart.isEmpty()) {
             // Handle commands that should not have extra text
-            return new String[] { "INVALID" };
+            return  null;
         } else {
-            return new String[] { command };
+            return restPart;
         }
+        return "";
     }
 
     // Handles commands that require an index
-    private String[] handleIndexCommand(String command, String restPart) {
-        try {   // Validate if it's a number
-           Integer.parseInt(restPart);
-           return new String[] { command, restPart};
+    private void handleIndexCommand(String restPart) {
+        try {
+           index = Integer.parseInt(restPart)-1;
         } catch (NumberFormatException e) {
-            return new String[] { "INVALID" };
+            System.err.println("Please enter a valid index.");
         }
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public Integer getIndex() {
+        return index;
     }
 }

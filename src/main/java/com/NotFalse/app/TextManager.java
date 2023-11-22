@@ -38,14 +38,13 @@ public class TextManager {
         output = new OutputManager();
         glossary = new GlossaryApp();
         text = new ArrayList<>();
-        text.add("This three thrEE Threeis a new test paragraph.");
-        text.add("Another New test paragraph.");
-        text.add("Another weird useless nEw test paragraph");
+        text.add("12345678911234567892 12345678931234567894");
         isExitTriggered = false;
-        isFormatterRaw = true;
-        maxWidth = 80;
+        isFormatterRaw = false;
+        maxWidth = 10;
         formatTextRaw();
         output.createWelcomeMessage();
+        printText();
 
     }
 
@@ -216,25 +215,26 @@ public class TextManager {
      * @param currentParagraphWidth
      * @return
      */
-    String breakDownLongWord( String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth ) {
+    String breakDownLongWord(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
         // If the word itself is longer than maxWidth, break it down.
         while (word.length() > maxWidth) {
-            // If the current line is not empty, start a new line.
+// If the current line is not empty, start a new line.
             if (currentParagraphWidth > 0) {
                 fixFormatted.append("\n");
                 currentParagraphWidth = 0;
             }
-            // Add the first maxWidth characters of the word to the current line.
+// Add the first maxWidth characters of the word to the current line.
             fixFormatted.append(word, 0, maxWidth);
-            // Remove the first maxWidth characters from the word.
+// Remove the first maxWidth characters from the word.
             word = word.substring(maxWidth);
-            // If the word is not empty, start a new line.
+// If the word is not empty, start a new line.
             if (word.length() > 0) {
                 fixFormatted.append("\n");
             }
         }
         return word;
     }
+
 
     /**
      * Check if adding the current word exceeds maxWidth, and if it does, add a new
@@ -247,28 +247,30 @@ public class TextManager {
      * @return
      */
     int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
-        // if the word doesn't fit on the current line
-        if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
-            // add a new line
-            fixFormatted.append("\n");
-            // reset the current width
-            currentParagraphWidth = 0;
+// if the word doesn't fit on the current line
+        if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) { 
+            fixFormatted.append("\n"); 
+            currentParagraphWidth = 0; 
         }
-        // return the current width
-        return currentParagraphWidth;
+        return currentParagraphWidth; 
     }
 
     /**
-     * Add a space to the end of the current paragraph.
-     * @param fixFormatted The StringBuilder object to append the space to.
-     * @param currentParagraphWidth The width of the current paragraph.
-     * @return The width of the current paragraph, plus the width of the space.
+     * Add a space if it's not the first word on the paragraph.
+     *
+     * @param fixFormatted
+     * @param currentParagraphWidth
+     * @return
      */
-    int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
+    private int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
         // Add a space if it's not the first word on the paragraph
         if (currentParagraphWidth > 0) {
             fixFormatted.append(" ");
             currentParagraphWidth++;
+            System.out.println("Space added to the paragraph. Current paragraph width: " + currentParagraphWidth);
+        }
+        else {
+            System.out.println("Space not added to the paragraph. Current paragraph width: " + currentParagraphWidth);
         }
         return currentParagraphWidth;
     }

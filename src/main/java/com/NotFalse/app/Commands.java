@@ -20,7 +20,7 @@ public enum Commands {
     UNKNOWN("unknown", null);
 
     public final String command;
-    public final Integer index;
+    public  Integer index;
 
     /**
      * Constructor for the enum class.
@@ -83,4 +83,5 @@ public enum Commands {
     public Integer getIndex() {
         return index;
     }
+
 }

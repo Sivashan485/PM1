@@ -68,7 +68,7 @@ public class TextManager {
                 printText();
                 break;
             case REPLACE:
-                replaceParagraphSection(userInput);
+                replaceParagraph(userInput);
                 break;
             case HELP:
                 output.createMenuOptionsMessage();
@@ -195,11 +195,7 @@ public class TextManager {
                         currentParagraphWidth = 0;
                     }
                 }
-
-                // Check if adding the current word exceeds maxWidth
                 currentParagraphWidth = appendNewLine(word, fixFormatted, currentParagraphWidth);
-
-                // Add a space if it's not the first word on the paragraph
                 currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
 
                 fixFormatted.append(word);
@@ -260,10 +256,6 @@ public class TextManager {
 
     }
 
-    String getFormattedText() {
-        return formattedText;
-    }
-
     /**
      * Separates a text paragraph based on a specified replacing word.
      * If the replacing word is found in the text paragraph, the method returns the
@@ -271,38 +263,19 @@ public class TextManager {
      * of the text that comes after the first occurrence of the replacing word.
      * If the replacing word is not present, an empty string is returned.
      *
-     * @param textParagraph The input text paragraph to be split.
+     * @param paragraph The input text para
+     *                      graph to be split.
      * @param replacingWord The word used as a delimiter for splitting the text.
      * @return The portion of the text after the first occurrence of the replacing
      *         word,
      *         or an empty string if the replacing word is not found.
      */
-    private String separateWordSyntax(String textParagraph, String replacingWord) {
+    private String separatePunctuation(String paragraph, String replacingWord) {
         // Split the text paragraph based on the replacing word
-        String[] splitTextParagraph = textParagraph.split("(?i)" + replacingWord);
+        String[] splitTextParagraph = paragraph.split("(?i)" + replacingWord);
         // Check and return the second part of the split if it exists, otherwise an
         // empty string
         return (splitTextParagraph.length > 1) ? splitTextParagraph[1] : "";
-    }
-
-    /**
-     * Validates and performs word replacement in a text paragraph at the specified
-     * index.
-     *
-     * @param index         The index in the 'text' list where the replacement
-     *                      should occur.
-     * @param textParagraph The new text paragraph to replace the existing one.
-     */
-    private void validateWordReplacement(int index, String textParagraph) {
-        // Check if the new text is different from the existing text at the specified
-        // index (case-insensitive)
-        boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(textParagraph);
-        // If different, update the text at the index
-        if (isReplacementSuccessful) {
-            text.set(index, textParagraph);
-        }
-        // Create a message indicating the replacement result
-        output.createReplaceMessage(isReplacementSuccessful);
     }
 
     /**
@@ -312,48 +285,54 @@ public class TextManager {
      * @param originalWord    The word to be replaced.
      * @param replacementWord The word to replace the specified word.
      */
-    private void replaceWord(int index, String originalWord, String replacementWord) {
+    private void replaceWordInParagraph(int index, String originalWord, String replacementWord) {
         // Retrieve the text to be modified from the list
-        String textParagraph = text.get(index);
+        String paragraph = text.get(index);
         originalWord = originalWord.trim();
         replacementWord = replacementWord.trim();
-        String wordEndSyntax = separateWordSyntax(textParagraph, originalWord);
+        String wordEndSyntax = separatePunctuation(paragraph, originalWord);
 
         // Check and replace at the beginning of the text
-        if (textParagraph.startsWith(originalWord)) {
-            textParagraph = textParagraph.replace(originalWord + " ", replacementWord + " ");
+        if (paragraph.startsWith(originalWord)) {
+            paragraph = paragraph.replace(originalWord + " ", replacementWord + " ");
         }
         // Check and replace in the middle of the text
-        if (textParagraph.contains(" " + originalWord + " ")) {
-            textParagraph = textParagraph.replaceAll(" " + originalWord + " ", " " + replacementWord + " ");
+        if (paragraph.contains(" " + originalWord + " ")) {
+            paragraph = paragraph.replaceAll(" " + originalWord + " ", " " + replacementWord + " ");
         }
         // Remove the original text and insert the modified text back into the list
-        if (textParagraph.endsWith(originalWord + wordEndSyntax)) {
+        if (paragraph.endsWith(originalWord + wordEndSyntax)) {
             // Replace the word with the replacement word
-            textParagraph = textParagraph.replace(originalWord + wordEndSyntax, " " + replacementWord + wordEndSyntax);
+            paragraph = paragraph.replace(originalWord + wordEndSyntax, " " + replacementWord + wordEndSyntax);
         }
         // Adding replacement and validation for the text
-        validateWordReplacement(index, textParagraph);
+        boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
+        // If different, update the text at the index
+        if (isReplacementSuccessful) {
+            text.set(index, paragraph);
+        }
+        // Create a message indicating the replacement result
+        output.createReplaceMessage(isReplacementSuccessful);
     }
 
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraphSection(String[] userInput) {
+    void replaceParagraph(String[] userInput) {
         System.out.print("Replacing Word: ");
         String originalWord = input.filterUserInput();
         System.out.print("Replacing with: ");
         String replacementWord = input.filterUserInput();
 
         if (userInput.length > 1) {
-            int index = Integer.parseInt(userInput[1]) - 1;
+            int index =  Integer.parseInt(userInput[1]) - 1;
             if (index < text.size() && index >= 0) {
-                replaceWord(index, originalWord, replacementWord);
+                replaceWordInParagraph(index, originalWord, replacementWord);
             } else {
-                replaceWord(text.size() - 1, originalWord, replacementWord);
+                replaceWordInParagraph(text.size() - 1, originalWord, replacementWord);
             }
         } else {
-            replaceWord(text.size() - 1, originalWord, replacementWord);
+            replaceWordInParagraph(text.size() - 1, originalWord, replacementWord);
         }
     }
 

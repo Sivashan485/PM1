@@ -7,8 +7,8 @@ import java.util.Scanner;
  */
 public class InputReceiver {
 
-    final Scanner input;
-    private final String allowedRegex = "([^A-z äöüÄÖÜ 0-9 .,:;\\-!?'()\\\"%@+*\\\\[\\\\]{}\\\\\\\\&#$])";
+    private final Scanner input;
+    private final static String ALLOWED_REGEX = "([^A-z äöüÄÖÜ 0-9 .,:;\\-!?'()\\\"%@+*\\\\[\\\\]{}\\\\\\\\&#$])";
 
     /**
      * Constructor for InputReceiver.
@@ -24,16 +24,15 @@ public class InputReceiver {
      */
     public String filterUserInput() {
         String inputText = input.nextLine();
-        return inputText.replaceAll(allowedRegex, "");
+        return inputText.replaceAll(ALLOWED_REGEX, "");
     }
 
     /**
-     * Spit
+     *
      */
     public String[] splitInput() {
         String inputText = filterUserInput();
         String command = extractCommand(inputText);
-
         if (command.isEmpty()) {
             return new String[] { inputText };
         }
@@ -67,9 +66,9 @@ public class InputReceiver {
 
     // Handles commands that require an index
     private String[] handleIndexCommand(String command, String restPart) {
-        try {
-            Integer.parseInt(restPart); // Validate if it's a number
-            return new String[] { command, restPart };
+        try {   // Validate if it's a number
+           Integer.parseInt(restPart);
+           return new String[] { command, restPart};
         } catch (NumberFormatException e) {
             return new String[] { "INVALID" };
         }

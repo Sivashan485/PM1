@@ -48,16 +48,9 @@ public class GlossaryApp {
      * @param text new text to be mapped
      */
     void rebuildGlossary(List<String> text) {
-        clearGlossary(); // Clear the existing glossary data
+        glossary.clear();
         Map<String, Integer> wordFrequency = computeWordFrequency(text);
         insertGlossaryEntries(text, wordFrequency);
-    }
-
-    /**
-     * Clears the current glossary data.
-     */
-    private void clearGlossary() {
-        glossary.clear();
     }
 
     /**
@@ -151,5 +144,7 @@ public class GlossaryApp {
     TreeMap<String, List<Integer>> getGlossary() {
         return glossary;
     }
+
+
 
 }

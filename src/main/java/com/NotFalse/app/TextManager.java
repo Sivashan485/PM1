@@ -180,7 +180,6 @@ public class TextManager {
      * @return The formatted text.
      */
     String formatTextFix(int maxWidth) {
-
         StringBuilder fixFormatted = new StringBuilder();
         int currentParagraphWidth = 0;
 
@@ -188,7 +187,22 @@ public class TextManager {
             String[] words = paragraph.split("\\s+");
             for (String word : words) {
                 // If the word itself is longer than maxWidth, break it down.
-                word = breakDownLongWord(word, maxWidth, fixFormatted, currentParagraphWidth);
+                while (word.length() > maxWidth) {
+                    // If the current line is not empty, start a new line.
+                    if (currentParagraphWidth > 0) {
+                        fixFormatted.append("\n");
+                        currentParagraphWidth = 0;
+                    }
+                    // Add the first maxWidth characters of the word to the current line.
+                    fixFormatted.append(word, 0, maxWidth);
+                    // Remove the first maxWidth characters from the word.
+                    word = word.substring(maxWidth);
+                    // If the word is not empty, start a new line.
+                    if (word.length() > 0) {
+                        fixFormatted.append("\n");
+                        currentParagraphWidth = 0;
+                    }
+                }
 
                 // Check if adding the current word exceeds maxWidth
                 currentParagraphWidth = appendNewLine(word, maxWidth, fixFormatted, currentParagraphWidth);
@@ -196,9 +210,8 @@ public class TextManager {
                 // Add a space if it's not the first word on the paragraph
                 currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
 
-                word = word.trim();
                 fixFormatted.append(word);
-                currentParagraphWidth += word.length();
+                currentParagraphWidth += word.length(); 
             }
         }
         formattedText = fixFormatted.toString();
@@ -230,6 +243,7 @@ public class TextManager {
             // If the word is not empty, start a new line.
             if (word.length() > 0) {
                 fixFormatted.append("\n");
+                currentParagraphWidth = 0;
             }
         }
         return word;
@@ -248,7 +262,9 @@ public class TextManager {
     int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
         // if the word doesn't fit on the current line
         if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
+            // add a new line
             fixFormatted.append("\n");
+            // reset the current width to 0
             currentParagraphWidth = 0;
         }
         return currentParagraphWidth;
@@ -261,7 +277,7 @@ public class TextManager {
      * @param currentParagraphWidth
      * @return
      */
-    private int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
+    int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
         // Add a space if it's not the first word on the paragraph
         if (currentParagraphWidth > 0) {
             fixFormatted.append(" ");

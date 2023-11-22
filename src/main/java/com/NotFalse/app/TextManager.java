@@ -266,9 +266,6 @@ public class TextManager {
         if (currentParagraphWidth > 0) {
             fixFormatted.append(" ");
             currentParagraphWidth++;
-            System.out.println("Space added to the paragraph. Current paragraph width: " + currentParagraphWidth);
-        } else {
-            System.out.println("Space not added to the paragraph. Current paragraph width: " + currentParagraphWidth);
         }
         return currentParagraphWidth;
     }

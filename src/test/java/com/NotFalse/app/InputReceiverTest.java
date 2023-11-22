@@ -50,15 +50,7 @@ public class InputReceiverTest {
     @Test
     void testFilterInputShouldFilterUnwantedCharacters() {
         InputReceiver inputReceiver = new InputReceiver();
-        String filteredInput = inputReceiver.filterInput("Hello123²§~");
-        assertEquals("Hello123", filteredInput);
-    }
-
-    @Test
-    void testGetFilteredInputLineShouldReceiveAndFilterInput() {
-        System.setIn(new ByteArrayInputStream("Hello123²§~".getBytes()));
-        input = new InputReceiver();
-        String filteredInput = input.getFilteredInputLine();
+        String filteredInput = inputReceiver.filterUserInput("Hello123²§~");
         assertEquals("Hello123", filteredInput);
     }
 

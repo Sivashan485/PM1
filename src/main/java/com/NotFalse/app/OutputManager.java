@@ -5,24 +5,28 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
+
 /**
- * This class is responsible for creating all the messages that are displayed to the user
- * and the log entries.
+ * Class for managing the output of the TextEditor application.
  */
 public class OutputManager {
 
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(OutputManager.class.getName());
-    Handler consoleHandler = new ConsoleHandler();
+
+    Handler consoleHandler;
+
 
     /**
      * Initializes the consoleHandler and the LOGGER.
      * Sets the logging level for the handler and creates a formatter for the handler.
      */
     public OutputManager() {
-        consoleHandler.setLevel(Level.ALL);
-        SimpleFormatter formatter = new SimpleFormatter();
-        consoleHandler.setFormatter(formatter);
+        LOGGER.setUseParentHandlers(false);
+        consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.OFF);
+        consoleHandler.setFormatter(new SimpleFormatter());
         LOGGER.addHandler(consoleHandler);
+        LOGGER.setLevel(Level.OFF);
     }
 
     /**
@@ -49,38 +53,24 @@ public class OutputManager {
      * Creates a welcome message for the user.
      */
     public void createWelcomeMessage() {
-        System.out.println("Welcome to the TextEditor! Created by NotFalse.");
-    }
-
-    /**
-     * Creates a menu option message with the commands that can be used.
-     */
-    public void createMenuOptionsMessage() {
-        System.out.println("Here are the commands you can use:" + Commands.getAllCommands());
-    }
-
-    /**
-     * Creates an error message that the entered text is too long.
-     */
-    public void createMaxStringWarning() {
-        System.err.println("The text you have entered is too long! Please try again or " +
-                "fix the text length.");
-    }
-
-    /**
-     * Creates an error message that the entered index is too large.
-     */
-    public void createMaxIntWarning() {
-        System.err.println("The index you have entered is too large! Please try again.");
+        createUserInfoMessage("Welcome to the TextEditor! Created by NotFalse.");
     }
 
     /**
      * Creates a goodbye message.
      */
     public void createExitMessage() {
-        System.out.println("Exiting TextEditor...\n" +
+        createUserInfoMessage("Exiting TextEditor...\n" +
                 "Thank you for using TextEditor! Created by NotFalse.");
     }
+
+    /**
+     * Creates a menu option message with the commands that can be used.
+     */
+    public void createMenuOptionsMessage() {
+        createUserInfoMessage("Here are the commands you can use:" + Commands.getAllCommands());
+    }
+
 
     /**
      * Creates a log message for the status of adding a text.
@@ -109,45 +99,6 @@ public class OutputManager {
     }
 
     /**
-     * Creates a log message for the status of creating a dummy text.
-     *
-     * @param success status of creating a dummy text
-     */
-    public void createDummyMessage(boolean success) {
-        if (success) {
-            createUserInfoMessage("Dummy text generated successfully!");
-        } else {
-            createUserErrorMessage("Dummy text has not been generated");
-        }
-    }
-
-    /**
-     * Creates a log message for the status of creating an index.
-     *
-     * @param success status of creating an index
-     */
-    public void createIndexMessage(boolean success) {
-        if (success) {
-            createUserInfoMessage("Index generated successfully!");
-        } else {
-            createUserErrorMessage("Index has not been generated");
-        }
-    }
-
-    /**
-     * Creates a log message for the status of printing a text.
-     *
-     * @param success status of printing a text
-     */
-    public void createPrintMessage(boolean success) {
-        if (success) {
-            createUserInfoMessage("Printing text...");
-        } else {
-            createUserErrorMessage("Text has not been printed");
-        }
-    }
-
-    /**
      * Creates a log message for the status of replacing a text.
      *
      * @param success status of replacing a text
@@ -161,11 +112,41 @@ public class OutputManager {
     }
 
     /**
-     * Creates an error message for an invalid command.
+     * Creates a log message for the status of formatting a text.
+     *
+     * @param success status of formatting a text
+     */
+    public void createFormatMessage(boolean success) {
+        if (success) {
+            createUserInfoMessage("Text formatted successfully!");
+        } else {
+            createUserErrorMessage("Text has not been formatted");
+        }
+    }
+
+    /**
+     * Creates a log message for an invalid command.
      */
     public void createInvalidCommandMessage() {
-        System.err.println("Invalid command! Please try again.");
+        createUserErrorMessage("Invalid command! Please try again.");
     }
+
+    /**
+     * Creates a log message for an invalid index.
+     */
+    public void createIndexWarning() {
+        createUserErrorMessage("This index is not valid. Please try again.");
+
+    }
+
+    /**
+     * Creates a log message for the empty text if you try to delete a text.
+     */
+    public void createEmptyTextWarning() {
+        createUserErrorMessage("Your TextEditor is empty...\n"
+                + "You can add new text, by calling the add function.");
+    }
+
 }
 
 

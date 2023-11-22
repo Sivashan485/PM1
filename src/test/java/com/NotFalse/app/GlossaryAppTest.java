@@ -21,26 +21,28 @@ public class GlossaryAppTest {
         // 1 Setup
         glossaryOne = new GlossaryApp();
         textOne = new ArrayList<>();
-        textOne.add("This is a test paragraph.");
-        textOne.add("Another test paragraph.");
-        textOne.add("Another weird useless test paragraph");
-        glossaryOne.insertGlossaryEntries(textOne);
+        textOne.add("This is a test paragraph.\n");
+        textOne.add("Another test paragraph.\n");
+        textOne.add("Another weird useless test paragraph\n");
+        Map<String, Integer> wordFrequency1 = glossaryOne.computeWordFrequency(textOne);
+        glossaryOne.insertGlossaryEntries(textOne, wordFrequency1);
 
         // 2 Setup
         glossaryTwo = new GlossaryApp();
         textTwo = new ArrayList<>();
-        textTwo.add("This is a test paragraph.");
-        textTwo.add("Another test paragraph.");
-        textTwo.add("Another weird useless test paragraph. This is a ParaGrAPh:, and this one para.graph isnt.");
-        glossaryTwo.insertGlossaryEntries(textTwo);
+        textTwo.add("This is a test paragraph.\n");
+        textTwo.add("Another test paragraph.\n");
+        textTwo.add("Another weird useless test paragraph. This is a ParaGrAPh:, and this one para.graph isnt.\n");
+        Map<String, Integer> wordFrequency2 = glossaryTwo.computeWordFrequency(textTwo);
+        glossaryTwo.insertGlossaryEntries(textTwo,wordFrequency2);
 
         // 3 Setup
         glossaryThree = new GlossaryApp();
         textThree = new ArrayList<>();
         textThree.add("This is a new test paragraph.");
         textThree.add("Another new test paragraph, just for a test.");
-        glossaryThree.computeWordFrequency(textThree);
-        glossaryThree.insertGlossaryEntries(textThree);
+        Map<String, Integer> wordFrequency3 = glossaryThree.computeWordFrequency(textThree);
+        glossaryThree.insertGlossaryEntries(textThree, wordFrequency3);
 
     }
 
@@ -116,39 +118,32 @@ public class GlossaryAppTest {
 
     @Test
     void testRebuildGlossaryOne() {
-        GlossaryApp newGlossary = glossaryThree.rebuildGlossary(textThree);
-        TreeMap<String, List<Integer>> glossaryMap = newGlossary.getGlossary();
+        glossaryOne.rebuildGlossary(textOne);
+        TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
 
         assertTrue(glossaryMap.containsKey("Test"));
-        assertEquals(Arrays.asList(1, 2), glossaryMap.get("Test"));
+        assertEquals(Arrays.asList(1, 2,3), glossaryMap.get("Test"));
     }
 
     @Test
     void testRebuildGlossaryTwo() {
-        GlossaryApp newGlossary = glossaryThree.rebuildGlossary(textThree);
-        TreeMap<String, List<Integer>> glossaryMap = newGlossary.getGlossary();
+        glossaryTwo.rebuildGlossary(textTwo);
+        TreeMap<String, List<Integer>> glossaryMap = glossaryTwo.getGlossary();
 
-        assertFalse(glossaryMap.containsKey("new"));
-
+        assertFalse(glossaryMap.containsKey("nonexistent"), "Glossary should not contain 'nonexistent'");
     }
 
     @Test
     void testRebuildGlossaryThree() {
-        GlossaryApp newGlossary = glossaryThree.rebuildGlossary(textThree);
-        TreeMap<String, List<Integer>> glossaryMap = newGlossary.getGlossary();
+        glossaryThree.rebuildGlossary(textThree);
+        TreeMap<String, List<Integer>> glossaryMap = glossaryThree.getGlossary();
 
-        assertFalse(glossaryMap.containsKey("paragraph"));
-
+        assertFalse(glossaryMap.containsKey("paragraph"), "Glossary should not contain 'paragraph'");
     }
 
-    @Test
-    void testRebuildGlossaryFour() {
-        GlossaryApp newGlossary = glossaryThree.rebuildGlossary(textThree);
-        TreeMap<String, List<Integer>> glossaryMap = newGlossary.getGlossary();
 
-        assertFalse(glossaryMap.containsKey("nonexistent"));
 
-    }
+
 
     @Test
     void testFilterParagraphWithAlphabeticCharacters() {

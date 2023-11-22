@@ -1,6 +1,7 @@
 package com.NotFalse.app;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This class is responsible for creating the glossary and updating it.
@@ -19,16 +20,53 @@ public class GlossaryApp {
     }
 
     /**
-     * Updates the glossary with the new text by creating a new glossary.
+     * Prints the glossary.
+     */
+    void printGlossary(List<String> text) {
+        rebuildGlossary(text);
+        if (glossary.isEmpty()) {
+            System.err.println("Your glossary is empty...");
+        } else {
+            System.out.println("Glossary:");
+            for (String word : glossary.keySet()) {
+                List<Integer> indexes = glossary.get(word);
+                String indexStream = indexes.stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", "));
+                System.out.printf("%-10s %s%n", word, indexStream);
+            }
+        }
+    }
+
+    /**
+     * Rebuilds the glossary with the new text.
      *
      * @param text new text to be mapped
-     * @return returns a new GlossaryApp
      */
-    public GlossaryApp rebuildGlossary(List<String> text) {
-        GlossaryApp newGlossary = new GlossaryApp();
-        newGlossary.computeWordFrequency(text);
-        newGlossary.insertGlossaryEntries(text);
-        return newGlossary;
+    public void rebuildGlossary(List<String> text) {
+        clearGlossary(); // Clear the existing glossary data
+        Map<String, Integer> wordFrequency = computeWordFrequency(text);
+        insertGlossaryEntries(text, wordFrequency);
+    }
+
+    /**
+     * Clears the current glossary data.
+     */
+    private void clearGlossary() {
+        glossary.clear();
+    }
+
+    /**
+     * Inserts the entries to the glossary based on the word frequency.
+     *
+     * @param text          text to be mapped
+     * @param wordFrequency a map with the frequency of each word
+     */
+    void insertGlossaryEntries(List<String> text, Map<String, Integer> wordFrequency) {
+        for (String word : wordFrequency.keySet()) {
+            String cleanedWord = capitalizeFirstLetter(word).trim();
+            glossary.put(cleanedWord, searchWordInParagraphs(text, word));
+        }
     }
 
     /**
@@ -78,18 +116,6 @@ public class GlossaryApp {
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
 
-    /**
-     * Inserts the entries to the glossary.
-     *
-     * @param text text to be mapped
-     */
-    void insertGlossaryEntries(List<String> text) {
-        for (String word : computeWordFrequency(text).keySet()) {
-            String cleanedWord = capitalizeFirstLetter(word).trim();
-            glossary.computeIfAbsent(cleanedWord, k -> searchWordInParagraphs(text, word));
-        }
-    }
-
 
     /**
      * Finds the indexes of the paragraphs which contain the word and returns them
@@ -122,5 +148,6 @@ public class GlossaryApp {
     TreeMap<String, List<Integer>> getGlossary() {
         return glossary;
     }
+
 
 }

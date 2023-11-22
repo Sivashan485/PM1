@@ -16,15 +16,15 @@ public class CommandsTest {
         assertEquals("print", Commands.PRINT.getCommand());
         assertEquals("replace", Commands.REPLACE.getCommand());
         assertEquals("help", Commands.HELP.getCommand());
-        assertEquals("format_raw", Commands.FORMAT_RAW.getCommand());
-        assertEquals("format_fix", Commands.FORMAT_FIX.getCommand());
+        assertEquals("format raw", Commands.FORMAT_RAW.getCommand());
+        assertEquals("format fix", Commands.FORMAT_FIX.getCommand());
         assertEquals("unknown", Commands.UNKNOWN.getCommand());
     }
 
     @Test
     public void testGetAllCommands() {
         assertEquals("exit, add, del, dummy, index, print, " +
-                "replace, help, format_raw, format_fix", Commands.getAllCommands());
+                "replace, help, format raw, format fix", Commands.getAllCommands());
     }
 
     @Test

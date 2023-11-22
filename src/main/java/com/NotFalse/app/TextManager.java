@@ -103,8 +103,8 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    private void addDummyParagraph(String[] inputText) {
-        addIndexCheck(inputText, DUMMYTEXT);
+    private void addDummyParagraph(String[] userInput) {
+        addIndexCheck(userInput, DUMMYTEXT);
     }
 
     private void addIndexCheck(String[] userInput, String enteredText) {
@@ -282,12 +282,17 @@ public class TextManager {
      * Print the text.
      */
     private void printText() {
-        if (isFormatterRaw) {
-            formatTextRaw();
-        } else {
-            formatTextFix(maxWidth);
+        if(!text.isEmpty()){
+            if (isFormatterRaw) {
+                formatTextRaw();
+            } else {
+                formatTextFix(maxWidth);
+            }
+            System.out.println(getFormattedText());
+        }else{
+            output.createEmptyTextWarning();
         }
-        System.out.println(getFormattedText());
+
 
     }
 
@@ -391,12 +396,12 @@ public class TextManager {
     /**
      * Setter for the maxWidth.
      *
-     * @param maxWidth
+     * @param userInput Input from user
      */
-    private void setMaxWidth(String[] inputText) {
-        if (inputText.length > 1) {
+    private void setMaxWidth(String[] userInput) {
+        if (userInput.length > 1) {
             try {
-                this.maxWidth = Integer.parseInt(inputText[1]);
+                this.maxWidth = Integer.parseInt(userInput[1]);
             } catch (NumberFormatException e) {
                 System.err.println("MaxWidth argument must be an integer");
             }

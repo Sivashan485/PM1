@@ -22,7 +22,7 @@ public class GlossaryApp {
     /**
      * Prints the glossary.
      */
-    void printGlossary(List<String> text) {
+    public void printGlossary(List<String> text) {
         rebuildGlossary(text);
         if (glossary.isEmpty()) {
             System.err.println("Your glossary is empty...");
@@ -43,7 +43,7 @@ public class GlossaryApp {
      *
      * @param text new text to be mapped
      */
-    public void rebuildGlossary(List<String> text) {
+    void rebuildGlossary(List<String> text) {
         clearGlossary(); // Clear the existing glossary data
         Map<String, Integer> wordFrequency = computeWordFrequency(text);
         insertGlossaryEntries(text, wordFrequency);

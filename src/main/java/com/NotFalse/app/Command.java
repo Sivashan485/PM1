@@ -20,7 +20,7 @@ public enum Command {
     UNKNOWN("unknown", false);
 
     public final String command;
-    public boolean commandHasIndex;
+    public final boolean commandHasIndex;
 
     /**
      * Constructor for the enum class.

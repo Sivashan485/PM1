@@ -29,12 +29,12 @@ public class CommandsTest {
 
     @Test
     public void testKnownCommand() {
-        assertEquals(Commands.HELP, Commands.lookupCommand("Help"));
+        assertEquals(Commands.HELP, Commands.parseCommand("Help"));
     }
 
     @Test
     public void testUnknownCommand() {
-        assertEquals(Commands.UNKNOWN, Commands.lookupCommand("nonExistentCommand"));
+        assertEquals(Commands.UNKNOWN, Commands.parseCommand("nonExistentCommand"));
     }
 
     /* ->> fix bug -> this test is not working
@@ -45,13 +45,13 @@ public class CommandsTest {
 
     @Test
     public void testCaseSensitivity() {
-        assertEquals(Commands.EXIT, Commands.lookupCommand("EXIT"));
-        assertEquals(Commands.EXIT, Commands.lookupCommand("exit"));
+        assertEquals(Commands.EXIT, Commands.parseCommand("EXIT"));
+        assertEquals(Commands.EXIT, Commands.parseCommand("exit"));
     }
 
     @Test
     public void testEmptyString() {
-        assertEquals(Commands.UNKNOWN, Commands.lookupCommand(""));
+        assertEquals(Commands.UNKNOWN, Commands.parseCommand(""));
     }
 
 }

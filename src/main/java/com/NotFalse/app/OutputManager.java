@@ -111,6 +111,14 @@ public class OutputManager {
         }
     }
 
+    public void createFormatMessage(boolean success){
+        if(success){
+            createUserInfoMessage("Text formatted successfully!");
+        } else {
+            createUserErrorMessage("Text has not been formatted");
+        }
+    }
+
     /**
      * Creates a log message for an invalid command.
      */
@@ -133,6 +141,20 @@ public class OutputManager {
         createUserErrorMessage("Your TextEditor is empty...\n"
                 + "You can add new text, by calling the add function.");
     }
+
+    public void createMissingArgumentWarning() {
+        createUserErrorMessage("Missing argument for MaxWidth");
+    }
+
+    public void createInvalidArgumentWarning() {
+        createUserErrorMessage("MaxWidth argument must be an integer");
+    }
+
+    public void createEmptyGlossaryWarning(){
+        createUserErrorMessage("Your glossary is empty...");
+    }
+
+
 
 }
 

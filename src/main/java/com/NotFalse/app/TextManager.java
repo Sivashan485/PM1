@@ -20,7 +20,6 @@ public class TextManager {
     private final InputReceiver input;
     private final OutputManager output;
     private final GlossaryApp glossary;
-    private boolean isFormatterRaw;
     private boolean isExitTriggered;
     private List<String> text;
     private String formattedText;
@@ -33,12 +32,11 @@ public class TextManager {
     TextManager() {
         input = new InputReceiver();
         output = new OutputManager();
-        glossary = new GlossaryApp();
+        glossary = new GlossaryApp(output);
         text = new ArrayList<>();
         text.add("12345678911234567892 12345678931234567894");
         isExitTriggered = false;
-        isFormatterRaw = true;
-        maxWidth = 80;
+        formatTextRaw();
         output.createWelcomeMessage();
     }
 
@@ -76,13 +74,11 @@ public class TextManager {
                 output.createMenuOptionsMessage();
                 break;
             case FORMAT_RAW:
-                isFormatterRaw = true;
                 formatTextRaw();
                 break;
             case FORMAT_FIX:
-                isFormatterRaw = false;
                 setMaxWidth(userInput);
-                formatTextFix(maxWidth);
+                formatTextFix();
                 break;
             default:
                 output.createInvalidCommandMessage();
@@ -114,8 +110,6 @@ public class TextManager {
                 int index = Integer.parseInt(userInput[1]) - 1;
                 if (index >= 0 && index <= text.size()) {
                     text.add(index, enteredText + "\n");
-                } else {
-                    output.createIndexWarning();
                 }
             } else {
                 text.add(enteredText + "\n");
@@ -139,8 +133,8 @@ public class TextManager {
                 int index = Integer.parseInt(userInput[1]) - 1;
                 if (index >= 0 && index < text.size()) {
                     text.remove(index);
-                } else {
-                    // output.createIndexWarning();
+                }else{
+                    output.createIndexWarning();
                 }
             } else {
                 text.remove(text.size() - 1);
@@ -160,10 +154,16 @@ public class TextManager {
      */
     String formatTextRaw() {
         formattedText = "";
-        for (int paragraph = 0; paragraph < text.size(); paragraph++) {
-            formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
+        try{
+            for (int paragraph = 0; paragraph < text.size(); paragraph++) {
+                formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
+            }
+            output.createFormatMessage(true);
+            return formattedText;
+        }catch(Exception e){
+            output.createFormatMessage(false);
+            return "";
         }
-        return formattedText;
     }
 
     /**
@@ -171,7 +171,7 @@ public class TextManager {
      *
      * @return The formatted text.
      */
-    String formatTextFix(int maxWidth) {
+    String formatTextFix() {
         StringBuilder fixFormatted = new StringBuilder();
         int currentParagraphWidth = 0;
 
@@ -190,14 +190,14 @@ public class TextManager {
                     // Remove the first maxWidth characters from the word.
                     word = word.substring(maxWidth);
                     // If the word is not empty, start a new line.
-                    if (word.length() > 0) {
+                    if (!word.isEmpty()) {
                         fixFormatted.append("\n");
                         currentParagraphWidth = 0;
                     }
                 }
 
                 // Check if adding the current word exceeds maxWidth
-                currentParagraphWidth = appendNewLine(word, maxWidth, fixFormatted, currentParagraphWidth);
+                currentParagraphWidth = appendNewLine(word, fixFormatted, currentParagraphWidth);
 
                 // Add a space if it's not the first word on the paragraph
                 currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
@@ -208,37 +208,8 @@ public class TextManager {
         }
         formattedText = fixFormatted.toString();
         return formattedText;
-    }
 
-    /**
-     * If the word itself is longer than maxWidth, break it down. If the word itself
-     * is longer than maxWidth, break it down.
-     *
-     * @param word
-     * @param maxWidth
-     * @param fixFormatted
-     * @param currentParagraphWidth
-     * @return
-     */
-    String breakDownLongWord(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
-        // If the word itself is longer than maxWidth, break it down.
-        while (word.length() > maxWidth) {
-            // If the current line is not empty, start a new line.
-            if (currentParagraphWidth > 0) {
-                fixFormatted.append("\n");
-                currentParagraphWidth = 0;
-            }
-            // Add the first maxWidth characters of the word to the current line.
-            fixFormatted.append(word, 0, maxWidth);
-            // Remove the first maxWidth characters from the word.
-            word = word.substring(maxWidth);
-            // If the word is not empty, start a new line.
-            if (word.length() > 0) {
-                fixFormatted.append("\n");
-                currentParagraphWidth = 0;
-            }
-        }
-        return word;
+
     }
 
     /**
@@ -246,12 +217,12 @@ public class TextManager {
      * line.
      *
      * @param word
-     * @param maxWidth
+
      * @param fixFormatted
      * @param currentParagraphWidth
      * @return
      */
-    int appendNewLine(String word, int maxWidth, StringBuilder fixFormatted, int currentParagraphWidth) {
+    int appendNewLine(String word, StringBuilder fixFormatted, int currentParagraphWidth) {
         // if the word doesn't fit on the current line
         if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
             // add a new line
@@ -282,15 +253,10 @@ public class TextManager {
      * Print the text.
      */
     private void printText() {
-        if(!text.isEmpty()){
-            if (isFormatterRaw) {
-                formatTextRaw();
-            } else {
-                formatTextFix(maxWidth);
-            }
-            System.out.println(getFormattedText());
-        }else{
+        if(text.isEmpty()){
             output.createEmptyTextWarning();
+        }else{
+            System.out.println(formattedText);
         }
 
 
@@ -398,15 +364,16 @@ public class TextManager {
      *
      * @param userInput Input from user
      */
-    private void setMaxWidth(String[] userInput) {
+    void setMaxWidth(String[] userInput) {
         if (userInput.length > 1) {
             try {
                 this.maxWidth = Integer.parseInt(userInput[1]);
             } catch (NumberFormatException e) {
-                System.err.println("MaxWidth argument must be an integer");
+                output.createInvalidArgumentWarning();
             }
         } else {
-            System.err.println("Missing argument for MaxWidth");
+            output.createMissingArgumentWarning();
+
         }
     }
 

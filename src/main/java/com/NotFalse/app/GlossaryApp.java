@@ -11,12 +11,14 @@ import java.util.stream.Collectors;
 public class GlossaryApp {
 
     private final TreeMap<String, List<Integer>> glossary;
-
+    private OutputManager output;
     /**
      * Constructor for GlossaryApp.
      */
-    public GlossaryApp() {
+    public GlossaryApp(OutputManager output) {
         glossary = new TreeMap<>();
+        this.output = output;
+
     }
 
     /**
@@ -25,7 +27,7 @@ public class GlossaryApp {
     public void printGlossary(List<String> text) {
         rebuildGlossary(text);
         if (glossary.isEmpty()) {
-            System.err.println("Your glossary is empty...");
+            output.createEmptyGlossaryWarning();
         } else {
             System.out.println("Glossary:");
             for (String word : glossary.keySet()) {

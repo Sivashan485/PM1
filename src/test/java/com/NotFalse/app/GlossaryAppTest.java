@@ -15,11 +15,12 @@ public class GlossaryAppTest {
     private ArrayList<String> textOne;
     private ArrayList<String> textTwo;
     private ArrayList<String> textThree;
+    private OutputManager output;
 
     @BeforeEach
     void setUp() {
         // 1 Setup
-        glossaryOne = new GlossaryApp();
+        glossaryOne = new GlossaryApp(output);
         textOne = new ArrayList<>();
         textOne.add("This is a test paragraph.\n");
         textOne.add("Another test paragraph.\n");
@@ -28,7 +29,7 @@ public class GlossaryAppTest {
         glossaryOne.insertGlossaryEntries(textOne, wordFrequency1);
 
         // 2 Setup
-        glossaryTwo = new GlossaryApp();
+        glossaryTwo = new GlossaryApp(output);
         textTwo = new ArrayList<>();
         textTwo.add("This is a test paragraph.\n");
         textTwo.add("Another test paragraph.\n");
@@ -37,7 +38,7 @@ public class GlossaryAppTest {
         glossaryTwo.insertGlossaryEntries(textTwo,wordFrequency2);
 
         // 3 Setup
-        glossaryThree = new GlossaryApp();
+        glossaryThree = new GlossaryApp(output);
         textThree = new ArrayList<>();
         textThree.add("This is a new test paragraph.");
         textThree.add("Another new test paragraph, just for a test.");

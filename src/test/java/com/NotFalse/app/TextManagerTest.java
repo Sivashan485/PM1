@@ -2,6 +2,7 @@ package com.NotFalse.app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,10 +11,13 @@ import org.junit.jupiter.api.Test;
 public class TextManagerTest {
 
     TextManager textManager;
+    InputReceiver input;
 
     @BeforeEach
     void setUp() {
         textManager = new TextManager();
+        input = new InputReceiver();
+
     }
 
     // Test for Method formatTextFix
@@ -21,7 +25,9 @@ public class TextManagerTest {
     void testSingleShortWord() {
         String expected = "test";
         textManager.setText(Arrays.asList("test"));
-        assertEquals(expected, textManager.formatTextFix(4));
+        String[] userInput = {"format fix" ,"4"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -29,7 +35,9 @@ public class TextManagerTest {
     void testEmptyInput() {
         String expected = "";
         textManager.setText(Arrays.asList(""));
-        assertEquals(expected, textManager.formatTextFix(5));
+        String[] userInput = {"format fix", "4"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -39,7 +47,9 @@ public class TextManagerTest {
                 "7890123\n" +
                 "456789";
         textManager.setText(Arrays.asList("01234567890123456789"));
-        assertEquals(expected, textManager.formatTextFix(7));
+        String[] userInput = {"format fix", "7"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -47,8 +57,11 @@ public class TextManagerTest {
     void testMultipleShortWords() {
         String expected = "hello\n" +
                 "world";
+        input =new InputReceiver();
         textManager.setText(Arrays.asList("hello", "world"));
-        assertEquals(expected, textManager.formatTextFix(7));
+        String[] userInput = {"format fix", "7"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -58,7 +71,9 @@ public class TextManagerTest {
                 "klmnopqrstuvwxy\n" +
                 "zabcdefghij";
         textManager.setText(Arrays.asList("abcdefghij", "jiwer", "klmnopqrstuvwxy", "zabcdefghij"));
-        assertEquals(expected, textManager.formatTextFix(20));
+        String[] userInput = {"format fix", "20"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -70,7 +85,9 @@ public class TextManagerTest {
                 "efghijklmn\n" +
                 "opqrstuvwx";
         textManager.setText(Arrays.asList("abcdefghijklmnopqrst", "uvwxyzabcdefghijklmn", "opqrstuvwx"));
-        assertEquals(expected, textManager.formatTextFix(10));
+        String[] userInput = {"format fix", "10"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -82,7 +99,9 @@ public class TextManagerTest {
                 "efghijklmn\n" +
                 "opqrstuvwx";
         textManager.setText(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabcd", "efghijklmn", "opqrstuvwx"));
-        assertEquals(expected, textManager.formatTextFix(10));
+        String[] userInput = {"format fix", "10"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -95,7 +114,9 @@ public class TextManagerTest {
                 "cde mn o";
         textManager.setText(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabc", "efghijkl",
                 "opqrstu", "yzabcd", "ijklm", "stuv", "cde", "mn", "o"));
-        assertEquals(expected, textManager.formatTextFix(20));
+        String[] userInput = {"format fix", "20"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -103,7 +124,9 @@ public class TextManagerTest {
     void testSpacesNotPreserved() {
         String expected = "hello world";
         textManager.setText(Arrays.asList("hello", " ", "world"));
-        assertEquals(expected, textManager.formatTextFix(20));
+        String[] userInput = {"format fix", "20"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextFix
@@ -112,7 +135,9 @@ public class TextManagerTest {
         String longWord = "a".repeat(80);
         String expected = longWord + "\nb";
         textManager.setText(Arrays.asList(longWord, "b"));
-        assertEquals(expected, textManager.formatTextFix(80));
+        String[] userInput = {"format fix", "80"};
+        textManager.setMaxWidth(userInput);
+        assertEquals(expected, textManager.formatTextFix());
     }
 
     // Test for Method formatTextRaw

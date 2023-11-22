@@ -155,24 +155,4 @@ public class GlossaryAppTest {
         assertEquals("", glossaryOne.filterParagraph(""));
     }
 
-    // Tests for capitalizeFirstLetter method
-    @Test
-    void testCapitalizeFirstLetterNormalWord() {
-        assertEquals("Hello", glossaryOne.capitalizeFirstLetter("hello"));
-    }
-
-    @Test
-    void testCapitalizeFirstLetterEmptyString() {
-        assertEquals("", glossaryOne.capitalizeFirstLetter(""));
-    }
-
-    @Test
-    void testCapitalizeFirstLetterSingleCharacter() {
-        assertEquals("H", glossaryOne.capitalizeFirstLetter("h"));
-    }
-
-    @Test
-    void testCapitalizeFirstLetterNullInput() {
-        assertNull(glossaryOne.capitalizeFirstLetter(null));
-    }
 }

@@ -65,6 +65,7 @@ public class GlossaryApp {
         }
     }
 
+
     /**
      * Calculates the frequency of each word, puts them into the wordFrequency Map
      * and filters them.
@@ -73,13 +74,11 @@ public class GlossaryApp {
      */
     Map<String, Integer> computeWordFrequency(List<String> text) {
         Map<String, Integer> wordFrequency = new HashMap<>();
-        boolean startWithUpperCase = false;
         for (String paragraph : text) {
-            String[] words = paragraph.split(" ");
+            String cleanedParagraph = filterParagraph(paragraph);
+            String[] words = cleanedParagraph.split(" ");
             for (String word : words) {
-                word = word.trim();
-                startWithUpperCase = Character.isUpperCase(word.charAt(0));
-                if (startWithUpperCase){
+                if (startWithUpperCase(word.trim())){
                     if (!wordFrequency.containsKey(word)) {
                         wordFrequency.put(word, 0);
                     }
@@ -88,9 +87,16 @@ public class GlossaryApp {
                     }
             }
         }
-        // filters the words that appear less than 3 times
         wordFrequency.entrySet().removeIf(entry -> entry.getValue() < 3);
         return wordFrequency;
+    }
+
+    private boolean startWithUpperCase(String word){
+        return Character.isUpperCase(word.charAt(0));
+    }
+
+    String filterParagraph(String paragraph) {
+        return paragraph.replaceAll("[^A-Za-z ]", " ");
     }
 
 
@@ -109,7 +115,6 @@ public class GlossaryApp {
             if (text.get(i).contains(word)) {
                 indexes.add(i + 1);
             }
-
         }
         // sorts the indexes
         Collections.sort(indexes);

@@ -35,9 +35,10 @@ public class TextManager {
         output = new OutputManager();
         glossary = new GlossaryApp(output);
         text = new ArrayList<>();
-        text.add("Hello this is a test sentence.");
-        text.add("Another test sentence.");
-        text.add("Second useless test sentence.");
+        text.add("Hello this is a Test sentence.");
+        text.add("Another Test sentence.");
+        text.add("Second useless Test sentence.");
+        text.add("Hello Hello Hello");
         text.add("End of text.");
         isExitTriggered = false;
         formatTextRaw();

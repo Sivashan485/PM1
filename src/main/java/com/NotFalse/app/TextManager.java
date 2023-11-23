@@ -25,6 +25,7 @@ public class TextManager {
     private List<String> text;
     private String formattedText;
     private int maxWidth;
+    private boolean isFormatterRaw;
 
     /**
      * Constructor for the TextManager class. It initializes the input, output,
@@ -41,6 +42,7 @@ public class TextManager {
         text.add("Hello Hello Hello");
         text.add("End of text.");
         isExitTriggered = false;
+        isFormatterRaw = true;
         formatTextRaw();
         output.createWelcomeMessage();
     }
@@ -271,9 +273,13 @@ public class TextManager {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
         } else {
-            System.out.println(formattedText);
+            if(isFormatterRaw) {
+                formatTextRaw();
+            } else {
+                formatTextFix();
+            }
         }
-
+        System.out.println(formattedText);
     }
 
     /**

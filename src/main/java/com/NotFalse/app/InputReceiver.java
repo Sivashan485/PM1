@@ -74,10 +74,12 @@ public class InputReceiver {
     }
 
     public String getCommand() {
+       
         return command;
     }
 
     public Integer getIndex() {
+     
         return index;
     }
 }

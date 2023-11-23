@@ -85,6 +85,7 @@ public class TextManager {
                 formatTextRaw();
                 break;
             case FORMAT_FIX:
+                isFormatterRaw = false;
                 setMaxWidth(index);
                 formatTextFix();
                 break;
@@ -181,6 +182,7 @@ public class TextManager {
                 formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
             }
             output.createFormatMessage(true);
+            isFormatterRaw = true;
             return formattedText;
         } catch (Exception e) {
             output.createFormatMessage(false);

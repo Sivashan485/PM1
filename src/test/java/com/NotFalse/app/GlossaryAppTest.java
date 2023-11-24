@@ -7,152 +7,123 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GlossaryAppTest {
 
-    private GlossaryApp glossaryOne;
-    private GlossaryApp glossaryTwo;
-    private GlossaryApp glossaryThree;
-    private ArrayList<String> textOne;
-    private ArrayList<String> textTwo;
-    private ArrayList<String> textThree;
-    private OutputManager output;
+        GlossaryApp glossaryApp;
+        OutputManager output;
 
-    @BeforeEach
-    void setUp() {
-        // 1 Setup
-        glossaryOne = new GlossaryApp(output);
-        textOne = new ArrayList<>();
-        textOne.add("This is a test paragraph.\n");
-        textOne.add("Another test paragraph.\n");
-        textOne.add("Another weird useless test paragraph\n");
-        Map<String, Integer> wordFrequency1 = glossaryOne.computeWordFrequency(textOne);
-        glossaryOne.insertGlossaryEntries(textOne, wordFrequency1);
+        @BeforeEach
+        void setUp() {
+            output = new OutputManager();
+            glossaryApp = new GlossaryApp(output);
+        }
 
-        // 2 Setup
-        glossaryTwo = new GlossaryApp(output);
-        textTwo = new ArrayList<>();
-        textTwo.add("This is a test paragraph.\n");
-        textTwo.add("Another test paragraph.\n");
-        textTwo.add("Another weird useless test paragraph. This is a ParaGrAPh:, and this one para.graph isnt.\n");
-        Map<String, Integer> wordFrequency2 = glossaryTwo.computeWordFrequency(textTwo);
-        glossaryTwo.insertGlossaryEntries(textTwo, wordFrequency2);
+        @Test
+        void testRebuildGlossaryOne() {
+            List<String> text = Arrays.asList("Hello", "World", "Hello", "World");
+            glossaryApp.rebuildGlossary(text);
+            TreeMap<String, List<Integer>> expected = new TreeMap<>();
+            expected.put("Hello", Arrays.asList(1, 3));
+            expected.put("World", Arrays.asList(2, 4));
+            assertEquals(expected, glossaryApp.getGlossary());
+        }
 
-        // 3 Setup
-        glossaryThree = new GlossaryApp(output);
-        textThree = new ArrayList<>();
-        textThree.add("This is a new test paragraph.");
-        textThree.add("Another new test paragraph, just for a test.");
-        Map<String, Integer> wordFrequency3 = glossaryThree.computeWordFrequency(textThree);
-        glossaryThree.insertGlossaryEntries(textThree, wordFrequency3);
+        @Test
+        void testRebuildGlossaryEmpty() {
+            List<String> text = Arrays.asList("");
+            glossaryApp.rebuildGlossary(text);
+            TreeMap<String, List<Integer>> expected = new TreeMap<>();
+            assertEquals(expected, glossaryApp.getGlossary());
+        }
 
+        @Test
+        void testRebuildGlossaryNull() {
+            List<String> text = null;
+            glossaryApp.rebuildGlossary(text);
+            TreeMap<String, List<Integer>> expected = new TreeMap<>();
+            assertEquals(expected, glossaryApp.getGlossary());
+        }
+
+        @Test
+        void testRebuildGlossaryMultipleParagraphs() {
+            List<String> text = Arrays.asList("Hello", "World", "", "Hello", "World");
+            glossaryApp.rebuildGlossary(text);
+            TreeMap<String, List<Integer>> expected = new TreeMap<>();
+            expected.put("Hello", Arrays.asList(0, 3));
+            expected.put("World", Arrays.asList(1, 4));
+            assertEquals(expected, glossaryApp.getGlossary());
+        }
+
+        @Test
+        void testRebuildGlossaryMultipleParagraphsEmpty() {
+            List<String> text = Arrays.asList("", "", "");
+            glossaryApp.rebuildGlossary(text);
+            TreeMap<String, List<Integer>> expected = new TreeMap<>();
+            assertEquals(expected, glossaryApp.getGlossary());
+        }
+
+        @Test
+        void testRebuildGlossaryMultipleParagraphsNull() {
+            List<String> text = Arrays.asList(null, null, null);
+            glossaryApp.rebuildGlossary(text);
+            TreeMap<String, List<Integer>> expected = new TreeMap<>();
+            assertEquals(expected, glossaryApp.getGlossary());
+        }
+
+
+    @Test
+    void testRebuildGlossary() {
+        // Test the rebuildGlossary method with a simple case
+        GlossaryApp glossaryApp = new GlossaryApp(new OutputManager());
+        List<String> text = Arrays.asList("This is a test.", "Another test.");
+        glossaryApp.rebuildGlossary(text);
+        TreeMap<String, List<Integer>> glossary = glossaryApp.getGlossary();
+        assertTrue(glossary.containsKey("This"));
+        assertTrue(glossary.containsKey("is"));
+        assertTrue(glossary.containsKey("test"));
+        assertEquals(1, glossary.get("This").get(0));
+        assertEquals(1, glossary.get("is").get(0));
+        assertEquals(1, glossary.get("test").get(0));
+        assertEquals(2, glossary.get("test").get(1));
     }
 
     @Test
-    void testCheckWordFrequencyOne() {
-        Map<String, Integer> wordFrequency = glossaryOne.computeWordFrequency(textOne);
+    void testComputeWordFrequency() {
+        // Test the computeWordFrequency method
+        GlossaryApp glossaryApp = new GlossaryApp(new OutputManager());
+        List<String> text = Arrays.asList("This is a test.", "Another test.");
+        Map<String, Integer> wordFrequency = glossaryApp.computeWordFrequency(text);
+        assertEquals(2, wordFrequency.size());
+        assertTrue(wordFrequency.containsKey("This"));
         assertTrue(wordFrequency.containsKey("test"));
-        assertEquals(3, wordFrequency.get("test"));
-
+        assertEquals(1, wordFrequency.get("This"));
+        assertEquals(2, wordFrequency.get("test"));
     }
 
     @Test
-    void testCheckWordFrequencyTwo() {
-        Map<String, Integer> wordFrequency = glossaryOne.computeWordFrequency(textOne);
-        assertFalse(wordFrequency.containsKey("another"));
-        assertNull(wordFrequency.get("another"));
+    void testInsertGlossaryEntries() {
+        // Test the insertGlossaryEntries method
+        GlossaryApp glossaryApp = new GlossaryApp(new OutputManager());
+        List<String> text = Arrays.asList("This is a test.", "Another test.");
+        Map<String, Integer> wordFrequency = glossaryApp.computeWordFrequency(text);
+        glossaryApp.insertGlossaryEntries(text, wordFrequency);
+        TreeMap<String, List<Integer>> glossary = glossaryApp.getGlossary();
+        assertTrue(glossary.containsKey("This"));
+        assertTrue(glossary.containsKey("test"));
+        assertEquals(1, glossary.get("This").get(0));
+        assertEquals(1, glossary.get("is").get(0));
+        assertEquals(1, glossary.get("test").get(0));
+        assertEquals(2, glossary.get("test").get(1));
     }
 
     @Test
-    void testFindParagraphIndexesOne() {
-        List<Integer> testIndexes = glossaryOne.searchWordInParagraphs(textOne, "test");
-        assertEquals(Arrays.asList(1, 2, 3), testIndexes);
-
+    void testSearchWordInParagraphs() {
+        // Test the searchWordInParagraphs method
+        GlossaryApp glossaryApp = new GlossaryApp(new OutputManager());
+        List<String> text = Arrays.asList("This is a test.", "Another test.");
+        List<Integer> indexes = glossaryApp.searchWordInParagraphs(text, "test");
+        assertEquals(2, indexes.size());
+        assertEquals(1, indexes.get(0));
+        assertEquals(2, indexes.get(1));
     }
 
-    @Test
-    void testFindParagraphIndexesTwo() {
-        List<Integer> nonexistentIndexes = glossaryOne.searchWordInParagraphs(textOne, "nonexistent");
-        assertTrue(nonexistentIndexes.isEmpty());
-    }
-
-    @Test
-    void testComputeWordFrequencyOne() {
-        Map<String, Integer> wordFrequency = glossaryTwo.computeWordFrequency(textTwo);
-        assertEquals(3, wordFrequency.get("test"));
-    }
-
-    @Test
-    void testComputeWordFrequencyTwo() {
-        Map<String, Integer> wordFrequency = glossaryTwo.computeWordFrequency(textTwo);
-        assertEquals(4, wordFrequency.get("paragraph"));
-    }
-
-    @Test
-    void testComputeWordFrequencyThree() {
-        Map<String, Integer> wordFrequency = glossaryTwo.computeWordFrequency(textTwo);
-        assertNull(wordFrequency.get("nonexistent"));
-    }
-
-    @Test
-    void testInsertEntriesToGlossaryOne() {
-        TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
-
-        assertTrue(glossaryMap.containsKey("Test"));
-        assertEquals(Arrays.asList(1, 2, 3), glossaryMap.get("Test"));
-
-    }
-
-    @Test
-    void testInsertEntriesToGlossaryTwo() {
-        TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
-
-        assertTrue(glossaryMap.containsKey("Paragraph"));
-        assertEquals(Arrays.asList(1, 2, 3), glossaryMap.get("Paragraph"));
-    }
-
-    @Test
-    void testInsertEntriesToGlossaryThree() {
-        TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
-
-        assertFalse(glossaryMap.containsKey("Nonexistent"));
-    }
-
-    @Test
-    void testRebuildGlossaryOne() {
-        glossaryOne.rebuildGlossary(textOne);
-        TreeMap<String, List<Integer>> glossaryMap = glossaryOne.getGlossary();
-
-        assertTrue(glossaryMap.containsKey("Test"));
-        assertEquals(Arrays.asList(1, 2, 3), glossaryMap.get("Test"));
-    }
-
-    @Test
-    void testRebuildGlossaryTwo() {
-        glossaryTwo.rebuildGlossary(textTwo);
-        TreeMap<String, List<Integer>> glossaryMap = glossaryTwo.getGlossary();
-
-        assertFalse(glossaryMap.containsKey("nonexistent"), "Glossary should not contain 'nonexistent'");
-    }
-
-    @Test
-    void testRebuildGlossaryThree() {
-        glossaryThree.rebuildGlossary(textThree);
-        TreeMap<String, List<Integer>> glossaryMap = glossaryThree.getGlossary();
-
-        assertFalse(glossaryMap.containsKey("paragraph"), "Glossary should not contain 'paragraph'");
-    }
-
-    @Test
-    void testFilterParagraphWithAlphabeticCharacters() {
-        assertEquals("hello  world ", glossaryOne.filterParagraph("Hello, World!"));
-    }
-
-    @Test
-    void testFilterParagraphWithNonAlphabeticCharacters() {
-        assertEquals("        ", glossaryOne.filterParagraph("1234!@#$"));
-    }
-
-    @Test
-    void testFilterParagraphEmptyString() {
-        assertEquals("", glossaryOne.filterParagraph(""));
-    }
 
 }

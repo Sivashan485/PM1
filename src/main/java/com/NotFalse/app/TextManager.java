@@ -85,7 +85,6 @@ public class TextManager {
                 formatTextRaw();
                 break;
             case FORMAT_FIX:
-                isFormatterRaw = false;
                 setMaxWidth(index);
                 formatTextFix();
                 break;
@@ -154,7 +153,7 @@ public class TextManager {
         try {
             if (index != null) {
                 if (validateIndex(index)) {
-                    text.remove(index);
+                    text.remove(index-1);
                 } else {
                     output.createIndexWarning();
                 }
@@ -227,6 +226,7 @@ public class TextManager {
             }
         }
         formattedText = fixFormatted.toString();
+        isFormatterRaw = false;
         return formattedText;
 
     }
@@ -372,6 +372,7 @@ public class TextManager {
         if (index != null) {
             try {
                 this.maxWidth = index+1;
+                System.out.println("Max Width set to: " + maxWidth);
             } catch (NumberFormatException e) {
                 output.createInvalidArgumentWarning();
             }

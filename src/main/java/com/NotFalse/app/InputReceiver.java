@@ -68,6 +68,7 @@ public class InputReceiver {
     private void handleIndexCommand(String restPart) {
         try {
            index = Integer.parseInt(restPart)-1;
+           System.out.println(index);
         } catch (NumberFormatException e) {
             System.err.println("Please enter a valid index.");
         }

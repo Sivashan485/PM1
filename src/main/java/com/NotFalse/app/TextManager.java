@@ -372,7 +372,6 @@ public class TextManager {
         if (index != null) {
             try {
                 this.maxWidth = index+1;
-                System.out.println("Max Width set to: " + maxWidth);
             } catch (NumberFormatException e) {
                 output.createInvalidArgumentWarning();
             }

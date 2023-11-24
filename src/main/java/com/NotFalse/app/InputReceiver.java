@@ -67,7 +67,7 @@ public class InputReceiver {
     // Handles commands that require an index
     private void handleIndexCommand(String restPart) {
         try {
-           index = Integer.parseInt(restPart)-1;
+           index = Integer.parseInt(restPart);
         } catch (NumberFormatException e) {
             System.err.println("Please enter a valid index.");
         }
@@ -78,8 +78,18 @@ public class InputReceiver {
         return command;
     }
 
+    public Integer convertToListIndex() {
+        try {
+            return  index-1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return null;
+        }
+        
+    }
+
     public Integer getIndex() {
-     
         return index;
     }
+
 }

@@ -54,20 +54,21 @@ public class TextManager {
     public void editText() {
         input.splitInput();
         Integer index = input.getIndex();
+        Integer paragraphIndex = input.convertToListIndex();
 
         switch (Command.parseCommand(input.getCommand())) {
             case DUMMY:
-                addDummyParagraph(index);
+                addDummyParagraph(paragraphIndex);
                 break;
             case EXIT:
                 output.createExitMessage();
                 isExitTriggered = true;
                 break;
             case ADD:
-                addNewParagraph(index);
+                addNewParagraph(paragraphIndex);
                 break;
             case DEL:
-                deleteParagraph(index);
+                deleteParagraph(paragraphIndex);
                 break;
             case INDEX:
                 glossary.printGlossary(text);
@@ -76,7 +77,7 @@ public class TextManager {
                 printText();
                 break;
             case REPLACE:
-                replaceParagraph(index);
+                replaceParagraph(paragraphIndex);
                 break;
             case HELP:
                 output.createMenuOptionsMessage();
@@ -102,12 +103,12 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    private void addDummyParagraph(Integer index) {
+    private void addDummyParagraph(Integer paragraphIndex) {
         try {
-            if (index != null) {
+            if (paragraphIndex != null) {
                 // the index is the second element of the array
-                if (validateIndex(index)){
-                    text.add(index, DUMMYTEXT);
+                if (validateIndex(paragraphIndex)){
+                    text.add(paragraphIndex, DUMMYTEXT);
                 }
                 else {
                     output.createIndexWarning();
@@ -121,14 +122,14 @@ public class TextManager {
         }
     }
 
-    private void addNewParagraph(Integer index) {
+    private void addNewParagraph(Integer paragraphIndex) {
         System.out.println("Text: ");
         String enteredText = input.readAndFilterUserInput();
         try {
-            if (index != null) {
+            if (paragraphIndex != null) {
                 // the index is the second element of the array
-                if (validateIndex(index)){
-                    text.add(index, enteredText + "\n");
+                if (validateIndex(paragraphIndex)){
+                    text.add(paragraphIndex, enteredText + "\n");
                 }
                 else {
                     output.createIndexWarning();
@@ -146,14 +147,14 @@ public class TextManager {
     /**
      * Deletes the paragraph at the specified index.
      */
-    private void deleteParagraph(Integer index) {
+    private void deleteParagraph(Integer paragraphIndex) {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
         }
         try {
-            if (index != null) {
-                if (validateIndex(index)) {
-                    text.remove(index-1);
+            if (paragraphIndex != null) {
+                if (validateIndex(paragraphIndex)) {
+                    text.remove(paragraphIndex-1);
                 } else {
                     output.createIndexWarning();
                 }
@@ -371,7 +372,7 @@ public class TextManager {
     void setMaxWidth(Integer index) {
         if (index != null) {
             try {
-                this.maxWidth = index+1;
+                this.maxWidth = index;
             } catch (NumberFormatException e) {
                 output.createInvalidArgumentWarning();
             }

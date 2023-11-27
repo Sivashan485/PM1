@@ -11,6 +11,7 @@ public class InputReceiver {
     private final static String ALLOWED_REGEX = "([^A-z äöüÄÖÜ 0-9 .,:;\\-!?'()\\\"%@+*\\\\[\\\\]{}\\\\\\\\&#$])";
     private String command;
     private Integer index;
+    private String restPart;
     /**
      * Constructor for InputReceiver.
      */
@@ -36,7 +37,7 @@ public class InputReceiver {
     public void splitInput() {
         String userInput = readAndFilterUserInput();
         command = extractCommand(userInput);
-        String restPart = userInput.substring(command.length()).trim();
+        restPart = userInput.substring(command.length()).trim();
         command += validateAndSplitCommand(command, restPart);
     }
 
@@ -92,4 +93,7 @@ public class InputReceiver {
         return index;
     }
 
+    public String getRestPart() {
+        return restPart;
+    }
 }

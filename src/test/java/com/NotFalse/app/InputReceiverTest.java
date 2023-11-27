@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class InputReceiverTest {
 
@@ -64,60 +63,66 @@ public class InputReceiverTest {
         String expected = "Hello123";
         assertEquals(expected, filteredInput);
     }
-/*
     @Test
     void testSplitInputShouldSplitAndIdentifyCommandAdd() {
         System.setIn(new ByteArrayInputStream("add Hey how are you, i'm the test".getBytes()));
         input = new InputReceiver();
-        String[] splitInput = input.splitInput();
-        assertEquals("add", splitInput[0]);
-        assertEquals("Hey how are you, i'm the test", splitInput[1]);
+        input.splitInput();
+        assertEquals("add", input.getCommand());
+        assertNull(input.getIndex());
+        assertEquals("Hey how are you, i'm the test", input.getRestPart());
     }
 
     @Test
     void testSplitInputShouldSplitAndIdentifyCommandReplace() {
         System.setIn(new ByteArrayInputStream(("replace diam horem").getBytes()));
         input = new InputReceiver();
-        String[] splitInput = input.splitInput();
-        assertEquals("replace", splitInput[0]);
-        assertEquals("diam horem", splitInput[1]);
+        input.splitInput();
+        assertEquals("replace", input.getCommand());
+        assertNull(input.getIndex());
+        assertEquals("diam horem", input.getRestPart());
     }
 
     @Test
     void testSplitInputShouldSplitAndIdentifyCommandExit() {
         System.setIn(new ByteArrayInputStream(("exit 1212").getBytes()));
         input = new InputReceiver();
-        String[] splitInput = input.splitInput();
-        assertEquals("exit", splitInput[0]);
-        assertEquals("1212", splitInput[1]);
+        input.splitInput();
+        assertEquals("exitnull", input.getCommand());
+        assertNull(input.getIndex());
+        assertEquals("1212", input.getRestPart());
     }
 
     @Test
     void testSplitInputShouldSplitButNotIdentifyCommandExit() {
         System.setIn(new ByteArrayInputStream(("add exit is the exit For the Exit").getBytes()));
         input = new InputReceiver();
-        String[] splitInput = input.splitInput();
-        assertEquals("add", splitInput[0]);
-        assertFalse(Boolean.parseBoolean("exit"), splitInput[1]);
-        assertEquals("exit is the exit For the Exit", splitInput[1]);
+        input.splitInput();
+        assertEquals("add", input.getCommand());
+        assertNull(input.getIndex());
+        assertEquals("exit is the exit For the Exit", input.getRestPart());
     }
 
     @Test
     void testSplitInputShouldSplitAndIdentifyCommandDel() {
         System.setIn(new ByteArrayInputStream(("Del is to del some text In The Text Editor.").getBytes()));
         input = new InputReceiver();
-        String[] splitInput = input.splitInput();
-        assertEquals("Del", splitInput[0]);
-        assertEquals("is to del some text In The Text Editor.", splitInput[1]);
+        input.splitInput();
+        assertEquals("del", input.getCommand());
+        assertNull(input.getIndex());
+        assertEquals("is to del some text In The Text Editor.", input.getRestPart());
     }
+
 
     @Test
     void testSplitInputShouldHandleEmptyInput() {
         System.setIn(new ByteArrayInputStream("\n".getBytes()));
         input = new InputReceiver();
-        String[] splitInput = input.splitInput();
-        assertEquals("", splitInput[0]);
+        input.splitInput();
+        assertEquals("", input.getCommand());
+        assertNull(input.getIndex());
+        assertEquals("", input.getRestPart());
     }
-    */
+
 
 }

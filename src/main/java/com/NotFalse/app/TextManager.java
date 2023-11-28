@@ -54,7 +54,7 @@ public class TextManager {
      */
     public void editText() {
         input.splitInput();
-        Integer index = input.getIndex();
+        Integer widthIndex = input.getIndex();
         Integer paragraphIndex = input.convertToListIndex();
 
         switch (Command.parseCommand(input.getCommand())) {
@@ -69,7 +69,7 @@ public class TextManager {
                 addNewParagraph(paragraphIndex);
                 break;
             case DEL:
-                deleteParagraph(index);
+                deleteParagraph(paragraphIndex);
                 break;
             case INDEX:
                 glossary.printGlossary(text);
@@ -90,7 +90,7 @@ public class TextManager {
                 }
                 break;
             case FORMAT_FIX:
-                setMaxWidth(index);
+                setMaxWidth(widthIndex);
                 formatTextFix();
                 if (isFormatFixSuccessful) {
                     output.createFormatMessage(true);
@@ -103,7 +103,7 @@ public class TextManager {
     }
 
     boolean validateIndex(Integer index) {
-        return index >= 0 && index <= text.size();
+        return index >= 0 && index <= text.size() + 1;
     }
 
     /**
@@ -159,16 +159,16 @@ public class TextManager {
             output.createEmptyTextWarning();
         }
         if(!input.getIsIndexInvalid()){
-            if (paragraphIndex != null) {
-                if (validateIndex(paragraphIndex)) {
-                    text.remove(paragraphIndex - 1);
-                    output.createDeleteMessage(true);
-                } else {
-                    output.createIndexWarning();
-                }
+            if (paragraphIndex == null) {
+                output.createIndexWarning();
+            } else if (validateIndex(paragraphIndex)) {
+                text.remove(paragraphIndex - 1 + 1);
+                output.createDeleteMessage(true);
             } else {
-                output.createDeleteMessage(false);
+                output.createIndexWarning();
             }
+
+
         }
     }
 
@@ -372,12 +372,12 @@ public class TextManager {
     /**
      * Setter for the maxWidth.
      *
-     * @param index Input from user
+     * @param widthIndex Input from user
      */
-    void setMaxWidth(Integer index) {
-        if (index != null) {
+    void setMaxWidth(Integer widthIndex) {
+        if (widthIndex != null) {
             try {
-                this.maxWidth = index;
+                this.maxWidth = widthIndex;
             } catch (NumberFormatException e) {
                 output.createInvalidArgumentWarning();
             }

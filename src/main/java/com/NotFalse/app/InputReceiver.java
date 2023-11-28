@@ -60,8 +60,10 @@ public class InputReceiver {
                 if(temporyFix[0].toLowerCase().equals(command.getCommand())){
                     return command.getCommand();
                 }else if(temporyFix.length>1){
-                    if((temporyFix[0].toLowerCase()+temporyFix[1].toLowerCase()).equals(command.getCommand())){
+                    if((temporyFix[0].toLowerCase()+" "+temporyFix[1].toLowerCase()).equals(command.getCommand())){
                         return command.getCommand();
+                    }else{
+                        return "";
                     }
                 }
                 //return command.getCommand();

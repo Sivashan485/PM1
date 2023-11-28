@@ -34,7 +34,7 @@ public class InputReceiver {
     }
 
     /**
-     *
+     * Splits the user input into a command and its arguments.
      */
     public void splitInput() {
         String userInput = readAndFilterUserInput();
@@ -43,7 +43,11 @@ public class InputReceiver {
         command += validateAndSplitCommand(command, restPart);
     }
 
-    // Extracts the command from the input
+    /**
+     * Extracts the command from the input
+     * @param userInput
+     * @return returns the command
+     */
     private String extractCommand(String userInput) {
         for (Command command : Command.values()) {
             if (userInput.toLowerCase().startsWith(command.getCommand())) {
@@ -53,7 +57,9 @@ public class InputReceiver {
         return "";
     }
 
-    // Validates the command and splits the input accordingly
+    /**
+     * Validates the command and splits the input accordingly
+      */
     private String validateAndSplitCommand(String command, String restPart) {
         // Handles commands that require an index
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
@@ -67,7 +73,10 @@ public class InputReceiver {
         return "";
     }
 
-    // Handles commands that require an index
+    /**
+     * Handles commands that require an index
+     * @param restPart
+     */
     private void handleIndexCommand(String restPart) {
         try {
            index = Integer.parseInt(restPart);
@@ -77,11 +86,19 @@ public class InputReceiver {
         }
     }
 
+    /**
+     * Retrieves the current command.
+     * @return The current command as a string.
+     */
     public String getCommand() {
        
         return command;
     }
 
+    /**
+     * Converts the index for list usage
+     * @return The valid list index or `null` if the conversion fails.
+     */
     public Integer convertToListIndex() {
         try {
             return  index-1;
@@ -92,13 +109,19 @@ public class InputReceiver {
         
     }
 
+
     public boolean getIsIndexInvalid(){
         return isIndexInvalid;
     }
 
+    /**
+     * Retrieves the current index.
+     * @return The current index as an integer.
+     */
     public Integer getIndex() {
         return index;
     }
+
 
     public String getRestPart() {
         return restPart;

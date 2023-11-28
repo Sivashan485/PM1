@@ -123,7 +123,6 @@ public class TextManager {
     }
 
     private void addNewParagraph(Integer paragraphIndex) {
-        System.out.println(input.getIsIndexInvalid());
         if(!input.getIsIndexInvalid()){
             System.out.println("Text: ");
             String enteredText = input.readAndFilterUserInput();

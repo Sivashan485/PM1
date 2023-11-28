@@ -332,7 +332,7 @@ public class TextManager {
         // Remove the original text and insert the modified text back into the list
         if (paragraph.endsWith(originalWord + wordEndSyntax)) {
             // Replace the word with the replacement word
-            paragraph = paragraph.replace(originalWord + wordEndSyntax, " " + replacementWord + wordEndSyntax);
+            paragraph = paragraph.replace(originalWord + wordEndSyntax, replacementWord + wordEndSyntax);
         }
         // Adding replacement and validation for the text
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);

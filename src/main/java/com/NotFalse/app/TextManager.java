@@ -81,7 +81,7 @@ public class TextManager {
                 replaceParagraph(paragraphIndex);
                 break;
             case HELP:
-                output.createMenuOptionsMessage();
+                output.createHelpMessage();
                 break;
             case FORMAT_RAW:
                 formatTextRaw();

@@ -35,7 +35,7 @@ public class OutputManager {
      * @param logText logText to be displayed of level INFO
      */
     public void createUserInfoMessage(String logText) {
-        System.out.println(logText);
+        System.out.println(logText+"\n");
         LOGGER.log(Level.INFO, logText);
     }
 
@@ -45,7 +45,7 @@ public class OutputManager {
      * @param logText logText to be displayed of level WARNING
      */
     public void createUserErrorMessage(String logText) {
-        System.err.println(logText);
+        System.err.println(logText+"\n");
         LOGGER.log(Level.WARNING, logText);
     }
 

@@ -26,6 +26,8 @@ public class TextManager {
     private String formattedText;
     private int maxWidth;
     private boolean isFormatterRaw;
+    private boolean isFormatRawSuccessful;
+    private boolean isFormatFixSuccessful;
 
     /**
      * Constructor for the TextManager class. It initializes the input, output,
@@ -43,7 +45,6 @@ public class TextManager {
         text.add("End of text.");
         isExitTriggered = false;
         isFormatterRaw = true;
-        formatTextRaw();
         output.createWelcomeMessage();
     }
 
@@ -84,10 +85,16 @@ public class TextManager {
                 break;
             case FORMAT_RAW:
                 formatTextRaw();
+                if (isFormatRawSuccessful) {
+                    output.createFormatMessage(true);
+                }
                 break;
             case FORMAT_FIX:
                 setMaxWidth(index);
                 formatTextFix();
+                if (isFormatFixSuccessful) {
+                    output.createFormatMessage(true);
+                }
                 break;
             default:
                 output.createInvalidCommandMessage();
@@ -107,10 +114,9 @@ public class TextManager {
         try {
             if (paragraphIndex != null) {
                 // the index is the second element of the array
-                if (validateIndex(paragraphIndex)){
+                if (validateIndex(paragraphIndex)) {
                     text.add(paragraphIndex, DUMMYTEXT);
-                }
-                else {
+                } else {
                     output.createIndexWarning();
                 }
             } else {
@@ -123,16 +129,15 @@ public class TextManager {
     }
 
     private void addNewParagraph(Integer paragraphIndex) {
-        if(!input.getIsIndexInvalid()){
+        if (!input.getIsIndexInvalid()) {
             System.out.print("Text: ");
             String enteredText = input.readAndFilterUserInput();
             try {
                 if (paragraphIndex != null) {
                     // the index is the second element of the array
-                    if (validateIndex(paragraphIndex)){
+                    if (validateIndex(paragraphIndex)) {
                         text.add(paragraphIndex, enteredText);
-                    }
-                    else {
+                    } else {
                         output.createIndexWarning();
                     }
                 } else {
@@ -143,7 +148,6 @@ public class TextManager {
                 output.createAddMessage(false);
             }
         }
-
 
     }
 
@@ -157,7 +161,7 @@ public class TextManager {
         try {
             if (paragraphIndex != null) {
                 if (validateIndex(paragraphIndex)) {
-                    text.remove(paragraphIndex-1);
+                    text.remove(paragraphIndex - 1);
                     output.createDeleteMessage(true);
                 } else {
                     output.createIndexWarning();
@@ -184,11 +188,12 @@ public class TextManager {
             for (int paragraph = 0; paragraph < text.size(); paragraph++) {
                 formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
             }
-            output.createFormatMessage(true);
             isFormatterRaw = true;
+            isFormatRawSuccessful = true;
             return formattedText;
         } catch (Exception e) {
             output.createFormatMessage(false);
+            isFormatRawSuccessful = false;
             return "";
         }
     }
@@ -224,15 +229,15 @@ public class TextManager {
                 }
                 currentParagraphWidth = appendNewLine(word, fixFormatted, currentParagraphWidth);
                 currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
-
                 fixFormatted.append(word);
                 currentParagraphWidth += word.length();
             }
         }
+        fixFormatted.append("\n");
         formattedText = fixFormatted.toString();
         isFormatterRaw = false;
+        isFormatFixSuccessful = true;
         return formattedText;
-
     }
 
     /**
@@ -279,7 +284,7 @@ public class TextManager {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
         } else {
-            if(isFormatterRaw) {
+            if (isFormatterRaw) {
                 formatTextRaw();
             } else {
                 formatTextFix();
@@ -295,7 +300,7 @@ public class TextManager {
      * of the text that comes after the first occurrence of the replacing word.
      * If the replacing word is not present, an empty string is returned.
      *
-     * @param paragraph The input text para
+     * @param paragraph     The input text para
      *                      graph to be split.
      * @param replacingWord The word used as a delimiter for splitting the text.
      * @return The portion of the text after the first occurrence of the replacing
@@ -357,7 +362,7 @@ public class TextManager {
         String replacementWord = input.readAndFilterUserInput();
 
         if (index != null) {
-            if(validateIndex(index)) {
+            if (validateIndex(index)) {
                 replaceWordInParagraph(index, originalWord, replacementWord);
             } else {
                 output.createIndexWarning();
@@ -404,7 +409,7 @@ public class TextManager {
         this.text = text;
     }
 
-    public List<String> getText(){
+    public List<String> getText() {
         return Collections.unmodifiableList(text);
     }
 

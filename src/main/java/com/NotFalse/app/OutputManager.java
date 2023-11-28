@@ -68,7 +68,7 @@ public class OutputManager {
      * Creates a menu option message with the commands that can be used.
      */
     public void createHelpMessage() {
-        createUserInfoMessage("Here are the commands you can use: " + Command.getAllCommands());
+        createUserInfoMessage("Here are the commands you can use:\n" + Command.getAllCommands());
     }
 
     /**

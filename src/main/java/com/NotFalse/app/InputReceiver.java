@@ -13,6 +13,7 @@ public class InputReceiver {
     private Integer index;
     private String restPart;
     private boolean isIndexInvalid;
+
     /**
      * Constructor for InputReceiver.
      */
@@ -45,6 +46,7 @@ public class InputReceiver {
 
     /**
      * Extracts the command from the input
+     *
      * @param userInput
      * @return returns the command
      */
@@ -59,14 +61,14 @@ public class InputReceiver {
 
     /**
      * Validates the command and splits the input accordingly
-      */
+     */
     private String validateAndSplitCommand(String command, String restPart) {
         // Handles commands that require an index
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
             handleIndexCommand(restPart);
         } else if (!restPart.isEmpty()) {
             // Handle commands that should not have extra text
-            return  null;
+            return null;
         } else {
             return restPart;
         }
@@ -79,7 +81,7 @@ public class InputReceiver {
      */
     private void handleIndexCommand(String restPart) {
         try {
-           index = Integer.parseInt(restPart);
+            index = Integer.parseInt(restPart);
         } catch (NumberFormatException e) {
             isIndexInvalid = true;
             System.err.println("Please enter a valid index.");
@@ -91,26 +93,31 @@ public class InputReceiver {
      * @return The current command as a string.
      */
     public String getCommand() {
-       
+
         return command;
     }
 
     /**
      * Converts the index for list usage
+     *
      * @return The valid list index or `null` if the conversion fails.
      */
     public Integer convertToListIndex() {
         try {
-            return  index-1;
+            return index - 1;
         } catch (Exception e) {
             // TODO: handle exception
             return null;
         }
-        
+
     }
 
 
-    public boolean getIsIndexInvalid(){
+    /**
+     * Determines whether the index is invalid.
+     * @return `true` if the index is invalid, `false` otherwise.
+     */
+    public boolean getIsIndexInvalid() {
         return isIndexInvalid;
     }
 
@@ -123,6 +130,10 @@ public class InputReceiver {
     }
 
 
+    /**
+     * Retrieves the remaining part of the user input after extracting the command.
+     * @return The remaining part of the user input as a string.
+     */
     public String getRestPart() {
         return restPart;
     }

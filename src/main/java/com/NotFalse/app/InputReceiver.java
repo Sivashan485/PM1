@@ -38,6 +38,7 @@ public class InputReceiver {
      * Splits the user input into a command and its arguments.
      */
     public void splitInput() {
+        System.out.print(">> ");
         String userInput = readAndFilterUserInput();
         command = extractCommand(userInput);
         restPart = userInput.substring(command.length()).trim();

@@ -155,7 +155,6 @@ public class TextManager {
             output.createEmptyTextWarning();
         }
         if(!input.getIsIndexInvalid()){
-            System.out.println(paragraphIndex);
             if (paragraphIndex != null) {
                 if (validateIndex(paragraphIndex)) {
                     text.remove(paragraphIndex-1);

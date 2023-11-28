@@ -23,13 +23,19 @@ public class InputReceiver {
         index = null;
     }
 
+    public void resetValues(){
+        isIndexInvalid = false;
+        index = null;
+        command = "";
+    }
+
     /**
      * Receives the input from the user and filters it.
      *
      * @return returns the filtered input text
      */
     public String readAndFilterUserInput() {
-        isIndexInvalid = false;
+        resetValues();
         String inputText = input.nextLine();
         return inputText.replaceAll(ALLOWED_REGEX, "");
     }
@@ -42,6 +48,7 @@ public class InputReceiver {
         command = extractCommand(userInput);
 
         restPart = userInput.substring(command.length()).trim();
+        System.out.println(restPart);
         command += validateAndSplitCommand(command, restPart);
     }
 
@@ -58,12 +65,10 @@ public class InputReceiver {
             if (userInput.toLowerCase().startsWith(command.getCommand())) {
                 if(userInputPartition[0].equals(command.getCommand())){
                     return command.getCommand();
-                }else if(userInputPartition.length>1){
-                    if((userInputPartition[0]+" "+userInputPartition[1]).equals(command.getCommand())){
-                        return command.getCommand();
-                    }else{
-                        return "";
-                    }
+                }else if(isCommandMatchingInputPart(userInputPartition, command)){
+                    return command.getCommand();
+                }else{
+                    return "";
                 }
                 //return command.getCommand();
             }

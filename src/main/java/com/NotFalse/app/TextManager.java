@@ -124,19 +124,19 @@ public class TextManager {
 
     private void addNewParagraph(Integer paragraphIndex) {
         if(!input.getIsIndexInvalid()){
-            System.out.println("Text: ");
+            System.out.print("Text: ");
             String enteredText = input.readAndFilterUserInput();
             try {
                 if (paragraphIndex != null) {
                     // the index is the second element of the array
                     if (validateIndex(paragraphIndex)){
-                        text.add(paragraphIndex, enteredText + "\n");
+                        text.add(paragraphIndex, enteredText);
                     }
                     else {
                         output.createIndexWarning();
                     }
                 } else {
-                    text.add(enteredText + "\n");
+                    text.add(enteredText);
                 }
                 output.createAddMessage(true);
             } catch (Exception e) {
@@ -158,13 +158,13 @@ public class TextManager {
             if (paragraphIndex != null) {
                 if (validateIndex(paragraphIndex)) {
                     text.remove(paragraphIndex-1);
+                    output.createDeleteMessage(true);
                 } else {
                     output.createIndexWarning();
                 }
             } else {
-                text.remove(text.size() - 1);
+                output.createDeleteMessage(false);
             }
-            output.createDeleteMessage(true);
         } catch (Exception e) {
             output.createDeleteMessage(false);
         }

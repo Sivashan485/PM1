@@ -52,15 +52,14 @@ public class InputReceiver {
      * @return returns the command
      */
     private String extractCommand(String userInput) {
+        String [] userInputPartition = userInput.toLowerCase().split(" ");
         for (Command command : Command.values()) {
-            String []temporyFix;//NEW
-            temporyFix = userInput.split(" "); // NEW
+
             if (userInput.toLowerCase().startsWith(command.getCommand())) {
-                //NEW ->
-                if(temporyFix[0].toLowerCase().equals(command.getCommand())){
+                if(userInputPartition[0].equals(command.getCommand())){
                     return command.getCommand();
-                }else if(temporyFix.length>1){
-                    if((temporyFix[0].toLowerCase()+" "+temporyFix[1].toLowerCase()).equals(command.getCommand())){
+                }else if(userInputPartition.length>1){
+                    if((userInputPartition[0]+" "+userInputPartition[1]).equals(command.getCommand())){
                         return command.getCommand();
                     }else{
                         return "";
@@ -71,6 +70,12 @@ public class InputReceiver {
         }
         return "";
     }
+
+    boolean isCommandMatchingInputPart(String []userInputPartition, Command command){
+        return userInputPartition.length > 1 && (userInputPartition[0] + " " + userInputPartition[1]).equals(command.getCommand());
+    }
+
+
 
     /**
      * Validates the command and splits the input accordingly

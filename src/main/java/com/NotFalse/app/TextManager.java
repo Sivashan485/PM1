@@ -68,7 +68,7 @@ public class TextManager {
                 addNewParagraph(paragraphIndex);
                 break;
             case DEL:
-                deleteParagraph(paragraphIndex);
+                deleteParagraph(index);
                 break;
             case INDEX:
                 glossary.printGlossary(text);

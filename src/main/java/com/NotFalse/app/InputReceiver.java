@@ -61,7 +61,6 @@ public class InputReceiver {
     private String extractCommand(String userInput) {
         String [] userInputPartition = userInput.toLowerCase().split(" ");
         for (Command command : Command.values()) {
-
             if (userInput.toLowerCase().startsWith(command.getCommand())) {
                 if(userInputPartition[0].equals(command.getCommand())){
                     return command.getCommand();
@@ -70,7 +69,6 @@ public class InputReceiver {
                 }else{
                     return "";
                 }
-                //return command.getCommand();
             }
         }
         return "";

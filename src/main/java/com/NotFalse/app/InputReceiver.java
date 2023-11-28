@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class InputReceiver {
 
     private final Scanner input;
-    private final static String ALLOWED_REGEX = "([^A-z äöüÄÖÜ 0-9 .,:;\\-!?'()\\\"%@+*\\\\[\\\\]{}\\\\\\\\&#$])";
+    private final static String ALLOWED_REGEX = "([^A-z äöüÄÖÜ 0-9 .,:;\\-!?'\\\\()\\\"%@+*\\\\[\\\\]{}\\\\\\\\&#$])";
     private String command;
     private Integer index;
     private String restPart;

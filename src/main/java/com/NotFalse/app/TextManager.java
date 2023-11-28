@@ -69,7 +69,7 @@ public class TextManager {
                 addNewParagraph(paragraphIndex);
                 break;
             case DEL:
-                deleteParagraph(paragraphIndex);
+                deleteParagraph(index);
                 break;
             case INDEX:
                 glossary.printGlossary(text);
@@ -103,7 +103,7 @@ public class TextManager {
     }
 
     boolean validateIndex(Integer index) {
-        return index >= 0 && index < text.size();
+        return index >= 0 && index <= text.size();
     }
 
     /**
@@ -158,7 +158,7 @@ public class TextManager {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
         }
-        try {
+        if(!input.getIsIndexInvalid()){
             if (paragraphIndex != null) {
                 if (validateIndex(paragraphIndex)) {
                     text.remove(paragraphIndex - 1);
@@ -169,10 +169,7 @@ public class TextManager {
             } else {
                 output.createDeleteMessage(false);
             }
-        } catch (Exception e) {
-            output.createDeleteMessage(false);
         }
-
     }
 
     /**
@@ -340,7 +337,7 @@ public class TextManager {
         // Remove the original text and insert the modified text back into the list
         if (paragraph.endsWith(originalWord + wordEndSyntax)) {
             // Replace the word with the replacement word
-            paragraph = paragraph.replace(originalWord + wordEndSyntax, " " + replacementWord + wordEndSyntax);
+            paragraph = paragraph.replace(originalWord + wordEndSyntax, replacementWord + wordEndSyntax);
         }
         // Adding replacement and validation for the text
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);

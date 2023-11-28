@@ -23,13 +23,19 @@ public class InputReceiver {
         index = null;
     }
 
+    public void resetValues(){
+        isIndexInvalid = false;
+        index = null;
+        command = "";
+    }
+
     /**
      * Receives the input from the user and filters it.
      *
      * @return returns the filtered input text
      */
     public String readAndFilterUserInput() {
-        isIndexInvalid = false;
+        resetValues();
         String inputText = input.nextLine();
         return inputText.replaceAll(ALLOWED_REGEX, "");
     }
@@ -41,7 +47,9 @@ public class InputReceiver {
         System.out.print(">> ");
         String userInput = readAndFilterUserInput();
         command = extractCommand(userInput);
+
         restPart = userInput.substring(command.length()).trim();
+        System.out.println(restPart);
         command += validateAndSplitCommand(command, restPart);
     }
 
@@ -52,13 +60,26 @@ public class InputReceiver {
      * @return returns the command
      */
     private String extractCommand(String userInput) {
+        String [] userInputPartition = userInput.toLowerCase().split(" ");
         for (Command command : Command.values()) {
             if (userInput.toLowerCase().startsWith(command.getCommand())) {
-                return command.getCommand();
+                if(userInputPartition[0].equals(command.getCommand())){
+                    return command.getCommand();
+                }else if(isCommandMatchingInputPart(userInputPartition, command)){
+                    return command.getCommand();
+                }else{
+                    return "";
+                }
             }
         }
         return "";
     }
+
+    boolean isCommandMatchingInputPart(String []userInputPartition, Command command){
+        return userInputPartition.length > 1 && (userInputPartition[0] + " " + userInputPartition[1]).equals(command.getCommand());
+    }
+
+
 
     /**
      * Validates the command and splits the input accordingly
@@ -104,10 +125,10 @@ public class InputReceiver {
      * @return The valid list index or `null` if the conversion fails.
      */
     public Integer convertToListIndex() {
-        try {
+
+        if (index != null) {
             return index - 1;
-        } catch (Exception e) {
-            // TODO: handle exception
+        } else {
             return null;
         }
 

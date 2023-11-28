@@ -47,9 +47,7 @@ public class InputReceiver {
         System.out.print(">> ");
         String userInput = readAndFilterUserInput();
         command = extractCommand(userInput);
-
         restPart = userInput.substring(command.length()).trim();
-        System.out.println(restPart);
         command += validateAndSplitCommand(command, restPart);
     }
 
@@ -104,9 +102,13 @@ public class InputReceiver {
     private void handleIndexCommand(String restPart) {
         try {
             index = Integer.parseInt(restPart);
+            if (index < 1) {
+                IsIndexValid = false;
+                System.err.println("This index is not valid. Please try again.\n");
+            }
         } catch (NumberFormatException e) {
             IsIndexValid = false;
-            System.err.println("Please enter a valid index.");
+            System.err.println("This index is not valid. Please try again.\n");
         }
     }
 

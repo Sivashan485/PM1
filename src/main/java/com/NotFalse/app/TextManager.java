@@ -39,7 +39,7 @@ public class TextManager {
         glossary = new GlossaryApp(output);
         text = new ArrayList<>();
         text.add("First Hello this is a Test sentence.");
-        text.add("Secund Another Test sentence.");
+        text.add("Second Another Test sentence.");
         text.add("Third useless Test sentence.");
         text.add("Fourth Hello Hello Hello");
         text.add("Fifth End of text.");
@@ -103,7 +103,7 @@ public class TextManager {
     }
 
     boolean validateIndex(Integer paragraphIndex) {
-        return paragraphIndex >= 0 && paragraphIndex <= text.size() + 1;
+        return paragraphIndex >= 0 && paragraphIndex <= text.size();
     }
 
     /**
@@ -111,27 +111,21 @@ public class TextManager {
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
     private void addDummyParagraph(Integer paragraphIndex) {
-        try {
-            if (paragraphIndex != null) {
-                // the index is the second element of the array
-                if (validateIndex(paragraphIndex)) {
-                    text.add(paragraphIndex, DUMMYTEXT);
-                } else {
-                    output.createIndexWarning();
-                }
-            } else {
-                text.add(DUMMYTEXT);
-            }
+        if (paragraphIndex == null) {
+            text.add(DUMMYTEXT);
             output.createAddMessage(true);
-        } catch (Exception e) {
-            output.createAddMessage(false);
+        } else if (validateIndex(paragraphIndex)) {
+            text.add(paragraphIndex, DUMMYTEXT);
+            output.createAddMessage(true);
+        } else {
+            output.createIndexWarning();
         }
     }
 
     private void addNewParagraph(Integer paragraphIndex) {
         System.out.print("Text: ");
         String enteredText = input.readAndFilterUserInput();
-        
+
         if (input.getIsIndexValid()) {
             if (paragraphIndex == null) {
                 text.add(enteredText);
@@ -226,6 +220,7 @@ public class TextManager {
         formattedText = fixFormatted.toString();
         isFormatterRaw = false;
         isFormatFixSuccessful = true;
+
         return formattedText;
     }
 
@@ -344,15 +339,15 @@ public class TextManager {
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraph(Integer index) {
+    void replaceParagraph(Integer paragraphIndex) {
         System.out.print("Replacing Word: ");
         String originalWord = input.readAndFilterUserInput();
         System.out.print("Replacing with: ");
         String replacementWord = input.readAndFilterUserInput();
 
-        if (index != null) {
-            if (validateIndex(index)) {
-                replaceWordInParagraph(index, originalWord, replacementWord);
+        if (paragraphIndex != null) {
+            if (validateIndex(paragraphIndex)) {
+                replaceWordInParagraph(paragraphIndex, originalWord, replacementWord);
             } else {
                 output.createIndexWarning();
             }

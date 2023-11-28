@@ -123,24 +123,28 @@ public class TextManager {
     }
 
     private void addNewParagraph(Integer paragraphIndex) {
-        System.out.println("Text: ");
-        String enteredText = input.readAndFilterUserInput();
-        try {
-            if (paragraphIndex != null) {
-                // the index is the second element of the array
-                if (validateIndex(paragraphIndex)){
-                    text.add(paragraphIndex, enteredText + "\n");
+        System.out.println(input.getIsIndexInvalid());
+        if(!input.getIsIndexInvalid()){
+            System.out.println("Text: ");
+            String enteredText = input.readAndFilterUserInput();
+            try {
+                if (paragraphIndex != null) {
+                    // the index is the second element of the array
+                    if (validateIndex(paragraphIndex)){
+                        text.add(paragraphIndex, enteredText + "\n");
+                    }
+                    else {
+                        output.createIndexWarning();
+                    }
+                } else {
+                    text.add(enteredText + "\n");
                 }
-                else {
-                    output.createIndexWarning();
-                }
-            } else {
-                text.add(enteredText + "\n");
+                output.createAddMessage(true);
+            } catch (Exception e) {
+                output.createAddMessage(false);
             }
-            output.createAddMessage(true);
-        } catch (Exception e) {
-            output.createAddMessage(false);
         }
+
 
     }
 

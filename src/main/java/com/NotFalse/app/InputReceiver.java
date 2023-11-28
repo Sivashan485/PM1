@@ -12,6 +12,7 @@ public class InputReceiver {
     private String command;
     private Integer index;
     private String restPart;
+    private boolean isIndexInvalid;
     /**
      * Constructor for InputReceiver.
      */
@@ -27,6 +28,7 @@ public class InputReceiver {
      * @return returns the filtered input text
      */
     public String readAndFilterUserInput() {
+        isIndexInvalid = false;
         String inputText = input.nextLine();
         return inputText.replaceAll(ALLOWED_REGEX, "");
     }
@@ -70,6 +72,7 @@ public class InputReceiver {
         try {
            index = Integer.parseInt(restPart);
         } catch (NumberFormatException e) {
+            isIndexInvalid = true;
             System.err.println("Please enter a valid index.");
         }
     }
@@ -87,6 +90,10 @@ public class InputReceiver {
             return null;
         }
         
+    }
+
+    public boolean getIsIndexInvalid(){
+        return isIndexInvalid;
     }
 
     public Integer getIndex() {

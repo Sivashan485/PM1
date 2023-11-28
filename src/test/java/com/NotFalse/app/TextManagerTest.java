@@ -20,8 +20,8 @@ public class TextManagerTest {
     // Test for Method formatTextFix
     @Test
     void testSingleShortWord() {
-        String expected = "test";
-        textManager.setText(Arrays.asList("test"));
+        String expected = "test\n";
+        textManager.setText(Arrays.asList("test\n"));
         textManager.setMaxWidth(4);
         assertEquals(expected, textManager.formatTextFix());
     }
@@ -29,7 +29,7 @@ public class TextManagerTest {
     // Test for Method formatTextFix
     @Test
     void testEmptyInput() {
-        String expected = "";
+        String expected = "\n";
         textManager.setText(Arrays.asList(""));
         textManager.setMaxWidth(4);
         assertEquals(expected, textManager.formatTextFix());
@@ -40,7 +40,7 @@ public class TextManagerTest {
     void testSingleLongWord() {
         String expected = "0123456\n" +
                 "7890123\n" +
-                "456789";
+                "456789\n";
         textManager.setText(Arrays.asList("01234567890123456789"));
         textManager.setMaxWidth(7);
         assertEquals(expected, textManager.formatTextFix());
@@ -50,7 +50,7 @@ public class TextManagerTest {
     @Test
     void testMultipleShortWords() {
         String expected = "hello\n" +
-                "world";
+                "world\n";
         input = new InputReceiver();
         textManager.setText(Arrays.asList("hello", "world"));
         textManager.setMaxWidth(7);
@@ -62,7 +62,7 @@ public class TextManagerTest {
     void testMultipleLongWords() {
         String expected = "abcdefghij jiwer\n" +
                 "klmnopqrstuvwxy\n" +
-                "zabcdefghij";
+                "zabcdefghij\n";
         textManager.setText(Arrays.asList("abcdefghij", "jiwer", "klmnopqrstuvwxy", "zabcdefghij"));
         textManager.setMaxWidth(20);
         assertEquals(expected, textManager.formatTextFix());
@@ -75,7 +75,7 @@ public class TextManagerTest {
                 "klmnopqrst\n" +
                 "uvwxyzabcd\n" +
                 "efghijklmn\n" +
-                "opqrstuvwx";
+                "opqrstuvwx\n";
         textManager.setText(Arrays.asList("abcdefghijklmnopqrst", "uvwxyzabcdefghijklmn", "opqrstuvwx"));
         textManager.setMaxWidth(10);
         assertEquals(expected, textManager.formatTextFix());
@@ -88,7 +88,7 @@ public class TextManagerTest {
                 "klmnopqrst\n" +
                 "uvwxyzabcd\n" +
                 "efghijklmn\n" +
-                "opqrstuvwx";
+                "opqrstuvwx\n";
         textManager.setText(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabcd", "efghijklmn", "opqrstuvwx"));
         textManager.setMaxWidth(10);
         assertEquals(expected, textManager.formatTextFix());
@@ -101,7 +101,7 @@ public class TextManagerTest {
                 "klmnopqrst uvwxyzabc\n" +
                 "efghijkl opqrstu\n" +
                 "yzabcd ijklm stuv\n" +
-                "cde mn o";
+                "cde mn o\n";
         textManager.setText(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabc", "efghijkl",
                 "opqrstu", "yzabcd", "ijklm", "stuv", "cde", "mn", "o"));
         textManager.setMaxWidth(20);
@@ -111,7 +111,7 @@ public class TextManagerTest {
     // Test for Method formatTextFix
     @Test
     void testSpacesNotPreserved() {
-        String expected = "hello world";
+        String expected = "hello world\n";
         textManager.setText(Arrays.asList("hello", " ", "world"));
         textManager.setMaxWidth(20);
         assertEquals(expected, textManager.formatTextFix());
@@ -121,7 +121,7 @@ public class TextManagerTest {
     @Test
     void testMaximumWidthBoundary() {
         String longWord = "a".repeat(80);
-        String expected = longWord + "\nb";
+        String expected = longWord + "\nb\n";
         textManager.setText(Arrays.asList(longWord, "b"));
         textManager.setMaxWidth(80);
         assertEquals(expected, textManager.formatTextFix());

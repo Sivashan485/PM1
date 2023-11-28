@@ -38,11 +38,11 @@ public class TextManager {
         output = new OutputManager();
         glossary = new GlossaryApp(output);
         text = new ArrayList<>();
-        text.add("Hello this is a Test sentence.");
-        text.add("Another Test sentence.");
-        text.add("Second useless Test sentence.");
-        text.add("Hello Hello Hello");
-        text.add("End of text.");
+        text.add("First Hello this is a Test sentence.");
+        text.add("Secund Another Test sentence.");
+        text.add("Third useless Test sentence.");
+        text.add("Fourth Hello Hello Hello");
+        text.add("Fifth End of text.");
         isExitTriggered = false;
         isFormatterRaw = true;
         output.createWelcomeMessage();
@@ -102,8 +102,8 @@ public class TextManager {
         }
     }
 
-    boolean validateIndex(Integer index) {
-        return index >= 0 && index <= text.size() + 1;
+    boolean validateIndex(Integer paragraphIndex) {
+        return paragraphIndex >= 0 && paragraphIndex <= text.size() + 1;
     }
 
     /**
@@ -129,26 +129,20 @@ public class TextManager {
     }
 
     private void addNewParagraph(Integer paragraphIndex) {
-        if (!input.getIsIndexInvalid()) {
-            System.out.print("Text: ");
-            String enteredText = input.readAndFilterUserInput();
-            try {
-                if (paragraphIndex != null) {
-                    // the index is the second element of the array
-                    if (validateIndex(paragraphIndex)) {
-                        text.add(paragraphIndex, enteredText);
-                    } else {
-                        output.createIndexWarning();
-                    }
-                } else {
-                    text.add(enteredText);
-                }
+        System.out.print("Text: ");
+        String enteredText = input.readAndFilterUserInput();
+        
+        if (input.getIsIndexValid()) {
+            if (paragraphIndex == null) {
+                text.add(enteredText);
                 output.createAddMessage(true);
-            } catch (Exception e) {
-                output.createAddMessage(false);
+            } else if (validateIndex(paragraphIndex)) {
+                text.add(paragraphIndex, enteredText);
+                output.createAddMessage(true);
+            } else {
+                output.createIndexWarning();
             }
         }
-
     }
 
     /**
@@ -158,7 +152,7 @@ public class TextManager {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
         }
-        if(!input.getIsIndexInvalid()){
+        if (input.getIsIndexValid()) {
             if (paragraphIndex == null) {
                 output.createIndexWarning();
             } else if (validateIndex(paragraphIndex)) {
@@ -167,8 +161,6 @@ public class TextManager {
             } else {
                 output.createIndexWarning();
             }
-
-
         }
     }
 

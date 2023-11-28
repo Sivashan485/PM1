@@ -12,7 +12,7 @@ public class InputReceiver {
     private String command;
     private Integer index;
     private String restPart;
-    private boolean isIndexInvalid;
+    private boolean IsIndexValid;
 
     /**
      * Constructor for InputReceiver.
@@ -23,8 +23,8 @@ public class InputReceiver {
         index = null;
     }
 
-    public void resetValues(){
-        isIndexInvalid = false;
+    private void resetValues(){
+        IsIndexValid = true;
         index = null;
         command = "";
     }
@@ -34,7 +34,7 @@ public class InputReceiver {
      *
      * @return returns the filtered input text
      */
-    public String readAndFilterUserInput() {
+    String readAndFilterUserInput() {
         resetValues();
         String inputText = input.nextLine();
         return inputText.replaceAll(ALLOWED_REGEX, "");
@@ -59,7 +59,7 @@ public class InputReceiver {
      * @param userInput
      * @return returns the command
      */
-    private String extractCommand(String userInput) {
+    String extractCommand(String userInput) {
         String [] userInputPartition = userInput.toLowerCase().split(" ");
         for (Command command : Command.values()) {
             if (userInput.toLowerCase().startsWith(command.getCommand())) {
@@ -105,7 +105,7 @@ public class InputReceiver {
         try {
             index = Integer.parseInt(restPart);
         } catch (NumberFormatException e) {
-            isIndexInvalid = true;
+            IsIndexValid = false;
             System.err.println("Please enter a valid index.");
         }
     }
@@ -139,8 +139,8 @@ public class InputReceiver {
      * Determines whether the index is invalid.
      * @return `true` if the index is invalid, `false` otherwise.
      */
-    public boolean getIsIndexInvalid() {
-        return isIndexInvalid;
+    public boolean getIsIndexValid() {
+        return IsIndexValid;
     }
 
     /**

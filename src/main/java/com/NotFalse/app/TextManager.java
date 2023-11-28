@@ -96,7 +96,7 @@ public class TextManager {
     }
 
     boolean validateIndex(Integer index) {
-        return index >= 0 && index < text.size();
+        return index >= 0 && index <= text.size();
     }
 
     /**

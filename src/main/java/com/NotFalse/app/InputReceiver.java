@@ -40,6 +40,7 @@ public class InputReceiver {
     public void splitInput() {
         String userInput = readAndFilterUserInput();
         command = extractCommand(userInput);
+
         restPart = userInput.substring(command.length()).trim();
         command += validateAndSplitCommand(command, restPart);
     }
@@ -52,8 +53,18 @@ public class InputReceiver {
      */
     private String extractCommand(String userInput) {
         for (Command command : Command.values()) {
+            String []temporyFix;//NEW
+            temporyFix = userInput.split(" "); // NEW
             if (userInput.toLowerCase().startsWith(command.getCommand())) {
-                return command.getCommand();
+                //NEW ->
+                if(temporyFix[0].toLowerCase().equals(command.getCommand())){
+                    return command.getCommand();
+                }else if(temporyFix.length>1){
+                    if((temporyFix[0].toLowerCase()+temporyFix[1].toLowerCase()).equals(command.getCommand())){
+                        return command.getCommand();
+                    }
+                }
+                //return command.getCommand();
             }
         }
         return "";
@@ -103,10 +114,10 @@ public class InputReceiver {
      * @return The valid list index or `null` if the conversion fails.
      */
     public Integer convertToListIndex() {
-        try {
+
+        if (index != null) {
             return index - 1;
-        } catch (Exception e) {
-            // TODO: handle exception
+        } else {
             return null;
         }
 

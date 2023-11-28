@@ -154,7 +154,8 @@ public class TextManager {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
         }
-        try {
+        if(!input.getIsIndexInvalid()){
+            System.out.println(paragraphIndex);
             if (paragraphIndex != null) {
                 if (validateIndex(paragraphIndex)) {
                     text.remove(paragraphIndex-1);
@@ -165,10 +166,7 @@ public class TextManager {
             } else {
                 output.createDeleteMessage(false);
             }
-        } catch (Exception e) {
-            output.createDeleteMessage(false);
         }
-
     }
 
     /**

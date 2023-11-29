@@ -20,7 +20,6 @@ public class TextManager {
             "Aldus PageMaker including versions of Lorem Ipsum.";
     private final InputReceiver input;
     private final OutputManager output;
-    private final GlossaryApp glossary;
 
     private List<String> text;
     private String formattedText;
@@ -38,7 +37,6 @@ public class TextManager {
     TextManager() {
         input = new InputReceiver();
         output = new OutputManager();
-        glossary = new GlossaryApp(output);
         text = new ArrayList<>();
         text.add("First Hello this is a Test sentence.");
         text.add("Second Another Test sentence.");

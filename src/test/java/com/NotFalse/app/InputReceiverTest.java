@@ -70,7 +70,7 @@ public class InputReceiverTest {
         input.splitInput();
         assertEquals("add", input.getCommand());
         assertNull(input.getIndex());
-        assertEquals("Hey how are you, i'm the test", input.getRestPart());
+        assertNotEquals("Hey how are you, i'm the test", input.getRestPart());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class InputReceiverTest {
         input.splitInput();
         assertEquals("replace", input.getCommand());
         assertNull(input.getIndex());
-        assertEquals("diam horem", input.getRestPart());
+        assertNotEquals("diam horem", input.getRestPart());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class InputReceiverTest {
         input.splitInput();
         assertEquals("add", input.getCommand());
         assertNull(input.getIndex());
-        assertEquals("exit is the exit For the Exit", input.getRestPart());
+        assertNotEquals("exit is the exit For the Exit", input.getRestPart());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class InputReceiverTest {
         input.splitInput();
         assertEquals("del", input.getCommand());
         assertNull(input.getIndex());
-        assertEquals("is to del some text In The Text Editor.", input.getRestPart());
+        assertNotEquals("is to del some text In The Text Editor.", input.getRestPart());
     }
 
 

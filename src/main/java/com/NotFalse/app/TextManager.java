@@ -21,7 +21,7 @@ public class TextManager {
     private final InputReceiver input;
     private final OutputManager output;
     private final GlossaryApp glossary;
-    private boolean isExitTriggered;
+
     private List<String> text;
     private String formattedText;
     private int maxWidth;
@@ -30,6 +30,8 @@ public class TextManager {
     private boolean isFormatFixSuccessful;
     private WordReplacer replaceWord;
     private static final int MAX_MAXWIDTH = 2147483647;
+    private Integer widthIndex;
+    private Integer paragraphIndex;
 
     /**
      * Constructor for the TextManager class. It initializes the input, output,
@@ -46,68 +48,23 @@ public class TextManager {
         text.add("Third useless Test sentence.");
         text.add("Fourth Hello Hello Hello");
         text.add("Fifth End of text.");
-        isExitTriggered = false;
         isFormatterRaw = true;
         output.createWelcomeMessage();
+
+    }
+
+    public boolean getIsFormatRawSuccessful() {
+        return isFormatRawSuccessful;
+    }
+
+    public boolean getIsFormatFixSuccessful() {
+        return isFormatFixSuccessful;
     }
 
     /**
      * This method is responsible for the communication with the user. It calls
      * the methods for editing the text and formatting the text.
      */
-    public void editText() {
-        input.splitInput();
-        Integer widthIndex = input.getIndex();
-        int paragraphIndex = input.getIndex();
-
-        switch (Command.parseCommand(input.getCommand())) {
-            case DUMMY:
-                addDummyParagraph(paragraphIndex);
-                break;
-            case EXIT:
-                output.createExitMessage();
-                isExitTriggered = true;
-                break;
-            case ADD:
-                addNewParagraph(paragraphIndex);
-                break;
-            case DEL:
-                deleteParagraph(paragraphIndex);
-                break;
-            case INDEX:
-                glossary.printGlossary(text);
-                break;
-            case PRINT:
-                printText();
-                break;
-            case REPLACE:
-                replaceParagraph(paragraphIndex);
-                break;
-            case HELP:
-                output.createHelpMessage();
-                break;
-            case FORMAT_RAW:
-                formatTextRaw();
-                if (isFormatRawSuccessful) {
-                    output.createFormatMessage(true);
-                } else {
-                    output.createFormatMessage(false);
-                }
-                break;
-            case FORMAT_FIX:
-                setMaxWidth(widthIndex);
-                formatTextFix();
-                if (isFormatFixSuccessful) {
-                    output.createFormatMessage(true);
-                } else {
-                    output.createFormatMessage(false);
-                }
-                break;
-            default:
-                output.createInvalidCommandMessage();
-                break;
-        }
-    }
 
     boolean validateIndex(Integer paragraphIndex) {
         return paragraphIndex >= 0 && paragraphIndex <= text.size();
@@ -117,7 +74,7 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    private void addDummyParagraph(Integer paragraphIndex) {
+    void addDummyParagraph() {
         if (paragraphIndex == null) {
             text.add(DUMMYTEXT);
             output.createAddMessage(true);
@@ -129,7 +86,7 @@ public class TextManager {
         }
     }
 
-    private void addNewParagraph(Integer paragraphIndex) {
+    void addNewParagraph() {
         String enteredText;
 
         if (input.getIsIndexNull()) {
@@ -148,12 +105,11 @@ public class TextManager {
         System.out.print("Text: ");
         return input.readAndFilterUserInput();
     }
-    
 
     /**
      * Deletes the paragraph at the specified index.
      */
-    private void deleteParagraph(int paragraphIndex) {
+    void deleteParagraph() {
         if (input.getIsIndexNull()) {
             text.remove(text.size() - 1);
             output.createDeleteMessage(true);
@@ -204,13 +160,12 @@ public class TextManager {
      * @return The formatted text.
      */
     String formatTextFix() {
-        StringBuilder fixFormatted = new StringBuilder();
-        int currentParagraphWidth = 0;
-
         if (!validateMaxWidth(maxWidth)) {
             isFormatFixSuccessful = false;
             return "";
         } else {
+            StringBuilder fixFormatted = new StringBuilder();
+            int currentParagraphWidth = 0;
             for (String paragraph : text) {
                 String[] words = paragraph.split("\\s+");
                 for (String word : words) {
@@ -238,8 +193,8 @@ public class TextManager {
             formattedText = fixFormatted.toString();
             isFormatterRaw = false;
             isFormatFixSuccessful = true;
+            return formattedText;
         }
-        return formattedText;
     }
 
     /**
@@ -308,7 +263,7 @@ public class TextManager {
     /**
      * Print the text.
      */
-    private void printText() {
+    void printText() {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
         } else {
@@ -358,21 +313,24 @@ public class TextManager {
         String wordEndSyntax = separatePunctuation(paragraph, originalWord);
 
         /*
-        // Check and replace at the beginning of the text
-        if (paragraph.startsWith(originalWord)) {
-            paragraph = paragraph.replace(originalWord + " ", replacementWord + " ");
-        }
-        // Check and replace in the middle of the text
-        if (paragraph.contains(" " + originalWord + " ")) {
-            paragraph = paragraph.replaceAll(" " + originalWord + " ", " " + replacementWord + " ");
-        }
-        // Remove the original text and insert the modified text back into the list
-        if (paragraph.endsWith(originalWord + wordEndSyntax)) {
-            // Replace the word with the replacement word
-            paragraph = paragraph.replace(originalWord + wordEndSyntax, replacementWord + wordEndSyntax);
-        }*/
+         * // Check and replace at the beginning of the text
+         * if (paragraph.startsWith(originalWord)) {
+         * paragraph = paragraph.replace(originalWord + " ", replacementWord + " ");
+         * }
+         * // Check and replace in the middle of the text
+         * if (paragraph.contains(" " + originalWord + " ")) {
+         * paragraph = paragraph.replaceAll(" " + originalWord + " ", " " +
+         * replacementWord + " ");
+         * }
+         * // Remove the original text and insert the modified text back into the list
+         * if (paragraph.endsWith(originalWord + wordEndSyntax)) {
+         * // Replace the word with the replacement word
+         * paragraph = paragraph.replace(originalWord + wordEndSyntax, replacementWord +
+         * wordEndSyntax);
+         * }
+         */
         // Adding replacement and validation for the text
-        paragraph = replaceWord.replaceWordInParagraph(paragraph,originalWord,replacementWord);
+        paragraph = replaceWord.replaceWordInParagraph(paragraph, originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
         // If different, update the text at the index
         if (isReplacementSuccessful) {
@@ -385,7 +343,7 @@ public class TextManager {
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraph(Integer paragraphIndex) {
+    void replaceParagraph() {
         System.out.print("Replacing Word: ");
         String originalWord = input.readAndFilterUserInput();
         System.out.print("Replacing with: ");
@@ -414,15 +372,6 @@ public class TextManager {
             output.createInvalidMaxWidthWarning();
 
         }
-    }
-
-    /**
-     * Getter for the isExitTriggered boolean.
-     *
-     * @return the isExitTriggered boolean
-     */
-    public boolean getIsExitTriggered() {
-        return isExitTriggered;
     }
 
     /**

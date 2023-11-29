@@ -7,9 +7,9 @@ public class TextEditor {
 
     private final InputReceiver input;
     private final TextManager textManager;
-    private boolean isExitTriggered;
     private final OutputManager output;
     private final GlossaryApp glossary;
+    private boolean isExitTriggered;
 
     /**
      * Constructor for the TextEditor class.

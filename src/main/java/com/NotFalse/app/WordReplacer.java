@@ -16,16 +16,14 @@ public class WordReplacer {
         if (originalWord.split(" ").length > 1) {
             return paragraph.replaceAll(originalWord, replacementWord);
         } else {
-            splitTextInWords();
+            this.words = textParagraph.split(" ");
             setOrignalAndReplacementWord(originalWord, replacementWord);
             replaceOriginalWord();
             return combineWordsIntoText();
         }
     }
 
-    private void splitTextInWords() {
-        this.words = textParagraph.split(" ");
-    }
+
 
     private void setOrignalAndReplacementWord(String originalWord, String replacementWord) {
         if (!originalWord.equals(" ")) {

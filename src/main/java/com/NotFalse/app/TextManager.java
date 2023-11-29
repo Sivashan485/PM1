@@ -379,12 +379,6 @@ public class TextManager {
         }
     }
 
-    void checkMaxWidthValidity() {
-        if (maxWidth <= 0 || maxWidth != null) {
-            output.createInvalidArgumentWarning();
-        }
-    }
-
     /**
      * Getter for the isExitTriggered boolean.
      *

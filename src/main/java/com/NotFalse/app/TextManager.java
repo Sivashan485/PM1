@@ -200,7 +200,7 @@ public class TextManager {
             String[] words = paragraph.split("\\s+");
             for (String word : words) {
                 // If the word itself is longer than maxWidth, break it down.
-                while (word.length() > maxWidth ) {
+                while (word.length() > maxWidth) {
                     // If the current line is not empty, start a new line.
                     resetParagraphWidth(currentParagraphWidth, fixFormatted);
                     // Add the first maxWidth characters of the word to the current line.
@@ -223,7 +223,6 @@ public class TextManager {
         formattedText = fixFormatted.toString();
         isFormatterRaw = false;
         isFormatFixSuccessful = true;
-
         return formattedText;
     }
 

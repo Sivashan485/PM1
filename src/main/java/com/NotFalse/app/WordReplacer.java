@@ -1,7 +1,7 @@
 package com.NotFalse.app;
 
 public class WordReplacer {
-    private String textParagraph;
+    private String paragraph;
     private String[] words;
     private String originalWord, replacementWord;
     private boolean isWordChanged;
@@ -10,14 +10,26 @@ public class WordReplacer {
         words = null;
     }
 
+    public void setParagraph(String paragraph){
+        this.paragraph = paragraph;
+    }
+
+    public void setOriginalWord(String originalWord){
+        this.originalWord = originalWord;
+    }
+
+    public void setReplacementWord(String replacementWord){
+        this.replacementWord = replacementWord;
+    }
+
 
     public String replaceWordInParagraph(String paragraph, String originalWord, String replacementWord) {
-        this.textParagraph = paragraph;
+        setParagraph(paragraph);
         if (originalWord.split(" ").length > 1) {
             return paragraph.replaceAll(originalWord, replacementWord);
         } else {
-            this.words = textParagraph.split(" ");
-            setOrignalAndReplacementWord(originalWord, replacementWord);
+            this.words = this.paragraph.split(" ");
+            setOriginalAndReplacementWord(originalWord, replacementWord);
             replaceOriginalWord();
             return combineWordsIntoText();
         }
@@ -25,10 +37,10 @@ public class WordReplacer {
 
 
 
-    private void setOrignalAndReplacementWord(String originalWord, String replacementWord) {
+    private void setOriginalAndReplacementWord(String originalWord, String replacementWord) {
         if (!originalWord.equals(" ")) {
-            this.originalWord = originalWord;
-            this.replacementWord = replacementWord;
+            setOriginalWord(originalWord);
+            setReplacementWord(replacementWord);
         }
     }
 
@@ -43,19 +55,19 @@ public class WordReplacer {
 
 
     private String combineWordsIntoText() {
-        StringBuilder replacedWordText = new StringBuilder();
+        StringBuilder replacedPragraph = new StringBuilder();
         if(isWordChanged){
             for (int i = 0; i<words.length; i++) {
                 if(i==0){
-                    replacedWordText.append(words[i]);
+                    replacedPragraph.append(words[i]);
                 }else{
-                    replacedWordText.append(" ").append(words[i]);
+                    replacedPragraph.append(" ").append(words[i]);
                 }
             }
         }else{
-            replacedWordText = new StringBuilder(textParagraph);
+            replacedPragraph = new StringBuilder(paragraph);
         }
-        return replacedWordText.toString();
+        return replacedPragraph.toString();
     }
 
 

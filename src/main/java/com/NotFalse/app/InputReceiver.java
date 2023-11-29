@@ -13,6 +13,7 @@ public class InputReceiver {
     private Integer index;
     private String restPart;
     private boolean IsIndexValid;
+    private boolean indexIsNull;
 
     /**
      * Constructor for InputReceiver.
@@ -20,13 +21,14 @@ public class InputReceiver {
     public InputReceiver() {
         input = new Scanner(System.in);
         command = "";
-        index = null;
+        index = 0;
     }
 
-    private void resetValues(){
+    private void resetValues() {
         IsIndexValid = true;
-        index = null;
+        index = 0;
         command = "";
+        indexIsNull = false;
     }
 
     /**
@@ -58,14 +60,14 @@ public class InputReceiver {
      * @return returns the command
      */
     String extractCommand(String userInput) {
-        String [] userInputPartition = userInput.toLowerCase().split(" ");
+        String[] userInputPartition = userInput.toLowerCase().split(" ");
         for (Command command : Command.values()) {
             if (userInput.toLowerCase().startsWith(command.getCommand())) {
-                if(userInputPartition[0].equals(command.getCommand())){
+                if (userInputPartition[0].equals(command.getCommand())) {
                     return command.getCommand();
-                }else if(isCommandMatchingInputPart(userInputPartition, command)){
+                } else if (isCommandMatchingInputPart(userInputPartition, command)) {
                     return command.getCommand();
-                }else{
+                } else {
                     return "";
                 }
             }
@@ -73,11 +75,10 @@ public class InputReceiver {
         return "";
     }
 
-    boolean isCommandMatchingInputPart(String []userInputPartition, Command command){
-        return userInputPartition.length > 1 && (userInputPartition[0] + " " + userInputPartition[1]).equals(command.getCommand());
+    boolean isCommandMatchingInputPart(String[] userInputPartition, Command command) {
+        return userInputPartition.length > 1
+                && (userInputPartition[0] + " " + userInputPartition[1]).equals(command.getCommand());
     }
-
-
 
     /**
      * Validates the command and splits the input accordingly
@@ -97,6 +98,7 @@ public class InputReceiver {
 
     /**
      * Handles commands that require an index
+     * 
      * @param restPart
      */
     private void handleIndexCommand() {
@@ -110,10 +112,20 @@ public class InputReceiver {
         }
     }
 
+    public boolean getIsIndexNull() {
+        if (restPart.isEmpty()) {
+            indexIsNull = true;
+        } else {
+            indexIsNull = false;
+        }
+        return indexIsNull;
+    }
+
 
 
     /**
      * Retrieves the current command.
+     * 
      * @return The current command as a string.
      */
     public String getCommand() {
@@ -121,24 +133,10 @@ public class InputReceiver {
         return command;
     }
 
-    /**
-     * Converts the index for list usage
-     *
-     * @return The valid list index or `null` if the conversion fails.
-     */
-    public Integer convertToListIndex() {
-
-        if (index != null) {
-            return index - 1;
-        } else {
-            return null;
-        }
-
-    }
-
 
     /**
      * Determines whether the index is invalid.
+     * 
      * @return `true` if the index is invalid, `false` otherwise.
      */
     public boolean getIsIndexValid() {
@@ -147,15 +145,16 @@ public class InputReceiver {
 
     /**
      * Retrieves the current index.
+     * 
      * @return The current index as an integer.
      */
     public Integer getIndex() {
         return index;
     }
 
-
     /**
      * Retrieves the remaining part of the user input after extracting the command.
+     * 
      * @return The remaining part of the user input as a string.
      */
     String getRestPart() {

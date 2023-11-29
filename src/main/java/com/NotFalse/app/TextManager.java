@@ -56,7 +56,7 @@ public class TextManager {
     public void editText() {
         input.splitInput();
         Integer widthIndex = input.getIndex();
-        Integer paragraphIndex = input.convertToListIndex();
+        int paragraphIndex = input.getIndex();
 
         switch (Command.parseCommand(input.getCommand())) {
             case DUMMY:
@@ -128,38 +128,49 @@ public class TextManager {
     }
 
     private void addNewParagraph(Integer paragraphIndex) {
-        System.out.print("Text: ");
-        String enteredText = input.readAndFilterUserInput();
+        String enteredText;
 
-        if (input.getIsIndexValid()) {
-            if (paragraphIndex == null) {
-                text.add(enteredText);
-                output.createAddMessage(true);
-            } else if (validateIndex(paragraphIndex)) {
-                text.add(paragraphIndex, enteredText);
-                output.createAddMessage(true);
-            } else {
-                output.createIndexWarning();
-            }
+        if (input.getIsIndexNull()) {
+            enteredText = receiveEnteredText();
+            text.add(enteredText);
+            output.createAddMessage(true);
+        }
+        if (isIndexValid(paragraphIndex, text.size() + 1)) {
+            enteredText = receiveEnteredText();
+            text.add(paragraphIndex - 1, enteredText);
+            output.createAddMessage(true);
         }
     }
+
+    private String receiveEnteredText() {
+        System.out.print("Text: ");
+        return input.readAndFilterUserInput();
+    }
+    
 
     /**
      * Deletes the paragraph at the specified index.
      */
-    private void deleteParagraph(Integer paragraphIndex) {
-        if (text.isEmpty()) {
-            output.createEmptyTextWarning();
-        } else if (paragraphIndex == null || !validateIndex(paragraphIndex)) {
-            output.createIndexWarning();
-        } else {
-            try {
-                text.remove(paragraphIndex.intValue());
-                output.createDeleteMessage(true);
-            } catch (IndexOutOfBoundsException e) {
-                output.createIndexWarning();
-            }
+    private void deleteParagraph(int paragraphIndex) {
+        if (input.getIsIndexNull()) {
+            text.remove(text.size() - 1);
+            output.createDeleteMessage(true);
         }
+        if (isIndexValid(paragraphIndex, text.size())) {
+            text.remove(paragraphIndex - 1);
+            output.createDeleteMessage(true);
+        }
+    }
+
+    private boolean isIndexValid(int paragraphIndex, int textSize) {
+        if (!input.getIsIndexNull()) {
+            if (paragraphIndex <= 0 || paragraphIndex > textSize) {
+                output.createIndexWarning();
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -225,7 +236,8 @@ public class TextManager {
             formattedText = fixFormatted.toString();
             isFormatterRaw = false;
             isFormatFixSuccessful = true;
-        }return formattedText;
+        }
+        return formattedText;
     }
 
     /**

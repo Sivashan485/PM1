@@ -2,8 +2,10 @@ package com.NotFalse.app;
 
 public class WordReplacer {
 
+    private String textParagraph;
     private String[] words;
     private String originalWord, replacementWord;
+    private boolean isWordChanged;
 
     public WordReplacer() {
         words = null;
@@ -11,18 +13,19 @@ public class WordReplacer {
 
 
     public String replaceWordInParagraph(String paragraph, String originalWord, String replacementWord) {
+        this.textParagraph = paragraph;
         if (originalWord.split(" ").length > 1) {
             return paragraph.replaceAll(originalWord, replacementWord);
         } else {
-            splitTextInWords(paragraph);
+            splitTextInWords();
             setOrignalAndReplacementWord(originalWord, replacementWord);
             replaceOriginalWord();
             return combineWordsIntoText();
         }
     }
 
-    private void splitTextInWords(String paragraphText) {
-        this.words = paragraphText.split(" ");
+    private void splitTextInWords() {
+        this.words = textParagraph.split(" ");
     }
 
     private void setOrignalAndReplacementWord(String originalWord, String replacementWord) {
@@ -36,17 +39,26 @@ public class WordReplacer {
         for (int i = 0; i < words.length; i++) {
             if (originalWord.equals(words[i])) {
                 words[i] = words[i].replaceAll(originalWord, replacementWord);
+                isWordChanged = true;
             }
         }
     }
 
 
     private String combineWordsIntoText() {
-        String replacedWordText = "";
-        for (String word : words) {
-            replacedWordText = (replacedWordText+" "+ word);
+        StringBuilder replacedWordText = new StringBuilder();
+        if(isWordChanged){
+            for (int i = 0; i<words.length; i++) {
+                if(i==0){
+                    replacedWordText.append(words[i]);
+                }else{
+                    replacedWordText.append(" ").append(words[i]);
+                }
+            }
+        }else{
+            replacedWordText = new StringBuilder(textParagraph);
         }
-        return replacedWordText;
+        return replacedWordText.toString();
     }
 
 

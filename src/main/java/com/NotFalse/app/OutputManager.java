@@ -141,8 +141,8 @@ public class OutputManager {
                 + "You can add new text, by calling the add function.");
     }
 
-    public void createMissingArgumentWarning() {
-        createUserErrorMessage("Missing argument for MaxWidth");
+    public void createInvalidMaxWidthWarning() {
+        createUserErrorMessage("This index is not valid. Please try again.");
     }
 
     public void createInvalidArgumentWarning() {

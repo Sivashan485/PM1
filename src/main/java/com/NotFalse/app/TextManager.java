@@ -367,14 +367,14 @@ public class TextManager {
      * @param widthIndex Input from user
      */
     void setMaxWidth(Integer widthIndex) {
-        if (widthIndex != null) {
+        if (widthIndex != null && widthIndex > 0) {
             try {
                 this.maxWidth = widthIndex;
             } catch (NumberFormatException e) {
                 output.createInvalidArgumentWarning();
             }
         } else {
-            output.createMissingArgumentWarning();
+            output.createInvalidMaxWidthWarning();
 
         }
     }

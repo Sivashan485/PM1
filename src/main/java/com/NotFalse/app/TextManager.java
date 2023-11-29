@@ -202,10 +202,7 @@ public class TextManager {
                 // If the word itself is longer than maxWidth, break it down.
                 while (word.length() > maxWidth ) {
                     // If the current line is not empty, start a new line.
-                    if (currentParagraphWidth > 0) {
-                        fixFormatted.append("\n");
-                        currentParagraphWidth = 0;
-                    }
+                    resetParagraphWidth(currentParagraphWidth, fixFormatted);
                     // Add the first maxWidth characters of the word to the current line.
                     fixFormatted.append(word, 0, maxWidth);
                     // Remove the first maxWidth characters from the word.
@@ -228,6 +225,13 @@ public class TextManager {
         isFormatFixSuccessful = true;
 
         return formattedText;
+    }
+
+    void resetParagraphWidth(int currentParagraphWidth, StringBuilder fixFormatted) {
+        if (currentParagraphWidth > 0) {
+            fixFormatted.append("\n");
+            currentParagraphWidth = 0;
+        }
     }
 
     /**

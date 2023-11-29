@@ -1,7 +1,9 @@
 package com.NotFalse.app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -125,6 +127,36 @@ public class TextManagerTest {
         textManager.setText(Arrays.asList(longWord, "b"));
         textManager.setMaxWidth(80);
         assertEquals(expected, textManager.formatTextFix());
+    }
+
+    // Test for Method resetParagraphWidth
+    @Test
+    void testResetParagraphWidthGreaterThanZero() {
+        StringBuilder fixFormatted = new StringBuilder("test");
+        int currentParagraphWidth = 5;
+        textManager.resetParagraphWidth(currentParagraphWidth, fixFormatted);
+        String expected = "test\n";
+        assertEquals(expected, fixFormatted.toString());
+    }
+
+    // Test for Method resetParagraphWidth
+    @Test
+    void testResetParagraphWidthZero() {
+        StringBuilder fixFormatted = new StringBuilder("test");
+        int currentParagraphWidth = 0;
+        textManager.resetParagraphWidth(currentParagraphWidth, fixFormatted);
+        String expected = "test";
+        assertEquals(expected, fixFormatted.toString());
+    }
+
+    // Test for Method resetParagraphWidth
+    @Test
+    void testResetParagraphWidthNegative() {
+        StringBuilder fixFormatted = new StringBuilder("test");
+        int currentParagraphWidth = -5;
+        textManager.resetParagraphWidth(currentParagraphWidth, fixFormatted);
+        String expected = "test";
+        assertEquals(expected, fixFormatted.toString());
     }
 
     // Test for Method formatTextRaw

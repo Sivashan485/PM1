@@ -1,42 +1,38 @@
 package com.NotFalse.app;
 
-public class ReplaceWord {
+public class WordReplacer {
 
     private String[] words;
     private String originalWord, replacementWord;
 
-    public ReplaceWord() {
+    public WordReplacer() {
         words = null;
     }
 
-    public static void main(String[] args) {
-        ReplaceWord test = new ReplaceWord();
-        System.out.println(test.replaceWordInParagraph("Asdf Aasd asdf Asdf% aasdfdas Asdf. .Asdf", "asdf", ""));
-    }
 
     public String replaceWordInParagraph(String paragraph, String originalWord, String replacementWord) {
-        splitTextInWords(paragraph);
-        setOrignalReplacementWord(originalWord, replacementWord);
-        replaceOriginalWord();
         if (originalWord.split(" ").length > 1) {
             return paragraph.replaceAll(originalWord, replacementWord);
         } else {
+            splitTextInWords(paragraph);
+            setOrignalAndReplacementWord(originalWord, replacementWord);
+            replaceOriginalWord();
             return combineWordsIntoText();
         }
     }
 
-    public void splitTextInWords(String paragraphText) {
+    private void splitTextInWords(String paragraphText) {
         this.words = paragraphText.split(" ");
     }
 
-    public void setOrignalReplacementWord(String originalWord, String replacementWord) {
+    private void setOrignalAndReplacementWord(String originalWord, String replacementWord) {
         if (!originalWord.equals(" ")) {
             this.originalWord = originalWord;
             this.replacementWord = replacementWord;
         }
     }
 
-    public void replaceOriginalWord() {
+    private void replaceOriginalWord() {
         for (int i = 0; i < words.length; i++) {
             if (originalWord.equals(words[i])) {
                 words[i] = words[i].replaceAll(originalWord, replacementWord);
@@ -45,10 +41,10 @@ public class ReplaceWord {
     }
 
 
-    public String combineWordsIntoText() {
+    private String combineWordsIntoText() {
         String replacedWordText = "";
         for (String word : words) {
-            replacedWordText = replacedWordText + " " + word;
+            replacedWordText = (replacedWordText+" "+ word);
         }
         return replacedWordText;
     }

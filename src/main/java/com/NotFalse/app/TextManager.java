@@ -28,6 +28,7 @@ public class TextManager {
     private boolean isFormatterRaw;
     private boolean isFormatRawSuccessful;
     private boolean isFormatFixSuccessful;
+    private WordReplacer replaceWord;
 
     /**
      * Constructor for the TextManager class. It initializes the input, output,
@@ -37,6 +38,7 @@ public class TextManager {
         input = new InputReceiver();
         output = new OutputManager();
         glossary = new GlossaryApp(output);
+        replaceWord = new WordReplacer();
         text = new ArrayList<>();
         text.add("First Hello this is a Test sentence.");
         text.add("Second Another Test sentence.");
@@ -318,6 +320,7 @@ public class TextManager {
         replacementWord = replacementWord.trim();
         String wordEndSyntax = separatePunctuation(paragraph, originalWord);
 
+        /*
         // Check and replace at the beginning of the text
         if (paragraph.startsWith(originalWord)) {
             paragraph = paragraph.replace(originalWord + " ", replacementWord + " ");
@@ -330,8 +333,9 @@ public class TextManager {
         if (paragraph.endsWith(originalWord + wordEndSyntax)) {
             // Replace the word with the replacement word
             paragraph = paragraph.replace(originalWord + wordEndSyntax, replacementWord + wordEndSyntax);
-        }
+        }*/
         // Adding replacement and validation for the text
+        paragraph = replaceWord.replaceWordInParagraph(paragraph,originalWord,replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
         // If different, update the text at the index
         if (isReplacementSuccessful) {

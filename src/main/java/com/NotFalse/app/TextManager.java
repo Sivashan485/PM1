@@ -28,6 +28,7 @@ public class TextManager {
     private boolean isFormatterRaw;
     private boolean isFormatRawSuccessful;
     private boolean isFormatFixSuccessful;
+    private static final int MAX_MAXWIDTH = 2147483647;
 
     /**
      * Constructor for the TextManager class. It initializes the input, output,
@@ -189,7 +190,7 @@ public class TextManager {
         StringBuilder fixFormatted = new StringBuilder();
         int currentParagraphWidth = 0;
 
-        if(maxWidth <= 0) {
+        if (maxWidth <= 0 || maxWidth > MAX_MAXWIDTH) {
             output.createFormatMessage(false);
             isFormatFixSuccessful = false;
             return "";
@@ -199,7 +200,7 @@ public class TextManager {
             String[] words = paragraph.split("\\s+");
             for (String word : words) {
                 // If the word itself is longer than maxWidth, break it down.
-                while (word.length() > maxWidth) {
+                while (word.length() > maxWidth ) {
                     // If the current line is not empty, start a new line.
                     if (currentParagraphWidth > 0) {
                         fixFormatted.append("\n");
@@ -368,11 +369,7 @@ public class TextManager {
      */
     void setMaxWidth(Integer widthIndex) {
         if (widthIndex != null && widthIndex > 0) {
-            try {
-                this.maxWidth = widthIndex;
-            } catch (NumberFormatException e) {
-                output.createInvalidArgumentWarning();
-            }
+            this.maxWidth = widthIndex;
         } else {
             output.createInvalidMaxWidthWarning();
 

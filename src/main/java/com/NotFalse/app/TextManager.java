@@ -228,6 +228,12 @@ public class TextManager {
         }return formattedText;
     }
 
+    /**
+     * If the current line is not empty, start a new line.
+     *
+     * @param currentParagraphWidth
+     * @param fixFormatted
+     */
     void resetParagraphWidth(int currentParagraphWidth, StringBuilder fixFormatted) {
         if (currentParagraphWidth > 0) {
             fixFormatted.append("\n");
@@ -235,6 +241,12 @@ public class TextManager {
         }
     }
 
+    /**
+     * Check if the maxWidth is valid.
+     *
+     * @param maxWidth
+     * @return
+     */
     boolean validateMaxWidth(int maxWidth) {
         if (maxWidth <= 0 || maxWidth > MAX_MAXWIDTH) {
             return false;
@@ -402,12 +414,16 @@ public class TextManager {
      *
      * @param text
      */
-    // for being able to test the methods
-    public void setText(List<String> text) {
+    void setText(List<String> text) {
         this.text = text;
     }
 
-    public List<String> getText() {
+    /**
+     * Getter for the text. It is used for testing.
+     *
+     * @return the text
+     */
+    List<String> getText() {
         return Collections.unmodifiableList(text);
     }
 

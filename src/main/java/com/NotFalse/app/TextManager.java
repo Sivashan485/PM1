@@ -88,6 +88,8 @@ public class TextManager {
                 formatTextRaw();
                 if (isFormatRawSuccessful) {
                     output.createFormatMessage(true);
+                } else {
+                    output.createFormatMessage(false);
                 }
                 break;
             case FORMAT_FIX:
@@ -95,6 +97,8 @@ public class TextManager {
                 formatTextFix();
                 if (isFormatFixSuccessful) {
                     output.createFormatMessage(true);
+                } else {
+                    output.createFormatMessage(false);
                 }
                 break;
             default:
@@ -190,40 +194,38 @@ public class TextManager {
         StringBuilder fixFormatted = new StringBuilder();
         int currentParagraphWidth = 0;
 
-        if (maxWidth <= 0 || maxWidth > MAX_MAXWIDTH) {
-            output.createFormatMessage(false);
+        if (!validateMaxWidth(maxWidth)) {
             isFormatFixSuccessful = false;
             return "";
-        }
-
-        for (String paragraph : text) {
-            String[] words = paragraph.split("\\s+");
-            for (String word : words) {
-                // If the word itself is longer than maxWidth, break it down.
-                while (word.length() > maxWidth) {
-                    // If the current line is not empty, start a new line.
-                    resetParagraphWidth(currentParagraphWidth, fixFormatted);
-                    // Add the first maxWidth characters of the word to the current line.
-                    fixFormatted.append(word, 0, maxWidth);
-                    // Remove the first maxWidth characters from the word.
-                    word = word.substring(maxWidth);
-                    // If the word is not empty, start a new line.
-                    if (!word.isEmpty()) {
-                        fixFormatted.append("\n");
-                        currentParagraphWidth = 0;
+        } else {
+            for (String paragraph : text) {
+                String[] words = paragraph.split("\\s+");
+                for (String word : words) {
+                    // If the word itself is longer than maxWidth, break it down.
+                    while (word.length() > maxWidth) {
+                        // If the current line is not empty, start a new line.
+                        resetParagraphWidth(currentParagraphWidth, fixFormatted);
+                        // Add the first maxWidth characters of the word to the current line.
+                        fixFormatted.append(word, 0, maxWidth);
+                        // Remove the first maxWidth characters from the word.
+                        word = word.substring(maxWidth);
+                        // If the word is not empty, start a new line.
+                        if (!word.isEmpty()) {
+                            fixFormatted.append("\n");
+                            currentParagraphWidth = 0;
+                        }
                     }
+                    currentParagraphWidth = appendNewLine(word, fixFormatted, currentParagraphWidth);
+                    currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
+                    fixFormatted.append(word);
+                    currentParagraphWidth += word.length();
                 }
-                currentParagraphWidth = appendNewLine(word, fixFormatted, currentParagraphWidth);
-                currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
-                fixFormatted.append(word);
-                currentParagraphWidth += word.length();
             }
-        }
-        fixFormatted.append("\n");
-        formattedText = fixFormatted.toString();
-        isFormatterRaw = false;
-        isFormatFixSuccessful = true;
-        return formattedText;
+            fixFormatted.append("\n");
+            formattedText = fixFormatted.toString();
+            isFormatterRaw = false;
+            isFormatFixSuccessful = true;
+        }return formattedText;
     }
 
     void resetParagraphWidth(int currentParagraphWidth, StringBuilder fixFormatted) {
@@ -231,6 +233,13 @@ public class TextManager {
             fixFormatted.append("\n");
             currentParagraphWidth = 0;
         }
+    }
+
+    boolean validateMaxWidth(int maxWidth) {
+        if (maxWidth <= 0 || maxWidth > MAX_MAXWIDTH) {
+            return false;
+        }
+        return true;
     }
 
     /**

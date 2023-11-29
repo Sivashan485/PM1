@@ -28,7 +28,6 @@ public class TextManager {
     private boolean isFormatterRaw;
     private boolean isFormatRawSuccessful;
     private boolean isFormatFixSuccessful;
-    private WordReplacer replaceWord;
     private static final int MAX_MAXWIDTH = 2147483647;
     private Integer widthIndex;
     private Integer paragraphIndex;
@@ -41,7 +40,6 @@ public class TextManager {
         input = new InputReceiver();
         output = new OutputManager();
         glossary = new GlossaryApp(output);
-        replaceWord = new WordReplacer();
         text = new ArrayList<>();
         text.add("First Hello this is a Test sentence.");
         text.add("Second Another Test sentence.");
@@ -79,7 +77,7 @@ public class TextManager {
             text.add(DUMMYTEXT);
             output.createAddMessage(true);
         } else if (validateIndex(paragraphIndex)) {
-            text.add(paragraphIndex, DUMMYTEXT);
+            text.add(paragraphIndex-1, DUMMYTEXT);
             output.createAddMessage(true);
         } else {
             output.createIndexWarning();
@@ -276,27 +274,6 @@ public class TextManager {
         System.out.println(formattedText);
     }
 
-    /**
-     * Separates a text paragraph based on a specified replacing word.
-     * If the replacing word is found in the text paragraph, the method returns the
-     * portion
-     * of the text that comes after the first occurrence of the replacing word.
-     * If the replacing word is not present, an empty string is returned.
-     *
-     * @param paragraph     The input text para
-     *                      graph to be split.
-     * @param replacingWord The word used as a delimiter for splitting the text.
-     * @return The portion of the text after the first occurrence of the replacing
-     *         word,
-     *         or an empty string if the replacing word is not found.
-     */
-    private String separatePunctuation(String paragraph, String replacingWord) {
-        // Split the text paragraph based on the replacing word
-        String[] splitTextParagraph = paragraph.split("(?i)" + replacingWord);
-        // Check and return the second part of the split if it exists, otherwise an
-        // empty string
-        return (splitTextParagraph.length > 1) ? splitTextParagraph[1] : "";
-    }
 
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
@@ -310,27 +287,8 @@ public class TextManager {
         String paragraph = text.get(index);
         originalWord = originalWord.trim();
         replacementWord = replacementWord.trim();
-        String wordEndSyntax = separatePunctuation(paragraph, originalWord);
 
-        /*
-         * // Check and replace at the beginning of the text
-         * if (paragraph.startsWith(originalWord)) {
-         * paragraph = paragraph.replace(originalWord + " ", replacementWord + " ");
-         * }
-         * // Check and replace in the middle of the text
-         * if (paragraph.contains(" " + originalWord + " ")) {
-         * paragraph = paragraph.replaceAll(" " + originalWord + " ", " " +
-         * replacementWord + " ");
-         * }
-         * // Remove the original text and insert the modified text back into the list
-         * if (paragraph.endsWith(originalWord + wordEndSyntax)) {
-         * // Replace the word with the replacement word
-         * paragraph = paragraph.replace(originalWord + wordEndSyntax, replacementWord +
-         * wordEndSyntax);
-         * }
-         */
-        // Adding replacement and validation for the text
-        paragraph = replaceWord.replaceWordInParagraph(paragraph, originalWord, replacementWord);
+        paragraph = paragraph.replaceAll(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
         // If different, update the text at the index
         if (isReplacementSuccessful) {
@@ -351,7 +309,7 @@ public class TextManager {
 
         if (paragraphIndex != null) {
             if (validateIndex(paragraphIndex)) {
-                replaceWordInParagraph(paragraphIndex, originalWord, replacementWord);
+                replaceWordInParagraph(paragraphIndex-1, originalWord, replacementWord);
             } else {
                 output.createIndexWarning();
             }

@@ -158,7 +158,7 @@ public class InputReceiver {
      * Retrieves the remaining part of the user input after extracting the command.
      * @return The remaining part of the user input as a string.
      */
-    public String getRestPart() {
+    String getRestPart() {
         return restPart;
     }
 }

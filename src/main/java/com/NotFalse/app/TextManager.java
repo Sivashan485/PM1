@@ -145,14 +145,13 @@ public class TextManager {
     private void deleteParagraph(Integer paragraphIndex) {
         if (text.isEmpty()) {
             output.createEmptyTextWarning();
-        }
-        if (input.getIsIndexValid()) {
-            if (paragraphIndex == null) {
-                output.createIndexWarning();
-            } else if (validateIndex(paragraphIndex)) {
-                text.remove(paragraphIndex - 1 + 1);
+        } else if (paragraphIndex == null || !validateIndex(paragraphIndex)) {
+            output.createIndexWarning();
+        } else {
+            try {
+                text.remove(paragraphIndex.intValue());
                 output.createDeleteMessage(true);
-            } else {
+            } catch (IndexOutOfBoundsException e) {
                 output.createIndexWarning();
             }
         }
@@ -189,6 +188,12 @@ public class TextManager {
     String formatTextFix() {
         StringBuilder fixFormatted = new StringBuilder();
         int currentParagraphWidth = 0;
+
+        if(maxWidth <= 0) {
+            output.createFormatMessage(false);
+            isFormatFixSuccessful = false;
+            return "";
+        }
 
         for (String paragraph : text) {
             String[] words = paragraph.split("\\s+");
@@ -371,6 +376,12 @@ public class TextManager {
         } else {
             output.createMissingArgumentWarning();
 
+        }
+    }
+
+    void checkMaxWidthValidity() {
+        if (maxWidth <= 0 || maxWidth != null) {
+            output.createInvalidArgumentWarning();
         }
     }
 

@@ -47,7 +47,7 @@ public class InputReceiver {
         System.out.print(">> ");
         String userInput = readAndFilterUserInput();
         command = extractCommand(userInput);
-        restPart = userInput.substring(command.length()).trim();
+        restPart = userInput.substring(command.length()).trim().replaceAll("[^0-9-]", "");
         command += validateAndSplitCommand(command, restPart);
     }
 
@@ -85,7 +85,7 @@ public class InputReceiver {
     private String validateAndSplitCommand(String command, String restPart) {
         // Handles commands that require an index
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
-            handleIndexCommand(restPart);
+            handleIndexCommand();
         } else if (!restPart.isEmpty()) {
             // Handle commands that should not have extra text
             return null;
@@ -99,18 +99,18 @@ public class InputReceiver {
      * Handles commands that require an index
      * @param restPart
      */
-    private void handleIndexCommand(String restPart) {
+    private void handleIndexCommand() {
         try {
             index = Integer.parseInt(restPart);
             if (index < 1) {
                 IsIndexValid = false;
-                System.err.println("This index is not valid. Please try again.\n");
             }
         } catch (NumberFormatException e) {
             IsIndexValid = false;
-            System.err.println("This index is not valid. Please try again.\n");
         }
     }
+
+
 
     /**
      * Retrieves the current command.

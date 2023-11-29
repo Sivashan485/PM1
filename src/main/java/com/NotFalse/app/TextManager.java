@@ -29,7 +29,6 @@ public class TextManager {
     private boolean isFormatRawSuccessful;
     private boolean isFormatFixSuccessful;
     private static final int MAX_MAXWIDTH = 2147483647;
-    private Integer widthIndex;
     private Integer paragraphIndex;
 
     /**

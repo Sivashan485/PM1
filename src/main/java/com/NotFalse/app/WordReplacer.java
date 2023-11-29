@@ -1,7 +1,6 @@
 package com.NotFalse.app;
 
 public class WordReplacer {
-
     private String textParagraph;
     private String[] words;
     private String originalWord, replacementWord;

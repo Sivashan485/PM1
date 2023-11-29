@@ -28,9 +28,8 @@ public class TextEditor {
      * @param args
      */
     public static void main(String[] args) {
-        TextEditor a = new TextEditor();
-       
-        a.runTextEditor();
+        TextEditor textEditor = new TextEditor();
+        textEditor.runTextEditor();
     }
 
     /**

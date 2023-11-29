@@ -47,7 +47,6 @@ public class TextEditor {
     public void editText() {
         input.splitInput();
         Integer widthIndex = input.getIndex();
-        int paragraphIndex = input.getIndex();
 
         switch (Command.parseCommand(input.getCommand())) {
             case DUMMY:

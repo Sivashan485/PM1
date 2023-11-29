@@ -47,7 +47,7 @@ public class InputReceiver {
         System.out.print(">> ");
         String userInput = readAndFilterUserInput();
         command = extractCommand(userInput);
-        restPart = userInput.substring(command.length()).trim().replaceAll("[^0-9-]", "");
+        restPart = userInput.substring(command.length()).trim();
         command += validateAndSplitCommand(command, restPart);
     }
 

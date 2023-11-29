@@ -116,11 +116,11 @@ public class TextManager {
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
     private void addDummyParagraph(Integer paragraphIndex) {
-        if (paragraphIndex == null) {
+        if (input.getIsIndexNull()) {
             text.add(DUMMYTEXT);
             output.createAddMessage(true);
         } else if (validateIndex(paragraphIndex)) {
-            text.add(paragraphIndex, DUMMYTEXT);
+            text.add(paragraphIndex-1, DUMMYTEXT);
             output.createAddMessage(true);
         } else {
             output.createIndexWarning();

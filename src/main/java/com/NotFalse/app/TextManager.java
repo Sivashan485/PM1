@@ -321,11 +321,12 @@ public class TextManager {
      * @param widthIndex Input from user
      */
     void setMaxWidth(Integer widthIndex) {
-        if (widthIndex != null && widthIndex > 0) {
-            this.maxWidth = widthIndex;
-        } else {
+        if(widthIndex == null){
             output.createInvalidMaxWidthWarning();
-
+        }else if (widthIndex <= 0){
+            output.createIndexWarning();
+        }else{
+            this.maxWidth = widthIndex;
         }
     }
 

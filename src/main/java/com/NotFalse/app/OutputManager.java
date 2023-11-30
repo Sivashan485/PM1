@@ -1,19 +1,15 @@
 package com.NotFalse.app;
-
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.SimpleFormatter;
+import java.io.IOException;
+import java.util.logging.*;
 
 /**
  * Class for managing the output of the TextEditor application.
  */
 public class OutputManager {
 
-    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger
-            .getLogger(OutputManager.class.getName());
-
-    Handler consoleHandler;
+    private static final Logger LOGGER = Logger.getLogger(OutputManager.class.getName());
+    private final FileHandler fileHandler;
+    private final Handler consoleHandler;
 
     /**
      * Initializes the consoleHandler and the LOGGER.
@@ -21,12 +17,17 @@ public class OutputManager {
      * handler.
      */
     public OutputManager() {
+        try {
+            fileHandler = new FileHandler("./logs/OutputManager.log");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         LOGGER.setUseParentHandlers(false);
         consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.OFF);
         consoleHandler.setFormatter(new SimpleFormatter());
-        LOGGER.addHandler(consoleHandler);
-        LOGGER.setLevel(Level.OFF);
+        LOGGER.addHandler(fileHandler);
+        LOGGER.setLevel(Level.ALL);
     }
 
     /**
@@ -53,15 +54,21 @@ public class OutputManager {
      * Creates a welcome message for the user.
      */
     public void createWelcomeMessage() {
-        createUserInfoMessage("Welcome to the TextEditor! Created by NotFalse.");
+        System.out.println("----------------------------------------------------------\n");
+        createUserInfoMessage("Welcome to the TextEditor! Created by NotFalse.\n"
+        + "Following operations are possible:\n" +
+                "add, del, index, replace, print, format raw, format fix, help");
+        System.out.println("----------------------------------------------------------");
     }
 
     /**
      * Creates a goodbye message.
      */
     public void createExitMessage() {
+        System.out.println("----------------------------------------------------------\n");
         createUserInfoMessage("Exiting TextEditor...\n" +
                 "Thank you for using TextEditor! Created by NotFalse.");
+        System.out.println("----------------------------------------------------------");
     }
 
     /**
@@ -78,7 +85,7 @@ public class OutputManager {
      */
     public void createAddMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Text has been added");
+            createUserInfoMessage("Text added successfully!");
         } else {
             createUserErrorMessage("Text has not been added");
         }
@@ -122,7 +129,7 @@ public class OutputManager {
      * Creates a log message for an invalid command.
      */
     public void createInvalidCommandMessage() {
-        createUserErrorMessage("Invalid command! Please try again.");
+        createUserErrorMessage("Invalid command! If you don't know which commands you can us, call the help function..");
     }
 
     /**
@@ -142,11 +149,7 @@ public class OutputManager {
     }
 
     public void createInvalidMaxWidthWarning() {
-        createUserErrorMessage("This index is not valid. Please try again.");
-    }
-
-    public void createInvalidArgumentWarning() {
-        createUserErrorMessage("MaxWidth argument must be an integer");
+        createUserErrorMessage("The text width index is missing. Please try again");
     }
 
     public void createEmptyGlossaryWarning() {

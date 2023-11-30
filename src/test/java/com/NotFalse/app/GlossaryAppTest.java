@@ -1,9 +1,13 @@
 package com.NotFalse.app;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GlossaryAppTest {
 
@@ -15,6 +19,37 @@ public class GlossaryAppTest {
     private ArrayList<String> textThree;
     private OutputManager output;
 
+    private GlossaryApp glossaryApp;
+
+    @BeforeEach
+    public void setUp() {
+        // You can mock the OutputManager if needed
+        OutputManager output = new OutputManager();
+        glossaryApp = new GlossaryApp(output);
+    }
+
+    @Test
+    public void testPrintGlossary() {
+        List<String> text = Arrays.asList("This is a sample text.", "Another sample text.");
+        glossaryApp.printGlossary(text);
+    }
+
+    @Test
+    public void testSearchWordInParagraphs() {
+        List<String> text = Arrays.asList("This is a sample text.", "Another sample text.");
+        List<Integer> indexes = glossaryApp.searchWordInParagraphs(text, "sample");
+
+        assertEquals(2, indexes.size());
+        assertEquals(1, (int) indexes.get(0));
+        assertEquals(2, (int) indexes.get(1));
+    }
+
+    @Test
+    public void testRebuildGlossary() {
+
+    }
+
+    /**
     @BeforeEach
     void setUp() {
         // 1 Setup

@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-02T17:52:07.272736282Z</date>
-  <millis>1701539527272</millis>
-  <nanos>736282</nanos>
+  <date>2023-12-02T23:50:59.345179392Z</date>
+  <millis>1701561059345</millis>
+  <nanos>179392</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,15 +16,27 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-02T17:52:09.325024611Z</date>
-  <millis>1701539529325</millis>
-  <nanos>24611</nanos>
+  <date>2023-12-02T23:51:02.422608683Z</date>
+  <millis>1701561062422</millis>
+  <nanos>608683</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
+  <message>Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-02T23:51:42.521004801Z</date>
+  <millis>1701561102521</millis>
+  <nanos>4801</nanos>
+  <sequence>2</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Text deleted successfully!</message>
 </record>
 </log>

@@ -18,7 +18,7 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    private final InputReceiver input;
+    private  InputReceiver input;
     private final OutputManager output;
 
     private List<String> text;
@@ -35,7 +35,6 @@ public class TextManager {
      * glossary, text, isExitTriggered and isFormatterRaw variables.
      */
     TextManager() {
-        input = new InputReceiver();
         output = new OutputManager();
         text = new ArrayList<>();
         text.add("First Hello this is a Test sentence.");
@@ -46,6 +45,13 @@ public class TextManager {
         isFormatterRaw = true;
         output.createWelcomeMessage();
 
+    }
+
+    /*public void setParagraphIndex(Integer paragraphIndex){
+        this.paragraphIndex = paragraphIndex;
+    }*/
+    public void updateInputReciver(InputReceiver input){
+        this.input = input;
     }
 
     public boolean getIsFormatRawSuccessful() {

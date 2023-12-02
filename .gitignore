@@ -139,4 +139,5 @@ fabric.properties
 *.vsix
 
 # Adds the log file
-/logs/OutputManager.log
+/logs/*
+!/logs/OutputManager.log.lck

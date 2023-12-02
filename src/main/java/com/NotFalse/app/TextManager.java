@@ -282,8 +282,8 @@ public class TextManager {
     private void replaceWordInParagraph(int index, String originalWord, String replacementWord) {
         // Retrieve the text to be modified from the list
         String paragraph = text.get(index);
-        originalWord = originalWord.trim();
-        replacementWord = replacementWord.trim();
+        //originalWord = originalWord.trim();
+        //replacementWord = replacementWord.trim();
 
         paragraph = paragraph.replaceAll(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);

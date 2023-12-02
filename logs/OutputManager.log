@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-12-02T17:50:58.814509191Z</date>
+  <millis>1701539458814</millis>
+  <nanos>509191</nanos>
+  <sequence>0</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Welcome to the TextEditor! Created by NotFalse.
+Following operations are possible:
+add, del, index, replace, print, format raw, format fix, help</message>
+</record>
+</log>

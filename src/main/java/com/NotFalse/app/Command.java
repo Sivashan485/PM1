@@ -59,7 +59,6 @@ public enum Command {
             if (!command.getCommand().equals("unknown")) {
                 sb.append(command.getCommand()).append(", ");
             }
-
         }
         // Remove the trailing comma and space
         return sb.substring(0, sb.length() - 2);

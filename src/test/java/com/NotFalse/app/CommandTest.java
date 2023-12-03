@@ -7,8 +7,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 class CommandTest {
-    
+
+    @Test
+    void testParseCommand(){
+        String testItems[] = {"exit", "add", "del","dummy","index", "print", "replace", "help" ,"format raw", "format fix", "unknown"};
+        Command resultItems[] = {Command.EXIT,Command.ADD, Command.DEL, Command.DUMMY, Command.INDEX, Command.PRINT,
+                Command.REPLACE, Command.HELP, Command.FORMAT_RAW, Command.FORMAT_FIX, Command.UNKNOWN};
+        for(int i = 0; i<testItems.length; i++){
+            Command result = Command.parseCommand(testItems[i]);
+            assertEquals(resultItems[i], result);
+        }
+    }
+    @Test
+    void testGetAllCommands(){
+
+    }
+
     @Test
     void testCommandExit() {
         Command command = Command.EXIT;

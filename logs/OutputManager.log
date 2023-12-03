@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-03T07:48:38.301957039Z</date>
-  <millis>1701589718301</millis>
-  <nanos>957039</nanos>
+  <date>2023-12-03T08:48:31.511771012Z</date>
+  <millis>1701593311511</millis>
+  <nanos>771012</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,26 +16,50 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-03T07:48:40.337009733Z</date>
-  <millis>1701589720337</millis>
-  <nanos>9733</nanos>
+  <date>2023-12-03T08:48:33.837159837Z</date>
+  <millis>1701593313837</millis>
+  <nanos>159837</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
+  <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
+  <method>createUserErrorMessage</method>
   <thread>1</thread>
-  <message>Text added successfully!</message>
+  <message>This index is not valid. Please try again.</message>
 </record>
 <record>
-  <date>2023-12-03T07:48:47.281870064Z</date>
-  <millis>1701589727281</millis>
-  <nanos>870064</nanos>
+  <date>2023-12-03T08:48:38.329770831Z</date>
+  <millis>1701593318329</millis>
+  <nanos>770831</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>Text added successfully!</message>
+  <message>Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-03T08:48:42.862638119Z</date>
+  <millis>1701593322862</millis>
+  <nanos>638119</nanos>
+  <sequence>3</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>This index is not valid. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-03T08:48:47.674682535Z</date>
+  <millis>1701593327674</millis>
+  <nanos>682535</nanos>
+  <sequence>4</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>This index is not valid. Please try again.</message>
 </record>

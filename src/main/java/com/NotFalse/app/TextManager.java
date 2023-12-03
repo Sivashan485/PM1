@@ -113,20 +113,21 @@ public class TextManager {
         if (input.getIsIndexNull()) {
             text.remove(text.size() - 1);
             output.createDeleteMessage(true);
-        }
-        if (isIndexValid(paragraphIndex, text.size())) {
+        } else if (isIndexValid(paragraphIndex, text.size())) {
             text.remove(paragraphIndex - 1);
             output.createDeleteMessage(true);
         }
     }
 
-    private boolean isIndexValid(int paragraphIndex, int textSize) {
-        if (!input.getIsIndexNull()) {
+    private boolean isIndexValid(Integer paragraphIndex, int textSize) {
+        if (!input.getIsIndexNull()&&paragraphIndex!= null) {
             if (paragraphIndex <= 0 || paragraphIndex > textSize) {
                 output.createIndexWarning();
                 return false;
             }
             return true;
+        }else{
+            output.createIndexWarning();
         }
         return false;
     }

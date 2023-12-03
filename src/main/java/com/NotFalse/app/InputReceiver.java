@@ -1,6 +1,7 @@
 package com.NotFalse.app;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Class for receiving user input and filtering the input with a regex.

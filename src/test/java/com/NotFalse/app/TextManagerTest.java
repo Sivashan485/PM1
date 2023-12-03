@@ -3,11 +3,7 @@ package com.NotFalse.app;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.awt.*;
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,10 +24,10 @@ public class TextManagerTest {
     }
 
     //ADD DUMMY
-    private void addDummyAuto(String index, String addingItem) {
+    private void addDummyAuto(String index) {
         // Initialize textManager and input
         textManager = new TextManager();
-        String item = "dummy " + index + "\n" + addingItem + "\n";
+        String item = "dummy " + index+"\n";
         System.setIn(new ByteArrayInputStream(item.getBytes()));
         input = new InputReceiver();
         input.splitInput();
@@ -39,6 +35,17 @@ public class TextManagerTest {
         textManager.setParagraphIndex(input.getIndex());
         textManager.addDummyParagraph();
         textManager.printText();
+    }
+    @Test
+    void testAddDummyIndex(){
+        addDummyAuto("1");
+        Assertions.assertTrue(textManager.getTextList().get(0).equals(TextManager.DUMMYTEXT));
+        addDummyAuto("5");
+        Assertions.assertTrue(textManager.getTextList().get(1).equals(TextManager.DUMMYTEXT));
+        addDummyAuto("-11");
+        for(int i = 0 ; i<textManager.getTextList().size();i++){
+            Assertions.assertFalse(TextManager.DUMMYTEXT.equals(textManager.getTextList().get(i)));
+        }
     }
 
 
@@ -163,7 +170,7 @@ public class TextManagerTest {
 
 
     @Test
-    void testReplaceTextUnvalid() {
+    void testReplaceTextInvalid() {
         int index = 0;
         addElementAuto("1", "Fifth End of text.");
         List<String> testTextList = textManager.getTextList();

@@ -46,7 +46,7 @@ public class TextEditor {
     public void editText() {
         input.splitInput();
         Integer widthIndex = input.getIndex();
-        textManager.setParagraphIndex(input.getIndex()); //DOESNT WORK
+        textManager.setParagraphIndex(input.getIndex());
         textManager.updateInputReciver(input);
 
         switch (Command.parseCommand(input.getCommand())) {

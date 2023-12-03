@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-02T23:50:59.345179392Z</date>
-  <millis>1701561059345</millis>
-  <nanos>179392</nanos>
+  <date>2023-12-03T07:25:56.301836960Z</date>
+  <millis>1701588356301</millis>
+  <nanos>836960</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,10 +16,22 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-02T23:51:02.422608683Z</date>
-  <millis>1701561062422</millis>
-  <nanos>608683</nanos>
+  <date>2023-12-03T07:26:12.268114116Z</date>
+  <millis>1701588372268</millis>
+  <nanos>114116</nanos>
   <sequence>1</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
+</record>
+<record>
+  <date>2023-12-03T07:26:22.019786778Z</date>
+  <millis>1701588382019</millis>
+  <nanos>786778</nanos>
+  <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
@@ -28,15 +40,86 @@ add, del, index, replace, print, format raw, format fix, help</message>
   <message>Text added successfully!</message>
 </record>
 <record>
-  <date>2023-12-02T23:51:42.521004801Z</date>
-  <millis>1701561102521</millis>
-  <nanos>4801</nanos>
-  <sequence>2</sequence>
+  <date>2023-12-03T07:26:39.010560867Z</date>
+  <millis>1701588399010</millis>
+  <nanos>560867</nanos>
+  <sequence>3</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>Text deleted successfully!</message>
+  <message>Text added successfully!</message>
 </record>
-</log>
+<record>
+  <date>2023-12-03T07:26:53.170310746Z</date>
+  <millis>1701588413170</millis>
+  <nanos>310746</nanos>
+  <sequence>4</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-03T07:27:26.472091354Z</date>
+  <millis>1701588446472</millis>
+  <nanos>91354</nanos>
+  <sequence>5</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>This index is not valid. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-03T07:27:37.770435315Z</date>
+  <millis>1701588457770</millis>
+  <nanos>435315</nanos>
+  <sequence>6</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-03T07:27:50.507656765Z</date>
+  <millis>1701588470507</millis>
+  <nanos>656765</nanos>
+  <sequence>7</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-03T07:28:05.922799565Z</date>
+  <millis>1701588485922</millis>
+  <nanos>799565</nanos>
+  <sequence>8</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>This index is not valid. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-03T07:28:11.706308564Z</date>
+  <millis>1701588491706</millis>
+  <nanos>308564</nanos>
+  <sequence>9</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Text added successfully!</message>
+</record>

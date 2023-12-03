@@ -47,9 +47,9 @@ public class TextManager {
 
     }
 
-    /*public void setParagraphIndex(Integer paragraphIndex){
+    public void setParagraphIndex(Integer paragraphIndex){
         this.paragraphIndex = paragraphIndex;
-    }*/
+    }
     public void updateInputReciver(InputReceiver input){
         this.input = input;
     }

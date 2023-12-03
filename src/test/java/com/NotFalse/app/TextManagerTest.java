@@ -182,6 +182,43 @@ public class TextManagerTest {
 
 
     // DEL FUN
+    private int deleteElementAuto(String addIndex,String addSentenceText ,String delIndex) {
+        addElementAuto(addIndex, addSentenceText);
+        String item = "del " + delIndex+ "\n";
+        System.setIn(new ByteArrayInputStream(item.getBytes()));
+        input = new InputReceiver();
+        input.splitInput();
+        textManager.updateInputReceiver(input);
+        textManager.setParagraphIndex(input.getIndex());
+        int listSizeBeforeDel = textManager.getTextList().size();
+        textManager.deleteParagraph();
+        textManager.printText();
+        return listSizeBeforeDel;
+
+    }
+
+    @Test
+    void testDeleteNotInRangeOverListSize(){
+        Integer delIndex  = textManager.getTextList().size()+100;
+        int indexSizeBefore = deleteElementAuto("1","WAS" ,delIndex.toString());
+        Assertions.assertTrue(textManager.getTextList().size()==indexSizeBefore);
+    }
+    @Test
+    void testDeleteInRangeListSize(){
+        int indexSizeBefore = deleteElementAuto("1","WAS" ,"1");
+        Assertions.assertTrue((indexSizeBefore-1)== textManager.getTextList().size());
+    }
+    @Test
+    void testDeleteNotInRangeN0(){
+        int indexSizeBefore = deleteElementAuto("1","WAS" ,"0");
+        Assertions.assertTrue(indexSizeBefore== textManager.getTextList().size());
+    }
+    @Test
+    void testDeleteNotInRangeUnder0(){
+        int indexSizeBefore = deleteElementAuto("1","WAS" ,"-1000");
+        Assertions.assertTrue(indexSizeBefore== textManager.getTextList().size());
+    }
+
 
     // Test for Method formatTextFix
     @Test

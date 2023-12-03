@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-03T07:39:51.590277864Z</date>
-  <millis>1701589191590</millis>
-  <nanos>277864</nanos>
+  <date>2023-12-03T07:48:38.301957039Z</date>
+  <millis>1701589718301</millis>
+  <nanos>957039</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,9 +16,9 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-03T07:39:54.594960721Z</date>
-  <millis>1701589194594</millis>
-  <nanos>960721</nanos>
+  <date>2023-12-03T07:48:40.337009733Z</date>
+  <millis>1701589720337</millis>
+  <nanos>9733</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -28,39 +28,14 @@ add, del, index, replace, print, format raw, format fix, help</message>
   <message>Text added successfully!</message>
 </record>
 <record>
-  <date>2023-12-03T07:40:01.880630951Z</date>
-  <millis>1701589201880</millis>
-  <nanos>630951</nanos>
+  <date>2023-12-03T07:48:47.281870064Z</date>
+  <millis>1701589727281</millis>
+  <nanos>870064</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>This index is not valid. Please try again.</message>
-</record>
-<record>
-  <date>2023-12-03T07:40:06.488027706Z</date>
-  <millis>1701589206488</millis>
-  <nanos>27706</nanos>
-  <sequence>3</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserInfoMessage</method>
   <thread>1</thread>
   <message>Text added successfully!</message>
 </record>
-<record>
-  <date>2023-12-03T07:40:14.980092151Z</date>
-  <millis>1701589214980</millis>
-  <nanos>92151</nanos>
-  <sequence>4</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text added successfully!</message>
-</record>
-</log>

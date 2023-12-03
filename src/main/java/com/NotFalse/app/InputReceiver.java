@@ -21,12 +21,12 @@ public class InputReceiver {
     public InputReceiver() {
         input = new Scanner(System.in);
         command = "";
-        index = 0;
+        index = null;
     }
 
     private void resetValues() {
         IsIndexValid = true;
-        index = 0;
+        index = null;
         command = "";
         indexIsNull = false;
     }

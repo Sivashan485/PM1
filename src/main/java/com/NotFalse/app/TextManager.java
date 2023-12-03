@@ -94,8 +94,7 @@ public class TextManager {
             enteredText = receiveEnteredText();
             text.add(enteredText);
             output.createAddMessage(true);
-        }
-        if (isIndexValid(paragraphIndex, text.size() + 1)) {
+        }else if (isIndexValid(paragraphIndex, text.size() + 1)) {
             enteredText = receiveEnteredText();
             text.add(paragraphIndex - 1, enteredText);
             output.createAddMessage(true);

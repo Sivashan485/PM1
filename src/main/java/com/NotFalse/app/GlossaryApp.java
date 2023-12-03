@@ -110,7 +110,7 @@ public class GlossaryApp {
      * @return A new string containing only letters and spaces from the original paragraph.
      */
     String filterParagraph(String paragraph) {
-        return paragraph.replaceAll("[^A-Za-z ]", " ");
+        return paragraph.replaceAll("[^A-Za-z ]", "");
     }
 
 

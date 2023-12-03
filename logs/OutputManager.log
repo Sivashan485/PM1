@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-03T11:57:12.247869864Z</date>
-  <millis>1701604632247</millis>
-  <nanos>869864</nanos>
+  <date>2023-12-03T12:49:25.203913637Z</date>
+  <millis>1701607765203</millis>
+  <nanos>913637</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,9 +16,9 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-03T11:57:15.243846853Z</date>
-  <millis>1701604635243</millis>
-  <nanos>846853</nanos>
+  <date>2023-12-03T12:49:28.817329649Z</date>
+  <millis>1701607768817</millis>
+  <nanos>329649</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -26,4 +26,40 @@ add, del, index, replace, print, format raw, format fix, help</message>
   <method>createUserInfoMessage</method>
   <thread>1</thread>
   <message>Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-03T12:49:38.236427669Z</date>
+  <millis>1701607778236</millis>
+  <nanos>427669</nanos>
+  <sequence>2</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Text replaced successfully!</message>
+</record>
+<record>
+  <date>2023-12-03T12:49:38.980543166Z</date>
+  <millis>1701607778980</millis>
+  <nanos>543166</nanos>
+  <sequence>3</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
+</record>
+<record>
+  <date>2023-12-03T12:50:02.866296530Z</date>
+  <millis>1701607802866</millis>
+  <nanos>296530</nanos>
+  <sequence>4</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Text replaced successfully!</message>
 </record>

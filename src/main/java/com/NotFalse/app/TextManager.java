@@ -328,7 +328,7 @@ public class TextManager {
         // Retrieve the text to be modified from the list
         String paragraph = text.get(index);
 
-        paragraph = paragraph.replaceAll(originalWord, replacementWord);
+        paragraph = paragraph.replace(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
         // If different, update the text at the index
         if (isReplacementSuccessful) {

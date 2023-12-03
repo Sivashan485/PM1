@@ -47,6 +47,10 @@ public class TextManager {
 
     }
 
+    List<String> getTextList(){
+        return text;
+    }
+
     /**
      * Sets the paragraph index for the text manager.
      *
@@ -130,7 +134,7 @@ public class TextManager {
      * Prompts the user to enter text and reads the input, filtering it for potential formatting.
      * @return The entered and filtered text.
      */
-    private String receiveEnteredText() {
+    String receiveEnteredText() {
         System.out.print("Text: ");
         return input.readAndFilterUserInput();
     }
@@ -320,7 +324,7 @@ public class TextManager {
      * @param originalWord    The word to be replaced.
      * @param replacementWord The word to replace the specified word.
      */
-    private void replaceWordInParagraph(int index, String originalWord, String replacementWord) {
+    void replaceWordInParagraph(int index, String originalWord, String replacementWord) {
         // Retrieve the text to be modified from the list
         String paragraph = text.get(index);
 

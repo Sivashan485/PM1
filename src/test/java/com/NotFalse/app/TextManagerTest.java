@@ -2,8 +2,15 @@ package com.NotFalse.app;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.awt.*;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +25,65 @@ public class TextManagerTest {
         input = new InputReceiver();
 
     }
+
+    //ADD DUMMY
+
+    @Test
+    void testAddDummyText(){
+        List<String > testTextList=  textManager.getTextList();
+        int listSizeBefore = testTextList.size();
+        textManager.validateIndex(2);
+        textManager.addDummyParagraph();
+        assertEquals(listSizeBefore+1, testTextList.size());
+    }
+
+    // ADD TEXT test
+    public void addElementAuto(String index, String addingItem){
+        // Initialize textManager and input
+        textManager = new TextManager();
+        String item = "add "+index+"\n"+addingItem+"\n";
+        System.setIn(new ByteArrayInputStream(item.getBytes()));
+        input = new InputReceiver();
+        input.splitInput();
+        textManager.updateInputReceiver(input);
+        textManager.setParagraphIndex(input.getIndex());
+        textManager.addNewParagraph();
+        textManager.printText();
+    }
+    @Test
+    void testAddText(){
+        addElementAuto("1", "TEST 1");
+        assertEquals(textManager.getTextList().get(0), "TEST 1");
+    }
+
+    // REPLACE TEXT
+    @Test
+    void testReplaceTextValid() {
+        int index = 0;
+        addElementAuto("1", "Fifth End of text.");
+        List<String> testTextList = textManager.getTextList();
+        textManager.replaceWordInParagraph(index, "End", "-");
+        String textAfterChange =testTextList.get(index);
+        assertEquals(textAfterChange, "Fifth - of text.");
+
+    }
+    @Test
+    void testReplaceTextUnvalid() {
+        int index = 0;
+        addElementAuto("1", "Fifth End of text.");
+        List<String> testTextList = textManager.getTextList();
+        textManager.replaceWordInParagraph(index, "@#@@#@@@#@#@#@#@#@#@@", "-");
+        String textAfterChange =testTextList.get(index);
+        System.out.println(testTextList.get(index));
+        assertEquals(textAfterChange, "Fifth End of text.");
+
+
+    }
+
+
+
+    // DEL FUN
+    // ADD FUNKTION
 
     // Test for Method formatTextFix
     @Test

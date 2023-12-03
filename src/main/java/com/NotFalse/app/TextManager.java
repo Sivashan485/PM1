@@ -18,7 +18,7 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    private  InputReceiver input;
+    private InputReceiver input;
     private final OutputManager output;
 
     private List<String> text;
@@ -47,17 +47,38 @@ public class TextManager {
 
     }
 
-    public void setParagraphIndex(Integer paragraphIndex){
+    /**
+     * Sets the paragraph index for the text manager.
+     *
+     * @param paragraphIndex The index to be set.
+     */
+    public void setParagraphIndex(Integer paragraphIndex) {
         this.paragraphIndex = paragraphIndex;
     }
-    public void updateInputReciver(InputReceiver input){
+
+    /**
+     * Updates the input receiver for the text manager.
+     *
+     * @param input The new input receiver to be set.
+     */
+    public void updateInputReceiver(InputReceiver input) {
         this.input = input;
     }
 
+    /**
+     * Gets the success status of the 'formatRaw' operation.
+     *
+     * @return {@code true} if the 'formatRaw' operation was successful; otherwise, {@code false}.
+     */
     public boolean getIsFormatRawSuccessful() {
         return isFormatRawSuccessful;
     }
 
+    /**
+     * Gets the success status of the 'formatFix' operation.
+     *
+     * @return {@code true} if the 'formatFix' operation was successful; otherwise, {@code false}.
+     */
     public boolean getIsFormatFixSuccessful() {
         return isFormatFixSuccessful;
     }
@@ -66,7 +87,6 @@ public class TextManager {
      * This method is responsible for the communication with the user. It calls
      * the methods for editing the text and formatting the text.
      */
-
     boolean validateIndex(Integer paragraphIndex) {
         return paragraphIndex >= 0 && paragraphIndex <= text.size();
     }
@@ -80,13 +100,18 @@ public class TextManager {
             text.add(DUMMYTEXT);
             output.createAddMessage(true);
         } else if (validateIndex(paragraphIndex)) {
-            text.add(paragraphIndex-1, DUMMYTEXT);
+            text.add(paragraphIndex - 1, DUMMYTEXT);
             output.createAddMessage(true);
         } else {
             output.createIndexWarning();
         }
     }
 
+    /**
+     * Adds a new paragraph to the text based on user input.
+     * If the index is not provided or is invalid, the new paragraph is added at the end.
+     * If the index is valid, the new paragraph is inserted at the specified position.
+     */
     void addNewParagraph() {
         String enteredText;
 
@@ -94,13 +119,17 @@ public class TextManager {
             enteredText = receiveEnteredText();
             text.add(enteredText);
             output.createAddMessage(true);
-        }else if (isIndexValid(paragraphIndex, text.size() + 1)) {
+        } else if (isIndexValid(paragraphIndex, text.size() + 1)) {
             enteredText = receiveEnteredText();
             text.add(paragraphIndex - 1, enteredText);
             output.createAddMessage(true);
         }
     }
 
+    /**
+     * Prompts the user to enter text and reads the input, filtering it for potential formatting.
+     * @return The entered and filtered text.
+     */
     private String receiveEnteredText() {
         System.out.print("Text: ");
         return input.readAndFilterUserInput();
@@ -119,14 +148,21 @@ public class TextManager {
         }
     }
 
+    /**
+     * Checks if the provided paragraph index is valid for the current text size.
+     * Displays a warning message if the index is out of bounds and returns false.
+     * @param paragraphIndex The index to be validated.
+     * @param textSize       The size of the current text.
+     * @return {@code true} if the index is valid; otherwise, {@code false}.
+     */
     private boolean isIndexValid(Integer paragraphIndex, int textSize) {
-        if (!input.getIsIndexNull()&&paragraphIndex!= null) {
+        if (!input.getIsIndexNull() && paragraphIndex != null) {
             if (paragraphIndex <= 0 || paragraphIndex > textSize) {
                 output.createIndexWarning();
                 return false;
             }
             return true;
-        }else{
+        } else {
             output.createIndexWarning();
         }
         return false;
@@ -201,8 +237,8 @@ public class TextManager {
     /**
      * If the current line is not empty, start a new line.
      *
-     * @param currentParagraphWidth
-     * @param fixFormatted
+     * @param currentParagraphWidth The current width of the paragraph.
+     * @param fixFormatted The StringBuilder representing the formatted text.
      */
     void resetParagraphWidth(int currentParagraphWidth, StringBuilder fixFormatted) {
         if (currentParagraphWidth > 0) {
@@ -214,8 +250,8 @@ public class TextManager {
     /**
      * Check if the maxWidth is valid.
      *
-     * @param maxWidth
-     * @return
+     * @param maxWidth The maximum width to be validated.
+     * @return {@code true} if the maxWidth is valid; otherwise, {@code false}.
      */
     boolean validateMaxWidth(int maxWidth) {
         if (maxWidth <= 0 || maxWidth > MAX_MAXWIDTH) {
@@ -228,11 +264,10 @@ public class TextManager {
      * Check if adding the current word exceeds maxWidth, and if it does, add a new
      * line.
      *
-     * @param word
-     * 
-     * @param fixFormatted
-     * @param currentParagraphWidth
-     * @return
+     * @param word The word to be appended.
+     * @param fixFormatted The StringBuilder representing the formatted text.
+     * @param currentParagraphWidth The current width of the paragraph.
+     * @return The updated current paragraph width.
      */
     int appendNewLine(String word, StringBuilder fixFormatted, int currentParagraphWidth) {
         // if the word doesn't fit on the current line
@@ -248,9 +283,9 @@ public class TextManager {
     /**
      * Add a space if it's not the first word on the paragraph.
      *
-     * @param fixFormatted
-     * @param currentParagraphWidth
-     * @return
+     * @param fixFormatted The StringBuilder representing the formatted text.
+     * @param currentParagraphWidth The current width of the paragraph.
+     * @return The updated current paragraph width.
      */
     int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
         // Add a space if it's not the first word on the paragraph
@@ -288,8 +323,6 @@ public class TextManager {
     private void replaceWordInParagraph(int index, String originalWord, String replacementWord) {
         // Retrieve the text to be modified from the list
         String paragraph = text.get(index);
-        //originalWord = originalWord.trim();
-        //replacementWord = replacementWord.trim();
 
         paragraph = paragraph.replaceAll(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
@@ -312,7 +345,7 @@ public class TextManager {
 
         if (paragraphIndex != null) {
             if (validateIndex(paragraphIndex)) {
-                replaceWordInParagraph(paragraphIndex-1, originalWord, replacementWord);
+                replaceWordInParagraph(paragraphIndex - 1, originalWord, replacementWord);
             } else {
                 output.createIndexWarning();
             }
@@ -327,19 +360,18 @@ public class TextManager {
      * @param widthIndex Input from user
      */
     void setMaxWidth(Integer widthIndex) {
-        if(widthIndex == null){
+        if (widthIndex == null) {
             output.createInvalidMaxWidthWarning();
-        }else if (widthIndex <= 0){
+        } else if (widthIndex <= 0) {
             output.createIndexWarning();
-        }else{
+        } else {
             this.maxWidth = widthIndex;
         }
     }
 
     /**
      * Setter for the text. It is used for testing.
-     *
-     * @param text
+     * @param text The list of strings representing the text content.
      */
     void setText(List<String> text) {
         this.text = text;

@@ -77,7 +77,7 @@ public enum Command {
 
     /**
      * Getter for the index.
-     * 
+     *
      * @return index
      */
     public boolean getCommandHasIndex() {

@@ -1,7 +1,6 @@
 package com.NotFalse.app;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 /**
  * Class for receiving user input and filtering the input with a regex.
@@ -25,6 +24,11 @@ public class InputReceiver {
         index = null;
     }
 
+    /**
+     * Resets the values of the instance variables associated with this class.
+     * This method sets IsIndexValid to true, index to null, command to an empty string,
+     * and indexIsNull to false.
+     */
     private void resetValues() {
         IsIndexValid = true;
         index = null;
@@ -76,9 +80,16 @@ public class InputReceiver {
         return "";
     }
 
+    /**
+     * Checks if the combination of the first two elements in 'userInputPartition'
+     * matches the command string obtained from the provided 'Command' object.
+     *
+     * @param userInputPartition User input partitioned into segments.
+     * @param command            The 'Command' object to compare against.
+     * @return {@code true} if the concatenation of the first two elements matches the command; otherwise, {@code false}.
+     */
     boolean isCommandMatchingInputPart(String[] userInputPartition, Command command) {
-        return userInputPartition.length > 1
-                && (userInputPartition[0] + " " + userInputPartition[1]).equals(command.getCommand());
+        return userInputPartition.length > 1 && (userInputPartition[0] + " " + userInputPartition[1]).equals(command.getCommand());
     }
 
     /**
@@ -99,8 +110,6 @@ public class InputReceiver {
 
     /**
      * Handles commands that require an index
-     * 
-     * @param restPart
      */
     private void handleIndexCommand() {
         try {
@@ -113,6 +122,13 @@ public class InputReceiver {
         }
     }
 
+
+    /**
+     * Checks if the 'restPart' is empty and sets 'indexIsNull' accordingly.
+     * Returns the value of 'indexIsNull' after the check.
+     *
+     * @return {@code true} if 'restPart' is empty; otherwise, {@code false}.
+     */
     public boolean getIsIndexNull() {
         if (restPart.isEmpty()) {
             indexIsNull = true;
@@ -123,10 +139,9 @@ public class InputReceiver {
     }
 
 
-
     /**
      * Retrieves the current command.
-     * 
+     *
      * @return The current command as a string.
      */
     public String getCommand() {
@@ -137,7 +152,7 @@ public class InputReceiver {
 
     /**
      * Determines whether the index is invalid.
-     * 
+     *
      * @return `true` if the index is invalid, `false` otherwise.
      */
     public boolean getIsIndexValid() {
@@ -146,7 +161,7 @@ public class InputReceiver {
 
     /**
      * Retrieves the current index.
-     * 
+     *
      * @return The current index as an integer.
      */
     public Integer getIndex() {
@@ -155,7 +170,7 @@ public class InputReceiver {
 
     /**
      * Retrieves the remaining part of the user input after extracting the command.
-     * 
+     *
      * @return The remaining part of the user input as a string.
      */
     String getRestPart() {

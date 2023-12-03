@@ -78,23 +78,37 @@ public class GlossaryApp {
             String cleanedParagraph = filterParagraph(paragraph);
             String[] words = cleanedParagraph.split(" ");
             for (String word : words) {
-                if (startWithUpperCase(word.trim())){
+                if (startWithUpperCase(word.trim())) {
                     if (!wordFrequency.containsKey(word)) {
                         wordFrequency.put(word, 0);
                     }
                     int counter = wordFrequency.get(word);
                     wordFrequency.put(word, ++counter);
-                    }
+                }
             }
         }
         wordFrequency.entrySet().removeIf(entry -> entry.getValue() < 3);
         return wordFrequency;
     }
 
-    private boolean startWithUpperCase(String word){
+
+    /**
+     * Checks if the given word starts with an uppercase letter.
+     *
+     * @param word The word to be checked.
+     * @return {@code true} if the word starts with an uppercase letter, {@code false} otherwise.
+     */
+    private boolean startWithUpperCase(String word) {
         return Character.isUpperCase(word.charAt(0));
     }
 
+
+    /**
+     * Filters the given paragraph by removing all characters that are not letters (A-Z or a-z) or spaces.
+     *
+     * @param paragraph The input paragraph to be filtered.
+     * @return A new string containing only letters and spaces from the original paragraph.
+     */
     String filterParagraph(String paragraph) {
         return paragraph.replaceAll("[^A-Za-z ]", " ");
     }
@@ -107,7 +121,7 @@ public class GlossaryApp {
      * @param text text to be mapped
      * @param word word to be searched
      * @return returns a sorted ArrayList of the indexes of the paragraphs which
-     *         contain the word
+     * contain the word
      */
     List<Integer> searchWordInParagraphs(List<String> text, String word) {
         List<Integer> indexes = new ArrayList<>();
@@ -129,7 +143,6 @@ public class GlossaryApp {
     TreeMap<String, List<Integer>> getGlossary() {
         return glossary;
     }
-
 
 
 }

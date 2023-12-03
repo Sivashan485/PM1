@@ -1,4 +1,5 @@
 package com.NotFalse.app;
+
 import java.io.IOException;
 import java.util.logging.*;
 
@@ -36,7 +37,7 @@ public class OutputManager {
      * @param logText logText to be displayed of level INFO
      */
     public void createUserInfoMessage(String logText) {
-        System.out.println(logText+"\n");
+        System.out.println(logText + "\n");
         LOGGER.log(Level.INFO, logText);
     }
 
@@ -46,7 +47,7 @@ public class OutputManager {
      * @param logText logText to be displayed of level WARNING
      */
     public void createUserErrorMessage(String logText) {
-        System.err.println(logText+"\n");
+        System.err.println(logText + "\n");
         LOGGER.log(Level.WARNING, logText);
     }
 
@@ -56,7 +57,7 @@ public class OutputManager {
     public void createWelcomeMessage() {
         System.out.println("----------------------------------------------------------\n");
         createUserInfoMessage("Welcome to the TextEditor! Created by NotFalse.\n"
-        + "Following operations are possible:\n" +
+                + "Following operations are possible:\n" +
                 "add, del, index, replace, print, format raw, format fix, help");
         System.out.println("----------------------------------------------------------");
     }
@@ -117,6 +118,12 @@ public class OutputManager {
         }
     }
 
+    /**
+     * Creates and displays a formatted message based on the success status.
+     * If 'success' is true, a success message is created; otherwise, an error message is created.
+     *
+     * @param success Indicates the success status of the operation.
+     */
     public void createFormatMessage(boolean success) {
         if (success) {
             createUserInfoMessage("Text formatted successfully!");
@@ -148,10 +155,18 @@ public class OutputManager {
                 + "You can add new text, by calling the add function.");
     }
 
+    /**
+     * Creates and displays an error message for an invalid maximum width scenario.
+     * The error message informs the user that the text width index is missing and prompts them to try again.
+     */
     public void createInvalidMaxWidthWarning() {
         createUserErrorMessage("The text width index is missing. Please try again");
     }
 
+    /**
+     * Creates and displays an error message for an empty glossary scenario.
+     * The error message notifies the user that their glossary is empty.
+     */
     public void createEmptyGlossaryWarning() {
         createUserErrorMessage("Your glossary is empty...");
     }

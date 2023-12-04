@@ -167,45 +167,42 @@ public class TextManagerTest {
         System.out.println(testTextList.get(index));
         assertEquals(textAfterChange, "Fifth End of text.");
     }
-/*
+
 
     // DEL FUN
-    private int deleteElementAuto(String addIndex, String addSentenceText, String delIndex) {
-        //addElementAuto(addIndex, addSentenceText);
-        String item = "del " + delIndex + "\n";
-        System.setIn(new ByteArrayInputStream(item.getBytes()));
-        input = new InputReceiver();
-        input.splitInput();
-        textManager.setParagraphIndex(input.getIndex());
+    private int deleteElementAuto(int addIndex, String addSentenceText, int delIndex, boolean isindexnull) {
+        addElementAuto(addIndex, false, addSentenceText);
         int listSizeBeforeDel = textManager.getTextList().size();
-        textManager.deleteParagraph(input.getIsIndexNull());
-        textManager.printText();
+        textManager.setParagraphIndex(delIndex);
+        textManager.deleteParagraph(isindexnull);
         return listSizeBeforeDel;
 
     }
 
+
     @Test
     void testDeleteNotInRangeOverListSize() {
         Integer delIndex = textManager.getTextList().size() + 100;
-        int indexSizeBefore = deleteElementAuto("1", "WAS", delIndex.toString());
+        int indexSizeBefore = deleteElementAuto(1, "WAS", delIndex,false);
         assertEquals(textManager.getTextList().size(), indexSizeBefore);
     }
 
+
     @Test
     void testDeleteInRangeListSize() {
-        int indexSizeBefore = deleteElementAuto("1", "WAS", "1");
+        int indexSizeBefore = deleteElementAuto(1, "WAS", 1, false);
         assertEquals((indexSizeBefore - 1), textManager.getTextList().size());
     }
 
     @Test
     void testDeleteNotInRangeN0() {
-        int indexSizeBefore = deleteElementAuto("1", "WAS", "0");
+        int indexSizeBefore = deleteElementAuto(1, "WAS", 0, false);
         assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
 
     @Test
     void testDeleteNotInRangeUnder0() {
-        int indexSizeBefore = deleteElementAuto("1", "WAS", "-1000");
+        int indexSizeBefore = deleteElementAuto(1, "WAS", -1000, false);
         assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
 
@@ -373,5 +370,5 @@ public class TextManagerTest {
         String expected = "<1>: \n";
         textManager.setText(List.of(""));
         assertEquals(expected, textManager.formatTextRaw());
-    }*/
+    }
 }

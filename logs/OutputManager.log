@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-04T16:35:18.281789807Z</date>
-  <millis>1701707718281</millis>
-  <nanos>789807</nanos>
+  <date>2023-12-04T16:37:43.916443768Z</date>
+  <millis>1701707863916</millis>
+  <nanos>443768</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,27 +16,26 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-04T16:35:18.299727424Z</date>
-  <millis>1701707718299</millis>
-  <nanos>727424</nanos>
+  <date>2023-12-04T16:37:52.058225104Z</date>
+  <millis>1701707872058</millis>
+  <nanos>225104</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
+  <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
+  <method>createUserErrorMessage</method>
   <thread>1</thread>
-  <message>Status: Text added successfully!</message>
+  <message>Invalid index. Please try again.</message>
 </record>
 <record>
-  <date>2023-12-04T16:35:18.300589031Z</date>
-  <millis>1701707718300</millis>
-  <nanos>589031</nanos>
+  <date>2023-12-04T16:37:52.058946712Z</date>
+  <millis>1701707872058</millis>
+  <nanos>946712</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserErrorMessage</method>
   <thread>1</thread>
-  <message>Status: Text has not been replaced</message>
+  <message>Status: Text has not been added</message>
 </record>
-</log>

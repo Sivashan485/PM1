@@ -1,8 +1,5 @@
 package com.NotFalse.app;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TextManagerTest {
 
@@ -25,26 +24,38 @@ public class TextManagerTest {
 
     //ADD DUMMY
     private void addDummyAuto(String index) {
-        // Initialize textManager and input
+
         textManager = new TextManager();
         String item = "dummy " + index+"\n";
         System.setIn(new ByteArrayInputStream(item.getBytes()));
-        input = new InputReceiver();
+    input = new InputReceiver();
         input.splitInput();
         textManager.updateInputReceiver(input);
         textManager.setParagraphIndex(input.getIndex());
         textManager.addDummyParagraph();
         textManager.printText();
-    }
+}
     @Test
-    void testAddDummyIndex(){
-        addDummyAuto("1");
-        Assertions.assertTrue(textManager.getTextList().get(0).equals(TextManager.DUMMYTEXT));
+    void testAddDummyIndexOne(){
         addDummyAuto("5");
-        Assertions.assertTrue(textManager.getTextList().get(1).equals(TextManager.DUMMYTEXT));
+        assertEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(4));
         addDummyAuto("-11");
         for(int i = 0 ; i<textManager.getTextList().size();i++){
-            Assertions.assertFalse(TextManager.DUMMYTEXT.equals(textManager.getTextList().get(i)));
+            assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
+        }
+    }
+
+    @Test
+    void testAddDummyIndexTwo(){
+        addDummyAuto("5");
+        assertEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(4));
+    }
+
+    @Test
+    void testAddDummyIndexThree(){
+        addDummyAuto("-11");
+        for(int i = 0 ; i<textManager.getTextList().size();i++){
+            assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
         }
     }
 
@@ -92,9 +103,8 @@ public class TextManagerTest {
     void testAddIndexRangeTest(String index) {
         String testedString = "TEST ---- --- ... ,,,.  1";
         addElementAuto(index, testedString);
-        int listSize = textManager.getTextList().size();
         for (int i = 0; i < textManager.getTextList().size(); i++) {
-            Assertions.assertFalse(textManager.getTextList().get(i).equals(testedString));
+            assertNotEquals(textManager.getTextList().get(i), testedString);
         }
     }
 
@@ -108,7 +118,6 @@ public class TextManagerTest {
 
     // REPLACE TEXT
     public void replaceElementAuto(String sentenceToChange, String sentenceIndex,String index, String replacingItem, String replacingWith) {
-        // Initialize textManager and input
         textManager = new TextManager();
         addElementAuto(sentenceIndex, sentenceToChange);
 
@@ -152,9 +161,8 @@ public class TextManagerTest {
     void TestReplaceIndexUnder0(){
         textManager.printText();
         replaceElementAuto(" .WA. S.DF. . ","1","-11", ".", "1");
-        int indexEnd = textManager.getTextList().size()-1;
-        for(int i = 0 ; i<textManager.getText().size(); i++){
-            Assertions.assertFalse(textManager.getTextList().get(i).equals(" 1WA1 S1DF1 1 "));
+        for(int i = 0 ; i<textManager.getText().size()-1; i++){
+            assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
         }
     }
     @Test
@@ -162,9 +170,8 @@ public class TextManagerTest {
         textManager.printText();
         Integer endingIndex = textManager.getTextList().size()+20;
         replaceElementAuto(" .WA. S.DF. . ","1", endingIndex.toString(), ".", "1");
-        int indexEnd = textManager.getTextList().size()-1;
-        for(int i = 0 ; i<textManager.getText().size(); i++){
-            Assertions.assertFalse(textManager.getTextList().get(i).equals(" 1WA1 S1DF1 1 "));
+        for(int i = 0 ; i<textManager.getText().size()-1; i++){
+            assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
         }
     }
 
@@ -201,22 +208,22 @@ public class TextManagerTest {
     void testDeleteNotInRangeOverListSize(){
         Integer delIndex  = textManager.getTextList().size()+100;
         int indexSizeBefore = deleteElementAuto("1","WAS" ,delIndex.toString());
-        Assertions.assertTrue(textManager.getTextList().size()==indexSizeBefore);
+        assertEquals(textManager.getTextList().size(), indexSizeBefore);
     }
     @Test
     void testDeleteInRangeListSize(){
         int indexSizeBefore = deleteElementAuto("1","WAS" ,"1");
-        Assertions.assertTrue((indexSizeBefore-1)== textManager.getTextList().size());
+        assertEquals((indexSizeBefore - 1), textManager.getTextList().size());
     }
     @Test
     void testDeleteNotInRangeN0(){
         int indexSizeBefore = deleteElementAuto("1","WAS" ,"0");
-        Assertions.assertTrue(indexSizeBefore== textManager.getTextList().size());
+        assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
     @Test
     void testDeleteNotInRangeUnder0(){
         int indexSizeBefore = deleteElementAuto("1","WAS" ,"-1000");
-        Assertions.assertTrue(indexSizeBefore== textManager.getTextList().size());
+        assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
 
 

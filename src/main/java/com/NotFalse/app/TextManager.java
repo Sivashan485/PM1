@@ -20,7 +20,6 @@ public class TextManager {
             "Aldus PageMaker including versions of Lorem Ipsum.";
     private static final int MAX_MAXWIDTH = 2147483647;
     private final OutputManager output;
-    private InputReceiver input;
     private List<String> text;
     private String formattedText;
     private int maxWidth;
@@ -59,14 +58,7 @@ public class TextManager {
         this.paragraphIndex = paragraphIndex;
     }
 
-    /**
-     * Updates the input receiver for the text manager.
-     *
-     * @param input The new input receiver to be set.
-     */
-    public void updateInputReceiver(InputReceiver input) {
-        this.input = input;
-    }
+
 
     /**
      * Gets the success status of the 'formatRaw' operation.
@@ -92,12 +84,12 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    void addDummyParagraph() {
+    void addDummyParagraph(boolean isindexNull) {
         boolean isSuccessful;
-        if (input.getIsIndexNull()) {
+        if (isindexNull) {
             text.add(DUMMYTEXT);
             isSuccessful = true;
-        } else if (isIndexValid(paragraphIndex, text.size() + 1)) {
+        } else if (isIndexValid(paragraphIndex, text.size() + 1, isindexNull)) {
             text.add(paragraphIndex - 1, DUMMYTEXT);
             isSuccessful = true;
         } else {
@@ -111,15 +103,12 @@ public class TextManager {
      * If the index is not provided or is invalid, the new paragraph is added at the end.
      * If the index is valid, the new paragraph is inserted at the specified position.
      */
-    void addNewParagraph() {
-        String enteredText;
+    void addNewParagraph(boolean isIndexNull, String enteredText) {
         boolean isSuccessful;
-        if (input.getIsIndexNull()) {
-            enteredText = receiveEnteredText();
+        if (isIndexNull) {
             text.add(enteredText);
             isSuccessful = true;
-        } else if (isIndexValid(paragraphIndex, text.size() + 1)) {
-            enteredText = receiveEnteredText();
+        } else if (isIndexValid(paragraphIndex, text.size() + 1 , isIndexNull)) {
             text.add(paragraphIndex - 1, enteredText);
             isSuccessful = true;
         }else{
@@ -132,22 +121,22 @@ public class TextManager {
      *
      * @return The entered and filtered text.
      */
-    String receiveEnteredText() {
+   /* String receiveEnteredText() {
         System.out.print("Text: ");
         return input.readAndFilterUserInput();
-    }
+    }*/
 
 
 
     /**
      * Deletes the paragraph at the specified index.
      */
-    void deleteParagraph() {
+    void deleteParagraph(boolean isIndexNull) {
         boolean isSuccessful;
-        if (input.getIsIndexNull()) {
+        if (isIndexNull) {
             text.remove(text.size() - 1);
             isSuccessful = true;
-        } else if (isIndexValid(paragraphIndex, text.size())) {
+        } else if (isIndexValid(paragraphIndex, text.size(), isIndexNull)) {
             text.remove(paragraphIndex - 1);
             isSuccessful = true;
         }else{
@@ -167,8 +156,8 @@ public class TextManager {
      * @param textSize       The size of the current text.
      * @return {@code true} if the index is valid; otherwise, {@code false}.
      */
-    private boolean isIndexValid(Integer paragraphIndex, int textSize) {
-        if (!input.getIsIndexNull() && paragraphIndex != null) {
+    private boolean isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
+        if (!isIndexNull && paragraphIndex != null) {
             if (paragraphIndex <= 0 || paragraphIndex > textSize) {
                 output.createIndexWarning();
                 return false;
@@ -328,11 +317,11 @@ public class TextManager {
      *
      * @param index           The index of the text to be modified.
      */
-    void replaceWordInParagraph(int index) {
-        System.out.print("Replacing Word: ");
-        String originalWord = input.readAndFilterUserInput();
+    void replaceWordInParagraph(int index, String originalWord, String replacementWord) {
+        /*System.out.print("Replacing Word: ");
+        String originalWord = input.readAndFilterUserInput();*/
         String paragraph = text.get(index);
-        String replacementWord = retrieveReplacementWord(originalWord, paragraph);
+        //String replacementWord = retrieveReplacementWord(originalWord, paragraph);
         paragraph = paragraph.replace(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
 
@@ -341,27 +330,27 @@ public class TextManager {
         }
         output.createReplaceMessage(isReplacementSuccessful);
     }
-    String retrieveReplacementWord(String originalWord, String paragraph){
+
+    boolean retrieveReplacementWord(String originalWord, int index){
         String replacementWord = "";
-        if(paragraph.contains(originalWord)){
-            System.out.print("Replacing with: ");
-            replacementWord = input.readAndFilterUserInput();
+        if(text.get(index).contains(originalWord)){
+            return true;
         }else{
             output.createInvalidWordWarning();
+            return false;
         }
-        return replacementWord;
     }
 
 
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraph() {
-        if (input.getIsIndexNull()) {
-            replaceWordInParagraph(text.size() - 1);
+    void replaceParagraph(boolean isIndexNull , String originalWord, String replacingWord) {
+        if (isIndexNull) {
+            replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
 
-        } else if( isIndexValid(paragraphIndex, text.size()+ 1)){
-            replaceWordInParagraph(paragraphIndex - 1);
+        } else if( isIndexValid(paragraphIndex, text.size()+ 1, isIndexNull)){
+            replaceWordInParagraph(paragraphIndex - 1, originalWord, replacingWord);
         }
 
     }

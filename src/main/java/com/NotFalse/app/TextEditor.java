@@ -61,6 +61,27 @@ public class TextEditor {
         output.createFormatMessage(textManager.getIsFormatFixSuccessful());
     }
 
+    private void replace(){
+        System.out.print("Replacing Word: ");
+        String originalWord = input.readAndFilterUserInput();
+        if(textManager.retrieveReplacementWord( originalWord, input.getIndex())){
+            System.out.println("Replacing with: ");
+            String replacingWord = input.readAndFilterUserInput();
+            textManager.replaceParagraph(input.getIsIndexNull(), originalWord, replacingWord);
+        }
+    }
+
+    private void addText(){
+        String enteredText;
+        if (input.getIsIndexNull()) {
+            System.out.print("Text: ");
+            enteredText = input.readAndFilterUserInput();
+            textManager.addNewParagraph(input.getIsIndexNull(), enteredText);
+        } else{
+            enteredText = input.readAndFilterUserInput();
+            textManager.addNewParagraph(input.getIsIndexNull(), enteredText);
+        }
+    }
 
     /**
      * Processes and executes text editing commands based on user input.
@@ -71,21 +92,20 @@ public class TextEditor {
         input.splitInput();
         Integer widthIndex = input.getIndex();
         textManager.setParagraphIndex(input.getIndex());
-        textManager.updateInputReceiver(input);
 
         switch (Command.parseCommand(input.getCommand())) {
             case DUMMY:
-                textManager.addDummyParagraph();
+                textManager.addDummyParagraph(input.getIsIndexNull());
                 break;
             case EXIT:
                 output.createExitMessage();
                 isExitTriggered = true;
                 break;
             case ADD:
-                textManager.addNewParagraph();
+                addText();
                 break;
             case DEL:
-                textManager.deleteParagraph();
+                textManager.deleteParagraph(input.getIsIndexNull());
                 break;
             case INDEX:
                 glossary.printGlossary(textManager.getText());
@@ -94,7 +114,7 @@ public class TextEditor {
                 textManager.printText();
                 break;
             case REPLACE:
-                textManager.replaceParagraph();
+                replace();
                 break;
             case HELP:
                 output.createHelpMessage();

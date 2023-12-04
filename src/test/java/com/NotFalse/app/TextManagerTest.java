@@ -32,7 +32,7 @@ public class TextManagerTest {
         input.splitInput();
         textManager.updateInputReceiver(input);
         textManager.setParagraphIndex(input.getIndex());
-        textManager.addDummyParagraph();
+        textManager.addDummyParagraph(input.getIsIndexNull());
         textManager.printText();
     }
 

@@ -31,8 +31,8 @@ public class TextManagerTest {
         input = new InputReceiver();
         input.splitInput();
         textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getIndex());
-        textManager.addDummyParagraph(input.getIsIndexNull());
+        textManager.setParagraphIndex(input.getUserIndex());
+        textManager.addDummyParagraph(input.isIndexNull());
         textManager.printText();
     }
 
@@ -78,7 +78,7 @@ public class TextManagerTest {
         input = new InputReceiver();
         input.splitInput();
         textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getIndex());
+        textManager.setParagraphIndex(input.getUserIndex());
         textManager.addNewParagraph();
         textManager.printText();
     }
@@ -126,7 +126,7 @@ public class TextManagerTest {
         input = new InputReceiver();
         input.splitInput();
         textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getIndex());
+        textManager.setParagraphIndex(input.getUserIndex());
         textManager.replaceParagraph();
         textManager.printText();
     }
@@ -197,7 +197,7 @@ public class TextManagerTest {
         input = new InputReceiver();
         input.splitInput();
         textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getIndex());
+        textManager.setParagraphIndex(input.getUserIndex());
         int listSizeBeforeDel = textManager.getTextList().size();
         textManager.deleteParagraph();
         textManager.printText();

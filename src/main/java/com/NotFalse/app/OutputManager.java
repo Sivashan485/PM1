@@ -9,8 +9,7 @@ import java.util.logging.*;
 public class OutputManager {
 
     private static final Logger LOGGER = Logger.getLogger(OutputManager.class.getName());
-    private final FileHandler fileHandler;
-    private final Handler consoleHandler;
+
 
     /**
      * Initializes the consoleHandler and the LOGGER.
@@ -18,13 +17,14 @@ public class OutputManager {
      * handler.
      */
     public OutputManager() {
+        FileHandler fileHandler;
         try {
             fileHandler = new FileHandler("./logs/OutputManager.log");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         LOGGER.setUseParentHandlers(false);
-        consoleHandler = new ConsoleHandler();
+        Handler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.OFF);
         consoleHandler.setFormatter(new SimpleFormatter());
         LOGGER.addHandler(fileHandler);

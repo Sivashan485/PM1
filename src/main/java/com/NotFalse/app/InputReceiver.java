@@ -8,20 +8,21 @@ import java.util.Scanner;
 public class InputReceiver {
 
     private final static String ALLOWED_REGEX = "[^A-Za-zäöüÄÖÜ 0-9 / .,:;\\-!?'\\\\()\\\"%@+*{}\\\\\\\\&#$\\[\\]]";
-    private final Scanner input;
-    private String command;
-    private Integer index;
+    private final Scanner userInput;
+    private String userCommand;
     private String restPart;
-    private boolean indexIsNull;
+    private Integer userIndex;
+
+
 
 
     /**
      * Constructor for InputReceiver.
      */
     public InputReceiver() {
-        input = new Scanner(System.in);
-        command = "";
-        index = null;
+        userInput = new Scanner(System.in);
+        userCommand = "";
+        userIndex = null;
     }
 
     /**
@@ -30,9 +31,8 @@ public class InputReceiver {
      * and indexIsNull to false.
      */
     private void resetValues() {
-        index = null;
-        command = "";
-        indexIsNull = false;
+        userIndex = null;
+        userCommand = "";
     }
 
     /**
@@ -42,7 +42,7 @@ public class InputReceiver {
      */
     String readAndFilterUserInput() {
         resetValues();
-        String inputText = input.nextLine();
+        String inputText = userInput.nextLine();
         return inputText.replaceAll(ALLOWED_REGEX, "");
     }
 
@@ -51,9 +51,9 @@ public class InputReceiver {
      */
     public void splitInput() {
         String userInput = readAndFilterUserInput();
-        command = extractCommand(userInput);
-        restPart = userInput.substring(command.length()).trim();
-        command += validateAndSplitCommand(command, restPart);
+        userCommand = extractCommand(userInput);
+        restPart = userInput.substring(userCommand.length()).trim();
+        userCommand += validateAndSplitCommand(userCommand, restPart);
     }
 
     /**
@@ -115,14 +115,13 @@ public class InputReceiver {
      *
      * @return {@code true} if 'restPart' is empty; otherwise, {@code false}.
      */
-    public boolean getIsIndexNull() {
-        indexIsNull = restPart.isEmpty();
-        return indexIsNull;
+    public boolean isIndexNull() {
+        return restPart.isEmpty();
     }
 
     private void handleIndexCommand() {
         try{
-            index = Integer.parseInt(restPart);
+            userIndex = Integer.parseInt(restPart);
         }catch (NumberFormatException e){
             OutputManager.createUnallowedCharacterWarning();
         }
@@ -135,8 +134,8 @@ public class InputReceiver {
      *
      * @return The current command as a string.
      */
-    public String getCommand() {
-        return command;
+    public String getUserCommand() {
+        return userCommand;
     }
 
 
@@ -146,8 +145,8 @@ public class InputReceiver {
      *
      * @return The current index as an integer.
      */
-    public Integer getIndex() {
-        return index;
+    public Integer getUserIndex() {
+        return userIndex;
     }
 
     /**

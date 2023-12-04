@@ -64,23 +64,23 @@ public class TextEditor {
     private void replace(){
         System.out.print("Replacing Word: ");
         String originalWord = input.readAndFilterUserInput();
-        if(textManager.retrieveReplacementWord( originalWord, input.getIndex())){
+        if(textManager.retrieveReplacementWord( originalWord, input.getUserIndex())){
             System.out.println("Replacing with: ");
             String replacingWord = input.readAndFilterUserInput();
-            textManager.replaceParagraph(input.getIsIndexNull(), originalWord, replacingWord);
+            textManager.replaceParagraph(input.isIndexNull(), originalWord, replacingWord);
         }
     }
 
     private void addText(){
         String enteredText;
-        if (input.getIsIndexNull()) {
+        if (input.isIndexNull()) {
             System.out.print("Text: ");
             enteredText = input.readAndFilterUserInput();
-            textManager.addNewParagraph(input.getIsIndexNull(), enteredText);
+            textManager.addNewParagraph(input.isIndexNull(), enteredText);
         } else{
             System.out.print("Text: ");
             enteredText = input.readAndFilterUserInput();
-            textManager.addNewParagraph(input.getIsIndexNull(), enteredText);
+            textManager.addNewParagraph(input.isIndexNull(), enteredText);
         }
     }
 
@@ -91,12 +91,12 @@ public class TextEditor {
      */
     public void editText() {
         input.splitInput();
-        Integer widthIndex = input.getIndex();
-        textManager.setParagraphIndex(input.getIndex());
+        Integer widthIndex = input.getUserIndex();
+        textManager.setParagraphIndex(input.getUserIndex());
 
-        switch (Command.parseCommand(input.getCommand())) {
+        switch (Command.parseCommand(input.getUserCommand())) {
             case DUMMY:
-                textManager.addDummyParagraph(input.getIsIndexNull());
+                textManager.addDummyParagraph(input.isIndexNull());
                 break;
             case EXIT:
                 output.createExitMessage();
@@ -106,7 +106,7 @@ public class TextEditor {
                 addText();
                 break;
             case DEL:
-                textManager.deleteParagraph(input.getIsIndexNull());
+                textManager.deleteParagraph(input.isIndexNull());
                 break;
             case INDEX:
                 glossary.printGlossary(textManager.getText());

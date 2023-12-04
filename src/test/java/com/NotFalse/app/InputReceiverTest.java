@@ -70,8 +70,8 @@ public class InputReceiverTest {
         System.setIn(new ByteArrayInputStream("add Hey how are you, i'm the test".getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        assertEquals("add", input.getCommand());
-        assertNull(input.getIndex());
+        assertEquals("add", input.getUserCommand());
+        assertNull(input.getUserIndex());
         assertEquals("Hey how are you, i'm the test", input.getRestPart());
     }
 
@@ -80,8 +80,8 @@ public class InputReceiverTest {
         System.setIn(new ByteArrayInputStream(("replace diam horem").getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        assertEquals("replace", input.getCommand());
-        assertNull(input.getIndex());
+        assertEquals("replace", input.getUserCommand());
+        assertNull(input.getUserIndex());
         assertEquals("diam horem", input.getRestPart());
     }
 
@@ -90,8 +90,8 @@ public class InputReceiverTest {
         System.setIn(new ByteArrayInputStream(("exit 1212").getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        assertEquals("exitnull", input.getCommand());
-        assertNull(input.getIndex());
+        assertEquals("exitnull", input.getUserCommand());
+        assertNull(input.getUserIndex());
         assertEquals("1212", input.getRestPart());
     }
 
@@ -100,8 +100,8 @@ public class InputReceiverTest {
         System.setIn(new ByteArrayInputStream(("add exit is the exit For the Exit").getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        assertEquals("add", input.getCommand());
-        assertNull(input.getIndex());
+        assertEquals("add", input.getUserCommand());
+        assertNull(input.getUserIndex());
         assertEquals("exit is the exit For the Exit", input.getRestPart());
     }
 
@@ -110,8 +110,8 @@ public class InputReceiverTest {
         System.setIn(new ByteArrayInputStream(("Del is to del some text In The Text Editor.").getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        assertEquals("del", input.getCommand());
-        assertNull(input.getIndex());
+        assertEquals("del", input.getUserCommand());
+        assertNull(input.getUserIndex());
         assertEquals("is to del some text In The Text Editor.", input.getRestPart());
     }
 
@@ -121,8 +121,8 @@ public class InputReceiverTest {
         System.setIn(new ByteArrayInputStream("\n".getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        assertEquals("", input.getCommand());
-        assertNull(input.getIndex());
+        assertEquals("", input.getUserCommand());
+        assertNull(input.getUserIndex());
         assertEquals("", input.getRestPart());
     }
 

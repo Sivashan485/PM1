@@ -121,11 +121,11 @@ public class InputReceiver {
 
     private void handleIndexCommand() {
         try{
-            userIndex = Integer.parseInt(restPart);
+                userIndex = Integer.parseInt(restPart);
+
         }catch (NumberFormatException e){
             OutputManager.createUnallowedCharacterWarning();
         }
-
     }
 
 

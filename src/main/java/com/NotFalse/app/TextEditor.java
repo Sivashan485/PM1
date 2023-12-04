@@ -53,6 +53,7 @@ public class TextEditor {
             String replacingWord = input.readAndFilterUserInput();
             textManager.replaceParagraphSection(input.isIndexNull(), originalWord, replacingWord);
         }
+
     }
 
     private void addText(){
@@ -60,7 +61,9 @@ public class TextEditor {
         String enteredText = input.readAndFilterUserInput();
         textManager.addNewParagraph(input.isIndexNull(), enteredText);
 
+
     }
+
 
     /**
      * Processes and executes text editing commands based on user input.
@@ -68,9 +71,12 @@ public class TextEditor {
      * Displays corresponding messages or triggers actions such as adding, deleting, replacing, formatting, or printing text.
      */
     public void editText() {
+        System.out.println("-----------------------------------------------------------");
+
         input.splitInput();
         Integer widthIndex = input.getUserIndex();
         textManager.setParagraphIndex(input.getUserIndex());
+
 
         switch (Command.parseCommand(input.getUserCommand())) {
             case DUMMY:
@@ -112,6 +118,7 @@ public class TextEditor {
                 output.createInvalidCommandMessage();
                 break;
         }
+
     }
 
 }

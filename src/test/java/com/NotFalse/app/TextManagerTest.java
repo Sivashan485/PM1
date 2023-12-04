@@ -7,8 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TextManagerTest {
 
@@ -22,7 +21,8 @@ public class TextManagerTest {
 
     }
 
-    //ADD DUMMY
+    //ADD
+    /*
     private void addDummyAuto(String index) {
 
         textManager = new TextManager();
@@ -30,9 +30,8 @@ public class TextManagerTest {
         System.setIn(new ByteArrayInputStream(item.getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getUserIndex());
-        textManager.addDummyParagraph(input.isIndexNull());
+        textManager.setParagraphIndex(input.getIndex());
+        textManager.addDummyParagraph(input.getIsIndexNull());
         textManager.printText();
     }
 
@@ -59,49 +58,33 @@ public class TextManagerTest {
             assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
         }
     }
-
-    /*
-    @Test
-    void testAddDummyText() {
-        List<String> testTextList = textManager.getTextList();
-        int listSizeBefore = testTextList.size();
-        textManager.addDummyParagraph();
-        assertEquals(listSizeBefore + 1, testTextList.size());
-    }*/
-
+*/
     // ADD TEXT test
-    private void addElementAuto(String index, String addingItem) {
+    private void addElementAuto(Integer index, boolean isIndexNull, String addingItem) {
         // Initialize textManager and input
-        textManager = new TextManager();
-        String item = "add " + index + "\n" + addingItem + "\n";
-        System.setIn(new ByteArrayInputStream(item.getBytes()));
-        input = new InputReceiver();
-        input.splitInput();
-        textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getUserIndex());
-        textManager.addNewParagraph();
-        textManager.printText();
+        textManager.setParagraphIndex(index);
+        textManager.addNewParagraph(isIndexNull, addingItem);
     }
 
 
     @Test
     void testAddTextWithIndex() {
-        addElementAuto("1", "TEST 1");
-        assertEquals(textManager.getTextList().get(0), "TEST 1");
+        addElementAuto(1, false, "T");
+        assertEquals(textManager.getTextList().get(0), "T");
     }
 
     @Test
     void testAddTextWithoutIndex() {
-        addElementAuto("", "TEST 1");
+        addElementAuto(null, true, "T");
         int listSize = textManager.getTextList().size();
-        assertEquals(textManager.getTextList().get(listSize - 1), "TEST 1");
+        assertEquals(textManager.getTextList().get(listSize - 1), "T");
 
     }
 
 
-    void testAddIndexRangeTest(String index) {
-        String testedString = "TEST ---- --- ... ,,,.  1";
-        addElementAuto(index, testedString);
+    void testAddIndexRangeTest(int index) {
+        String testedString = "T";
+        addElementAuto(index, false, "T");
         for (int i = 0; i < textManager.getTextList().size(); i++) {
             assertNotEquals(textManager.getTextList().get(i), testedString);
         }
@@ -109,124 +92,111 @@ public class TextManagerTest {
 
     @Test
     void testAddTextIndexRange() {
-        testAddIndexRangeTest("20000000");
-        testAddIndexRangeTest("-10000");
-        testAddIndexRangeTest("0");
-        testAddIndexRangeTest("WAS2");
+        testAddIndexRangeTest(20000000);
+        testAddIndexRangeTest(-10000);
+        testAddIndexRangeTest(0);
     }
 
     // REPLACE TEXT
-    public void replaceElementAuto(String sentenceToChange, String sentenceIndex, String index, String replacingItem, String replacingWith) {
-        textManager = new TextManager();
-        addElementAuto(sentenceIndex, sentenceToChange);
+    public void replaceElementAuto(String sentenceToChange, int sentenceIndex, int replaceIndex, String replacingItem, String replacingWith) {
 
-        String item = "replace " + index + "\n" + replacingItem + "\n" + replacingWith + "\n";
-        System.out.println(item);
-        System.setIn(new ByteArrayInputStream(item.getBytes()));
-        input = new InputReceiver();
-        input.splitInput();
-        textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getUserIndex());
-        textManager.replaceParagraphSection();
-        textManager.printText();
+        addElementAuto(sentenceIndex, false, sentenceToChange);
+        textManager.replaceWordInParagraph(replaceIndex, replacingItem, replacingWith);
+        textManager.replaceParagraphSection(false, replacingItem, replacingWith);
     }
-    /*
+
+
     @Test
     void testReplaceTextValid() {
         int index = 0;
-        addElementAuto("1", "Fifth End of text.");
-        List<String> testTextList = textManager.getTextList();
-        textManager.retrieveReplacementWord("End", "-");
-        String textAfterChange = testTextList.get(index);
-        assertEquals(textAfterChange, "Fifth - of text.");
+        replaceElementAuto("Test Te", 1, 1, "Te", "EE");
 
-    }*/
+        String textAfterChange = textManager.getTextList().get(index);
+        assertEquals("EEst EE", textAfterChange);
+
+    }
+
+
 
     @Test
     void TestReplaceWithIndex() {
         textManager.printText();
-        replaceElementAuto("WA. S.DF", "1", "1", ".", "1");
+        replaceElementAuto("WA. S.DF", 1, 1, ".", "1");
         assertEquals("WA1 S1DF", textManager.getTextList().get(0));
     }
 
     @Test
     void TestReplaceIndexAtEnd() {
-        textManager.printText();
-        replaceElementAuto(" .WA. S.DF. . ", "", "", ".", "1");
-        int indexEnd = textManager.getTextList().size() - 1;
-        assertEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(indexEnd));
+        replaceElementAuto(" .WA. S.DF. . ", textManager.getTextList().size() + 1, ".", "1");
+        String lastElement = textManager.getTextList().get(textManager.getTextList().size() - 1);
+        assertEquals(" 1WA1 S1DF1 1 ", lastElement);
     }
+
 
     @Test
     void TestReplaceIndexUnder0() {
-        textManager.printText();
-        replaceElementAuto(" .WA. S.DF. . ", "1", "-11", ".", "1");
-        for (int i = 0; i < textManager.getText().size() - 1; i++) {
-            assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
-        }
+        replaceElementAuto(" .WA. S.DF. . ", -11, -1111, ".", "1");
+        assertFalse(textManager.getTextList().contains(" 1WA1 S1DF1 1 "));
     }
+
 
     @Test
     void TestReplaceIndexOverListSize() {
         textManager.printText();
         Integer endingIndex = textManager.getTextList().size() + 20;
-        replaceElementAuto(" .WA. S.DF. . ", "1", endingIndex.toString(), ".", "1");
+        replaceElementAuto(" .WA. S.DF. . ", 1, endingIndex, ".", "1");
         for (int i = 0; i < textManager.getText().size() - 1; i++) {
             assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
         }
     }
 
 
-    /*@Test
+    @Test
     void testReplaceTextInvalid() {
         int index = 0;
-        addElementAuto("1", "Fifth End of text.");
+        addElementAuto(1, false,"Fifth End of text.");
         List<String> testTextList = textManager.getTextList();
-        textManager.replaceWordInParagraph(index);
+        textManager.replaceWordInParagraph(index, "ASDF", "E");
         String textAfterChange = testTextList.get(index);
         System.out.println(testTextList.get(index));
         assertEquals(textAfterChange, "Fifth End of text.");
-    }*/
+    }
 
 
     // DEL FUN
-    private int deleteElementAuto(String addIndex, String addSentenceText, String delIndex) {
-        addElementAuto(addIndex, addSentenceText);
-        String item = "del " + delIndex + "\n";
-        System.setIn(new ByteArrayInputStream(item.getBytes()));
-        input = new InputReceiver();
-        input.splitInput();
-        textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getUserIndex());
+    private int deleteElementAuto(int addIndex, String addSentenceText, int delIndex, boolean isindexnull) {
+        addElementAuto(addIndex, false, addSentenceText);
         int listSizeBeforeDel = textManager.getTextList().size();
-        textManager.deleteParagraph();
-        textManager.printText();
+        textManager.setParagraphIndex(delIndex);
+        textManager.deleteParagraph(isindexnull);
         return listSizeBeforeDel;
 
     }
 
+
     @Test
     void testDeleteNotInRangeOverListSize() {
         Integer delIndex = textManager.getTextList().size() + 100;
-        int indexSizeBefore = deleteElementAuto("1", "WAS", delIndex.toString());
+        int indexSizeBefore = deleteElementAuto(1, "WAS", delIndex,false);
         assertEquals(textManager.getTextList().size(), indexSizeBefore);
     }
 
+
     @Test
     void testDeleteInRangeListSize() {
-        int indexSizeBefore = deleteElementAuto("1", "WAS", "1");
+        int indexSizeBefore = deleteElementAuto(1, "WAS", 1, false);
         assertEquals((indexSizeBefore - 1), textManager.getTextList().size());
     }
 
     @Test
     void testDeleteNotInRangeN0() {
-        int indexSizeBefore = deleteElementAuto("1", "WAS", "0");
+        int indexSizeBefore = deleteElementAuto(1, "WAS", 0, false);
         assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
 
     @Test
     void testDeleteNotInRangeUnder0() {
-        int indexSizeBefore = deleteElementAuto("1", "WAS", "-1000");
+        int indexSizeBefore = deleteElementAuto(1, "WAS", -1000, false);
         assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
 
@@ -345,31 +315,11 @@ public class TextManagerTest {
     @Test
     void testResetParagraphWidthGreaterThanZero() {
         StringBuilder fixFormatted = new StringBuilder("test");
-        int currentParagraphWidth = 5;
-        textManager.resetParagraphWidth(currentParagraphWidth, fixFormatted);
+        textManager.resetParagraphWidth(fixFormatted);
         String expected = "test\n";
         assertEquals(expected, fixFormatted.toString());
     }
 
-    // Test for Method resetParagraphWidth
-    @Test
-    void testResetParagraphWidthZero() {
-        StringBuilder fixFormatted = new StringBuilder("test");
-        int currentParagraphWidth = 0;
-        textManager.resetParagraphWidth(currentParagraphWidth, fixFormatted);
-        String expected = "test";
-        assertEquals(expected, fixFormatted.toString());
-    }
-
-    // Test for Method resetParagraphWidth
-    @Test
-    void testResetParagraphWidthNegative() {
-        StringBuilder fixFormatted = new StringBuilder("test");
-        int currentParagraphWidth = -5;
-        textManager.resetParagraphWidth(currentParagraphWidth, fixFormatted);
-        String expected = "test";
-        assertEquals(expected, fixFormatted.toString());
-    }
 
     // Test for Method formatTextRaw
     @Test

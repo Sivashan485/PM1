@@ -37,7 +37,7 @@ public class OutputManager {
      * @param logText logText to be displayed of level INFO
      */
     public static void createUserInfoMessage(String logText) {
-        System.out.println(logText + "\n");
+        System.out.println(logText);
         LOGGER.log(Level.INFO, logText);
     }
 
@@ -47,7 +47,7 @@ public class OutputManager {
      * @param logText logText to be displayed of level WARNING
      */
     public static void createUserErrorMessage(String logText) {
-        System.err.println(logText + "\n");
+        System.err.println(logText);
         LOGGER.log(Level.WARNING, logText);
     }
 
@@ -55,21 +55,20 @@ public class OutputManager {
      * Creates a welcome message for the user.
      */
     public void createWelcomeMessage() {
-        System.out.println("----------------------------------------------------------\n");
-        createUserInfoMessage("Welcome to the TextEditor! Created by NotFalse.\n"
-                + "Following operations are possible:\n" +
-                "add, del, index, replace, print, format raw, format fix, help");
-        System.out.println("----------------------------------------------------------");
+
+        createUserInfoMessage("\nWelcome to the TextEditor created by NotFalse.\n"
+                + "\nYou can use following functions:\n" +
+                "add[i]\ndel[i]\nreplace[i]\nindex\nprint\nformat raw\nformat fix<b>\nhelp\nexit");
+
     }
 
     /**
      * Creates a goodbye message.
      */
     public void createExitMessage() {
-        System.out.println("----------------------------------------------------------\n");
         createUserInfoMessage("Exiting TextEditor...\n" +
                 "Thank you for using TextEditor! Created by NotFalse.");
-        System.out.println("----------------------------------------------------------");
+
     }
 
     /**

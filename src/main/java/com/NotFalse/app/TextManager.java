@@ -63,19 +63,10 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    void addDummyParagraph(boolean isindexNull) {
-        boolean isSuccessful;
-        if (isindexNull) {
-            text.add(DUMMYTEXT);
-            isSuccessful = true;
-        } else if (isIndexValid(paragraphIndex, text.size() + 1, isindexNull)) {
-            text.add(paragraphIndex - 1, DUMMYTEXT);
-            isSuccessful = true;
-        } else {
-           isSuccessful = false;
-        }
-        output.createAddMessage(isSuccessful);
+    void addDummyParagraph(boolean isIndexNull) {
+        addNewParagraph(isIndexNull, TextManager.DUMMYTEXT);
     }
+
 
     /**
      * Adds a new paragraph to the text based on user input.
@@ -118,6 +109,10 @@ public class TextManager {
         output.createDeleteMessage(isSuccessful);
     }
 
+    public int getTextSize(){
+        return text.size();
+    }
+
     /**
      * Checks if the provided paragraph index is valid for the current text size.
      * Displays a warning message if the index is out of bounds and returns false.
@@ -126,7 +121,7 @@ public class TextManager {
      * @param textSize       The size of the current text.
      * @return {@code true} if the index is valid; otherwise, {@code false}.
      */
-    private boolean isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
+    public boolean isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
         if (!isIndexNull && paragraphIndex != null) {
             if (paragraphIndex <= 0 || paragraphIndex > textSize) {
                 output.createIndexWarning();
@@ -251,9 +246,9 @@ public class TextManager {
             output.createEmptyTextWarning();
         } else {
             if (isFormatterRaw) {
-                System.out.println(formatTextRaw());
+                System.out.print(formatTextRaw());
             } else {
-                System.out.println(formatTextFix());
+                System.out.print(formatTextFix());
             }
         }
     }

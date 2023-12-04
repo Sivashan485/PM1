@@ -132,11 +132,14 @@ public class TextManager {
      * Deletes the paragraph at the specified index.
      */
     void deleteParagraph(boolean isIndexNull) {
+        if(text.isEmpty()){
+            output.createEmptyTextWarning();
+        }
         boolean isSuccessful;
         if (isIndexNull && !text.isEmpty()) {
             text.remove(text.size() - 1);
             isSuccessful = true;
-        } else if (!text.isEmpty()&&isIndexValid(paragraphIndex, text.size(), isIndexNull)) {
+        } else if (isIndexValid(paragraphIndex, text.size(), isIndexNull)) {
             text.remove(paragraphIndex - 1);
             isSuccessful = true;
         }else{
@@ -176,18 +179,12 @@ public class TextManager {
      */
     String formatTextRaw() {
         formattedText = "";
-        try {
-            for (int paragraph = 0; paragraph < text.size(); paragraph++) {
-                formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
-            }
-            isFormatterRaw = true;
-            isFormatRawSuccessful = true;
-            return formattedText;
-        } catch (Exception e) {
-            output.createFormatMessage(false);
-            isFormatRawSuccessful = false;
-            return "";
+        for (int paragraph = 0; paragraph < text.size(); paragraph++) {
+            formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
         }
+        isFormatterRaw = true;
+        isFormatRawSuccessful = true;
+        return formattedText;
     }
 
     /**

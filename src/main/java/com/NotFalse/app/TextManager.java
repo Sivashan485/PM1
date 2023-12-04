@@ -106,16 +106,6 @@ public class TextManager {
         }
         output.createAddMessage(isSuccessful);
     }
-    /**
-     * Prompts the user to enter text and reads the input, filtering it for potential formatting.
-     *
-     * @return The entered and filtered text.
-     */
-   /* String receiveEnteredText() {
-        System.out.print("Text: ");
-        return input.readAndFilterUserInput();
-    }*/
-
 
 
     /**
@@ -229,7 +219,6 @@ public class TextManager {
     void resetParagraphWidth(int currentParagraphWidth, StringBuilder fixFormatted) {
         if (currentParagraphWidth > 0) {
             fixFormatted.append("\n");
-            currentParagraphWidth = 0;
         }
     }
 
@@ -302,10 +291,8 @@ public class TextManager {
      * @param index           The index of the text to be modified.
      */
     void replaceWordInParagraph(int index, String originalWord, String replacementWord) {
-        /*System.out.print("Replacing Word: ");
-        String originalWord = input.readAndFilterUserInput();*/
+
         String paragraph = text.get(index);
-        //String replacementWord = retrieveReplacementWord(originalWord, paragraph);
         paragraph = paragraph.replace(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
 
@@ -316,7 +303,6 @@ public class TextManager {
     }
 
     boolean retrieveReplacementWord(String originalWord, int index){
-        String replacementWord = "";
         if(text.get(index).contains(originalWord)){
             return true;
         }else{

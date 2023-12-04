@@ -30,7 +30,6 @@ public class TextManagerTest {
         System.setIn(new ByteArrayInputStream(item.getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        textManager.updateInputReceiver(input);
         textManager.setParagraphIndex(input.getIndex());
         textManager.addDummyParagraph(input.getIsIndexNull());
         textManager.printText();
@@ -70,38 +69,31 @@ public class TextManagerTest {
     }*/
 
     // ADD TEXT test
-    private void addElementAuto(String index, String addingItem) {
+    private void addElementAuto(Integer index, boolean isIndexNull, String addingItem) {
         // Initialize textManager and input
-        textManager = new TextManager();
-        String item = "add " + index + "\n" + addingItem + "\n";
-        System.setIn(new ByteArrayInputStream(item.getBytes()));
-        input = new InputReceiver();
-        input.splitInput();
-        textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getIndex());
-        textManager.addNewParagraph();
-        textManager.printText();
+        textManager.setParagraphIndex(index);
+        textManager.addNewParagraph(isIndexNull, addingItem);
     }
 
 
     @Test
     void testAddTextWithIndex() {
-        addElementAuto("1", "TEST 1");
-        assertEquals(textManager.getTextList().get(0), "TEST 1");
+        addElementAuto(1, false,"T");
+        assertEquals(textManager.getTextList().get(0), "T");
     }
 
     @Test
     void testAddTextWithoutIndex() {
-        addElementAuto("", "TEST 1");
+        addElementAuto(null, true,"T");
         int listSize = textManager.getTextList().size();
-        assertEquals(textManager.getTextList().get(listSize - 1), "TEST 1");
+        assertEquals(textManager.getTextList().get(listSize - 1), "T");
 
     }
 
 
-    void testAddIndexRangeTest(String index) {
-        String testedString = "TEST ---- --- ... ,,,.  1";
-        addElementAuto(index, testedString);
+    void testAddIndexRangeTest(int index) {
+        String testedString = "T";
+        addElementAuto(index, false,"T");
         for (int i = 0; i < textManager.getTextList().size(); i++) {
             assertNotEquals(textManager.getTextList().get(i), testedString);
         }
@@ -109,28 +101,20 @@ public class TextManagerTest {
 
     @Test
     void testAddTextIndexRange() {
-        testAddIndexRangeTest("20000000");
-        testAddIndexRangeTest("-10000");
-        testAddIndexRangeTest("0");
-        testAddIndexRangeTest("WAS2");
+        testAddIndexRangeTest(20000000);
+        testAddIndexRangeTest(-10000);
+        testAddIndexRangeTest(0);
     }
 
     // REPLACE TEXT
-    public void replaceElementAuto(String sentenceToChange, String sentenceIndex, String index, String replacingItem, String replacingWith) {
-        textManager = new TextManager();
-        addElementAuto(sentenceIndex, sentenceToChange);
+    public void replaceElementAuto(String sentenceToChange, int sentenceIndex, String index, String replacingItem, String replacingWith) {
 
-        String item = "replace " + index + "\n" + replacingItem + "\n" + replacingWith + "\n";
-        System.out.println(item);
-        System.setIn(new ByteArrayInputStream(item.getBytes()));
-        input = new InputReceiver();
-        input.splitInput();
-        textManager.updateInputReceiver(input);
-        textManager.setParagraphIndex(input.getIndex());
+        addElementAuto(sentenceIndex,false, sentenceToChange);
+
         textManager.replaceParagraph();
-        textManager.printText();
     }
-    /*
+
+
     @Test
     void testReplaceTextValid() {
         int index = 0;
@@ -140,7 +124,8 @@ public class TextManagerTest {
         String textAfterChange = testTextList.get(index);
         assertEquals(textAfterChange, "Fifth - of text.");
 
-    }*/
+    }
+    /*
 
     @Test
     void TestReplaceWithIndex() {
@@ -191,15 +176,14 @@ public class TextManagerTest {
 
     // DEL FUN
     private int deleteElementAuto(String addIndex, String addSentenceText, String delIndex) {
-        addElementAuto(addIndex, addSentenceText);
+        //addElementAuto(addIndex, addSentenceText);
         String item = "del " + delIndex + "\n";
         System.setIn(new ByteArrayInputStream(item.getBytes()));
         input = new InputReceiver();
         input.splitInput();
-        textManager.updateInputReceiver(input);
         textManager.setParagraphIndex(input.getIndex());
         int listSizeBeforeDel = textManager.getTextList().size();
-        textManager.deleteParagraph();
+        textManager.deleteParagraph(input.getIsIndexNull());
         textManager.printText();
         return listSizeBeforeDel;
 

@@ -51,3 +51,4 @@ add, del, index, replace, print, format raw, format fix, help</message>
   <thread>1</thread>
   <message>Status: Text deleted successfully!</message>
 </record>
+</log>

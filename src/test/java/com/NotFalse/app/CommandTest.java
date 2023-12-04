@@ -25,6 +25,11 @@ class CommandTest {
     @Test
     void testGetAllCommands(){
 
+        String expected = "exit, add, del, dummy, index, print, replace, help, format raw, format fix"; // Replace with actual command names
+        String actual = Command.getAllCommands();
+
+        assertEquals(expected, actual);
+
     }
 
     @Test

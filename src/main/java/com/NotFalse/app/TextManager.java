@@ -85,17 +85,7 @@ public class TextManager {
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
     void addDummyParagraph(boolean isindexNull) {
-        boolean isSuccessful;
-        if (isindexNull) {
-            text.add(DUMMYTEXT);
-            isSuccessful = true;
-        } else if (isIndexValid(paragraphIndex, text.size() + 1, isindexNull)) {
-            text.add(paragraphIndex - 1, DUMMYTEXT);
-            isSuccessful = true;
-        } else {
-           isSuccessful = false;
-        }
-        output.createAddMessage(isSuccessful);
+        addNewParagraph(isindexNull, TextManager.DUMMYTEXT);
     }
 
     /**

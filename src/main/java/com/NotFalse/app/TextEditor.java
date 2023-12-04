@@ -43,45 +43,23 @@ public class TextEditor {
         } while (isRunning);
     }
 
-    /**
-     * Creates and displays a formatted message based on the success of the 'formatRaw' operation.
-     * If the 'formatRaw' operation is successful, a success message is created; otherwise, an error message is created.
-     * The decision is based on the result obtained from 'textManager.getIsFormatRawSuccessful()'.
-     */
-    private void createFormatRawOutputMessage() {
-        output.createFormatMessage(textManager.getIsFormatRawSuccessful());
-    }
 
-    /**
-     * Creates and displays a formatted message based on the success of the 'formatFix' operation.
-     * If the 'formatFix' operation is successful, a success message is created; otherwise, an error message is created.
-     * The decision is based on the result obtained from 'textManager.getIsFormatFixSuccessful()'.
-     */
-    private void createFormatFixOutputMessage() {
-        output.createFormatMessage(textManager.getIsFormatFixSuccessful());
-    }
 
     private void replace(){
         System.out.print("Replacing Word: ");
         String originalWord = input.readAndFilterUserInput();
-        if(textManager.retrieveReplacementWord( originalWord, input.getUserIndex())){
+        if(textManager.containsWord( originalWord, input.getUserIndex())){
             System.out.println("Replacing with: ");
             String replacingWord = input.readAndFilterUserInput();
-            textManager.replaceParagraph(input.isIndexNull(), originalWord, replacingWord);
+            textManager.replaceParagraphSection(input.isIndexNull(), originalWord, replacingWord);
         }
     }
 
     private void addText(){
-        String enteredText;
-        if (input.isIndexNull()) {
-            System.out.print("Text: ");
-            enteredText = input.readAndFilterUserInput();
-            textManager.addNewParagraph(input.isIndexNull(), enteredText);
-        } else{
-            System.out.print("Text: ");
-            enteredText = input.readAndFilterUserInput();
-            textManager.addNewParagraph(input.isIndexNull(), enteredText);
-        }
+        System.out.print("Text: ");
+        String enteredText = input.readAndFilterUserInput();
+        textManager.addNewParagraph(input.isIndexNull(), enteredText);
+
     }
 
     /**
@@ -121,13 +99,14 @@ public class TextEditor {
                 output.createHelpMessage();
                 break;
             case FORMAT_RAW:
+                textManager.setIsFormatterRaw(true);
                 textManager.formatTextRaw();
-                createFormatRawOutputMessage();
+                output.createFormatMessage(true);
                 break;
             case FORMAT_FIX:
+                textManager.setIsFormatterRaw(false);
                 textManager.setMaxWidth(widthIndex);
                 textManager.formatTextFix();
-                createFormatFixOutputMessage();
                 break;
             default:
                 output.createInvalidCommandMessage();

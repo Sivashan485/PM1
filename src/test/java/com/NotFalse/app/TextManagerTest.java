@@ -127,7 +127,7 @@ public class TextManagerTest {
         input.splitInput();
         textManager.updateInputReceiver(input);
         textManager.setParagraphIndex(input.getUserIndex());
-        textManager.replaceParagraph();
+        textManager.replaceParagraphSection();
         textManager.printText();
     }
     /*

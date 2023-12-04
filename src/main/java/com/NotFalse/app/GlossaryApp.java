@@ -75,7 +75,7 @@ public class GlossaryApp {
         Map<String, Integer> wordFrequency = new HashMap<>();
         for (String paragraph : text) {
             String cleanedParagraph = filterParagraph(paragraph);
-            String[] words = cleanedParagraph.split(" ");
+            String[] words = cleanedParagraph.split("\\s+");
             for (String word : words) {
                 if (startWithUpperCase(word.trim())) {
                     if (!wordFrequency.containsKey(word)) {

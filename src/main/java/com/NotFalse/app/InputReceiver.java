@@ -7,8 +7,8 @@ import java.util.Scanner;
  */
 public class InputReceiver {
 
-    private final Scanner input;
     private final static String ALLOWED_REGEX = "[^A-Za-zäöüÄÖÜ 0-9 / .,:;\\-!?'\\\\()\\\"%@+*{}\\\\\\\\&#$\\[\\]]";
+    private final Scanner input;
     private String command;
     private Integer index;
     private String restPart;
@@ -130,11 +130,7 @@ public class InputReceiver {
      * @return {@code true} if 'restPart' is empty; otherwise, {@code false}.
      */
     public boolean getIsIndexNull() {
-        if (restPart.isEmpty()) {
-            indexIsNull = true;
-        } else {
-            indexIsNull = false;
-        }
+        indexIsNull = restPart.isEmpty();
         return indexIsNull;
     }
 

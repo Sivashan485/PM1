@@ -2,7 +2,11 @@ package com.NotFalse.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,6 +14,7 @@ class GlossaryAppTest {
 
     private GlossaryApp glossaryApp;
     private OutputManager outputManager;
+
     @BeforeEach
     void setUp() {
         outputManager = new OutputManager();
@@ -32,8 +37,8 @@ class GlossaryAppTest {
 
         // Check if the glossary contains the expected entries
         TreeMap<String, List<Integer>> expectedGlossary = new TreeMap<>();
-        expectedGlossary.put("Text", Arrays.asList(1, 2,3));
-        expectedGlossary.put("Another", Arrays.asList(1,2));
+        expectedGlossary.put("Text", Arrays.asList(1, 2, 3));
+        expectedGlossary.put("Another", Arrays.asList(1, 2));
         assertEquals(expectedGlossary, glossaryApp.getGlossary());
     }
 
@@ -65,7 +70,7 @@ class GlossaryAppTest {
     @Test
     void testFindParagraphIndexesOne() {
         List<String> text = Arrays.asList("This is a Test", "Test for the glossary app.");
-        List<Integer> nonexistentIndexes = glossaryApp.searchWordInParagraphs(text , "nonexistent");
+        List<Integer> nonexistentIndexes = glossaryApp.searchWordInParagraphs(text, "nonexistent");
         assertTrue(nonexistentIndexes.isEmpty());
     }
 
@@ -84,6 +89,7 @@ class GlossaryAppTest {
 
         assertEquals("This is a test paragraph", filteredParagraph);
     }
+
     @Test
     void testFilterParagraphWithAlphabeticCharacters() {
         assertEquals("Hello World", glossaryApp.filterParagraph("Hello, World!"));
@@ -98,8 +104,6 @@ class GlossaryAppTest {
     void testFilterParagraphEmptyString() {
         assertEquals("", glossaryApp.filterParagraph(""));
     }
-
-
 
 
 }

@@ -18,16 +18,15 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    private InputReceiver input;
+    private static final int MAX_MAXWIDTH = 2147483647;
     private final OutputManager output;
-
+    private InputReceiver input;
     private List<String> text;
     private String formattedText;
     private int maxWidth;
     private boolean isFormatterRaw;
     private boolean isFormatRawSuccessful;
     private boolean isFormatFixSuccessful;
-    private static final int MAX_MAXWIDTH = 2147483647;
     private Integer paragraphIndex;
 
     /**
@@ -47,7 +46,7 @@ public class TextManager {
 
     }
 
-    List<String> getTextList(){
+    List<String> getTextList() {
         return text;
     }
 
@@ -132,6 +131,7 @@ public class TextManager {
 
     /**
      * Prompts the user to enter text and reads the input, filtering it for potential formatting.
+     *
      * @return The entered and filtered text.
      */
     String receiveEnteredText() {
@@ -155,6 +155,7 @@ public class TextManager {
     /**
      * Checks if the provided paragraph index is valid for the current text size.
      * Displays a warning message if the index is out of bounds and returns false.
+     *
      * @param paragraphIndex The index to be validated.
      * @param textSize       The size of the current text.
      * @return {@code true} if the index is valid; otherwise, {@code false}.
@@ -242,7 +243,7 @@ public class TextManager {
      * If the current line is not empty, start a new line.
      *
      * @param currentParagraphWidth The current width of the paragraph.
-     * @param fixFormatted The StringBuilder representing the formatted text.
+     * @param fixFormatted          The StringBuilder representing the formatted text.
      */
     void resetParagraphWidth(int currentParagraphWidth, StringBuilder fixFormatted) {
         if (currentParagraphWidth > 0) {
@@ -258,18 +259,15 @@ public class TextManager {
      * @return {@code true} if the maxWidth is valid; otherwise, {@code false}.
      */
     boolean validateMaxWidth(int maxWidth) {
-        if (maxWidth <= 0 || maxWidth > MAX_MAXWIDTH) {
-            return false;
-        }
-        return true;
+        return maxWidth > 0 && maxWidth <= MAX_MAXWIDTH;
     }
 
     /**
      * Check if adding the current word exceeds maxWidth, and if it does, add a new
      * line.
      *
-     * @param word The word to be appended.
-     * @param fixFormatted The StringBuilder representing the formatted text.
+     * @param word                  The word to be appended.
+     * @param fixFormatted          The StringBuilder representing the formatted text.
      * @param currentParagraphWidth The current width of the paragraph.
      * @return The updated current paragraph width.
      */
@@ -287,7 +285,7 @@ public class TextManager {
     /**
      * Add a space if it's not the first word on the paragraph.
      *
-     * @param fixFormatted The StringBuilder representing the formatted text.
+     * @param fixFormatted          The StringBuilder representing the formatted text.
      * @param currentParagraphWidth The current width of the paragraph.
      * @return The updated current paragraph width.
      */
@@ -374,20 +372,21 @@ public class TextManager {
     }
 
     /**
-     * Setter for the text. It is used for testing.
-     * @param text The list of strings representing the text content.
-     */
-    void setText(List<String> text) {
-        this.text = text;
-    }
-
-    /**
      * Getter for the text. It is used for testing.
      *
      * @return the text
      */
     List<String> getText() {
         return Collections.unmodifiableList(text);
+    }
+
+    /**
+     * Setter for the text. It is used for testing.
+     *
+     * @param text The list of strings representing the text content.
+     */
+    void setText(List<String> text) {
+        this.text = text;
     }
 
 }

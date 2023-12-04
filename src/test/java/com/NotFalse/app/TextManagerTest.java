@@ -1,14 +1,14 @@
 package com.NotFalse.app;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TextManagerTest {
 
@@ -26,35 +26,36 @@ public class TextManagerTest {
     private void addDummyAuto(String index) {
 
         textManager = new TextManager();
-        String item = "dummy " + index+"\n";
+        String item = "dummy " + index + "\n";
         System.setIn(new ByteArrayInputStream(item.getBytes()));
-    input = new InputReceiver();
+        input = new InputReceiver();
         input.splitInput();
         textManager.updateInputReceiver(input);
         textManager.setParagraphIndex(input.getIndex());
         textManager.addDummyParagraph();
         textManager.printText();
-}
+    }
+
     @Test
-    void testAddDummyIndexOne(){
+    void testAddDummyIndexOne() {
         addDummyAuto("5");
         assertEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(4));
         addDummyAuto("-11");
-        for(int i = 0 ; i<textManager.getTextList().size();i++){
+        for (int i = 0; i < textManager.getTextList().size(); i++) {
             assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
         }
     }
 
     @Test
-    void testAddDummyIndexTwo(){
+    void testAddDummyIndexTwo() {
         addDummyAuto("5");
         assertEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(4));
     }
 
     @Test
-    void testAddDummyIndexThree(){
+    void testAddDummyIndexThree() {
         addDummyAuto("-11");
-        for(int i = 0 ; i<textManager.getTextList().size();i++){
+        for (int i = 0; i < textManager.getTextList().size(); i++) {
             assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
         }
     }
@@ -82,7 +83,6 @@ public class TextManagerTest {
         textManager.addNewParagraph();
         textManager.printText();
     }
-
 
 
     @Test
@@ -117,11 +117,11 @@ public class TextManagerTest {
     }
 
     // REPLACE TEXT
-    public void replaceElementAuto(String sentenceToChange, String sentenceIndex,String index, String replacingItem, String replacingWith) {
+    public void replaceElementAuto(String sentenceToChange, String sentenceIndex, String index, String replacingItem, String replacingWith) {
         textManager = new TextManager();
         addElementAuto(sentenceIndex, sentenceToChange);
 
-        String item = "replace " + index + "\n" + replacingItem + "\n"+replacingWith+"\n";
+        String item = "replace " + index + "\n" + replacingItem + "\n" + replacingWith + "\n";
         System.out.println(item);
         System.setIn(new ByteArrayInputStream(item.getBytes()));
         input = new InputReceiver();
@@ -131,6 +131,7 @@ public class TextManagerTest {
         textManager.replaceParagraph();
         textManager.printText();
     }
+
     @Test
     void testReplaceTextValid() {
         int index = 0;
@@ -143,34 +144,35 @@ public class TextManagerTest {
     }
 
     @Test
-    void TestReplaceWithIndex(){
+    void TestReplaceWithIndex() {
         textManager.printText();
-        replaceElementAuto("WA. S.DF","1","1", ".", "1");
+        replaceElementAuto("WA. S.DF", "1", "1", ".", "1");
         assertEquals("WA1 S1DF", textManager.getTextList().get(0));
     }
 
     @Test
-    void TestReplaceIndexAtEnd(){
+    void TestReplaceIndexAtEnd() {
         textManager.printText();
-        replaceElementAuto(" .WA. S.DF. . ","","", ".", "1");
-        int indexEnd = textManager.getTextList().size()-1;
+        replaceElementAuto(" .WA. S.DF. . ", "", "", ".", "1");
+        int indexEnd = textManager.getTextList().size() - 1;
         assertEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(indexEnd));
     }
 
     @Test
-    void TestReplaceIndexUnder0(){
+    void TestReplaceIndexUnder0() {
         textManager.printText();
-        replaceElementAuto(" .WA. S.DF. . ","1","-11", ".", "1");
-        for(int i = 0 ; i<textManager.getText().size()-1; i++){
+        replaceElementAuto(" .WA. S.DF. . ", "1", "-11", ".", "1");
+        for (int i = 0; i < textManager.getText().size() - 1; i++) {
             assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
         }
     }
+
     @Test
-    void TestReplaceIndexOverListSize(){
+    void TestReplaceIndexOverListSize() {
         textManager.printText();
-        Integer endingIndex = textManager.getTextList().size()+20;
-        replaceElementAuto(" .WA. S.DF. . ","1", endingIndex.toString(), ".", "1");
-        for(int i = 0 ; i<textManager.getText().size()-1; i++){
+        Integer endingIndex = textManager.getTextList().size() + 20;
+        replaceElementAuto(" .WA. S.DF. . ", "1", endingIndex.toString(), ".", "1");
+        for (int i = 0; i < textManager.getText().size() - 1; i++) {
             assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
         }
     }
@@ -189,9 +191,9 @@ public class TextManagerTest {
 
 
     // DEL FUN
-    private int deleteElementAuto(String addIndex,String addSentenceText ,String delIndex) {
+    private int deleteElementAuto(String addIndex, String addSentenceText, String delIndex) {
         addElementAuto(addIndex, addSentenceText);
-        String item = "del " + delIndex+ "\n";
+        String item = "del " + delIndex + "\n";
         System.setIn(new ByteArrayInputStream(item.getBytes()));
         input = new InputReceiver();
         input.splitInput();
@@ -205,24 +207,27 @@ public class TextManagerTest {
     }
 
     @Test
-    void testDeleteNotInRangeOverListSize(){
-        Integer delIndex  = textManager.getTextList().size()+100;
-        int indexSizeBefore = deleteElementAuto("1","WAS" ,delIndex.toString());
+    void testDeleteNotInRangeOverListSize() {
+        Integer delIndex = textManager.getTextList().size() + 100;
+        int indexSizeBefore = deleteElementAuto("1", "WAS", delIndex.toString());
         assertEquals(textManager.getTextList().size(), indexSizeBefore);
     }
+
     @Test
-    void testDeleteInRangeListSize(){
-        int indexSizeBefore = deleteElementAuto("1","WAS" ,"1");
+    void testDeleteInRangeListSize() {
+        int indexSizeBefore = deleteElementAuto("1", "WAS", "1");
         assertEquals((indexSizeBefore - 1), textManager.getTextList().size());
     }
+
     @Test
-    void testDeleteNotInRangeN0(){
-        int indexSizeBefore = deleteElementAuto("1","WAS" ,"0");
+    void testDeleteNotInRangeN0() {
+        int indexSizeBefore = deleteElementAuto("1", "WAS", "0");
         assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
+
     @Test
-    void testDeleteNotInRangeUnder0(){
-        int indexSizeBefore = deleteElementAuto("1","WAS" ,"-1000");
+    void testDeleteNotInRangeUnder0() {
+        int indexSizeBefore = deleteElementAuto("1", "WAS", "-1000");
         assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
 
@@ -231,7 +236,7 @@ public class TextManagerTest {
     @Test
     void testSingleShortWord() {
         String expected = "test\n";
-        textManager.setText(Arrays.asList("test\n"));
+        textManager.setText(List.of("test\n"));
         textManager.setMaxWidth(4);
         assertEquals(expected, textManager.formatTextFix());
     }
@@ -240,7 +245,7 @@ public class TextManagerTest {
     @Test
     void testEmptyInput() {
         String expected = "\n";
-        textManager.setText(Arrays.asList(""));
+        textManager.setText(List.of(""));
         textManager.setMaxWidth(4);
         assertEquals(expected, textManager.formatTextFix());
     }
@@ -251,7 +256,7 @@ public class TextManagerTest {
         String expected = "0123456\n" +
                 "7890123\n" +
                 "456789\n";
-        textManager.setText(Arrays.asList("01234567890123456789"));
+        textManager.setText(List.of("01234567890123456789"));
         textManager.setMaxWidth(7);
         assertEquals(expected, textManager.formatTextFix());
     }
@@ -371,7 +376,7 @@ public class TextManagerTest {
     @Test
     void testFormatTextRawWithSingleLine() {
         String expected = "<1>: This is a single line of text.\n";
-        textManager.setText(Arrays.asList("This is a single line of text."));
+        textManager.setText(List.of("This is a single line of text."));
         assertEquals(expected, textManager.formatTextRaw());
     }
 
@@ -388,7 +393,7 @@ public class TextManagerTest {
     @Test
     void testFormatTextRawWithEmptyList() {
         String expected = "<1>: \n";
-        textManager.setText(Arrays.asList(""));
+        textManager.setText(List.of(""));
         assertEquals(expected, textManager.formatTextRaw());
     }
 }

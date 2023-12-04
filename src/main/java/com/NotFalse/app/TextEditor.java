@@ -48,12 +48,8 @@ public class TextEditor {
      * If the 'formatRaw' operation is successful, a success message is created; otherwise, an error message is created.
      * The decision is based on the result obtained from 'textManager.getIsFormatRawSuccessful()'.
      */
-    private void createFormatRawOutputMessage(){
-        if (textManager.getIsFormatRawSuccessful()) {
-            output.createFormatMessage(true);
-        } else {
-            output.createFormatMessage(false);
-        }
+    private void createFormatRawOutputMessage() {
+        output.createFormatMessage(textManager.getIsFormatRawSuccessful());
     }
 
     /**
@@ -61,12 +57,8 @@ public class TextEditor {
      * If the 'formatFix' operation is successful, a success message is created; otherwise, an error message is created.
      * The decision is based on the result obtained from 'textManager.getIsFormatFixSuccessful()'.
      */
-    private void createFormatFixOutputMessage(){
-        if (textManager.getIsFormatFixSuccessful()) {
-            output.createFormatMessage(true);
-        } else {
-            output.createFormatMessage(false);
-        }
+    private void createFormatFixOutputMessage() {
+        output.createFormatMessage(textManager.getIsFormatFixSuccessful());
     }
 
 

@@ -1,8 +1,11 @@
 package com.NotFalse.app;
 
 import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class InputReceiverTest {
 
@@ -43,7 +46,7 @@ public class InputReceiverTest {
         String expected = "";
         assertEquals(expected, inputText);
     }
-    
+
     @Test
     void testReadAndFilterUserInput() {
         System.setIn(new ByteArrayInputStream("This is a test input with some disallowed characters: @#%".getBytes()));
@@ -61,6 +64,7 @@ public class InputReceiverTest {
         String expected = "Hello123";
         assertEquals(expected, filteredInput);
     }
+
     @Test
     void testSplitInputShouldSplitAndIdentifyCommandAdd() {
         System.setIn(new ByteArrayInputStream("add Hey how are you, i'm the test".getBytes()));

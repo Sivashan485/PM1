@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class GlossaryApp {
 
     private final TreeMap<String, List<Integer>> glossary;
-    private OutputManager output;
+    private final OutputManager output;
 
     /**
      * Constructor for GlossaryApp.

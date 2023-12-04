@@ -133,19 +133,16 @@ public class TextManager {
      */
     void deleteParagraph(boolean isIndexNull) {
         boolean isSuccessful;
-        if (isIndexNull) {
+        if (isIndexNull && !text.isEmpty()) {
             text.remove(text.size() - 1);
             isSuccessful = true;
-        } else if (isIndexValid(paragraphIndex, text.size(), isIndexNull)) {
+        } else if (!text.isEmpty()&&isIndexValid(paragraphIndex, text.size(), isIndexNull)) {
             text.remove(paragraphIndex - 1);
             isSuccessful = true;
         }else{
             isSuccessful = false;
         }
         output.createDeleteMessage(isSuccessful);
-
-
-
     }
 
     /**

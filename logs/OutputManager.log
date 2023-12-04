@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-04T10:34:22.330117Z</date>
-  <millis>1701686062330</millis>
-  <nanos>117000</nanos>
+  <date>2023-12-04T14:57:51.611867280Z</date>
+  <millis>1701701871611</millis>
+  <nanos>867280</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,26 +16,38 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-04T10:34:27.145517Z</date>
-  <millis>1701686067145</millis>
-  <nanos>517000</nanos>
+  <date>2023-12-04T14:57:54.951754995Z</date>
+  <millis>1701701874951</millis>
+  <nanos>754995</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>Unallowed character for index. Please try again.</message>
+  <message>Status: Text deleted successfully!</message>
 </record>
 <record>
-  <date>2023-12-04T10:34:27.146491Z</date>
-  <millis>1701686067146</millis>
-  <nanos>491000</nanos>
+  <date>2023-12-04T14:57:56.730193385Z</date>
+  <millis>1701701876730</millis>
+  <nanos>193385</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>Unallowed character for index. Please try again.</message>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-04T14:58:00.065886031Z</date>
+  <millis>1701701880065</millis>
+  <nanos>886031</nanos>
+  <sequence>3</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
 </record>

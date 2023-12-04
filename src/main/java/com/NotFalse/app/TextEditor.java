@@ -78,6 +78,7 @@ public class TextEditor {
             enteredText = input.readAndFilterUserInput();
             textManager.addNewParagraph(input.getIsIndexNull(), enteredText);
         } else{
+            System.out.print("Text: ");
             enteredText = input.readAndFilterUserInput();
             textManager.addNewParagraph(input.getIsIndexNull(), enteredText);
         }

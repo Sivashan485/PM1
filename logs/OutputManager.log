@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-04T16:11:30.627222686Z</date>
-  <millis>1701706290627</millis>
-  <nanos>222686</nanos>
+  <date>2023-12-04T16:35:18.281789807Z</date>
+  <millis>1701707718281</millis>
+  <nanos>789807</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,9 +16,9 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-04T16:11:34.834427437Z</date>
-  <millis>1701706294834</millis>
-  <nanos>427437</nanos>
+  <date>2023-12-04T16:35:18.299727424Z</date>
+  <millis>1701707718299</millis>
+  <nanos>727424</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -28,15 +28,15 @@ add, del, index, replace, print, format raw, format fix, help</message>
   <message>Status: Text added successfully!</message>
 </record>
 <record>
-  <date>2023-12-04T16:11:38.869653567Z</date>
-  <millis>1701706298869</millis>
-  <nanos>653567</nanos>
+  <date>2023-12-04T16:35:18.300589031Z</date>
+  <millis>1701707718300</millis>
+  <nanos>589031</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
+  <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
+  <method>createUserErrorMessage</method>
   <thread>1</thread>
-  <message>Status: Text added successfully!</message>
+  <message>Status: Text has not been replaced</message>
 </record>
 </log>

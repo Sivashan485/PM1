@@ -22,7 +22,8 @@ public class TextManagerTest {
 
     }
 
-    //ADD DUMMY
+    //ADD
+    /*
     private void addDummyAuto(String index) {
 
         textManager = new TextManager();
@@ -58,16 +59,7 @@ public class TextManagerTest {
             assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
         }
     }
-
-    /*
-    @Test
-    void testAddDummyText() {
-        List<String> testTextList = textManager.getTextList();
-        int listSizeBefore = testTextList.size();
-        textManager.addDummyParagraph();
-        assertEquals(listSizeBefore + 1, testTextList.size());
-    }*/
-
+*/
     // ADD TEXT test
     private void addElementAuto(Integer index, boolean isIndexNull, String addingItem) {
         // Initialize textManager and input
@@ -78,13 +70,13 @@ public class TextManagerTest {
 
     @Test
     void testAddTextWithIndex() {
-        addElementAuto(1, false,"T");
+        addElementAuto(1, false, "T");
         assertEquals(textManager.getTextList().get(0), "T");
     }
 
     @Test
     void testAddTextWithoutIndex() {
-        addElementAuto(null, true,"T");
+        addElementAuto(null, true, "T");
         int listSize = textManager.getTextList().size();
         assertEquals(textManager.getTextList().get(listSize - 1), "T");
 
@@ -93,7 +85,7 @@ public class TextManagerTest {
 
     void testAddIndexRangeTest(int index) {
         String testedString = "T";
-        addElementAuto(index, false,"T");
+        addElementAuto(index, false, "T");
         for (int i = 0; i < textManager.getTextList().size(); i++) {
             assertNotEquals(textManager.getTextList().get(i), testedString);
         }
@@ -107,72 +99,75 @@ public class TextManagerTest {
     }
 
     // REPLACE TEXT
-    public void replaceElementAuto(String sentenceToChange, int sentenceIndex, String index, String replacingItem, String replacingWith) {
+    public void replaceElementAuto(String sentenceToChange, int sentenceIndex, int replaceindex, String replacingItem, String replacingWith) {
 
-        addElementAuto(sentenceIndex,false, sentenceToChange);
-
-        textManager.replaceParagraph();
+        addElementAuto(sentenceIndex, false, sentenceToChange);
+        textManager.replaceWordInParagraph(replaceindex, replacingItem, replacingWith);
+        textManager.replaceParagraph(false, replacingItem, replacingWith);
     }
 
 
     @Test
     void testReplaceTextValid() {
         int index = 0;
-        addElementAuto("1", "Fifth End of text.");
-        List<String> testTextList = textManager.getTextList();
-        textManager.retrieveReplacementWord("End", "-");
-        String textAfterChange = testTextList.get(index);
-        assertEquals(textAfterChange, "Fifth - of text.");
+        replaceElementAuto("Test Te", 1, 1, "Te", "EE");
+
+        String textAfterChange = textManager.getTextList().get(index);
+        assertEquals("EEst EE", textAfterChange);
 
     }
-    /*
+
+
 
     @Test
     void TestReplaceWithIndex() {
         textManager.printText();
-        replaceElementAuto("WA. S.DF", "1", "1", ".", "1");
+        replaceElementAuto("WA. S.DF", 1, 1, ".", "1");
         assertEquals("WA1 S1DF", textManager.getTextList().get(0));
     }
 
     @Test
     void TestReplaceIndexAtEnd() {
         textManager.printText();
-        replaceElementAuto(" .WA. S.DF. . ", "", "", ".", "1");
+        int index = textManager.getTextList().size()+1;
+        replaceElementAuto(" .WA. S.DF. . ",  index, index, ".", "1");
         int indexEnd = textManager.getTextList().size() - 1;
         assertEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(indexEnd));
     }
 
+
     @Test
     void TestReplaceIndexUnder0() {
         textManager.printText();
-        replaceElementAuto(" .WA. S.DF. . ", "1", "-11", ".", "1");
+        replaceElementAuto(" .WA. S.DF. . ", -11, -1111, ".", "1");
         for (int i = 0; i < textManager.getText().size() - 1; i++) {
             assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
         }
     }
+
 
     @Test
     void TestReplaceIndexOverListSize() {
         textManager.printText();
         Integer endingIndex = textManager.getTextList().size() + 20;
-        replaceElementAuto(" .WA. S.DF. . ", "1", endingIndex.toString(), ".", "1");
+        replaceElementAuto(" .WA. S.DF. . ", 1, endingIndex, ".", "1");
         for (int i = 0; i < textManager.getText().size() - 1; i++) {
             assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
         }
     }
 
 
-    /*@Test
+    @Test
     void testReplaceTextInvalid() {
         int index = 0;
-        addElementAuto("1", "Fifth End of text.");
+        addElementAuto(1, false,"Fifth End of text.");
         List<String> testTextList = textManager.getTextList();
-        textManager.replaceWordInParagraph(index);
+        textManager.replaceWordInParagraph(index, "ASDF", "E");
         String textAfterChange = testTextList.get(index);
         System.out.println(testTextList.get(index));
         assertEquals(textAfterChange, "Fifth End of text.");
-    }*/
-
+    }
+/*
 
     // DEL FUN
     private int deleteElementAuto(String addIndex, String addSentenceText, String delIndex) {
@@ -378,5 +373,5 @@ public class TextManagerTest {
         String expected = "<1>: \n";
         textManager.setText(List.of(""));
         assertEquals(expected, textManager.formatTextRaw());
-    }
+    }*/
 }

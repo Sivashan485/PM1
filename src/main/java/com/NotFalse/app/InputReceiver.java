@@ -12,8 +12,8 @@ public class InputReceiver {
     private String command;
     private Integer index;
     private String restPart;
-    private boolean IsIndexValid;
     private boolean indexIsNull;
+
 
     /**
      * Constructor for InputReceiver.
@@ -30,7 +30,6 @@ public class InputReceiver {
      * and indexIsNull to false.
      */
     private void resetValues() {
-        IsIndexValid = true;
         index = null;
         command = "";
         indexIsNull = false;
@@ -51,7 +50,6 @@ public class InputReceiver {
      * Splits the user input into a command and its arguments.
      */
     public void splitInput() {
-        System.out.print(">> ");
         String userInput = readAndFilterUserInput();
         command = extractCommand(userInput);
         restPart = userInput.substring(command.length()).trim();
@@ -99,27 +97,15 @@ public class InputReceiver {
         // Handles commands that require an index
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
             handleIndexCommand();
-        } else if (!restPart.isEmpty()) {
-            // Handle commands that should not have extra text
+        }
+        // Handle commands that should not have extra text
+        else if (!restPart.isEmpty()) {
+
             return null;
         } else {
             return restPart;
         }
         return "";
-    }
-
-    /**
-     * Handles commands that require an index
-     */
-    private void handleIndexCommand() {
-        try {
-            index = Integer.parseInt(restPart);
-            if (index < 1) {
-                IsIndexValid = false;
-            }
-        } catch (NumberFormatException e) {
-            IsIndexValid = false;
-        }
     }
 
 
@@ -134,6 +120,15 @@ public class InputReceiver {
         return indexIsNull;
     }
 
+    private void handleIndexCommand() {
+        try{
+            index = Integer.parseInt(restPart);
+        }catch (NumberFormatException e){
+            OutputManager.createUnallowedCharacterWarning();
+        }
+
+    }
+
 
     /**
      * Retrieves the current command.
@@ -141,19 +136,10 @@ public class InputReceiver {
      * @return The current command as a string.
      */
     public String getCommand() {
-
         return command;
     }
 
 
-    /**
-     * Determines whether the index is invalid.
-     *
-     * @return `true` if the index is invalid, `false` otherwise.
-     */
-    public boolean getIsIndexValid() {
-        return IsIndexValid;
-    }
 
     /**
      * Retrieves the current index.

@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-04T07:57:03.872098Z</date>
-  <millis>1701676623872</millis>
-  <nanos>98000</nanos>
+  <date>2023-12-04T10:34:22.330117Z</date>
+  <millis>1701686062330</millis>
+  <nanos>117000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -16,170 +16,26 @@ Following operations are possible:
 add, del, index, replace, print, format raw, format fix, help</message>
 </record>
 <record>
-  <date>2023-12-04T07:57:18.319475Z</date>
-  <millis>1701676638319</millis>
-  <nanos>475000</nanos>
+  <date>2023-12-04T10:34:27.145517Z</date>
+  <millis>1701686067145</millis>
+  <nanos>517000</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
+  <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
+  <method>createUserErrorMessage</method>
   <thread>1</thread>
-  <message>Text deleted successfully!</message>
+  <message>Unallowed character for index. Please try again.</message>
 </record>
 <record>
-  <date>2023-12-04T07:57:23.010498Z</date>
-  <millis>1701676643010</millis>
-  <nanos>498000</nanos>
+  <date>2023-12-04T10:34:27.146491Z</date>
+  <millis>1701686067146</millis>
+  <nanos>491000</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text deleted successfully!</message>
-</record>
-<record>
-  <date>2023-12-04T07:57:43.900344Z</date>
-  <millis>1701676663900</millis>
-  <nanos>344000</nanos>
-  <sequence>3</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text replaced successfully!</message>
-</record>
-<record>
-  <date>2023-12-04T07:57:45.078173Z</date>
-  <millis>1701676665078</millis>
-  <nanos>173000</nanos>
-  <sequence>4</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserErrorMessage</method>
   <thread>1</thread>
-  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:02.270604Z</date>
-  <millis>1701676682270</millis>
-  <nanos>604000</nanos>
-  <sequence>5</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text added successfully!</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:09.422723Z</date>
-  <millis>1701676689422</millis>
-  <nanos>723000</nanos>
-  <sequence>6</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text added successfully!</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:13.916107Z</date>
-  <millis>1701676693916</millis>
-  <nanos>107000</nanos>
-  <sequence>7</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>The text width index is missing. Please try again</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:13.916749Z</date>
-  <millis>1701676693916</millis>
-  <nanos>749000</nanos>
-  <sequence>8</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Text has not been formatted</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:21.577106Z</date>
-  <millis>1701676701577</millis>
-  <nanos>106000</nanos>
-  <sequence>9</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text formatted successfully!</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:31.916026Z</date>
-  <millis>1701676711916</millis>
-  <nanos>26000</nanos>
-  <sequence>10</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text deleted successfully!</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:44.568172Z</date>
-  <millis>1701676724568</millis>
-  <nanos>172000</nanos>
-  <sequence>11</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text formatted successfully!</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:48.986723Z</date>
-  <millis>1701676728986</millis>
-  <nanos>723000</nanos>
-  <sequence>12</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>This index is not valid. Please try again.</message>
-</record>
-<record>
-  <date>2023-12-04T07:58:52.411336Z</date>
-  <millis>1701676732411</millis>
-  <nanos>336000</nanos>
-  <sequence>13</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text deleted successfully!</message>
-</record>
-<record>
-  <date>2023-12-04T07:59:05.072650Z</date>
-  <millis>1701676745072</millis>
-  <nanos>650000</nanos>
-  <sequence>14</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Text replaced successfully!</message>
+  <message>Unallowed character for index. Please try again.</message>
 </record>

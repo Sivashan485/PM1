@@ -13,12 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class GlossaryAppTest {
 
     private GlossaryApp glossaryApp;
-    private OutputManager outputManager;
+
 
     @BeforeEach
     void setUp() {
-        outputManager = new OutputManager();
-        glossaryApp = new GlossaryApp(outputManager);
+        glossaryApp = new GlossaryApp();
     }
 
 

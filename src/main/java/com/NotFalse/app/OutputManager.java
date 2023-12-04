@@ -36,7 +36,7 @@ public class OutputManager {
      *
      * @param logText logText to be displayed of level INFO
      */
-    public void createUserInfoMessage(String logText) {
+    public static void createUserInfoMessage(String logText) {
         System.out.println(logText + "\n");
         LOGGER.log(Level.INFO, logText);
     }
@@ -46,7 +46,7 @@ public class OutputManager {
      *
      * @param logText logText to be displayed of level WARNING
      */
-    public void createUserErrorMessage(String logText) {
+    public static void createUserErrorMessage(String logText) {
         System.err.println(logText + "\n");
         LOGGER.log(Level.WARNING, logText);
     }
@@ -86,9 +86,9 @@ public class OutputManager {
      */
     public void createAddMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Text added successfully!");
+            createUserInfoMessage("Status: Text added successfully!");
         } else {
-            createUserErrorMessage("Text has not been added");
+            createUserErrorMessage("Status: Text has not been added");
         }
     }
 
@@ -99,9 +99,9 @@ public class OutputManager {
      */
     public void createDeleteMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Text deleted successfully!");
+            createUserInfoMessage("Status: Text deleted successfully!");
         } else {
-            createUserErrorMessage("Text has not been deleted");
+            createUserErrorMessage("Status: Text has not been deleted");
         }
     }
 
@@ -112,9 +112,9 @@ public class OutputManager {
      */
     public void createReplaceMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Text replaced successfully!");
+            createUserInfoMessage("Status: Text replaced successfully!");
         } else {
-            createUserErrorMessage("Text has not been replaced");
+            createUserErrorMessage("Status: Text has not been replaced");
         }
     }
 
@@ -126,9 +126,9 @@ public class OutputManager {
      */
     public void createFormatMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Text formatted successfully!");
+            createUserInfoMessage("Status: Text formatted successfully!");
         } else {
-            createUserErrorMessage("Text has not been formatted");
+            createUserErrorMessage("Status: Text has not been formatted");
         }
     }
 
@@ -143,8 +143,12 @@ public class OutputManager {
      * Creates a log message for an invalid index.
      */
     public void createIndexWarning() {
-        createUserErrorMessage("This index is not valid. Please try again.");
+        createUserErrorMessage("Invalid index. Please try again.");
 
+    }
+
+    public static void createUnallowedCharacterWarning(){
+        createUserErrorMessage("Unallowed character for index. Please try again.");
     }
 
     /**
@@ -163,11 +167,15 @@ public class OutputManager {
         createUserErrorMessage("The text width index is missing. Please try again");
     }
 
+    public void createInvalidWordWarning(){
+        createUserErrorMessage("This word doesn't exist in this paragraph. Please try again.");
+    }
+
     /**
      * Creates and displays an error message for an empty glossary scenario.
      * The error message notifies the user that their glossary is empty.
      */
-    public void createEmptyGlossaryWarning() {
+    public static void createEmptyGlossaryWarning() {
         createUserErrorMessage("Your glossary is empty...");
     }
 

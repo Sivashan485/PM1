@@ -86,28 +86,24 @@ public class TextManager {
         return isFormatFixSuccessful;
     }
 
-    /**
-     * This method is responsible for the communication with the user. It calls
-     * the methods for editing the text and formatting the text.
-     */
-    boolean validateIndex(Integer paragraphIndex) {
-        return paragraphIndex >= 0 && paragraphIndex <= text.size();
-    }
+
 
     /**
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
     void addDummyParagraph() {
-        if (paragraphIndex == null) {
+        boolean isSuccessful;
+        if (input.getIsIndexNull()) {
             text.add(DUMMYTEXT);
-            output.createAddMessage(true);
-        } else if (validateIndex(paragraphIndex)) {
+            isSuccessful = true;
+        } else if (isIndexValid(paragraphIndex, text.size() + 1)) {
             text.add(paragraphIndex - 1, DUMMYTEXT);
-            output.createAddMessage(true);
+            isSuccessful = true;
         } else {
-            output.createIndexWarning();
+           isSuccessful = false;
         }
+        output.createAddMessage(isSuccessful);
     }
 
     /**
@@ -117,18 +113,20 @@ public class TextManager {
      */
     void addNewParagraph() {
         String enteredText;
-
+        boolean isSuccessful;
         if (input.getIsIndexNull()) {
             enteredText = receiveEnteredText();
             text.add(enteredText);
-            output.createAddMessage(true);
+            isSuccessful = true;
         } else if (isIndexValid(paragraphIndex, text.size() + 1)) {
             enteredText = receiveEnteredText();
             text.add(paragraphIndex - 1, enteredText);
-            output.createAddMessage(true);
+            isSuccessful = true;
+        }else{
+            isSuccessful = false;
         }
+        output.createAddMessage(isSuccessful);
     }
-
     /**
      * Prompts the user to enter text and reads the input, filtering it for potential formatting.
      *
@@ -139,17 +137,26 @@ public class TextManager {
         return input.readAndFilterUserInput();
     }
 
+
+
     /**
      * Deletes the paragraph at the specified index.
      */
     void deleteParagraph() {
+        boolean isSuccessful;
         if (input.getIsIndexNull()) {
             text.remove(text.size() - 1);
-            output.createDeleteMessage(true);
+            isSuccessful = true;
         } else if (isIndexValid(paragraphIndex, text.size())) {
             text.remove(paragraphIndex - 1);
-            output.createDeleteMessage(true);
+            isSuccessful = true;
+        }else{
+            isSuccessful = false;
         }
+        output.createDeleteMessage(isSuccessful);
+
+
+
     }
 
     /**
@@ -172,6 +179,7 @@ public class TextManager {
         }
         return false;
     }
+
 
     /**
      * Formats the given ArrayList of Strings into a single String with each element
@@ -319,42 +327,45 @@ public class TextManager {
      * Replaces occurrences of a specified word in the text list at the given index.
      *
      * @param index           The index of the text to be modified.
-     * @param originalWord    The word to be replaced.
-     * @param replacementWord The word to replace the specified word.
      */
-    void replaceWordInParagraph(int index, String originalWord, String replacementWord) {
-        // Retrieve the text to be modified from the list
+    void replaceWordInParagraph(int index) {
+        System.out.print("Replacing Word: ");
+        String originalWord = input.readAndFilterUserInput();
         String paragraph = text.get(index);
-
+        String replacementWord = retrieveReplacementWord(originalWord, paragraph);
         paragraph = paragraph.replace(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
-        // If different, update the text at the index
+
         if (isReplacementSuccessful) {
             text.set(index, paragraph);
         }
-        // Create a message indicating the replacement result
         output.createReplaceMessage(isReplacementSuccessful);
     }
+    String retrieveReplacementWord(String originalWord, String paragraph){
+        String replacementWord = "";
+        if(paragraph.contains(originalWord)){
+            System.out.print("Replacing with: ");
+            replacementWord = input.readAndFilterUserInput();
+        }else{
+            output.createInvalidWordWarning();
+        }
+        return replacementWord;
+    }
+
 
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
     void replaceParagraph() {
-        System.out.print("Replacing Word: ");
-        String originalWord = input.readAndFilterUserInput();
-        System.out.print("Replacing with: ");
-        String replacementWord = input.readAndFilterUserInput();
+        if (input.getIsIndexNull()) {
+            replaceWordInParagraph(text.size() - 1);
 
-        if (paragraphIndex != null) {
-            if (validateIndex(paragraphIndex)) {
-                replaceWordInParagraph(paragraphIndex - 1, originalWord, replacementWord);
-            } else {
-                output.createIndexWarning();
-            }
-        } else {
-            replaceWordInParagraph(text.size() - 1, originalWord, replacementWord);
+        } else if( isIndexValid(paragraphIndex, text.size()+ 1)){
+            replaceWordInParagraph(paragraphIndex - 1);
         }
+
     }
+
 
     /**
      * Setter for the maxWidth.

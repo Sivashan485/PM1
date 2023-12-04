@@ -19,7 +19,7 @@ public class TextEditor {
         textManager = new TextManager();
         output = new OutputManager();
         isExitTriggered = false;
-        glossary = new GlossaryApp(output);
+        glossary = new GlossaryApp();
     }
 
     /**

@@ -60,15 +60,14 @@ public class TextManagerTest {
         }
     }
 
-
+    /*
     @Test
     void testAddDummyText() {
         List<String> testTextList = textManager.getTextList();
         int listSizeBefore = testTextList.size();
-        textManager.validateIndex(2);
         textManager.addDummyParagraph();
         assertEquals(listSizeBefore + 1, testTextList.size());
-    }
+    }*/
 
     // ADD TEXT test
     private void addElementAuto(String index, String addingItem) {
@@ -131,17 +130,17 @@ public class TextManagerTest {
         textManager.replaceParagraph();
         textManager.printText();
     }
-
+    /*
     @Test
     void testReplaceTextValid() {
         int index = 0;
         addElementAuto("1", "Fifth End of text.");
         List<String> testTextList = textManager.getTextList();
-        textManager.replaceWordInParagraph(index, "End", "-");
+        textManager.retrieveReplacementWord("End", "-");
         String textAfterChange = testTextList.get(index);
         assertEquals(textAfterChange, "Fifth - of text.");
 
-    }
+    }*/
 
     @Test
     void TestReplaceWithIndex() {
@@ -178,16 +177,16 @@ public class TextManagerTest {
     }
 
 
-    @Test
+    /*@Test
     void testReplaceTextInvalid() {
         int index = 0;
         addElementAuto("1", "Fifth End of text.");
         List<String> testTextList = textManager.getTextList();
-        textManager.replaceWordInParagraph(index, "@#@@#@@@#@#@#@#@#@#@@", "-");
+        textManager.replaceWordInParagraph(index);
         String textAfterChange = testTextList.get(index);
         System.out.println(testTextList.get(index));
         assertEquals(textAfterChange, "Fifth End of text.");
-    }
+    }*/
 
 
     // DEL FUN

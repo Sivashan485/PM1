@@ -2,76 +2,39 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-04T17:30:04.466581Z</date>
-  <millis>1701711004466</millis>
-  <nanos>581000</nanos>
+  <date>2023-12-05T13:25:15.188483Z</date>
+  <millis>1701782715188</millis>
+  <nanos>483000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>Welcome to the TextEditor! Created by NotFalse.
-Following operations are possible:
-add, del, index, replace, print, format raw, format fix, help</message>
+  <message>
+Welcome to the TextEditor created by NotFalse.
+
+You can use following functions:
+add[i]
+del[i]
+replace[i]
+index
+print
+format raw
+format fix&lt;b&gt;
+help
+exit</message>
 </record>
 <record>
-  <date>2023-12-04T17:30:06.324802Z</date>
-  <millis>1701711006324</millis>
-  <nanos>802000</nanos>
+  <date>2023-12-05T13:25:21.634873Z</date>
+  <millis>1701782721634</millis>
+  <nanos>873000</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
+  <message>Status: Text added successfully!</message>
 </record>
-<record>
-  <date>2023-12-04T17:30:10.768515Z</date>
-  <millis>1701711010768</millis>
-  <nanos>515000</nanos>
-  <sequence>2</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Unallowed character for index. Please try again.</message>
-</record>
-<record>
-  <date>2023-12-04T17:30:18.072874Z</date>
-  <millis>1701711018072</millis>
-  <nanos>874000</nanos>
-  <sequence>3</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Invalid index. Please try again.</message>
-</record>
-<record>
-  <date>2023-12-04T17:30:18.073816Z</date>
-  <millis>1701711018073</millis>
-  <nanos>816000</nanos>
-  <sequence>4</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Status: Text has not been added</message>
-</record>
-<record>
-  <date>2023-12-04T17:54:52.126230Z</date>
-  <millis>1701712492126</millis>
-  <nanos>230000</nanos>
-  <sequence>5</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Unallowed character for index. Please try again.</message>
-</record>
+</log>

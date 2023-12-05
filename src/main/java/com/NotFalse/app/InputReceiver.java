@@ -10,7 +10,6 @@ public class InputReceiver {
     private final static String ALLOWED_REGEX = "[^A-Za-zäöüÄÖÜ 0-9 / .,:;\\-!?'\\\\()\\\"%@+*{}\\\\\\\\&#$\\[\\]]";
     private final Scanner userInput;
     private String userCommand;
-    private String restPart;
     private Integer userIndex;
 
 
@@ -21,8 +20,7 @@ public class InputReceiver {
      */
     public InputReceiver() {
         userInput = new Scanner(System.in);
-        userCommand = "";
-        userIndex = null;
+        resetValues();
     }
 
     /**
@@ -51,10 +49,12 @@ public class InputReceiver {
      */
     public void splitInput() {
         String userInput = readAndFilterUserInput();
-        userCommand = extractCommand(userInput);
-        restPart = userInput.substring(userCommand.length()).trim();
-        userCommand += validateAndSplitCommand(userCommand, restPart);
+        setUserCommand(userInput);
+        String restPart = userInput.substring(userCommand.length()).trim();
+        validateIndex(userCommand, restPart);
     }
+
+
 
     /**
      * Extracts the command from the input
@@ -64,48 +64,29 @@ public class InputReceiver {
      */
     String extractCommand(String userInput) {
         String[] userInputPartition = userInput.toLowerCase().split(" ");
-        for (Command command : Command.values()) {
-            if (userInput.toLowerCase().startsWith(command.getCommand())) {
-                if (userInputPartition[0].equals(command.getCommand())) {
-                    return command.getCommand();
-                } else if (isCommandMatchingInputPart(userInputPartition, command)) {
-                    return command.getCommand();
-                } else {
-                    return "";
-                }
-            }
+        Command command = Command.parseCommand(userInputPartition[0]);
+        if (command == Command.UNKNOWN && userInputPartition.length > 1) {
+            command = Command.parseCommand(userInputPartition[0] + " " + userInputPartition[1]);
+        }
+        if (command != Command.UNKNOWN) {
+            return command.getCommand();
         }
         return "";
-    }
-
-    /**
-     * Checks if the combination of the first two elements in 'userInputPartition'
-     * matches the command string obtained from the provided 'Command' object.
-     *
-     * @param userInputPartition User input partitioned into segments.
-     * @param command            The 'Command' object to compare against.
-     * @return {@code true} if the concatenation of the first two elements matches the command; otherwise, {@code false}.
-     */
-    boolean isCommandMatchingInputPart(String[] userInputPartition, Command command) {
-        return userInputPartition.length > 1 && (userInputPartition[0] + " " + userInputPartition[1]).equals(command.getCommand());
     }
 
     /**
      * Validates the command and splits the input accordingly
      */
-    private String validateAndSplitCommand(String command, String restPart) {
-        // Handles commands that require an index
+    private void validateIndex(String command, String restPart) {
+        // Handles commands that require an restPart
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
-            handleIndexCommand();
+            String replaceUnallowedCharacters = restPart.replaceAll("[^1-9]", "");
+            if (restPart.equals(replaceUnallowedCharacters)) {
+                setUserIndex(restPart);
+            } else {
+                OutputManager.createUnallowedCharacterWarning();
+            }
         }
-        // Handle commands that should not have extra text
-        else if (!restPart.isEmpty()) {
-
-            return null;
-        } else {
-            return restPart;
-        }
-        return "";
     }
 
 
@@ -116,16 +97,7 @@ public class InputReceiver {
      * @return {@code true} if 'restPart' is empty; otherwise, {@code false}.
      */
     public boolean isIndexNull() {
-        return restPart.isEmpty();
-    }
-
-    private void handleIndexCommand() {
-        try{
-                userIndex = Integer.parseInt(restPart);
-
-        }catch (NumberFormatException e){
-            OutputManager.createUnallowedCharacterWarning();
-        }
+        return userIndex == null;
     }
 
 
@@ -134,27 +106,26 @@ public class InputReceiver {
      *
      * @return The current command as a string.
      */
-    public String getUserCommand() {
+    public String getUserCommand () {
         return userCommand;
     }
-
-
 
     /**
      * Retrieves the current index.
      *
      * @return The current index as an integer.
      */
-    public Integer getUserIndex() {
+    public Integer getUserIndex () {
         return userIndex;
     }
 
-    /**
-     * Retrieves the remaining part of the user input after extracting the command.
-     *
-     * @return The remaining part of the user input as a string.
-     */
-    String getRestPart() {
-        return restPart;
+    public void setUserCommand(String userInput){
+        userCommand = extractCommand(userInput);
     }
+
+    public void setUserIndex(String restPart){
+        userIndex = Integer.parseInt(restPart);
+    }
+
+
 }

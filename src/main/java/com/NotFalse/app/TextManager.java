@@ -24,7 +24,6 @@ public class TextManager {
     private int maxWidth;
     private boolean isFormatterRaw;
     private Integer paragraphIndex;
-
     /**
      * Constructor for the TextManager class. It initializes the input, output,
      * glossary, text, isExitTriggered and isFormatterRaw variables.
@@ -63,8 +62,8 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    void addDummyParagraph(boolean isIndexNull) {
-        addNewParagraph(isIndexNull, TextManager.DUMMYTEXT);
+    void addDummyParagraph(boolean isIndexNull ,int paragraphIndex) {
+        addNewParagraph(isIndexNull, TextManager.DUMMYTEXT, paragraphIndex);
     }
 
 
@@ -73,12 +72,14 @@ public class TextManager {
      * If the index is not provided or is invalid, the new paragraph is added at the end.
      * If the index is valid, the new paragraph is inserted at the specified position.
      */
-    void addNewParagraph(boolean isIndexNull, String enteredText) {
+    void addNewParagraph(boolean isIndexNull, String enteredText, int paragraphIndex) {
         boolean isSuccessful;
+        System.out.println(paragraphIndex);
         if (isIndexNull) {
             text.add(enteredText);
             isSuccessful = true;
         } else if (isIndexValid(paragraphIndex, text.size() + 1 , isIndexNull)) {
+            System.out.print("Text: ");
             text.add(paragraphIndex - 1, enteredText);
             isSuccessful = true;
         }else{
@@ -97,7 +98,7 @@ public class TextManager {
             output.createEmptyTextWarning();
         }
         boolean isSuccessful;
-        if (isIndexNull && !text.isEmpty()) {
+        if (isIndexNull) {
             text.remove(text.size() - 1);
             isSuccessful = true;
         } else if (isIndexValid(paragraphIndex, text.size(), isIndexNull)) {

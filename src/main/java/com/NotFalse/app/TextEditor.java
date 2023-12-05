@@ -48,21 +48,15 @@ public class TextEditor {
     private void replace(){
         System.out.print("Replacing Word: ");
         String originalWord = input.readAndFilterUserInput();
-        if(textManager.containsWord( originalWord, input.getUserIndex())){
-            System.out.println("Replacing with: ");
-            String replacingWord = input.readAndFilterUserInput();
-            textManager.replaceParagraphSection(input.isIndexNull(), originalWord, replacingWord);
-        }
+
+            if(textManager.containsWord( originalWord, input.getUserIndex())){
+                System.out.println("Replacing with: ");
+                String replacingWord = input.readAndFilterUserInput();
+                textManager.replaceParagraphSection(input.isIndexNull(), originalWord, replacingWord);
+            }
 
     }
 
-    private void addText(){
-        System.out.print("Text: ");
-        String enteredText = input.readAndFilterUserInput();
-        textManager.addNewParagraph(input.isIndexNull(), enteredText);
-
-
-    }
 
 
     /**
@@ -80,14 +74,16 @@ public class TextEditor {
 
         switch (Command.parseCommand(input.getUserCommand())) {
             case DUMMY:
-                textManager.addDummyParagraph(input.isIndexNull());
+                textManager.addDummyParagraph(input.isIndexNull(), widthIndex);
                 break;
             case EXIT:
                 output.createExitMessage();
                 isExitTriggered = true;
                 break;
             case ADD:
-                addText();
+                String enteredText = input.readAndFilterUserInput();
+                textManager.addNewParagraph(input.isIndexNull(),enteredText, widthIndex);
+                //addText();
                 break;
             case DEL:
                 textManager.deleteParagraph(input.isIndexNull());

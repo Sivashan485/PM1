@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-05T17:06:08.449927Z</date>
-  <millis>1701795968449</millis>
-  <nanos>927000</nanos>
+  <date>2023-12-05T17:51:49.715820100Z</date>
+  <millis>1701798709715</millis>
+  <nanos>820100</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -26,14 +26,15 @@ help
 exit</message>
 </record>
 <record>
-  <date>2023-12-05T17:06:16.625085Z</date>
-  <millis>1701795976625</millis>
-  <nanos>85000</nanos>
+  <date>2023-12-05T17:51:53.612106600Z</date>
+  <millis>1701798713612</millis>
+  <nanos>106600</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserErrorMessage</method>
   <thread>1</thread>
-  <message>The text width index is missing. Please try again</message>
+  <message>Invalid index. Please try again.</message>
 </record>
+</log>

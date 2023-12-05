@@ -65,9 +65,9 @@ public class TextManager {
         if (isIndexNull) {
             text.add(enteredText);
             isSuccessful = true;
-        } else if (isIndexValid(paragraphIndex, text.size() + 1 , isIndexNull)) {
+        } else if (isIndexValid(paragraphIndex+1, text.size() , isIndexNull)) {
             System.out.print("Text: ");
-            text.add(paragraphIndex - 1, enteredText);
+            text.add(paragraphIndex , enteredText);
             isSuccessful = true;
         }else{
             isSuccessful = false;

@@ -85,22 +85,27 @@ public class TextEditor {
      * @param textSize       The size of the current text.
      * @return {@code true} if the index is valid; otherwise, {@code false}.
      */
-    public Integer isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
+    public boolean isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
         if(!input.getIsIndexValid()){
             output.createIndexWarning();
+            return false;
         }else if (!isIndexNull && (paragraphIndex <= 0 || paragraphIndex > textSize)) {
                 output.createIndexWarning();
+                return false;
         }else{
-            return paragraphIndex;
+            return true;
         }
-        return null;
     }
+
+
+
 
     public void isTextEmpty(){
         if(textManager.getText().isEmpty()){
             output.createEmptyTextWarning();
         }
     }
+
 
 
 
@@ -113,28 +118,39 @@ public class TextEditor {
         System.out.println("-----------------------------------------------------------");
 
         input.parseUserInput();
-        Integer paragraphIndex;
+        Integer paragraphIndex = input.getUserIndex();
         Integer maxWidth;
 
         boolean isIndexNull = input.isIndexNull();
         isTextEmpty();
         switch (Command.parseCommand(input.getUserCommand())) {
             case DUMMY:
-                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
-                textManager.addDummyParagraph(isIndexNull, paragraphIndex);
+                if(isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull())){
+                    textManager.addDummyParagraph(isIndexNull, input.getUserIndex()-1);
+                }else{
+                    output.createAddMessage(false);
+                }
                 break;
             case EXIT:
                 output.createExitMessage();
                 isExitTriggered = true;
                 break;
             case ADD:
-                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
-                String enteredText = input.readAndFilterUserInput();
-                textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
+                System.out.println(paragraphIndex-1);
+                if(isIndexValid(paragraphIndex-1,textManager.getText().size()+1, input.isIndexNull())){
+                    String enteredText = input.readAndFilterUserInput();
+                    textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex-1);
+                }
+
                 break;
             case DEL:
-                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
-                textManager.deleteParagraph(isIndexNull, paragraphIndex);
+                if(isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull())){
+                    textManager.deleteParagraph(isIndexNull, paragraphIndex);
+                }else{
+                    output.createDeleteMessage(false);
+                }
+               // paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
+                //textManager.deleteParagraph(isIndexNull, paragraphIndex);
                 break;
             case INDEX:
                 glossary.printGlossary(textManager.getText());
@@ -144,10 +160,10 @@ public class TextEditor {
                 textManager.printText(isFormatterRaw, maxWidth);
                 break;
             case REPLACE:
-                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
+                //paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
                 System.out.print("Replacing Word: ");
                 String originalWord = input.readAndFilterUserInput();
-                replace(originalWord, paragraphIndex, isIndexNull);
+                //replace(originalWord, paragraphIndex, isIndexNull);
                 break;
             case HELP:
                 output.createHelpMessage();

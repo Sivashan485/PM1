@@ -45,14 +45,13 @@ public class TextEditor {
 
 
 
-    private void replace(){
-        System.out.print("Replacing Word: ");
-        String originalWord = input.readAndFilterUserInput();
+    private void replace(String originalWord, Integer paragraphIndex, boolean isIndexNull){
 
-            if(textManager.containsWord( originalWord, input.getUserIndex())){
+
+            if(textManager.containsWord( originalWord,paragraphIndex)){
                 System.out.println("Replacing with: ");
                 String replacingWord = input.readAndFilterUserInput();
-                textManager.replaceParagraphSection(input.isIndexNull(), originalWord, replacingWord);
+                textManager.replaceParagraphSection(isIndexNull, paragraphIndex,originalWord, replacingWord);
             }
 
     }
@@ -95,7 +94,15 @@ public class TextEditor {
                 textManager.printText();
                 break;
             case REPLACE:
-                replace();
+                Integer paragraphIndex = input.getUserIndex();
+                System.out.println(paragraphIndex);
+                boolean indexIsValid = textManager.isIndexValid(paragraphIndex, textManager.getText().size());
+                boolean isIndexNull = input.isIndexNull();
+                if(indexIsValid){
+                    System.out.print("Replacing Word: ");
+                    String originalWord = input.readAndFilterUserInput();
+                    replace(originalWord, paragraphIndex, isIndexNull);
+                }
                 break;
             case HELP:
                 output.createHelpMessage();

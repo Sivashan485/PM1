@@ -271,8 +271,9 @@ public class TextManager {
         output.createReplaceMessage(isReplacementSuccessful);
     }
 
-    boolean containsWord(String originalWord, int index){
-        if(text.get(index).contains(originalWord)){
+    boolean containsWord(String originalWord, Integer paragraphIndex){
+        boolean isWordEmpty = originalWord.equals("");
+        if(!isWordEmpty&&text.get(paragraphIndex-1).contains(originalWord)){
             return true;
         }else{
             output.createInvalidWordWarning();
@@ -284,11 +285,16 @@ public class TextManager {
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraphSection(boolean isIndexNull , String originalWord, String replacingWord) {
+    void replaceParagraphSection(boolean isIndexNull ,Integer paragraphIndex,  String originalWord, String replacingWord) {
+        System.out.println(isIndexNull);
+        System.out.println(paragraphIndex);
+
         if (isIndexNull) {
+            System.out.println("LAST PARAGRAPH");
             replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
 
         } else if( isIndexValid(paragraphIndex, text.size()+ 1, isIndexNull)){
+            System.out.println("SELECTED PARAGRAPH");
             replaceWordInParagraph(paragraphIndex - 1, originalWord, replacingWord);
         }
     }

@@ -211,7 +211,7 @@ public class TextManager {
      * Print the text.
      */
     void printText(boolean isFormatterRaw, Integer maxWidth) {
-        if (isFormatterRaw) {
+        if (isFormatterRaw || maxWidth == null) {
             System.out.print(formatTextRaw());
         } else {
             System.out.print(formatTextFix(maxWidth));

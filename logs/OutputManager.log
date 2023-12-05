@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-05T14:46:37.886931Z</date>
-  <millis>1701787597886</millis>
-  <nanos>931000</nanos>
+  <date>2023-12-05T16:35:30.543016Z</date>
+  <millis>1701794130543</millis>
+  <nanos>16000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -24,5 +24,89 @@ format raw
 format fix&lt;b&gt;
 help
 exit</message>
+</record>
+<record>
+  <date>2023-12-05T16:35:32.970280Z</date>
+  <millis>1701794132970</millis>
+  <nanos>280000</nanos>
+  <sequence>1</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-05T16:35:32.971310Z</date>
+  <millis>1701794132971</millis>
+  <nanos>310000</nanos>
+  <sequence>2</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>The text width index is missing. Please try again</message>
+</record>
+<record>
+  <date>2023-12-05T16:35:34.210720Z</date>
+  <millis>1701794134210</millis>
+  <nanos>720000</nanos>
+  <sequence>3</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-05T16:35:34.212099Z</date>
+  <millis>1701794134212</millis>
+  <nanos>99000</nanos>
+  <sequence>4</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>The text width index is missing. Please try again</message>
+</record>
+<record>
+  <date>2023-12-05T16:35:34.212997Z</date>
+  <millis>1701794134212</millis>
+  <nanos>997000</nanos>
+  <sequence>5</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-05T16:35:36.093481Z</date>
+  <millis>1701794136093</millis>
+  <nanos>481000</nanos>
+  <sequence>6</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-05T16:35:36.095190Z</date>
+  <millis>1701794136095</millis>
+  <nanos>190000</nanos>
+  <sequence>7</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>The text width index is missing. Please try again</message>
 </record>
 </log>

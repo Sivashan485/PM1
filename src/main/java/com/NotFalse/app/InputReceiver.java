@@ -54,7 +54,7 @@ public class InputReceiver {
         //resetValues();
         userCommand = extractCommand(userInput);
         restPart = userInput.substring(userCommand.length()).trim();
-        validateAndSplitCommand(userCommand, restPart);
+        validateAndSetIndex(userCommand, restPart);
         System.out.println("command: " +userCommand);
         System.out.println("index: " + restPart);
     }
@@ -82,18 +82,11 @@ public class InputReceiver {
     /**
      * Validates the command and splits the input accordingly
      */
-    private void validateAndSplitCommand(String command, String restPart) {
+    private void validateAndSetIndex(String command, String restPart) {
         // Handles commands that require an index
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
             handleIndexCommand();
-        }/*
-        // Handle commands that should not have extra text
-        else if (!restPart.isEmpty()) {
-            return null;
-        } else {
-            return restPart;
         }
-        return null;*/
     }
 
     private void handleIndexCommand(){

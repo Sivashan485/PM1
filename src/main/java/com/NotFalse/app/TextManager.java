@@ -50,7 +50,7 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    void addDummyParagraph(boolean isIndexNull ,int paragraphIndex) {
+    void addDummyParagraph(boolean isIndexNull ,Integer paragraphIndex) {
         addNewParagraph(isIndexNull, TextManager.DUMMYTEXT, paragraphIndex);
     }
 
@@ -60,7 +60,7 @@ public class TextManager {
      * If the index is not provided or is invalid, the new paragraph is added at the end.
      * If the index is valid, the new paragraph is inserted at the specified position.
      */
-    void addNewParagraph(boolean isIndexNull, String enteredText, int paragraphIndex) {
+    void addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
         boolean isSuccessful;
         if (isIndexNull) {
             text.add(enteredText);

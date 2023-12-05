@@ -88,7 +88,7 @@ public class TextEditor {
     public Integer isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
         if(!input.getIsIndexValid()){
             output.createIndexWarning();
-        }else if (!isIndexNull && paragraphIndex <= 0 || paragraphIndex > textSize) {
+        }else if (!isIndexNull && (paragraphIndex <= 0 || paragraphIndex > textSize)) {
                 output.createIndexWarning();
         }else{
             return paragraphIndex;
@@ -113,14 +113,14 @@ public class TextEditor {
         System.out.println("-----------------------------------------------------------");
 
         input.parseUserInput();
-        Integer paragraphIndex = isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
-        System.out.println("paragraphindex: "+ paragraphIndex);
-        Integer maxWidth = validateMaxWidth(input.getUserIndex());
-        System.out.println("maxWidth: "+ maxWidth);
+        Integer paragraphIndex;
+        Integer maxWidth;
+
         boolean isIndexNull = input.isIndexNull();
         isTextEmpty();
         switch (Command.parseCommand(input.getUserCommand())) {
             case DUMMY:
+                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
                 textManager.addDummyParagraph(isIndexNull, paragraphIndex);
                 break;
             case EXIT:
@@ -128,22 +128,23 @@ public class TextEditor {
                 isExitTriggered = true;
                 break;
             case ADD:
+                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
                 String enteredText = input.readAndFilterUserInput();
                 textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
-
                 break;
             case DEL:
+                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
                 textManager.deleteParagraph(isIndexNull, paragraphIndex);
-
                 break;
             case INDEX:
                 glossary.printGlossary(textManager.getText());
                 break;
             case PRINT:
+                maxWidth = validateMaxWidth(input.getUserIndex());
                 textManager.printText(isFormatterRaw, maxWidth);
                 break;
             case REPLACE:
-                System.out.println(paragraphIndex);
+                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
                 System.out.print("Replacing Word: ");
                 String originalWord = input.readAndFilterUserInput();
                 replace(originalWord, paragraphIndex, isIndexNull);
@@ -157,9 +158,9 @@ public class TextEditor {
                 output.createFormatMessage(true);
                 break;
             case FORMAT_FIX:
+                maxWidth = validateMaxWidth(input.getUserIndex());
                 setIsFormatterRaw(false);
                 textManager.formatTextFix(maxWidth);
-
                 break;
             default:
                 output.createInvalidCommandMessage();

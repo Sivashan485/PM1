@@ -62,7 +62,6 @@ public class TextManager {
      */
     void addNewParagraph(boolean isIndexNull, String enteredText, int paragraphIndex) {
         boolean isSuccessful;
-        System.out.println(paragraphIndex);
         if (isIndexNull) {
             text.add(enteredText);
             isSuccessful = true;

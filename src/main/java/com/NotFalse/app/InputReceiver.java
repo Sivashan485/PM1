@@ -101,7 +101,6 @@ public class InputReceiver {
         if (restPart.equals(replaceUnallowedCharacters)) {
             setUserIndex();
             isIndexValid = true;
-            System.out.println("hello");
         }else{
             isIndexValid = false;
         }

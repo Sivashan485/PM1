@@ -86,13 +86,9 @@ public class TextEditor {
      * @return {@code true} if the index is valid; otherwise, {@code false}.
      */
     public Integer isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
-        System.out.println(input.getIsIndexValid()+"get Index Valid failed");
-        System.out.println("Paragraph failed"+paragraphIndex);
-        System
         if(!input.getIsIndexValid()){
             output.createIndexWarning();
         }else if (!isIndexNull && paragraphIndex <= 0 || paragraphIndex > textSize) {
-            System.out.println("mistake here");
                 output.createIndexWarning();
         }else{
             return paragraphIndex;
@@ -118,7 +114,9 @@ public class TextEditor {
 
         input.parseUserInput();
         Integer paragraphIndex = isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
+        System.out.println("paragraphindex: "+ paragraphIndex);
         Integer maxWidth = validateMaxWidth(input.getUserIndex());
+        System.out.println("maxWidth: "+ maxWidth);
         boolean isIndexNull = input.isIndexNull();
         isTextEmpty();
         switch (Command.parseCommand(input.getUserCommand())) {

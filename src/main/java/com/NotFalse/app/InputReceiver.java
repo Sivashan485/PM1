@@ -48,12 +48,10 @@ public class InputReceiver {
      */
     public void parseUserInput() {
         String userInput = readAndFilterUserInput();
-        resetValues();
+        //resetValues();
         setUserCommand(userInput);
         String restPart = userInput.substring(userCommand.length()).trim();
-        if(isIndexValide(userCommand, restPart)){
-            setUserIndex(restPart);
-        }
+        setUserIndex(validateIndex(userCommand, restPart));
     }
 
 
@@ -79,18 +77,29 @@ public class InputReceiver {
     /**
      * Validates the command and splits the input accordingly
      */
-    private boolean isIndexValide(String command, String restPart) {
+    private String validateIndex(String command, String restPart) {
         // Handles commands that require an restPart
-        if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
-            String replaceUnallowedCharacters = restPart.replaceAll("[^1-9]", "");
-            if (restPart.equals(replaceUnallowedCharacters)) {
-                return true;
-            } else {
-                OutputManager.createUnallowedCharacterWarning();
-                return false;
-            }
+        if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()){
+            return handelIndexCommand(restPart);
+        }else if(!restPart.isEmpty()){
+            return null;
+
+        }else{
+            return restPart;
         }
-        return false;
+
+    }
+
+    private String handelIndexCommand(String restPart){
+        System.out.println("command with index");
+        String replaceUnallowedCharacters = restPart.replaceAll("[^1-9]", "");
+        if (restPart.equals(replaceUnallowedCharacters)) {
+            return restPart;
+        }else {
+            OutputManager.createUnallowedCharacterWarning();
+            return null;
+
+        }
     }
 
 

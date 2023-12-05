@@ -114,13 +114,7 @@ public class TextEditor {
         System.out.println("-----------------------------------------------------------");
 
         input.parseUserInput();
-        Integer paragraphIndex;
-        try{
-             paragraphIndex = input.getUserIndex();
-        }catch (NullPointerException e){
-            System.out.println("hello");
-        }
-
+        Integer paragraphIndex = input.getUserIndex();
 
         isTextEmpty();
         switch (Command.parseCommand(input.getUserCommand())) {

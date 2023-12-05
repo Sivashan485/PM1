@@ -18,12 +18,9 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    private static final int MAX_MAXWIDTH = 2147483647;
     private final OutputManager output;
     private List<String> text;
-    private int maxWidth;
-    private boolean isFormatterRaw;
-    private Integer paragraphIndex;
+
     /**
      * Constructor for the TextManager class. It initializes the input, output,
      * glossary, text, isExitTriggered and isFormatterRaw variables.
@@ -36,7 +33,6 @@ public class TextManager {
         text.add("Third useless Test sentence.");
         text.add("Fourth Hello Hello Hello");
         text.add("Fifth End of text.");
-        isFormatterRaw = true;
         output.createWelcomeMessage();
 
     }
@@ -45,14 +41,6 @@ public class TextManager {
         return text;
     }
 
-    /**
-     * Sets the paragraph index for the text manager.
-     *
-     * @param paragraphIndex The index to be set.
-     */
-    public void setParagraphIndex(Integer paragraphIndex) {
-        this.paragraphIndex = paragraphIndex;
-    }
 
 
 
@@ -93,10 +81,7 @@ public class TextManager {
     /**
      * Deletes the paragraph at the specified index.
      */
-    void deleteParagraph(boolean isIndexNull) {
-        if(text.isEmpty()){
-            output.createEmptyTextWarning();
-        }
+    void deleteParagraph(boolean isIndexNull, Integer paragraphIndex) {
         boolean isSuccessful;
         if (isIndexNull) {
             text.remove(text.size() - 1);
@@ -108,10 +93,6 @@ public class TextManager {
             isSuccessful = false;
         }
         output.createDeleteMessage(isSuccessful);
-    }
-
-    public int getTextSize(){
-        return text.size();
     }
 
     /**
@@ -136,6 +117,7 @@ public class TextManager {
     }
 
 
+
     /**
      * Formats the given ArrayList of Strings into a single String with each element
      * of the ArrayList
@@ -151,19 +133,13 @@ public class TextManager {
         return formattedText;
     }
 
-    public void setIsFormatterRaw(boolean status){
-        this.isFormatterRaw = status;
-    }
 
     /**
      * Formats the given text to fit within the specified maximum width.
      *
      * @return The formatted text.
      */
-    String formatTextFix() {
-        if(!isMaxWidthValid(maxWidth)){
-            return "";
-        }
+    String formatTextFix(int maxWidth) {
         StringBuilder fixFormatted = new StringBuilder();
         int currentParagraphWidth = 0;
         for (String paragraph : text) {
@@ -183,7 +159,7 @@ public class TextManager {
                         currentParagraphWidth = resetParagraphWidth(fixFormatted);
                     }
                 }
-                currentParagraphWidth = appendNewLine(word, fixFormatted, currentParagraphWidth);
+                currentParagraphWidth = appendNewLine(word, fixFormatted, currentParagraphWidth, maxWidth);
                 currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
                 fixFormatted.append(word);
                 currentParagraphWidth += word.length();
@@ -200,15 +176,7 @@ public class TextManager {
     }
 
 
-    /**
-     * Check if the maxWidth is valid.
-     *
-     * @param maxWidth The maximum width to be validated.
-     * @return {@code true} if the maxWidth is valid; otherwise, {@code false}.
-     */
-    boolean isMaxWidthValid(int maxWidth) {
-        return maxWidth <= MAX_MAXWIDTH && maxWidth > 0;
-    }
+
 
     /**
      * Check if adding the current word exceeds maxWidth, and if it does, add a new
@@ -219,7 +187,7 @@ public class TextManager {
      * @param currentParagraphWidth The current width of the paragraph.
      * @return The updated current paragraph width.
      */
-    int appendNewLine(String word, StringBuilder fixFormatted, int currentParagraphWidth) {
+    int appendNewLine(String word, StringBuilder fixFormatted, int currentParagraphWidth, int maxWidth) {
         if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
             currentParagraphWidth = resetParagraphWidth(fixFormatted);
         } return currentParagraphWidth;
@@ -242,16 +210,13 @@ public class TextManager {
     /**
      * Print the text.
      */
-    void printText() {
-        if (text.isEmpty()) {
-            output.createEmptyTextWarning();
+    void printText(boolean isFormatterRaw, int maxWidth) {
+        if (isFormatterRaw) {
+            System.out.print(formatTextRaw());
         } else {
-            if (isFormatterRaw) {
-                System.out.print(formatTextRaw());
-            } else {
-                System.out.print(formatTextFix());
-            }
+            System.out.print(formatTextFix(maxWidth));
         }
+
     }
 
 
@@ -284,7 +249,7 @@ public class TextManager {
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraphSection(boolean isIndexNull , String originalWord, String replacingWord) {
+    void replaceParagraphSection(boolean isIndexNull , String originalWord, String replacingWord, Integer paragraphIndex) {
         if (isIndexNull) {
             replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
 
@@ -294,20 +259,7 @@ public class TextManager {
     }
 
 
-    /**
-     * Setter for the maxWidth.
-     *
-     * @param widthIndex Input from user
-     */
-    void setMaxWidth(Integer widthIndex) {
-        if (widthIndex == null) {
-            output.createInvalidMaxWidthWarning();
-        } else if (widthIndex <= 0) {
-            output.createIndexWarning();
-        } else {
-            this.maxWidth = widthIndex;
-        }
-    }
+
 
     /**
      * Getter for the text. It is used for testing.

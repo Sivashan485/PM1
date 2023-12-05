@@ -51,8 +51,6 @@ public class TextEditor {
 
 
     private void replace(String originalWord, Integer paragraphIndex, boolean isIndexNull){
-
-
         if(textManager.containsWord( originalWord,paragraphIndex)){
             System.out.println("Replacing with: ");
             String replacingWord = input.readAndFilterUserInput();
@@ -61,16 +59,15 @@ public class TextEditor {
 
     }
 
-    private Integer validateMaxWidth(Integer maxWidth){
-        if (maxWidth == null) {
+    private void validateMaxWidth(Integer maxWidth){
+        try{
+            if(!input.getIsIndexValid() && (maxWidth <= 0 || maxWidth > MAX_WIDTH)){
+                output.createIndexWarning();
+            }
+        }catch (NullPointerException e){
             output.createInvalidMaxWidthWarning();
-        } else if(!input.getIsIndexValid() && (maxWidth <= 0 || maxWidth > MAX_WIDTH)){
-            output.createIndexWarning();
-        } else{
-            return maxWidth;
         }
-        isFormatterRaw = true;
-        return null;
+
     }
 
     public void setIsFormatterRaw(boolean status){
@@ -89,7 +86,7 @@ public class TextEditor {
         if(!input.getIsIndexValid()){
             output.createIndexWarning();
         }else if (!isIndexNull && (paragraphIndex <= 0 || paragraphIndex > textSize)) {
-                output.createIndexWarning();
+            output.createIndexWarning();
         }else{
             return paragraphIndex;
         }
@@ -128,7 +125,8 @@ public class TextEditor {
                 isExitTriggered = true;
                 break;
             case ADD:
-                paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
+                paragraphIndex =input.getUserIndex();
+                isIndexValid(paragraphIndex, textManager.getText().size(), isIndexNull);
                 String enteredText = input.readAndFilterUserInput();
                 textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
                 break;
@@ -140,8 +138,7 @@ public class TextEditor {
                 glossary.printGlossary(textManager.getText());
                 break;
             case PRINT:
-                maxWidth = validateMaxWidth(input.getUserIndex());
-                textManager.printText(isFormatterRaw, maxWidth);
+                textManager.printText(isFormatterRaw);
                 break;
             case REPLACE:
                 paragraphIndex= isIndexValid(input.getUserIndex(),textManager.getText().size(), input.isIndexNull());
@@ -158,9 +155,11 @@ public class TextEditor {
                 output.createFormatMessage(true);
                 break;
             case FORMAT_FIX:
-                maxWidth = validateMaxWidth(input.getUserIndex());
                 setIsFormatterRaw(false);
-                textManager.formatTextFix(maxWidth);
+                maxWidth = input.getUserIndex();
+                validateMaxWidth(maxWidth);
+                textManager.setMaxWidth(maxWidth);
+                textManager.formatTextFix();
                 break;
             default:
                 output.createInvalidCommandMessage();

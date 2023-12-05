@@ -20,6 +20,11 @@ public class TextManager {
             "Aldus PageMaker including versions of Lorem Ipsum.";
     private final OutputManager output;
     private List<String> text;
+    private Integer maxWidth;
+
+    public void setMaxWidth(Integer maxWidth){
+        this.maxWidth = maxWidth;
+    }
 
     /**
      * Constructor for the TextManager class. It initializes the input, output,
@@ -138,7 +143,10 @@ public class TextManager {
      *
      * @return The formatted text.
      */
-    String formatTextFix(Integer maxWidth) {
+    String formatTextFix() {
+        if(maxWidth ==null){
+            return "";
+        }
         StringBuilder fixFormatted = new StringBuilder();
         int currentParagraphWidth = 0;
         for (String paragraph : text) {
@@ -209,11 +217,11 @@ public class TextManager {
     /**
      * Print the text.
      */
-    void printText(boolean isFormatterRaw, Integer maxWidth) {
+    void printText(boolean isFormatterRaw) {
         if (isFormatterRaw || maxWidth == null) {
             System.out.print(formatTextRaw());
         } else {
-            System.out.print(formatTextFix(maxWidth));
+            System.out.print(formatTextFix());
         }
 
     }

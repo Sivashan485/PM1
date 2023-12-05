@@ -51,7 +51,6 @@ public class InputReceiver {
      */
     public void parseUserInput() {
         String userInput = readAndFilterUserInput();
-        //resetValues();
         userCommand = extractCommand(userInput);
         restPart = userInput.substring(userCommand.length()).trim();
         validateAndSetIndex(userCommand, restPart);
@@ -90,7 +89,7 @@ public class InputReceiver {
     }
 
     private void handleIndexCommand(){
-        String replaceUnallowedCharacters = restPart.replaceAll("[^1-9]", "");
+        String replaceUnallowedCharacters = restPart.replaceAll("[^0-9]", "");
         if (restPart.equals(replaceUnallowedCharacters)) {
             setUserIndex();
             isIndexValid = true;

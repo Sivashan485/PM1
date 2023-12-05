@@ -139,7 +139,7 @@ public class TextManager {
      *
      * @return The formatted text.
      */
-    String formatTextFix(int maxWidth) {
+    String formatTextFix(Integer maxWidth) {
         StringBuilder fixFormatted = new StringBuilder();
         int currentParagraphWidth = 0;
         for (String paragraph : text) {
@@ -210,7 +210,7 @@ public class TextManager {
     /**
      * Print the text.
      */
-    void printText(boolean isFormatterRaw, int maxWidth) {
+    void printText(boolean isFormatterRaw, Integer maxWidth) {
         if (isFormatterRaw) {
             System.out.print(formatTextRaw());
         } else {
@@ -219,6 +219,12 @@ public class TextManager {
 
     }
 
+
+    /**
+     * Replaces occurrences of a specified word in the text list at the given index.
+     *
+     * @param index           The index of the text to be modified.
+     */
 
     /**
      * Replaces occurrences of a specified word in the text list at the given index.

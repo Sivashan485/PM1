@@ -39,7 +39,6 @@ public class InputReceiver {
      * @return returns the filtered input text
      */
     String readAndFilterUserInput() {
-        resetValues();
         String inputText = userInput.nextLine();
         return inputText.replaceAll(ALLOWED_REGEX, "");
     }
@@ -47,11 +46,14 @@ public class InputReceiver {
     /**
      * Splits the user input into a command and its arguments.
      */
-    public void splitInput() {
+    public void parseUserInput() {
         String userInput = readAndFilterUserInput();
+        resetValues();
         setUserCommand(userInput);
         String restPart = userInput.substring(userCommand.length()).trim();
-        validateIndex(userCommand, restPart);
+        if(isIndexValide(userCommand, restPart)){
+            setUserIndex(restPart);
+        }
     }
 
 
@@ -77,16 +79,18 @@ public class InputReceiver {
     /**
      * Validates the command and splits the input accordingly
      */
-    private void validateIndex(String command, String restPart) {
+    private boolean isIndexValide(String command, String restPart) {
         // Handles commands that require an restPart
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
             String replaceUnallowedCharacters = restPart.replaceAll("[^1-9]", "");
             if (restPart.equals(replaceUnallowedCharacters)) {
-                setUserIndex(restPart);
+                return true;
             } else {
                 OutputManager.createUnallowedCharacterWarning();
+                return false;
             }
         }
+        return false;
     }
 
 

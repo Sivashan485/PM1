@@ -69,7 +69,7 @@ public class InputReceiverTest {
     void testSplitInputShouldSplitAndIdentifyCommandAdd() {
         System.setIn(new ByteArrayInputStream("add Hey how are you, i'm the test".getBytes()));
         input = new InputReceiver();
-        input.splitInput();
+        input.parseUserInput();
         assertEquals("add", input.getUserCommand());
         assertNull(input.getUserIndex());
         assertEquals("Hey how are you, i'm the test", input.getRestPart());
@@ -79,7 +79,7 @@ public class InputReceiverTest {
     void testSplitInputShouldSplitAndIdentifyCommandReplace() {
         System.setIn(new ByteArrayInputStream(("replace diam horem").getBytes()));
         input = new InputReceiver();
-        input.splitInput();
+        input.parseUserInput();
         assertEquals("replace", input.getUserCommand());
         assertNull(input.getUserIndex());
         assertEquals("diam horem", input.getRestPart());
@@ -89,7 +89,7 @@ public class InputReceiverTest {
     void testSplitInputShouldSplitAndIdentifyCommandExit() {
         System.setIn(new ByteArrayInputStream(("exit 1212").getBytes()));
         input = new InputReceiver();
-        input.splitInput();
+        input.parseUserInput();
         assertEquals("exitnull", input.getUserCommand());
         assertNull(input.getUserIndex());
         assertEquals("1212", input.getRestPart());
@@ -99,7 +99,7 @@ public class InputReceiverTest {
     void testSplitInputShouldSplitButNotIdentifyCommandExit() {
         System.setIn(new ByteArrayInputStream(("add exit is the exit For the Exit").getBytes()));
         input = new InputReceiver();
-        input.splitInput();
+        input.parseUserInput();
         assertEquals("add", input.getUserCommand());
         assertNull(input.getUserIndex());
         assertEquals("exit is the exit For the Exit", input.getRestPart());
@@ -109,7 +109,7 @@ public class InputReceiverTest {
     void testSplitInputShouldSplitAndIdentifyCommandDel() {
         System.setIn(new ByteArrayInputStream(("Del is to del some text In The Text Editor.").getBytes()));
         input = new InputReceiver();
-        input.splitInput();
+        input.parseUserInput();
         assertEquals("del", input.getUserCommand());
         assertNull(input.getUserIndex());
         assertEquals("is to del some text In The Text Editor.", input.getRestPart());
@@ -120,7 +120,7 @@ public class InputReceiverTest {
     void testSplitInputShouldHandleEmptyInput() {
         System.setIn(new ByteArrayInputStream("\n".getBytes()));
         input = new InputReceiver();
-        input.splitInput();
+        input.parseUserInput();
         assertEquals("", input.getUserCommand());
         assertNull(input.getUserIndex());
         assertEquals("", input.getRestPart());

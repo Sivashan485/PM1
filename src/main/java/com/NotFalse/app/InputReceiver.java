@@ -17,6 +17,7 @@ public class InputReceiver {
 
 
 
+
     /**
      * Constructor for InputReceiver.
      */
@@ -30,7 +31,7 @@ public class InputReceiver {
      * This method sets IsIndexValid to true, index to null, command to an empty string,
      * and indexIsNull to false.
      */
-    private void resetValues() {
+    void resetValues() {
         userIndex = null;
         userCommand = "";
         restPart = "";

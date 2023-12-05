@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-05T13:25:15.188483Z</date>
-  <millis>1701782715188</millis>
-  <nanos>483000</nanos>
+  <date>2023-12-05T14:07:01.120496800Z</date>
+  <millis>1701785221120</millis>
+  <nanos>496800</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -24,17 +24,5 @@ format raw
 format fix&lt;b&gt;
 help
 exit</message>
-</record>
-<record>
-  <date>2023-12-05T13:25:21.634873Z</date>
-  <millis>1701782721634</millis>
-  <nanos>873000</nanos>
-  <sequence>1</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
-  <thread>1</thread>
-  <message>Status: Text added successfully!</message>
 </record>
 </log>

@@ -236,8 +236,9 @@ public class TextManager {
         output.createReplaceMessage(isReplacementSuccessful);
     }
 
-    boolean containsWord(String originalWord, int index){
-        if(text.get(index).contains(originalWord)){
+    boolean containsWord(String originalWord, Integer paragraphIndex){
+        boolean isWordEmpty = originalWord.equals("");
+        if(!isWordEmpty&&text.get(paragraphIndex-1).contains(originalWord)){
             return true;
         }else{
             output.createInvalidWordWarning();

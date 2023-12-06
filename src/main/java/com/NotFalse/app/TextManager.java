@@ -264,7 +264,7 @@ public class TextManager {
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
      *
-     * @param index           The index of the text to be modified.
+     * @param index The index of the text to be modified.
      */
     void replaceWordInParagraph(Integer index, String originalWord, String replacementWord) {
         String paragraph = text.get(index);

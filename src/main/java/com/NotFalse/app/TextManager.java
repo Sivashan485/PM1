@@ -31,11 +31,6 @@ public class TextManager {
      */
     TextManager() {
         text = new ArrayList<>();
-        text.add("First Hello this is a Test sentence.");
-        text.add("Second Another Test sentence.");
-        text.add("Third useless Test sentence.");
-        text.add("Fourth Hello Hello Hello");
-        text.add("Fifth End of text.");
         formattedText = "";
         isFormatterRaw = true;
         formatTextRaw();

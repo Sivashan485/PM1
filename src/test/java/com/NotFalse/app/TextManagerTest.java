@@ -3,363 +3,191 @@ package com.NotFalse.app;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TextManagerTest {
+class TextManagerTest {
 
-    TextManager textManager;
-    InputReceiver input;
+    private TextManager textManager;
 
     @BeforeEach
     void setUp() {
         textManager = new TextManager();
-        input = new InputReceiver();
-
     }
 
-    //ADD
+    @Test
+    void testAddNewParagraph() {
+        assertTrue(textManager.addNewParagraph(false, "Test paragraph", 1));
+        assertEquals("Test paragraph", textManager.getText().get(0));
+    }
 
-    private void addDummyAuto(Integer index) {
+    @Test
+    void testDeleteParagraph() {
         textManager = new TextManager();
-        textManager.addDummyParagraph(false, index);
-        textManager.printText();
-    }
-
-
-    @Test
-    void testAddDummyIndexOne() {
-        addDummyAuto(5);
-        assertEquals(TextManager.getDummyText(), textManager.getTextList().get(4));
-        addDummyAuto(-11);
-        for (int i = 0; i < textManager.getTextList().size(); i++) {
-            assertNotEquals(TextManager.getDummyText(), textManager.getTextList().get(i));
-        }
-    }
-
-
-    @Test
-    void testAddDummyIndexTwo() {
-        addDummyAuto(5);
-        assertEquals(TextManager.getDummyText(), textManager.getTextList().get(4));
-    }
-
-
-    @Test
-    void testAddDummyIndexThree() {
-        addDummyAuto(-11);
-        for (int i = 0; i < textManager.getTextList().size(); i++) {
-            assertNotEquals(TextManager.getDummyText(), textManager.getTextList().get(i));
-        }
-    }
-
-    // ADD TEXT test
-    private void addElementAuto(Integer index, boolean isIndexNull, String addingItem) {
-        // Initialize textManager and input
-        textManager.addNewParagraph(isIndexNull, addingItem, index);
-    }
-
-
-    @Test
-    void testAddTextWithIndex() {
-        addElementAuto(1, false, "T");
-        assertEquals(textManager.getTextList().get(0), "T");
+        textManager.addNewParagraph(false, "Test paragraph", 1);
+        assertTrue(textManager.deleteParagraph(false, 1));
+        assertTrue(textManager.isTextEmpty());
     }
 
     @Test
-    void testAddTextWithoutIndex() {
-        addElementAuto(null, true, "T");
-        int listSize = textManager.getTextList().size();
-        assertEquals(textManager.getTextList().get(listSize - 1), "T");
-
-    }
-
-
-    void testAddIndexRangeTest(int index) {
-        String testedString = "T";
-        addElementAuto(index, false, "T");
-        for (int i = 0; i < textManager.getTextList().size(); i++) {
-            assertNotEquals(textManager.getTextList().get(i), testedString);
-        }
-    }
-
-    @Test
-    void testAddTextIndexRange() {
-        testAddIndexRangeTest(20000000);
-        testAddIndexRangeTest(-10000);
-        testAddIndexRangeTest(0);
-    }
-
-    // REPLACE TEXT
-
-    public void replaceElementAuto(String sentenceToChange, int sentenceIndex, int replaceIndex, String replacingItem, String replacingWith) {
-
-        addElementAuto(sentenceIndex, false, sentenceToChange);
-        textManager.replaceWordInParagraph(replaceIndex, replacingItem, replacingWith);
-        textManager.replaceParagraphSection(false, replacingItem, replacingWith, replaceIndex);
-    }
-
-
-
-    @Test
-    void testReplaceTextValid() {
-        int index = 0;
-        replaceElementAuto("Test Te", 1, 1, "Te", "EE");
-
-        String textAfterChange = textManager.getTextList().get(index);
-        assertEquals("EEst EE", textAfterChange);
-
-    }
-
-
-
-    @Test
-    void TestReplaceWithIndex() {
-        textManager.printText();
-        replaceElementAuto("WA. S.DF", 1, 1, ".", "1");
-        assertEquals("WA1 S1DF", textManager.getTextList().get(0));
-    }
-
-    /*
-    @Test
-    void TestReplaceIndexAtEnd() {
-        replaceElementAuto(" .WA. S.DF. . ", textManager.getTextList().size() + 1, ".", "1");
-        String lastElement = textManager.getTextList().get(textManager.getTextList().size() - 1);
-        assertEquals(" 1WA1 S1DF1 1 ", lastElement);
-    }
-*/
-
-    @Test
-    void TestReplaceIndexUnder0() {
-        replaceElementAuto(" .WA. S.DF. . ", -11, -1111, ".", "1");
-        assertFalse(textManager.getTextList().contains(" 1WA1 S1DF1 1 "));
-    }
-
-
-    @Test
-    void TestReplaceIndexOverListSize() {
-        textManager.printText();
-        Integer endingIndex = textManager.getTextList().size() + 20;
-        replaceElementAuto(" .WA. S.DF. . ", 1, endingIndex, ".", "1");
-        for (int i = 0; i < textManager.getText().size() - 1; i++) {
-            assertNotEquals(" 1WA1 S1DF1 1 ", textManager.getTextList().get(i));
-        }
-    }
-
-
-    @Test
-    void testReplaceTextInvalid() {
-        int index = 0;
-        addElementAuto(1, false,"Fifth End of text.");
-        List<String> testTextList = textManager.getTextList();
-        textManager.replaceWordInParagraph(index, "ASDF", "E");
-        String textAfterChange = testTextList.get(index);
-        System.out.println(testTextList.get(index));
-        assertEquals(textAfterChange, "Fifth End of text.");
-    }
-
-
-    // DEL FUN
-    private int deleteElementAuto(int addIndex, String addSentenceText, int delIndex, boolean isindexnull) {
-        addElementAuto(addIndex, false, addSentenceText);
-        int listSizeBeforeDel = textManager.getTextList().size();
-        textManager.deleteParagraph(isindexnull,delIndex);
-        return listSizeBeforeDel;
-
-    }
-
-
-    @Test
-    void testDeleteNotInRangeOverListSize() {
-        Integer delIndex = textManager.getTextList().size() + 100;
-        int indexSizeBefore = deleteElementAuto(1, "WAS", delIndex,false);
-        assertEquals(textManager.getTextList().size(), indexSizeBefore);
-    }
-
-
-    @Test
-    void testDeleteInRangeListSize() {
-        int indexSizeBefore = deleteElementAuto(1, "WAS", 1, false);
-        assertEquals((indexSizeBefore - 1), textManager.getTextList().size());
-    }
-
-    @Test
-    void testDeleteNotInRangeN0() {
-        int indexSizeBefore = deleteElementAuto(1, "WAS", 0, false);
-        assertEquals(indexSizeBefore, textManager.getTextList().size());
-    }
-
-    @Test
-    void testDeleteNotInRangeUnder0() {
-        int indexSizeBefore = deleteElementAuto(1, "WAS", -1000, false);
-        assertEquals(indexSizeBefore, textManager.getTextList().size());
-    }
-
-
-
-    // Test for Method formatTextFix
-    @Test
-    void testSingleShortWord() {
-        String expected = "test\n";
-        textManager.setText(List.of("test\n"));
-        textManager.setMaxWidth(4);
-        textManager.formatTextFix();
-        assertEquals(expected,textManager.getFormattedText() );
-    }
-
-    // Test for Method formatTextFix
-    @Test
-    void testEmptyInput() {
-        String expected = "\n";
-        textManager.setText(List.of(""));
-        textManager.setMaxWidth(4);
-        textManager.formatTextFix();
-        assertEquals(expected, textManager.getFormattedText());
-    }
-
-
-    // Test for Method formatTextFix
-    @Test
-    void testSingleLongWord() {
-        String expected = "0123456\n" +
-                "7890123\n" +
-                "456789\n";
-        textManager.setText(List.of("01234567890123456789"));
-        textManager.setMaxWidth(7);
-        textManager.formatTextFix();
-        assertEquals(expected, textManager.getFormattedText());
-    }
-
-    // Test for Method formatTextFix
-    @Test
-    void testMultipleShortWords() {
-        String expected = "hello\n" +
-                "world\n";
-        input = new InputReceiver();
-        textManager.setText(Arrays.asList("hello", "world"));
-        textManager.setMaxWidth(7);
-        textManager.formatTextFix();
-        assertEquals(expected,textManager.getFormattedText() );
-    }
-
-
-
-    // Test for Method formatTextFix
-    @Test
-    void testMultipleLongWords() {
-        String expected = "abcdefghij jiwer\n" +
-                "klmnopqrstuvwxy\n" +
-                "zabcdefghij\n";
-        textManager.setText(Arrays.asList("abcdefghij", "jiwer", "klmnopqrstuvwxy", "zabcdefghij"));
-        textManager.setMaxWidth(20);
-        textManager.formatTextFix();
-        assertEquals(expected,textManager.getFormattedText() );
-    }
-
-
-    // Test for Method formatTextFix
-    @Test
-    void testMultipleWordsBiggerThanMaxWidth() {
-        String expected = "abcdefghij\n" +
-                "klmnopqrst\n" +
-                "uvwxyzabcd\n" +
-                "efghijklmn\n" +
-                "opqrstuvwx\n";
-        textManager.setText(Arrays.asList("abcdefghijklmnopqrst", "uvwxyzabcdefghijklmn", "opqrstuvwx"));
-        textManager.setMaxWidth(10);
-        textManager.formatTextFix();
-        assertEquals(expected, textManager.getFormattedText());
-    }
-
-
-    // Test for Method formatTextFix
-    @Test
-    void testWordsExactlyMatchingMaxWidth() {
-        String expected = "abcdefghij\n" +
-                "klmnopqrst\n" +
-                "uvwxyzabcd\n" +
-                "efghijklmn\n" +
-                "opqrstuvwx\n";
-        textManager.setText(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabcd", "efghijklmn", "opqrstuvwx"));
-        textManager.setMaxWidth(10);
-        textManager.formatTextFix();
-        assertEquals(expected, textManager.getFormattedText());
-    }
-
-    // Test for Method formatTextFix
-    @Test
-    void testLineBreakOnWordBoundary() {
-        String expected = "abcdefghij\n" +
-                "klmnopqrst uvwxyzabc\n" +
-                "efghijkl opqrstu\n" +
-                "yzabcd ijklm stuv\n" +
-                "cde mn o\n";
-        textManager.setText(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabc", "efghijkl",
-                "opqrstu", "yzabcd", "ijklm", "stuv", "cde", "mn", "o"));
-        textManager.setMaxWidth(20);
-        textManager.formatTextFix();
-        assertEquals(expected, textManager.getFormattedText());
-    }
-
-    // Test for Method formatTextFix
-    @Test
-    void testSpacesNotPreserved() {
-        String expected = "hello  world\n";
-        textManager.setText(Arrays.asList("hello", " ", "world"));
-        textManager.setMaxWidth(20);
-        textManager.formatTextFix();
-        assertEquals(expected, textManager.getFormattedText());
-    }
-
-    // Test for Method formatTextFix
-    @Test
-    void testMaximumWidthBoundary() {
-        String longWord = "a".repeat(80);
-        String expected = longWord + "\nb\n";
-        textManager.setText(Arrays.asList(longWord, "b"));
-        textManager.setMaxWidth(80);
-        textManager.formatTextFix();
-        assertEquals(expected, textManager.getFormattedText());
-    }
-
-    // Test for Method resetParagraphWidth
-    @Test
-    void testResetParagraphWidthGreaterThanZero() {
-        StringBuilder fixFormatted = new StringBuilder("test");
-        textManager.resetParagraphWidth(fixFormatted);
-        String expected = "test\n";
-        assertEquals(expected, fixFormatted.toString());
-    }
-
-
-    // Test for Method formatTextRaw
-    @Test
-    void testFormatTextRawWithSingleLine() {
-        String expected = "<1>: This is a single line of text.\n";
-        textManager.setText(List.of("This is a single line of text."));
+    void testFormatTextRaw() {
+        textManager.addNewParagraph(false, "Test paragraph1", 1);
+        textManager.addNewParagraph(false, "Test paragraph2", 2);
+        textManager.addNewParagraph(false, "Test paragraph3", 3);
+        textManager.addNewParagraph(false, "Test paragraph4", 4);
+        textManager.addNewParagraph(false, "Test paragraph5", 5);
         textManager.formatTextRaw();
+        String expected = ("1: Test paragraph1\n" +
+                "2: Test paragraph2\n" +
+                "3: Test paragraph3\n" +
+                "4: Test paragraph4\n" +
+                "5: Test paragraph5\n");
         assertEquals(expected, textManager.getFormattedText());
     }
 
-    // Test for Method formatTextRaw
     @Test
-    void testFormatTextRawWithMultipleLines() {
-        String expected = "<1>: This is the first line of text.\n" +
-                "<2>: This is the second line of text.\n";
-        textManager.setText(Arrays.asList("This is the first line of text.", "This is the second line of text."));
-        textManager.formatTextRaw();
-        assertEquals(expected, textManager.getFormattedText());
+    void testFormatTextFix() {
+        textManager.addNewParagraph(false, "Test paragraph", 1);
+        textManager.setMaxWidth(5);
+        textManager.formatTextFix();
+        assertEquals("Test\nparag\nraph\n\n", textManager.getFormattedText());
     }
 
-    // Test for Method formatTextRaw
     @Test
-    void testFormatTextRawWithEmptyList() {
-        String expected = "<1>: \n";
-        textManager.setText(List.of(""));
-        textManager.formatTextRaw();
-        assertEquals(expected, textManager.getFormattedText());
+    void testReplaceWordInParagraph() {
+        textManager.addNewParagraph(false, "Test paragraph", 1);
+        assertTrue(textManager.replaceWordInParagraph(0, "Test", "Best"));
+        assertEquals("Best paragraph", textManager.getText().get(0));
     }
+
+    @Test
+    void testReplaceParagraphSection() {
+        textManager.addNewParagraph(false, "Test paragraph", 1);
+        assertTrue(textManager.replaceParagraphSection(false, "Test", "Best", 1));
+        assertEquals("Best paragraph", textManager.getText().get(0));
+    }
+
+    @Test
+    void testContainsWord() {
+        textManager.addNewParagraph(false, "Test paragraph", 1);
+        assertTrue(textManager.containsWord("Test", 1));
+        assertFalse(textManager.containsWord("Best", 1));
+    }
+
+    @Test
+    void testIsTextEmpty() {
+        assertTrue(textManager.isTextEmpty());
+        textManager.addNewParagraph(false, "Test paragraph", 1);
+        assertFalse(textManager.isTextEmpty());
+    }
+    @Test
+    void testFormatTextFixWithSingleWordExceedingMaxWidth() {
+        textManager.addNewParagraph(false, "Supercalifragilisticexpialidocious", 1);
+        textManager.setMaxWidth(5);
+        textManager.formatTextFix();
+        assertEquals("Super\ncalif\nragil\nistic\nexpia\nlidoc\nious\n\n", textManager.getFormattedText());
+    }
+
+    @Test
+    void testFormatTextFixWithMultipleWordsExceedingMaxWidth() {
+        textManager.addNewParagraph(false, "Supercalifragilisticexpialidocious Pneumonoultramicroscopicsilicovolcanoconiosis", 1);
+        textManager.setMaxWidth(5);
+        textManager.formatTextFix();
+        assertEquals("Super\ncalif\nragil\nistic\nexpia\nlidoc\nious\nPneum\nonoul\ntrami\ncrosc\nopics\nilico\nvolca\nnocon\niosis\n\n", textManager.getFormattedText());
+    }
+
+    @Test
+    void testFormatTextFixWithMultipleParagraphs() {
+        textManager.addNewParagraph(false, "Hello world", 1);
+        textManager.addNewParagraph(false, "This is a test", 2);
+        textManager.setMaxWidth(5);
+        textManager.formatTextFix();
+        assertEquals("Hello\nworld\n\nThis\nis a\ntest\n\n", textManager.getFormattedText());
+    }
+
+    @Test
+    void testFormatTextFixWithNullMaxWidth() {
+        textManager.addNewParagraph(false, "Hello world", 1);
+        textManager.setMaxWidth(null);
+        textManager.formatTextFix();
+        assertFalse(textManager.getIsFormatterFixSuccessful());
+    }
+    @Test
+    void testReplaceWordInParagraphWithMultipleOccurrences() {
+        textManager.addNewParagraph(false, "Test Test Test", 1);
+        assertTrue(textManager.replaceWordInParagraph(0, "Test", "Best"));
+        assertEquals("Best Best Best", textManager.getText().get(0));
+    }
+
+    @Test
+    void testReplaceWordInParagraphWithNoOccurrences() {
+        textManager.addNewParagraph(false, "Test Test Test", 1);
+        assertFalse(textManager.replaceWordInParagraph(0, "Best", "Test"));
+        assertEquals("Test Test Test", textManager.getText().get(0));
+    }
+
+    @Test
+    void testReplaceParagraphSectionWithMultipleOccurrences() {
+        textManager.addNewParagraph(false, "Test Test Test", 1);
+        assertTrue(textManager.replaceParagraphSection(false, "Test", "Best", 1));
+        assertEquals("Best Best Best", textManager.getText().get(0));
+    }
+
+    @Test
+    void testReplaceParagraphSectionWithNoOccurrences() {
+        textManager.addNewParagraph(false, "Test Test Test", 1);
+        assertFalse(textManager.replaceParagraphSection(false, "Best", "Test", 1));
+        assertEquals("Test Test Test", textManager.getText().get(0));
+    }
+
+    @Test
+    void testReplaceParagraphSectionWithNullIndex() {
+        textManager.addNewParagraph(false, "Test Test Test", 1);
+        assertTrue(textManager.replaceParagraphSection(true, "Test", "Best", null));
+        assertEquals("Best Best Best", textManager.getText().get(0));
+    }
+    @Test
+    void testDeleteParagraphWithValidIndex() {
+        textManager.addNewParagraph(false, "Test paragraph1", 1);
+        textManager.addNewParagraph(false, "Test paragraph2", 2);
+        assertTrue(textManager.deleteParagraph(false, 1));
+        assertEquals("Test paragraph2", textManager.getText().get(0));
+    }
+
+
+    @Test
+    void testDeleteParagraphWithNullIndex() {
+        textManager.addNewParagraph(false, "Test paragraph1", 1);
+        textManager.addNewParagraph(false, "Test paragraph2", 2);
+        assertTrue(textManager.deleteParagraph(true, null));
+        assertEquals("Test paragraph1", textManager.getText().get(0));
+    }
+    @Test
+    void testAddNewParagraphAtSpecificIndex() {
+        textManager.addNewParagraph(false, "Test paragraph1", 1);
+        textManager.addNewParagraph(false, "Test paragraph2", 2);
+        assertTrue(textManager.addNewParagraph(false, "Test paragraph3", 2));
+        assertEquals("Test paragraph3", textManager.getText().get(1));
+        assertEquals("Test paragraph2", textManager.getText().get(2));
+    }
+
+    @Test
+    void testAddNewParagraphAtEndWhenIndexIsNull() {
+        textManager.addNewParagraph(false, "Test paragraph1", 1);
+        textManager.addNewParagraph(true, "Test paragraph2", null);
+        assertEquals("Test paragraph2", textManager.getText().get(1));
+    }
+
+    @Test
+    void testAddNewParagraphAtEndWhenIndexIsInvalid() {
+        textManager.addNewParagraph(false, "Test paragraph1", 1);
+        textManager.addNewParagraph(false, "Test paragraph2", 2);
+        assertEquals("Test paragraph1", textManager.getText().get(0));
+    }
+
+    @Test
+    void testAddNewParagraphWhenTextIsEmpty() {
+        assertTrue(textManager.addNewParagraph(false, "Test paragraph1", 1));
+        assertEquals("Test paragraph1", textManager.getText().get(0));
+    }
+
 }

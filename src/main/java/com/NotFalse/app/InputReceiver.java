@@ -15,6 +15,7 @@ public class InputReceiver {
     private boolean isIndexValid;
 
 
+
     /**
      * Constructor for InputReceiver.
      */
@@ -142,12 +143,9 @@ public class InputReceiver {
         return userIndex;
     }
 
-
     String getRestPart() {
         return restPart;
     }
-
-
 
 
 }

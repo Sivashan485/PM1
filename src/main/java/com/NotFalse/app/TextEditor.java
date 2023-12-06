@@ -53,7 +53,7 @@ public class TextEditor {
      * Displays corresponding messages or triggers actions such as adding, deleting, replacing, formatting, or printing text.
      */
     private void editText() {
-        OutputManager.logAndPrintInfoMessage("▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫\n️");
+        OutputManager.logAndPrintInfoMessage("________________________________________________\n️");
         input.resetValues();
         input.parseInput();
         Integer paragraphIndex = input.getUserIndex();
@@ -65,7 +65,7 @@ public class TextEditor {
 
         switch (ApplicationCommand.parseCommand(input.getUserCommand())) {
             case DUMMY:
-                dummy(paragraphIndex,textSize,isIndexValid,true,isIndexNull);
+                dummy(paragraphIndex,textSize,isIndexValid,isIndexNull);
                 break;
             case EXIT:
                 output.createExitMessage();
@@ -78,7 +78,7 @@ public class TextEditor {
                 output.createAddMessage(executionSuccessfull);
                 break;
             case DEL:
-                del(paragraphIndex,textSize,isIndexValid,false, isIndexNull);
+                del(paragraphIndex,textSize,isIndexValid, isIndexNull);
                 break;
             case INDEX:
                 index();
@@ -109,7 +109,7 @@ public class TextEditor {
     }
 
 
-    private boolean validateMaxWidth(Integer maxWidth,boolean isIndexValid){
+    boolean validateMaxWidth(Integer maxWidth,boolean isIndexValid){
         if(maxWidth == null && isIndexValid){
             output.createInvalidMaxWidthWarning();
             return false;
@@ -125,7 +125,7 @@ public class TextEditor {
         return true;
     }
 
-    private boolean validateParagraphIndex(Integer paragraphIndex, int textSize,boolean isIndexValid, boolean isAddFunction) {
+    boolean validateParagraphIndex(Integer paragraphIndex, int textSize,boolean isIndexValid, boolean isAddFunction) {
         if(paragraphIndex == null && isIndexValid){
             return true;
         }
@@ -191,7 +191,7 @@ public class TextEditor {
 
     }
 
-    private void del(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isAddFunction, boolean isIndexNull){
+    private void del(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isIndexNull){
         boolean executionSuccessfull = false;
         if(isTextNotEmpty()){
             if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
@@ -200,7 +200,7 @@ public class TextEditor {
         }
         output.createDeleteMessage(executionSuccessfull);
     }
-    private void dummy(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isAddFunction, boolean isIndexNull){
+    private void dummy(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isIndexNull){
         boolean executionSuccessfull = false;
         if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid,true)){
             executionSuccessfull = textManager.addDummyParagraph(isIndexNull, paragraphIndex);

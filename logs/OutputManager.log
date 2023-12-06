@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-06T18:38:37.330872Z</date>
-  <millis>1701887917330</millis>
-  <nanos>872000</nanos>
+  <date>2023-12-06T19:10:08.113893Z</date>
+  <millis>1701889808113</millis>
+  <nanos>893000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -20,39 +20,32 @@
  ...to the TextEditor
  created by NotFalse...
  🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈
-+---------------------+
-| Available Functions |
-+---------------------+
-| add [i]             |
-| dummy [i]           |
-| del [i]             |
-| replace [i]         |
-| format fix &lt;b&gt;      |
-| format raw          |
-| index               |
-| print               |
-| help                |
-| exit                |
-+---------------------+
-</message>
+
+               Available Functions              
+________________________________________________
+
+      ☒ add[i]        ☒ dummy[i]    ☒ del[i]      
+      ☒ replace [i]   ☒ index       ☒ print       
+      ☒ format raw    ☒ format fix &lt;b&gt;         
+      ☒ help          ☒ exit                    </message>
 </record>
 <record>
-  <date>2023-12-06T18:38:37.333804Z</date>
-  <millis>1701887917333</millis>
-  <nanos>804000</nanos>
+  <date>2023-12-06T19:10:08.116927Z</date>
+  <millis>1701889808116</millis>
+  <nanos>927000</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
-  <message>▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫
+  <message>________________________________________________
 ️</message>
 </record>
 <record>
-  <date>2023-12-06T18:38:41.114766Z</date>
-  <millis>1701887921114</millis>
-  <nanos>766000</nanos>
+  <date>2023-12-06T19:10:12.498686Z</date>
+  <millis>1701889812498</millis>
+  <nanos>686000</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -67,15 +60,280 @@
 </message>
 </record>
 <record>
-  <date>2023-12-06T18:38:41.115509Z</date>
-  <millis>1701887921115</millis>
-  <nanos>509000</nanos>
+  <date>2023-12-06T19:10:12.499592Z</date>
+  <millis>1701889812499</millis>
+  <nanos>592000</nanos>
   <sequence>3</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
-  <message>▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:13.958170Z</date>
+  <millis>1701889813958</millis>
+  <nanos>170000</nanos>
+  <sequence>4</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:13.958873Z</date>
+  <millis>1701889813958</millis>
+  <nanos>873000</nanos>
+  <sequence>5</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:14.634470Z</date>
+  <millis>1701889814634</millis>
+  <nanos>470000</nanos>
+  <sequence>6</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:14.635379Z</date>
+  <millis>1701889814635</millis>
+  <nanos>379000</nanos>
+  <sequence>7</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:15.308568Z</date>
+  <millis>1701889815308</millis>
+  <nanos>568000</nanos>
+  <sequence>8</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:15.309265Z</date>
+  <millis>1701889815309</millis>
+  <nanos>265000</nanos>
+  <sequence>9</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:15.928786Z</date>
+  <millis>1701889815928</millis>
+  <nanos>786000</nanos>
+  <sequence>10</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:15.929564Z</date>
+  <millis>1701889815929</millis>
+  <nanos>564000</nanos>
+  <sequence>11</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:16.569293Z</date>
+  <millis>1701889816569</millis>
+  <nanos>293000</nanos>
+  <sequence>12</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:16.569931Z</date>
+  <millis>1701889816569</millis>
+  <nanos>931000</nanos>
+  <sequence>13</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:17.623386Z</date>
+  <millis>1701889817623</millis>
+  <nanos>386000</nanos>
+  <sequence>14</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Your TextEditor is empty...
+You can add new text, by calling the add function.</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:17.624006Z</date>
+  <millis>1701889817624</millis>
+  <nanos>6000</nanos>
+  <sequence>15</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:22.298841Z</date>
+  <millis>1701889822298</millis>
+  <nanos>841000</nanos>
+  <sequence>16</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Enter a Text you want to add:</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:23.837768Z</date>
+  <millis>1701889823837</millis>
+  <nanos>768000</nanos>
+  <sequence>17</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:23.838774Z</date>
+  <millis>1701889823838</millis>
+  <nanos>774000</nanos>
+  <sequence>18</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:24.949559Z</date>
+  <millis>1701889824949</millis>
+  <nanos>559000</nanos>
+  <sequence>19</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>1: faiwefjoigjf
+</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:24.950348Z</date>
+  <millis>1701889824950</millis>
+  <nanos>348000</nanos>
+  <sequence>20</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:27.756645Z</date>
+  <millis>1701889827756</millis>
+  <nanos>645000</nanos>
+  <sequence>21</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:27.757243Z</date>
+  <millis>1701889827757</millis>
+  <nanos>243000</nanos>
+  <sequence>22</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
+️</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:29.624010Z</date>
+  <millis>1701889829624</millis>
+  <nanos>10000</nanos>
+  <sequence>23</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Your TextEditor is empty...
+You can add new text, by calling the add function.</message>
+</record>
+<record>
+  <date>2023-12-06T19:10:29.624845Z</date>
+  <millis>1701889829624</millis>
+  <nanos>845000</nanos>
+  <sequence>24</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>________________________________________________
 ️</message>
 </record>

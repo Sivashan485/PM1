@@ -66,21 +66,14 @@ public class OutputManager {
                 " ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀\n" +
                 " ...to the TextEditor\n" +
                 " created by NotFalse...\n"+
-                " 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈\n" +
-                "+---------------------+\n" +
-                "| Available Functions |\n" +
-                "+---------------------+\n" +
-                "| add [i]             |\n" +
-                "| dummy [i]           |\n" +
-                "| del [i]             |\n" +
-                "| replace [i]         |\n" +
-                "| format fix <b>      |\n" +
-                "| format raw          |\n" +
-                "| index               |\n" +
-                "| print               |\n" +
-                "| help                |\n" +
-                "| exit                |\n" +
-                "+---------------------+\n");
+                " 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈\n\n" +
+
+                "               Available Functions              \n" +
+                "________________________________________________\n\n" +
+                "      ☒ add[i]        ☒ dummy[i]    ☒ del[i]      \n" +
+                "      ☒ replace [i]   ☒ index       ☒ print       \n" +
+                "      ☒ format raw    ☒ format fix <b>         \n" +
+                "      ☒ help          ☒ exit                    ");
     }
 
     /**
@@ -95,7 +88,8 @@ public class OutputManager {
                 "8PP\"\"\"\"\"\"\"    )888(    88   88     \n" +
                 "\"8b,   ,aa  ,d8\" \"8b,  88   88,    \n" +
                 " `\"Ybbd8\"' 8P'     `Y8 88   \"Y888 \n\n\n" +
-                "Thank you for using TextEditor created by NotFalse.\uD83D\uDE2D\uD83D\uDE2D\uD83D\uDE2D\n");
+                "Thank you for using TextEditor created by NotFalse.\uD83D\uDE2D\uD83D\uDE2D\uD83D\uDE2D\n" +
+                "________________________________________________\n");
 
     }
 

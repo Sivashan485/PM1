@@ -218,10 +218,6 @@ public class TextManager {
         return this.formattedText;
     }
 
-    static String getDummyText(){
-        return DUMMY_TEXT;
-    }
-
     void setMaxWidth(Integer maxWidth) {
         this.maxWidth = maxWidth;
     }

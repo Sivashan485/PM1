@@ -28,7 +28,7 @@ public class TextEditor {
     /**
      * Main method for the TextEditor application.
      *
-     * @param args sdijsdf
+     * @param args args
      */
     public static void main(String[] args) {
         TextEditor textEditor = new TextEditor();
@@ -60,7 +60,7 @@ public class TextEditor {
         Integer maxWidth = input.getUserIndex();
         int textSize = textManager.getText().size();
         boolean isIndexValid = input.getIsIndexValid();
-        boolean executionSuccessfull = false;
+        boolean executionSuccessful = false;
         boolean isIndexNull = input.isIndexNull();
 
         switch (ApplicationCommand.parseCommand(input.getUserCommand())) {
@@ -73,9 +73,9 @@ public class TextEditor {
                 break;
             case ADD:
                 if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid, true)){
-                    executionSuccessfull = add(paragraphIndex, isIndexNull);
+                    executionSuccessful = add(paragraphIndex, isIndexNull);
                 }
-                output.createAddMessage(executionSuccessfull);
+                output.createAddMessage(executionSuccessful);
                 break;
             case DEL:
                 del(paragraphIndex,textSize,isIndexValid, isIndexNull);
@@ -88,9 +88,9 @@ public class TextEditor {
                 break;
             case REPLACE:
                 if(isTextNotEmpty() && (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false))){
-                        executionSuccessfull = replace(paragraphIndex, isIndexNull);
+                        executionSuccessful = replace(paragraphIndex, isIndexNull);
                 }
-                output.createReplaceMessage(executionSuccessfull);
+                output.createReplaceMessage(executionSuccessful);
                 break;
             case HELP:
                 output.createHelpMessage();
@@ -185,27 +185,26 @@ public class TextEditor {
     }
 
     private boolean add(Integer paragraphIndex, boolean isIndexNull){
-        output.logAndPrintInfoMessage("Enter a Text you want to add:");
+        OutputManager.logAndPrintInfoMessage("Enter a Text you want to add:");
         String enteredText = input.readAndFilterUserInput();
         return textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
 
     }
 
     private void del(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isIndexNull){
-        boolean executionSuccessfull = false;
-        if(isTextNotEmpty()){
-            if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
-                executionSuccessfull = textManager.deleteParagraph(isIndexNull, paragraphIndex);
-            }
+        boolean executionSuccessful = false;
+        if(isTextNotEmpty() && (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false))){
+                executionSuccessful = textManager.deleteParagraph(isIndexNull, paragraphIndex);
+
         }
-        output.createDeleteMessage(executionSuccessfull);
+        output.createDeleteMessage(executionSuccessful);
     }
     private void dummy(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isIndexNull){
-        boolean executionSuccessfull = false;
+        boolean executionSuccessful = false;
         if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid,true)){
-            executionSuccessfull = textManager.addDummyParagraph(isIndexNull, paragraphIndex);
+            executionSuccessful = textManager.addDummyParagraph(isIndexNull, paragraphIndex);
         }
-        output.createAddMessage(executionSuccessfull);
+        output.createAddMessage(executionSuccessful);
 
     }
     private void print(){

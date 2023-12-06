@@ -198,7 +198,7 @@ public class TextManagerTest {
         assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
 
-    /*
+
 
     // Test for Method formatTextFix
     @Test
@@ -206,7 +206,8 @@ public class TextManagerTest {
         String expected = "test\n";
         textManager.setText(List.of("test\n"));
         textManager.setMaxWidth(4);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected,textManager.getFormattedText() );
     }
 
     // Test for Method formatTextFix
@@ -215,8 +216,10 @@ public class TextManagerTest {
         String expected = "\n";
         textManager.setText(List.of(""));
         textManager.setMaxWidth(4);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected, textManager.getFormattedText());
     }
+
 
     // Test for Method formatTextFix
     @Test
@@ -226,7 +229,8 @@ public class TextManagerTest {
                 "456789\n";
         textManager.setText(List.of("01234567890123456789"));
         textManager.setMaxWidth(7);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected, textManager.getFormattedText());
     }
 
     // Test for Method formatTextFix
@@ -237,8 +241,11 @@ public class TextManagerTest {
         input = new InputReceiver();
         textManager.setText(Arrays.asList("hello", "world"));
         textManager.setMaxWidth(7);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected,textManager.getFormattedText() );
     }
+
+
 
     // Test for Method formatTextFix
     @Test
@@ -248,8 +255,10 @@ public class TextManagerTest {
                 "zabcdefghij\n";
         textManager.setText(Arrays.asList("abcdefghij", "jiwer", "klmnopqrstuvwxy", "zabcdefghij"));
         textManager.setMaxWidth(20);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected,textManager.getFormattedText() );
     }
+
 
     // Test for Method formatTextFix
     @Test
@@ -261,8 +270,10 @@ public class TextManagerTest {
                 "opqrstuvwx\n";
         textManager.setText(Arrays.asList("abcdefghijklmnopqrst", "uvwxyzabcdefghijklmn", "opqrstuvwx"));
         textManager.setMaxWidth(10);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected, textManager.getFormattedText());
     }
+
 
     // Test for Method formatTextFix
     @Test
@@ -274,7 +285,8 @@ public class TextManagerTest {
                 "opqrstuvwx\n";
         textManager.setText(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabcd", "efghijklmn", "opqrstuvwx"));
         textManager.setMaxWidth(10);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected, textManager.getFormattedText());
     }
 
     // Test for Method formatTextFix
@@ -288,7 +300,8 @@ public class TextManagerTest {
         textManager.setText(Arrays.asList("abcdefghij", "klmnopqrst", "uvwxyzabc", "efghijkl",
                 "opqrstu", "yzabcd", "ijklm", "stuv", "cde", "mn", "o"));
         textManager.setMaxWidth(20);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected, textManager.getFormattedText());
     }
 
     // Test for Method formatTextFix
@@ -297,7 +310,8 @@ public class TextManagerTest {
         String expected = "hello world\n";
         textManager.setText(Arrays.asList("hello", " ", "world"));
         textManager.setMaxWidth(20);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected, textManager.getFormattedText());
     }
 
     // Test for Method formatTextFix
@@ -307,7 +321,8 @@ public class TextManagerTest {
         String expected = longWord + "\nb\n";
         textManager.setText(Arrays.asList(longWord, "b"));
         textManager.setMaxWidth(80);
-        assertEquals(expected, textManager.formatTextFix());
+        textManager.formatTextFix();
+        assertEquals(expected, textManager.getFormattedText());
     }
 
     // Test for Method resetParagraphWidth
@@ -325,7 +340,8 @@ public class TextManagerTest {
     void testFormatTextRawWithSingleLine() {
         String expected = "<1>: This is a single line of text.\n";
         textManager.setText(List.of("This is a single line of text."));
-        assertEquals(expected, textManager.formatTextRaw());
+        textManager.formatTextRaw();
+        assertEquals(expected, textManager.getFormattedText());
     }
 
     // Test for Method formatTextRaw
@@ -334,7 +350,8 @@ public class TextManagerTest {
         String expected = "<1>: This is the first line of text.\n" +
                 "<2>: This is the second line of text.\n";
         textManager.setText(Arrays.asList("This is the first line of text.", "This is the second line of text."));
-        assertEquals(expected, textManager.formatTextRaw());
+        textManager.formatTextRaw();
+        assertEquals(expected, textManager.getFormattedText());
     }
 
     // Test for Method formatTextRaw
@@ -342,6 +359,7 @@ public class TextManagerTest {
     void testFormatTextRawWithEmptyList() {
         String expected = "<1>: \n";
         textManager.setText(List.of(""));
-        assertEquals(expected, textManager.formatTextRaw());
-    }*/
+        textManager.formatTextRaw();
+        assertEquals(expected, textManager.getFormattedText());
+    }
 }

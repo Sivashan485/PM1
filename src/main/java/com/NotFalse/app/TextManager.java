@@ -73,6 +73,10 @@ public class TextManager {
         addNewParagraph(isIndexNull, TextManager.DUMMYTEXT, paragraphIndex);
     }
 
+    String getFormattedText(){
+        return this.formattedText;
+    }
+
 
     /**
      * Adds a new paragraph to the text based on user input.

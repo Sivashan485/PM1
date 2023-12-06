@@ -79,7 +79,7 @@ public class InputReceiver {
         return "";
     }
     private void validateAndSetIndex(String command, String restPart) {
-        if(Command.parseCommand(command).getCommandHasIndex()){
+        if(Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()){
             handleIndexCommand();
         }else{
             if(!"".equals(restPart)){

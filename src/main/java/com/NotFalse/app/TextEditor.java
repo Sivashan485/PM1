@@ -48,7 +48,10 @@ public class TextEditor {
     }
 
 
-    private void validateMaxWidth(Integer maxWidth){
+    private void validateMaxWidth(Integer maxWidth,boolean isIndexValid){
+        if(!isIndexValid){
+            output.createIndexWarning();
+        }
         try{
             if(maxWidth!=null)
                 if(!input.getIsIndexValid() && (maxWidth <= 0 || maxWidth > MAX_WIDTH)){
@@ -62,11 +65,39 @@ public class TextEditor {
 
     }
 
-    private void validateParagraphIndex(boolean printError){
+    private void displayIndexWarningIfInvalid(boolean printError){
         if(printError){
             output.createIndexWarning();
         }
     }
+    public boolean validateParagraphIndex(Integer paragraphIndex, int textSize,boolean isIndexValid, boolean isAddFunction) {
+        if(!isIndexValid){
+            output.createIndexWarning();
+            System.out.println("wrong index");
+            return false;
+        }else {
+            System.out.println(textSize);
+            if (isAddFunction){
+
+                if (paragraphIndex <= 0 || paragraphIndex -1 > textSize) {
+                    System.out.println("paragraphindex: " + paragraphIndex);
+                    System.out.println("add warning");
+                    output.createIndexWarning();
+                    return false;
+                }
+            }else{
+                if (paragraphIndex <= 0 || paragraphIndex -1 > textSize-1) {
+                    System.out.println("del warning");
+                    output.createIndexWarning();
+                    return false;
+                }
+            }
+
+
+        }
+        return true;
+    }
+
 
     /**
      * Checks if the provided paragraph index is valid for the current text size.
@@ -91,28 +122,21 @@ public class TextEditor {
         }
     }
 
-    public void replace(Integer paragraphIndex, boolean isIndexNull ){
-        if(input.getIsIndexValid()){
-            System.out.print("Replacing Word: ");
-            String originalWord = input.readAndFilterUserInput();
-            if(textManager.containsWord( originalWord,paragraphIndex)){
-                System.out.print("Replacing with: ");
-                String replacingWord = input.readAndFilterUserInput();
-                textManager.replaceParagraphSection(isIndexNull,originalWord, replacingWord,paragraphIndex);
-            }
-        }else{
-            validateParagraphIndex(input.getIsIndexValid());
+    public void replace(Integer paragraphIndex, boolean isIndexNull){
+        System.out.print("Replacing Word: ");
+        String originalWord = input.readAndFilterUserInput();
+        if(textManager.containsWord( originalWord,paragraphIndex)){
+            System.out.print("Replacing with: ");
+            String replacingWord = input.readAndFilterUserInput();
+            textManager.replaceParagraphSection(isIndexNull,originalWord, replacingWord,paragraphIndex);
         }
     }
 
     public void add(Integer paragraphIndex, boolean isIndexNull){
-        if(input.getIsIndexValid()){
-            System.out.print("Enter a Text you want to add:");
-            String enteredText = input.readAndFilterUserInput();
-            textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
-        }else{
-            validateParagraphIndex(input.getIsIndexValid());
-        }
+        System.out.print("Enter a Text you want to add:");
+        String enteredText = input.readAndFilterUserInput();
+        textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
+
     }
 
 
@@ -130,27 +154,35 @@ public class TextEditor {
         input.splitInputIntoCommandAndRestPart();
         Integer paragraphIndex = input.getUserIndex();
         Integer maxWidth = input.getUserIndex();
+        int textSize = textManager.getText().size();
+        boolean isIndexValid = input.getIsIndexValid();
 
 
 
         boolean isIndexNull = input.isIndexNull();
         switch (Command.parseCommand(input.getUserCommand())) {
             case DUMMY:
-                validateParagraphIndex(!input.getIsIndexValid());
-                textManager.addDummyParagraph(isIndexNull, paragraphIndex);
+                //displayIndexWarningIfInvalid(!isIndexValid);
+                if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid,true)){
+                    textManager.addDummyParagraph(isIndexNull, paragraphIndex);
+                }
                 break;
             case EXIT:
                 output.createExitMessage();
                 isExitTriggered = true;
                 break;
             case ADD:
-                validateParagraphIndex(!input.getIsIndexValid());
-                add(paragraphIndex, isIndexNull);
+                //displayIndexWarningIfInvalid(!input.getIsIndexValid());
+                if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid, true)){
+                    add(paragraphIndex, isIndexNull);
+                }
                 break;
             case DEL:
                 checkForEmptyText();
-                validateParagraphIndex(!input.getIsIndexValid());
-                textManager.deleteParagraph(isIndexNull, paragraphIndex);
+                //displayIndexWarningIfInvalid(!input.getIsIndexValid());
+                if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
+                    textManager.deleteParagraph(isIndexNull, paragraphIndex);
+                }
                 break;
             case INDEX:
                 checkForEmptyGlossary();
@@ -162,8 +194,9 @@ public class TextEditor {
                 break;
             case REPLACE:
                 checkForEmptyText();
-                validateParagraphIndex(!input.getIsIndexValid());
-                replace(paragraphIndex, isIndexNull);
+                if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
+                    replace(paragraphIndex, isIndexNull);
+                }
                 break;
             case HELP:
                 output.createHelpMessage();
@@ -175,7 +208,7 @@ public class TextEditor {
                 break;
             case FORMAT_FIX:
                 textManager.setIsFormatterRaw(false);
-                validateMaxWidth(maxWidth);
+                validateMaxWidth(maxWidth,isIndexValid);
                 textManager.setMaxWidth(maxWidth);
                 textManager.formatTextFix();
                 output.createFormatMessage(textManager.getIsFormatterFixSuccessful());

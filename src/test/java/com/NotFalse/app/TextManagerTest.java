@@ -22,43 +22,40 @@ public class TextManagerTest {
     }
 
     //ADD
-    /*
-    private void addDummyAuto(String index) {
 
+    private void addDummyAuto(Integer index) {
         textManager = new TextManager();
-        String item = "dummy " + index + "\n";
-        System.setIn(new ByteArrayInputStream(item.getBytes()));
-        input = new InputReceiver();
-        input.splitInput();
-        textManager.setParagraphIndex(input.getIndex());
-        textManager.addDummyParagraph(input.getIsIndexNull());
+        textManager.addDummyParagraph(false, index);
         textManager.printText();
     }
 
+
     @Test
     void testAddDummyIndexOne() {
-        addDummyAuto("5");
+        addDummyAuto(5);
         assertEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(4));
-        addDummyAuto("-11");
+        addDummyAuto(-11);
         for (int i = 0; i < textManager.getTextList().size(); i++) {
             assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
         }
     }
+
 
     @Test
     void testAddDummyIndexTwo() {
-        addDummyAuto("5");
+        addDummyAuto(5);
         assertEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(4));
     }
 
+
     @Test
     void testAddDummyIndexThree() {
-        addDummyAuto("-11");
+        addDummyAuto(-11);
         for (int i = 0; i < textManager.getTextList().size(); i++) {
             assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
         }
     }
-*/
+
     // ADD TEXT test
     private void addElementAuto(Integer index, boolean isIndexNull, String addingItem) {
         // Initialize textManager and input

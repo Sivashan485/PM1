@@ -94,12 +94,14 @@ public class TextManagerTest {
     }
 
     // REPLACE TEXT
-    /*public void replaceElementAuto(String sentenceToChange, int sentenceIndex, int replaceIndex, String replacingItem, String replacingWith) {
+
+    public void replaceElementAuto(String sentenceToChange, int sentenceIndex, int replaceIndex, String replacingItem, String replacingWith) {
 
         addElementAuto(sentenceIndex, false, sentenceToChange);
         textManager.replaceWordInParagraph(replaceIndex, replacingItem, replacingWith);
-        textManager.replaceParagraphSection(false, replacingItem, replacingWith);
+        textManager.replaceParagraphSection(false, replacingItem, replacingWith, replaceIndex);
     }
+
 
 
     @Test
@@ -121,13 +123,14 @@ public class TextManagerTest {
         assertEquals("WA1 S1DF", textManager.getTextList().get(0));
     }
 
+    /*
     @Test
     void TestReplaceIndexAtEnd() {
         replaceElementAuto(" .WA. S.DF. . ", textManager.getTextList().size() + 1, ".", "1");
         String lastElement = textManager.getTextList().get(textManager.getTextList().size() - 1);
         assertEquals(" 1WA1 S1DF1 1 ", lastElement);
     }
-
+*/
 
     @Test
     void TestReplaceIndexUnder0() {
@@ -157,7 +160,7 @@ public class TextManagerTest {
         System.out.println(testTextList.get(index));
         assertEquals(textAfterChange, "Fifth End of text.");
     }
-    */
+
 
     // DEL FUN
     private int deleteElementAuto(int addIndex, String addSentenceText, int delIndex, boolean isindexnull) {

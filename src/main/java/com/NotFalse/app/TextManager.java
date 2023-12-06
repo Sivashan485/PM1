@@ -84,7 +84,7 @@ public class TextManager {
         if (isIndexNull) {
             text.add(enteredText);
             isSuccessful = true;
-        } else if (paragraphIndex <= 0 || paragraphIndex > text.size()) {
+        } else if (paragraphIndex <= 0 || paragraphIndex -1 > text.size()) {
             isSuccessful = false;
             output.createIndexWarning();
         }else{
@@ -104,7 +104,7 @@ public class TextManager {
         if (isIndexNull) {
             text.remove(text.size() - 1);
             isSuccessful = true;
-        } else if (paragraphIndex <= 0 || paragraphIndex >= text.size()) {
+        } else if (paragraphIndex <= 0 || paragraphIndex > text.size()) {
             isSuccessful = false;
             output.createIndexWarning();
 

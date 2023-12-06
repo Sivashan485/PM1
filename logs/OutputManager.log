@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-05T19:58:30.996663Z</date>
-  <millis>1701806310996</millis>
+  <date>2023-12-06T09:37:37.951663Z</date>
+  <millis>1701855457951</millis>
   <nanos>663000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
@@ -26,10 +26,274 @@ help
 exit</message>
 </record>
 <record>
-  <date>2023-12-05T19:58:34.373634Z</date>
-  <millis>1701806314373</millis>
-  <nanos>634000</nanos>
+  <date>2023-12-06T09:37:43.440454Z</date>
+  <millis>1701855463440</millis>
+  <nanos>454000</nanos>
   <sequence>1</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:37:52.682159Z</date>
+  <millis>1701855472682</millis>
+  <nanos>159000</nanos>
+  <sequence>2</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:37:57.846337Z</date>
+  <millis>1701855477846</millis>
+  <nanos>337000</nanos>
+  <sequence>3</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:08.910728Z</date>
+  <millis>1701855488910</millis>
+  <nanos>728000</nanos>
+  <sequence>4</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text added successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:14.456772Z</date>
+  <millis>1701855494456</millis>
+  <nanos>772000</nanos>
+  <sequence>5</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:14.457624Z</date>
+  <millis>1701855494457</millis>
+  <nanos>624000</nanos>
+  <sequence>6</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Status: Text has not been added</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:24.371124Z</date>
+  <millis>1701855504371</millis>
+  <nanos>124000</nanos>
+  <sequence>7</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:24.372030Z</date>
+  <millis>1701855504372</millis>
+  <nanos>30000</nanos>
+  <sequence>8</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Status: Text has not been deleted</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:27.026487Z</date>
+  <millis>1701855507026</millis>
+  <nanos>487000</nanos>
+  <sequence>9</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:28.689921Z</date>
+  <millis>1701855508689</millis>
+  <nanos>921000</nanos>
+  <sequence>10</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:38.264353Z</date>
+  <millis>1701855518264</millis>
+  <nanos>353000</nanos>
+  <sequence>11</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:43.397228Z</date>
+  <millis>1701855523397</millis>
+  <nanos>228000</nanos>
+  <sequence>12</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:47.376022Z</date>
+  <millis>1701855527376</millis>
+  <nanos>22000</nanos>
+  <sequence>13</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:47.376816Z</date>
+  <millis>1701855527376</millis>
+  <nanos>816000</nanos>
+  <sequence>14</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Status: Text has not been deleted</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:49.441329Z</date>
+  <millis>1701855529441</millis>
+  <nanos>329000</nanos>
+  <sequence>15</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:49.442064Z</date>
+  <millis>1701855529442</millis>
+  <nanos>64000</nanos>
+  <sequence>16</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:51.904355Z</date>
+  <millis>1701855531904</millis>
+  <nanos>355000</nanos>
+  <sequence>17</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:51.905121Z</date>
+  <millis>1701855531905</millis>
+  <nanos>121000</nanos>
+  <sequence>18</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:54.376723Z</date>
+  <millis>1701855534376</millis>
+  <nanos>723000</nanos>
+  <sequence>19</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:55.794017Z</date>
+  <millis>1701855535794</millis>
+  <nanos>17000</nanos>
+  <sequence>20</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:57.568589Z</date>
+  <millis>1701855537568</millis>
+  <nanos>589000</nanos>
+  <sequence>21</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T09:38:57.569560Z</date>
+  <millis>1701855537569</millis>
+  <nanos>560000</nanos>
+  <sequence>22</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text deleted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T09:39:03.667016Z</date>
+  <millis>1701855543667</millis>
+  <nanos>16000</nanos>
+  <sequence>23</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>

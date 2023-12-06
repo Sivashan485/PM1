@@ -2,46 +2,22 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-06T11:27:38.442509Z</date>
-  <millis>1701862058442</millis>
-  <nanos>509000</nanos>
+  <date>2023-12-06T11:54:40.072787500Z</date>
+  <millis>1701863680072</millis>
+  <nanos>787500</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>
-Welcome to the TextEditor created by NotFalse.
-
-You can use following functions:
-add[i]
-del[i]
-replace[i]
-index
-print
-format raw
-format fix&lt;b&gt;
-help
-exit</message>
+  <message>Status: Text added successfully!</message>
 </record>
 <record>
-  <date>2023-12-06T11:27:39.984161Z</date>
-  <millis>1701862059984</millis>
-  <nanos>161000</nanos>
+  <date>2023-12-06T11:54:40.078770300Z</date>
+  <millis>1701863680078</millis>
+  <nanos>770300</nanos>
   <sequence>1</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
-</record>
-<record>
-  <date>2023-12-06T11:27:44.105025Z</date>
-  <millis>1701862064105</millis>
-  <nanos>25000</nanos>
-  <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
@@ -49,3 +25,16 @@ exit</message>
   <thread>1</thread>
   <message>Invalid index. Please try again.</message>
 </record>
+<record>
+  <date>2023-12-06T11:54:40.079767800Z</date>
+  <millis>1701863680079</millis>
+  <nanos>767800</nanos>
+  <sequence>2</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserErrorMessage</method>
+  <thread>1</thread>
+  <message>Status: Text has not been deleted</message>
+</record>
+</log>

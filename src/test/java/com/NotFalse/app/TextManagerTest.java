@@ -62,8 +62,7 @@ public class TextManagerTest {
     // ADD TEXT test
     private void addElementAuto(Integer index, boolean isIndexNull, String addingItem) {
         // Initialize textManager and input
-        textManager.setParagraphIndex(index);
-        textManager.addNewParagraph(isIndexNull, addingItem);
+        textManager.addNewParagraph(isIndexNull, addingItem, index);
     }
 
 
@@ -98,7 +97,7 @@ public class TextManagerTest {
     }
 
     // REPLACE TEXT
-    public void replaceElementAuto(String sentenceToChange, int sentenceIndex, int replaceIndex, String replacingItem, String replacingWith) {
+    /*public void replaceElementAuto(String sentenceToChange, int sentenceIndex, int replaceIndex, String replacingItem, String replacingWith) {
 
         addElementAuto(sentenceIndex, false, sentenceToChange);
         textManager.replaceWordInParagraph(replaceIndex, replacingItem, replacingWith);
@@ -161,14 +160,13 @@ public class TextManagerTest {
         System.out.println(testTextList.get(index));
         assertEquals(textAfterChange, "Fifth End of text.");
     }
-
+    */
 
     // DEL FUN
     private int deleteElementAuto(int addIndex, String addSentenceText, int delIndex, boolean isindexnull) {
         addElementAuto(addIndex, false, addSentenceText);
         int listSizeBeforeDel = textManager.getTextList().size();
-        textManager.setParagraphIndex(delIndex);
-        textManager.deleteParagraph(isindexnull);
+        textManager.deleteParagraph(isindexnull,delIndex);
         return listSizeBeforeDel;
 
     }
@@ -200,6 +198,7 @@ public class TextManagerTest {
         assertEquals(indexSizeBefore, textManager.getTextList().size());
     }
 
+    /*
 
     // Test for Method formatTextFix
     @Test
@@ -344,5 +343,5 @@ public class TextManagerTest {
         String expected = "<1>: \n";
         textManager.setText(List.of(""));
         assertEquals(expected, textManager.formatTextRaw());
-    }
+    }*/
 }

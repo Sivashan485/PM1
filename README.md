@@ -24,16 +24,16 @@ To run the Texteditor in Intellij, follow these steps:
    ```
 2. **Open in Intellij**: Open the project in your Intellij IDE.
 
-3. **Navigate to the `src` -> `main`-> `com.NotFalse.app` folder**:
+3. **Navigate to the `src` -> `main`-> `com.texteditor.app` folder**:
 
-4. **Navigate to the `TextEditorMain` Class**: Locate and open the `TextEditorMain.java` class.
+4. **Navigate to the `TextEditor` Class**: Locate and open the `TextEditor.java` class.
 
-5. **Run the Editor**: Right-click within the `TextEditorMain` class and choose the "Run" option to start the game.
+5. **Run the Editor**: Right-click within the `TextEditor` class and choose the "Run" option to start the game.
 
 6. **Edit Your Text**: Write some text in the editor. You can add, delete, replace some text and change the formate (raw or fix)
 
 # Text Manipulation Tool
-A simple command-line tool for manipulating and formatting text paragraphs. This tool allows users to perform various operations on text, such as adding, deleting, formatting paragraphs, generating indices, and more.
+A simple command-line tool for manipulating and formatting text paragraphs. This tool allows users to perform various operations on text, such as adding, deleting, formatting paragraphs, replacing paragraph sections, generating indices, print the text, ask for help and exiting the TextEditor.
 
 ## Commands
 
@@ -87,17 +87,17 @@ ERROR: No word is used more then 3 times. (null)
 Thank you for using our TextEditor. This was created by the group NotFalse.
 ```
 
-# Texteditor Test
-To test the texteditor in IntelliJ, follow these steps:
+# TextEditor Test
+To test the TextEditor in IntelliJ, follow these steps:
 1. **Clone the Repository**: Start by cloning this GitHub repository to your local machine using the following command:
    ```
    git clone [https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor.git]
    ```
 2. **Open in Intellij**: Open the project in your Intellij IDE.
 
-3. **Navigate to the `src` -> `test`-> `com.NotFalse.app` folder**:
+3. **Navigate to the `src` -> `test`-> `com.texteditor.app` folder**:
 
-4. **Right-Click on the`com.NotFalse.app` folder**: Locate and navigate to `´Run Tests in app´`.
+4. **Right-Click on the`com.texteditor.app` folder**: Locate and navigate to `´Run Tests in app´`.
 
 5. **Run the Test** Left-Click on the `Run Tests in app`.
 

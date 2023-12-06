@@ -115,26 +115,7 @@ public class TextManager {
         output.createDeleteMessage(isSuccessful);
     }
 
-    /**
-     * Checks if the provided paragraph index is valid for the current text size.
-     * Displays a warning message if the index is out of bounds and returns false.
-     *
-     * @param paragraphIndex The index to be validated.
-     * @param textSize       The size of the current text.
-     * @return {@code true} if the index is valid; otherwise, {@code false}.
-     */
-    public boolean isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
-        if (!isIndexNull && paragraphIndex != null) {
-            if (paragraphIndex <= 0 || paragraphIndex -1 > textSize) {
-                output.createIndexWarning();
-                return false;
-            }
-            return true;
-        } else {
-            output.createIndexWarning();
-        }
-        return false;
-    }
+
 
 
 
@@ -256,6 +237,17 @@ public class TextManager {
         }
         System.out.print(formattedText);
     }
+    /**
+     * Checks if the provided paragraph index is valid for the current text size.
+     * Displays a warning message if the index is out of bounds and returns false.
+     *
+     * @param paragraphIndex The index to be validated.
+     * @param textSize       The size of the current text.
+     * @return {@code true} if the index is valid; otherwise, {@code false}.
+     */
+    public boolean isIndexValid(Integer paragraphIndex) {
+        return (paragraphIndex <= 0 || paragraphIndex > text.size());
+    }
 
 
     /**
@@ -273,7 +265,6 @@ public class TextManager {
         String paragraph = text.get(index);
         paragraph = paragraph.replace(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
-
         if (isReplacementSuccessful) {
 
             text.set(index, paragraph);
@@ -282,29 +273,42 @@ public class TextManager {
     }
 
     boolean containsWord(String originalWord, Integer paragraphIndex){
-        boolean isWordEmpty = originalWord.equals("");
-        if(paragraphIndex == null){
-            paragraphIndex = text.size();
-        }
-        if(!isWordEmpty&&text.get(paragraphIndex-1).contains(originalWord)){
-            return true;
+        if(isIndexValid(paragraphIndex)){
+            output.createIndexWarning();
         }else{
-            output.createInvalidWordWarning();
-            return false;
-        }
+            boolean isWordEmpty = "".equals(originalWord);
+            if(paragraphIndex == null){
+                paragraphIndex = text.size()-1;
+            }
+            if(!isWordEmpty && text.get(paragraphIndex).contains(originalWord)){
+                return true;
+            }else{
+                output.createInvalidWordWarning();
+                return false;
+            }
+        }return true;
     }
+
+
 
 
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
     void replaceParagraphSection(boolean isIndexNull , String originalWord, String replacingWord, Integer paragraphIndex) {
+        boolean isSuccessful;
         if (isIndexNull) {
             replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
+            isSuccessful = true;
 
-        } else if( isIndexValid(paragraphIndex, text.size()+ 1, isIndexNull)){
+        } else if(isIndexValid(paragraphIndex)){
+            isSuccessful = false;
+            output.createIndexWarning();
+        }else{
             replaceWordInParagraph(paragraphIndex - 1, originalWord, replacingWord);
+            isSuccessful = true;
         }
+        output.createReplaceMessage(isSuccessful);
     }
 
 

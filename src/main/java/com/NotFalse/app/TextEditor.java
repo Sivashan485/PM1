@@ -92,12 +92,14 @@ public class TextEditor {
     }
 
     public void replace(Integer paragraphIndex, boolean isIndexNull ){
-        System.out.print("Replacing Word: ");
-        String originalWord = input.readAndFilterUserInput();
-        if(textManager.containsWord( originalWord,paragraphIndex)){
-            System.out.print("Replacing with: ");
-            String replacingWord = input.readAndFilterUserInput();
-            textManager.replaceParagraphSection(isIndexNull,originalWord, replacingWord,paragraphIndex);
+        if(input.getIsIndexValid()){
+            System.out.print("Replacing Word: ");
+            String originalWord = input.readAndFilterUserInput();
+            if(textManager.containsWord( originalWord,paragraphIndex)){
+                System.out.print("Replacing with: ");
+                String replacingWord = input.readAndFilterUserInput();
+                textManager.replaceParagraphSection(isIndexNull,originalWord, replacingWord,paragraphIndex);
+            }
         }else{
             validateParagraphIndex(input.getIsIndexValid());
         }

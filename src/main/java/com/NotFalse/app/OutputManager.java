@@ -58,10 +58,24 @@ public class OutputManager {
      */
     public void createWelcomeMessage() {
 
-        logAndPrintInfoMessage("\nWelcome to the TextEditor created by NotFalse.\n"
-                + "\nYou can use following functions:\n" +
-                "add[i]\ndel[i]\nreplace[i]\nindex\nprint\nformat raw\nformat fix<b>\nhelp\nexit");
-
+        logAndPrintInfoMessage("\n" +
+                "\uD83C\uDF0AWelcome \uD83D\uDE4C to the TextEditor " +
+                "\n\uD83D\uDCD6\uD83D\uDD89 created by NotFalse.\uD83C\uDF0B\n"
+               +"+---------------------+\n" +
+                "| Available Functions |\n" +
+                "|  \uD83D\uDDA8\uFE0F \uD83D\uDCD6 \uD83D\uDD89 \uD83D\uDCDD \uD83D\uDCD6 \uFE0F\uD83D\uDDD1\uFE0F  |\n" +
+                "+---------------------+\n" +
+                "| add[i]              |\n" +
+                "| dummy[i]            |\n" +
+                "| del[i]              |\n" +
+                "| replace[i]          |\n" +
+                "| index               |\n" +
+                "| print               |\n" +
+                "| format raw          |\n" +
+                "| format fix<b>       |\n" +
+                "| help                |\n" +
+                "| exit                |\n" +
+                "+---------------------+\n");
     }
 
     /**

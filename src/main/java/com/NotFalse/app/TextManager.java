@@ -82,11 +82,9 @@ public class TextManager {
     void addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
         boolean isSuccessful;
         if (isIndexNull) {
+            System.out.println("hello");
             text.add(enteredText);
             isSuccessful = true;
-        } else if (paragraphIndex <= 0 || paragraphIndex -1 > text.size()) {
-            isSuccessful = false;
-            output.createIndexWarning();
         }else{
             text.add(paragraphIndex-1, enteredText);
             isSuccessful = true;
@@ -104,10 +102,6 @@ public class TextManager {
         if (isIndexNull) {
             text.remove(text.size() - 1);
             isSuccessful = true;
-        } else if (paragraphIndex <= 0 || paragraphIndex > text.size()) {
-            isSuccessful = false;
-            output.createIndexWarning();
-
         }else{
             text.remove(paragraphIndex - 1);
             isSuccessful = true;
@@ -245,9 +239,9 @@ public class TextManager {
      * @param textSize       The size of the current text.
      * @return {@code true} if the index is valid; otherwise, {@code false}.
      */
-    public boolean isIndexValid(Integer paragraphIndex) {
+    /*public boolean isIndexValid(Integer paragraphIndex) {
         return (paragraphIndex <= 0 || paragraphIndex > text.size());
-    }
+    }*/
 
 
     /**
@@ -273,20 +267,16 @@ public class TextManager {
     }
 
     boolean containsWord(String originalWord, Integer paragraphIndex){
-        if(isIndexValid(paragraphIndex)){
-            output.createIndexWarning();
+        boolean isWordEmpty = "".equals(originalWord);
+        if(paragraphIndex == null){
+            paragraphIndex = text.size();
+        }
+        if(!isWordEmpty && text.get(paragraphIndex-1).contains(originalWord)){
+            return true;
         }else{
-            boolean isWordEmpty = "".equals(originalWord);
-            if(paragraphIndex == null){
-                paragraphIndex = text.size()-1;
-            }
-            if(!isWordEmpty && text.get(paragraphIndex).contains(originalWord)){
-                return true;
-            }else{
-                output.createInvalidWordWarning();
-                return false;
-            }
-        }return true;
+            output.createInvalidWordWarning();
+            return false;
+        }
     }
 
 
@@ -301,9 +291,6 @@ public class TextManager {
             replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
             isSuccessful = true;
 
-        } else if(isIndexValid(paragraphIndex)){
-            isSuccessful = false;
-            output.createIndexWarning();
         }else{
             replaceWordInParagraph(paragraphIndex - 1, originalWord, replacingWord);
             isSuccessful = true;

@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-06T11:27:38.442509Z</date>
-  <millis>1701862058442</millis>
-  <nanos>509000</nanos>
+  <date>2023-12-06T13:38:14.315856Z</date>
+  <millis>1701869894315</millis>
+  <nanos>856000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -26,22 +26,58 @@ help
 exit</message>
 </record>
 <record>
-  <date>2023-12-06T11:27:39.984161Z</date>
-  <millis>1701862059984</millis>
-  <nanos>161000</nanos>
+  <date>2023-12-06T13:38:24.457587Z</date>
+  <millis>1701869904457</millis>
+  <nanos>587000</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>createUserInfoMessage</method>
   <thread>1</thread>
-  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
+  <message>Status: Text replaced successfully!</message>
 </record>
 <record>
-  <date>2023-12-06T11:27:44.105025Z</date>
-  <millis>1701862064105</millis>
-  <nanos>25000</nanos>
+  <date>2023-12-06T13:38:24.458637Z</date>
+  <millis>1701869904458</millis>
+  <nanos>637000</nanos>
   <sequence>2</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text replaced successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T13:38:32.846302Z</date>
+  <millis>1701869912846</millis>
+  <nanos>302000</nanos>
+  <sequence>3</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text replaced successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T13:38:32.847250Z</date>
+  <millis>1701869912847</millis>
+  <nanos>250000</nanos>
+  <sequence>4</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>createUserInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text replaced successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T13:38:38.742524Z</date>
+  <millis>1701869918742</millis>
+  <nanos>524000</nanos>
+  <sequence>5</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>

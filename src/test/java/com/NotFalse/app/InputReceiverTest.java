@@ -90,7 +90,7 @@ public class InputReceiverTest {
         System.setIn(new ByteArrayInputStream(("exit 1212").getBytes()));
         input = new InputReceiver();
         input.splitInputIntoCommandAndRestPart();
-        assertEquals("exitnull", input.getUserCommand());
+        assertEquals(Command.UNKNOWN.command, input.getUserCommand());
         assertNull(input.getUserIndex());
         assertEquals("1212", input.getRestPart());
     }

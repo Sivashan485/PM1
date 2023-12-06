@@ -73,6 +73,10 @@ public class TextManager {
         addNewParagraph(isIndexNull, TextManager.DUMMYTEXT, paragraphIndex);
     }
 
+    String getFormattedText(){
+        return this.formattedText;
+    }
+
 
     /**
      * Adds a new paragraph to the text based on user input.
@@ -141,7 +145,7 @@ public class TextManager {
             StringBuilder fixFormatted = new StringBuilder();
             int currentParagraphWidth = 0;
             for (String paragraph : text) {
-                String[] words = paragraph.split("\\s+");
+                String[] words = paragraph.split("\s+");
                 for (String word : words) {
                     while (word.length() > maxWidth) {
                         // If the current line is not empty, start a new line.
@@ -162,13 +166,14 @@ public class TextManager {
                     fixFormatted.append(word);
                     currentParagraphWidth += word.length();
                 }
+                fixFormatted.append("\n\n");
+                currentParagraphWidth = 0;
             }
-            fixFormatted.append("\n");
             setFormattedText(fixFormatted.toString());
             isFormatterFixSuccessful = true;
         }
-
     }
+
     boolean getIsFormatterFixSuccessful(){
         return isFormatterFixSuccessful;
     }
@@ -253,7 +258,7 @@ public class TextManager {
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
      *
-     * @param index           The index of the text to be modified.
+     * @param index The index of the text to be modified.
      */
     void replaceWordInParagraph(Integer index, String originalWord, String replacementWord) {
         String paragraph = text.get(index);

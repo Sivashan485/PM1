@@ -5,7 +5,7 @@
 - [Class model](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/Class-model)
 - [Test concept](https://github.zhaw.ch/PM1-IT23bZH-buga-mooi/team01-NotFalse-projekt2-texteditor/wiki/Test-concept)
 
-# Texteditor 
+# TextEditor 
 
 Welcome to the texteditor created by !False, it´s funny because it´s true ; )
 
@@ -60,31 +60,42 @@ A simple command-line tool for manipulating and formatting text paragraphs. This
 ## Example
 
 ```bash
+█   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀
+█   █ █   █   █   █  █ █▀▄▀█ █
+█   █ █▀▀ █   █   █  █ █ ▀ █ █▀▀
+█▄█▄█ █   █   █   █  █ █   █ █
+ ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀
+ ...to the TextEditor
+ created by NotFalse...
+ 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈
 > PRINT
 1: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis 
 > HELP 
-Commands: ADD, DEL, DUMMY, EXIT, FORMAT RAW, FORMAT FIX, INDEX, PRINT, PREPLACE, HELP
+Here are the commands you can use:
+exit, add, del, dummy, index, print, replace, help, format raw, format fix
 > ADD 1
-Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Enter a Text you want to add:
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 > FORMAT FIX 20
 > PRINT
-Lorem ipsum dolor sit
-amet, consectetur adipiscing 
-elit.
-   
-Qua de causa Helvetii
-quoque reliquos Gallos
+Qua de causa
+Helvetii quoque
+reliquos Gallos
 virtute praecedunt,
 quod fere cotidianis
-proeliis 
+
+Lorem ipsum dolor
+sit amet,
+consectetur
+adipiscing elit.
 > FORMAT RAW
-> PRINT
-1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-2: Qua de causa Helvetii quoque reliquos Gallos virtute praecedunt, quod fere cotidianis proeliis
+> DUMMY
 > INDEX
-ERROR: No word is used more then 3 times. (null)
+Glossary:
+Ipsum      3
+Lorem      2, 3
 > EXIT
-Thank you for using our TextEditor. This was created by the group NotFalse.
+Thank you for using TextEditor created by NotFalse.😭😭😭
 ```
 
 # TextEditor Test

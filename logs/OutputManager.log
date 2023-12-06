@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-06T12:25:37.680842600Z</date>
-  <millis>1701865537680</millis>
-  <nanos>842600</nanos>
+  <date>2023-12-06T15:41:02.433192Z</date>
+  <millis>1701877262433</millis>
+  <nanos>192000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -26,9 +26,9 @@ help
 exit</message>
 </record>
 <record>
-  <date>2023-12-06T12:25:42.734619900Z</date>
-  <millis>1701865542734</millis>
-  <nanos>619900</nanos>
+  <date>2023-12-06T15:41:09.203554Z</date>
+  <millis>1701877269203</millis>
+  <nanos>554000</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
@@ -38,51 +38,14 @@ exit</message>
   <message>Invalid index. Please try again.</message>
 </record>
 <record>
-  <date>2023-12-06T12:25:47.128326200Z</date>
-  <millis>1701865547128</millis>
-  <nanos>326200</nanos>
+  <date>2023-12-06T15:41:09.204554100Z</date>
+  <millis>1701877269204</millis>
+  <nanos>554100</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
   <method>createUserErrorMessage</method>
   <thread>1</thread>
-  <message>This word doesn't exist in this paragraph. Please try again.</message>
+  <message>Status: Text has not been added</message>
 </record>
-<record>
-  <date>2023-12-06T12:25:54.632248900Z</date>
-  <millis>1701865554632</millis>
-  <nanos>248900</nanos>
-  <sequence>3</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>This word doesn't exist in this paragraph. Please try again.</message>
-</record>
-<record>
-  <date>2023-12-06T12:25:58.678268200Z</date>
-  <millis>1701865558678</millis>
-  <nanos>268200</nanos>
-  <sequence>4</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>This word doesn't exist in this paragraph. Please try again.</message>
-</record>
-<record>
-  <date>2023-12-06T12:25:58.995274200Z</date>
-  <millis>1701865558995</millis>
-  <nanos>274200</nanos>
-  <sequence>5</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
-</record>
-</log>

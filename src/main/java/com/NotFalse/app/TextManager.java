@@ -18,7 +18,7 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    private final OutputManager output;
+    //private final OutputManager output;
     private List<String> text;
     private Integer maxWidth;
     private String formattedText;
@@ -44,7 +44,6 @@ public class TextManager {
      * glossary, text, isExitTriggered and isFormatterRaw variables.
      */
     TextManager() {
-        output = new OutputManager();
         text = new ArrayList<>();
         text.add("First Hello this is a Test sentence.");
         text.add("Second Another Test sentence.");
@@ -64,8 +63,8 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    void addDummyParagraph(boolean isIndexNull, Integer paragraphIndex) {
-        addNewParagraph(isIndexNull, TextManager.DUMMYTEXT, paragraphIndex);
+    boolean addDummyParagraph(boolean isIndexNull, Integer paragraphIndex) {
+        return addNewParagraph(isIndexNull, TextManager.DUMMYTEXT, paragraphIndex);
     }
 
     String getFormattedText() {
@@ -79,32 +78,28 @@ public class TextManager {
      * If the index is valid, the new paragraph is inserted at the specified
      * position.
      */
-    void addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
-        boolean isSuccessful;
+    boolean addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
         if (isIndexNull) {
             System.out.println("hello");
             text.add(enteredText);
-            isSuccessful = true;
+            return  true;
         }else{
             text.add(paragraphIndex-1, enteredText);
-            isSuccessful = true;
+            return  true;
         }
-        output.createAddMessage(isSuccessful);
     }
 
     /**
      * Deletes the paragraph at the specified index.
      */
-    void deleteParagraph(boolean isIndexNull, Integer paragraphIndex) {
-        boolean isSuccessful;
+    boolean deleteParagraph(boolean isIndexNull, Integer paragraphIndex) {
         if (isIndexNull) {
             text.remove(text.size() - 1);
-            isSuccessful = true;
+            return true;
         }else{
             text.remove(paragraphIndex - 1);
-            isSuccessful = true;
+            return true;
         }
-        output.createDeleteMessage(isSuccessful);
     }
 
     /**
@@ -248,7 +243,7 @@ public class TextManager {
      *
      * @param index The index of the text to be modified.
      */
-    void replaceWordInParagraph(Integer index, String originalWord, String replacementWord) {
+    boolean replaceWordInParagraph(Integer index, String originalWord, String replacementWord) {
         String paragraph = text.get(index);
         paragraph = paragraph.replace(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
@@ -256,7 +251,7 @@ public class TextManager {
 
             text.set(index, paragraph);
         }
-        output.createReplaceMessage(isReplacementSuccessful);
+        return isReplacementSuccessful;
     }
 
     boolean containsWord(String originalWord, Integer paragraphIndex){
@@ -267,7 +262,6 @@ public class TextManager {
         if(!isWordEmpty && text.get(paragraphIndex-1).contains(originalWord)){
             return true;
         }else{
-            output.createInvalidWordWarning();
             return false;
         }
     }
@@ -275,18 +269,17 @@ public class TextManager {
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraphSection(boolean isIndexNull, String originalWord, String replacingWord,
+    boolean replaceParagraphSection(boolean isIndexNull, String originalWord, String replacingWord,
             Integer paragraphIndex) {
-        boolean isSuccessful;
+        //boolean isSuccessful = false;
         if (isIndexNull) {
-            replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
-            isSuccessful = true;
+            return replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
 
         }else{
-            replaceWordInParagraph(paragraphIndex - 1, originalWord, replacingWord);
-            isSuccessful = true;
+            return replaceWordInParagraph(paragraphIndex - 1, originalWord, replacingWord);
         }
-        output.createReplaceMessage(isSuccessful);
+        //return false;
+        //output.createReplaceMessage(isSuccessful);
     }
 
     /**

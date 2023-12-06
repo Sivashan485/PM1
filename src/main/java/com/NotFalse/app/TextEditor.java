@@ -122,20 +122,24 @@ public class TextEditor {
         }
     }
 
-    public void replace(Integer paragraphIndex, boolean isIndexNull){
+    public boolean replace(Integer paragraphIndex, boolean isIndexNull){
         System.out.print("Replacing Word: ");
         String originalWord = input.readAndFilterUserInput();
         if(textManager.containsWord( originalWord,paragraphIndex)){
             System.out.print("Replacing with: ");
             String replacingWord = input.readAndFilterUserInput();
-            textManager.replaceParagraphSection(isIndexNull,originalWord, replacingWord,paragraphIndex);
+            return textManager.replaceParagraphSection(isIndexNull,originalWord, replacingWord,paragraphIndex);
+        }else{
+            output.createInvalidWordWarning();
+            return false;
         }
+
     }
 
-    public void add(Integer paragraphIndex, boolean isIndexNull){
+    public boolean add(Integer paragraphIndex, boolean isIndexNull){
         System.out.print("Enter a Text you want to add:");
         String enteredText = input.readAndFilterUserInput();
-        textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
+        return textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
 
     }
 
@@ -156,7 +160,7 @@ public class TextEditor {
         Integer maxWidth = input.getUserIndex();
         int textSize = textManager.getText().size();
         boolean isIndexValid = input.getIsIndexValid();
-
+        boolean executionSuccessfull = false;
 
 
         boolean isIndexNull = input.isIndexNull();
@@ -164,8 +168,10 @@ public class TextEditor {
             case DUMMY:
                 //displayIndexWarningIfInvalid(!isIndexValid);
                 if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid,true)){
-                    textManager.addDummyParagraph(isIndexNull, paragraphIndex);
+                    executionSuccessfull = textManager.addDummyParagraph(isIndexNull, paragraphIndex);
                 }
+                output.createAddMessage(executionSuccessfull);
+
                 break;
             case EXIT:
                 output.createExitMessage();
@@ -174,15 +180,17 @@ public class TextEditor {
             case ADD:
                 //displayIndexWarningIfInvalid(!input.getIsIndexValid());
                 if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid, true)){
-                    add(paragraphIndex, isIndexNull);
+                    executionSuccessfull = add(paragraphIndex, isIndexNull);
                 }
+                output.createAddMessage(executionSuccessfull);
                 break;
             case DEL:
                 checkForEmptyText();
                 //displayIndexWarningIfInvalid(!input.getIsIndexValid());
                 if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
-                    textManager.deleteParagraph(isIndexNull, paragraphIndex);
+                    executionSuccessfull =  textManager.deleteParagraph(isIndexNull, paragraphIndex);
                 }
+                output.createDeleteMessage(executionSuccessfull);
                 break;
             case INDEX:
                 checkForEmptyGlossary();
@@ -195,8 +203,9 @@ public class TextEditor {
             case REPLACE:
                 checkForEmptyText();
                 if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
-                    replace(paragraphIndex, isIndexNull);
+                    executionSuccessfull = replace(paragraphIndex, isIndexNull);
                 }
+                output.createReplaceMessage(executionSuccessfull);
                 break;
             case HELP:
                 output.createHelpMessage();

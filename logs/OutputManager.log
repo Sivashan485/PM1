@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-06T15:41:02.433192Z</date>
-  <millis>1701877262433</millis>
-  <nanos>192000</nanos>
+  <date>2023-12-06T16:51:34.435548700Z</date>
+  <millis>1701881494435</millis>
+  <nanos>548700</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
@@ -12,40 +12,23 @@
   <method>createUserInfoMessage</method>
   <thread>1</thread>
   <message>
-Welcome to the TextEditor created by NotFalse.
-
-You can use following functions:
-add[i]
-del[i]
-replace[i]
-index
-print
-format raw
-format fix&lt;b&gt;
-help
-exit</message>
+🌊Welcome 🙌 to the TextEditor 
+📖🖉 created by NotFalse.🌋
++---------------------+
+| Available Functions |
+|  🖨️ 📖 🖉 📝 📖 ️🗑️  |
++---------------------+
+| add[i]              |
+| dummy[i]            |
+| del[i]              |
+| replace[i]          |
+| index               |
+| print               |
+| format raw          |
+| format fix&lt;b&gt;       |
+| help                |
+| exit                |
++---------------------+
+</message>
 </record>
-<record>
-  <date>2023-12-06T15:41:09.203554Z</date>
-  <millis>1701877269203</millis>
-  <nanos>554000</nanos>
-  <sequence>1</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Invalid index. Please try again.</message>
-</record>
-<record>
-  <date>2023-12-06T15:41:09.204554100Z</date>
-  <millis>1701877269204</millis>
-  <nanos>554100</nanos>
-  <sequence>2</sequence>
-  <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
-  <thread>1</thread>
-  <message>Status: Text has not been added</message>
-</record>
+</log>

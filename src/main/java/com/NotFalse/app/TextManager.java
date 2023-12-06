@@ -125,7 +125,7 @@ public class TextManager {
      */
     public boolean isIndexValid(Integer paragraphIndex, int textSize, boolean isIndexNull) {
         if (!isIndexNull && paragraphIndex != null) {
-            if (paragraphIndex <= 0 || paragraphIndex > textSize) {
+            if (paragraphIndex <= 0 || paragraphIndex -1 > textSize) {
                 output.createIndexWarning();
                 return false;
             }

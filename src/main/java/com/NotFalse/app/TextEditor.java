@@ -53,9 +53,11 @@ public class TextEditor {
             if(maxWidth!=null)
                 if(!input.getIsIndexValid() && (maxWidth <= 0 || maxWidth > MAX_WIDTH)){
                     output.createIndexWarning();
+                }else{
+                    output.createInvalidMaxWidthWarning();
                 }
         }catch (NullPointerException e){
-            output.createInvalidMaxWidthWarning();
+
         }
 
     }

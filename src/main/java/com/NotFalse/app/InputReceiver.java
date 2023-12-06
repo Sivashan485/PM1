@@ -54,7 +54,7 @@ public class InputReceiver {
         String userInput = readAndFilterUserInput();
         userCommand = extractCommand(userInput);
         restPart = userInput.substring(userCommand.length()).trim();
-        handleIndexCommand(userCommand, restPart);
+        validateAndSetIndex(userCommand, restPart);
         System.out.println("command: " +userCommand);
         System.out.println("index: " + restPart);
     }
@@ -78,11 +78,43 @@ public class InputReceiver {
         }
         return "";
     }
+    private void validateAndSetIndex(String command, String restPart) {
+        if(Command.parseCommand(command).getCommandHasIndex()){
+            handleIndexCommand();
+        }else{
+            if(!"".equals(restPart)){
+                userCommand = "unknown";
+            }
+        }
+    }
+
+    private void handleIndexCommand(){
+        String replaceUnallowedCharacters = restPart.replaceAll("[^0-9]", "");
+        if (restPart.equals(replaceUnallowedCharacters)) {
+            setUserIndex();
+            isIndexValid = true;
+        }else{
+            isIndexValid = false;
+        }
+    }
 
     /**
      * Validates the command and splits the input accordingly
      */
+    /*
     private void handleIndexCommand(String command, String restPart) {
+        if(Command.parseCommand(command).getCommandHasIndex()){
+            if(!restPart.isEmpty()){
+                String numericPartOfRest = restPart.replaceAll("[^0-9]", "");
+                if (restPart.equals(numericPartOfRest)) {
+                    setUserIndex();
+                    isIndexValid = true;
+            }isIndexValid = true;
+
+        }else{
+                isIndexValid = false;
+            }
+        }/*
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
             String numericPartOfRest = restPart.replaceAll("[^0-9]", "");
             if (restPart.equals(numericPartOfRest)) {
@@ -91,8 +123,11 @@ public class InputReceiver {
             }else{
                 isIndexValid = false;
             }
-        }
-    }
+        }*/
+
+
+
+
 
 
     /**
@@ -134,6 +169,7 @@ public class InputReceiver {
     }
 
     private void setUserIndex(){
+        isIndexValid = true;
         try{
             if (restPart != null) {
                 userIndex = Integer.parseInt(restPart);
@@ -141,7 +177,7 @@ public class InputReceiver {
                 userIndex = null;
             }
         }catch (Exception e){
-            System.err.println("Unallowed character for index. Please try again.");
+            //System.err.println("Unallowed character for index. Please try again.");
         }
 
     }

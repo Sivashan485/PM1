@@ -1,4 +1,4 @@
-package com.NotFalse.app;
+package com.texteditor.app;
 
 import java.util.*;
 import java.util.stream.Collectors;

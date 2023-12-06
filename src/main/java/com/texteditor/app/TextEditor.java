@@ -1,4 +1,4 @@
-package com.NotFalse.app;
+package com.texteditor.app;
 
 /**
  * Main class for the TextEditor application.

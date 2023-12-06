@@ -1,4 +1,4 @@
-package com.NotFalse.app;
+package com.texteditor.app;
 
 /**
  * Enum class for all commands, which are used in the application.

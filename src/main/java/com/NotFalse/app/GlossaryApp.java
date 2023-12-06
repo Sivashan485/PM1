@@ -89,6 +89,10 @@ public class GlossaryApp {
      * @return {@code true} if the word starts with an uppercase letter, {@code false} otherwise.
      */
     private boolean startWithUpperCase(String word) {
+        word = word.trim();
+        if (word.isEmpty()) {
+            return false;
+        }
         return Character.isUpperCase(word.charAt(0));
     }
 

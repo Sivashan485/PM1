@@ -18,26 +18,12 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    //private final OutputManager output;
     private List<String> text;
     private Integer maxWidth;
     private String formattedText;
     boolean isFormatterFixSuccessful;
     boolean isFormatterRaw;
 
-    private boolean validationFailed;
-
-    public void setMaxWidth(Integer maxWidth) {
-        this.maxWidth = maxWidth;
-    }
-
-    public void setValidationFailed(boolean validationFailed) {
-        this.validationFailed = validationFailed;
-    }
-
-    public boolean getValidationFailed() {
-        return validationFailed;
-    }
 
     /**
      * Constructor for the TextManager class. It initializes the input, output,
@@ -78,11 +64,10 @@ public class TextManager {
     boolean addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
         if (isIndexNull) {
             text.add(enteredText);
-            return  true;
         }else{
             text.add(paragraphIndex-1, enteredText);
-            return  true;
         }
+        return true;
     }
 
     /**
@@ -91,11 +76,10 @@ public class TextManager {
     boolean deleteParagraph(boolean isIndexNull, Integer paragraphIndex) {
         if (isIndexNull) {
             text.remove(text.size() - 1);
-            return true;
         }else{
             text.remove(paragraphIndex - 1);
-            return true;
         }
+        return true;
     }
 
     /**
@@ -103,12 +87,13 @@ public class TextManager {
      * of the ArrayList
      * preceded by its index in the ArrayList enclosed in angle brackets.
      */
-    void formatTextRaw() {
+    boolean formatTextRaw() {
         StringBuilder rawText = new StringBuilder();
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
             rawText.append((paragraph + 1)).append(": ").append(text.get(paragraph)).append("\n");
         }
         setFormattedText(rawText.toString());
+        return true;
     }
 
     /**
@@ -116,32 +101,15 @@ public class TextManager {
      *
      */
     void formatTextFix() {
-        if (maxWidth == null) {
+        if (!isMaxWidthValid()) {
             isFormatterFixSuccessful = false;
-        }else{
+        } else {
             StringBuilder fixText = new StringBuilder();
             int currentParagraphWidth = 0;
             for (String paragraph : text) {
-                String[] words = paragraph.split("\s+");
+                String[] words = paragraph.split("\\s+");
                 for (String word : words) {
-                    while (word.length() > maxWidth) {
-                        // If the current line is not empty, start a new line.
-                        if(currentParagraphWidth > 0){
-                            currentParagraphWidth = resetParagraphWidth(fixText);
-                        }
-                        // Add the first maxWidth characters of the word to the current line.
-                        fixText.append(word, 0, maxWidth);
-                        // Remove the first maxWidth characters from the word.
-                        word = word.substring(maxWidth);
-                        // If the word is not empty, start a new line.
-                        if (!word.isEmpty()) {
-                            currentParagraphWidth = resetParagraphWidth(fixText);
-                        }
-                    }
-                    currentParagraphWidth = appendNewLine(word, fixText, currentParagraphWidth, maxWidth);
-                    currentParagraphWidth = appendSpace(fixText, currentParagraphWidth);
-                    fixText.append(word);
-                    currentParagraphWidth += word.length();
+                    currentParagraphWidth = handleWordWrapping(currentParagraphWidth, word, fixText);
                 }
                 fixText.append("\n\n");
                 currentParagraphWidth = 0;
@@ -151,58 +119,47 @@ public class TextManager {
         }
     }
 
-    // Getter for isFormatterFixSuccessful.
-    boolean getIsFormatterFixSuccessful() {
-        return isFormatterFixSuccessful;
+    private int handleWordWrapping(int currentParagraphWidth, String word, StringBuilder fixText) {
+        while (word.length() > maxWidth) {
+            if (currentParagraphWidth > 0) {
+                currentParagraphWidth = resetParagraphWidth(fixText);
+            }
+            fixText.append(word, 0, maxWidth);
+            word = word.substring(maxWidth);
+            if (!word.isEmpty()) {
+                currentParagraphWidth = resetParagraphWidth(fixText);
+            }
+        }
+        currentParagraphWidth = appendNewLine(word, fixText, currentParagraphWidth);
+        currentParagraphWidth = appendSpace(fixText, currentParagraphWidth);
+        fixText.append(word);
+        return currentParagraphWidth + word.length();
     }
 
-    // Setter for isFormatterRaw.
-    void setIsFormatterRaw(boolean isFormatterRaw) {
-        this.isFormatterRaw = isFormatterRaw;
-    }
-
-    // Getter for isFormatterRaw.
-    int resetParagraphWidth(StringBuilder fixFormatted) {
-        fixFormatted.append("\n");
-        return 0;
-    }
-
-
-    /**
-     * Start a new line if the current line is full.
-     * @param word
-     * @param fixFormatted
-     * @param currentParagraphWidth
-     * @param maxWidth
-     * @return
-     */
-    int appendNewLine(String word, StringBuilder fixFormatted, int currentParagraphWidth, int maxWidth) {
+    private int appendNewLine(String word, StringBuilder fixText, int currentParagraphWidth) {
         if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
-            currentParagraphWidth = resetParagraphWidth(fixFormatted);
+            currentParagraphWidth = resetParagraphWidth(fixText);
         }
         return currentParagraphWidth;
     }
 
-    /**
-     * Add a space if it's not the first word on the paragraph.
-     *
-     * @param fixFormatted          The StringBuilder representing the formatted
-     *                              text.
-     * @param currentParagraphWidth The current width of the paragraph.
-     * @return The updated current paragraph width.
-     */
-    int appendSpace(StringBuilder fixFormatted, int currentParagraphWidth) {
+    private int appendSpace(StringBuilder fixText, int currentParagraphWidth) {
         if (currentParagraphWidth > 0) {
-            fixFormatted.append(" ");
+            fixText.append(" ");
             currentParagraphWidth++;
         }
         return currentParagraphWidth;
     }
 
-    // Setter for formattedText.
-    private void setFormattedText(String formattedText) {
-        this.formattedText = formattedText;
+    private boolean isMaxWidthValid() {
+        return maxWidth != null;
     }
+
+    private int resetParagraphWidth(StringBuilder fixFormatted) {
+        fixFormatted.append("\n");
+        return 0;
+    }
+
 
     /**
      * Print the text.
@@ -216,24 +173,6 @@ public class TextManager {
         OutputManager.logAndPrintInfoMessage(formattedText);
     }
 
-    /**
-     * Checks if the provided paragraph index is valid for the current text size.
-     * Displays a warning message if the index is out of bounds and returns false.
-     *
-     * @param paragraphIndex The index to be validated.
-     * @param textSize       The size of the current text.
-     * @return {@code true} if the index is valid; otherwise, {@code false}.
-     */
-    /*public boolean isIndexValid(Integer paragraphIndex) {
-        return (paragraphIndex <= 0 || paragraphIndex > text.size());
-    }*/
-
-
-    /**
-     * Replaces occurrences of a specified word in the text list at the given index.
-     *
-     * @param index The index of the text to be modified.
-     */
 
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
@@ -245,7 +184,6 @@ public class TextManager {
         paragraph = paragraph.replace(originalWord, replacementWord);
         boolean isReplacementSuccessful = !text.get(index).equalsIgnoreCase(paragraph);
         if (isReplacementSuccessful) {
-
             text.set(index, paragraph);
         }
         return isReplacementSuccessful;
@@ -256,11 +194,7 @@ public class TextManager {
         if(paragraphIndex == null){
             paragraphIndex = text.size();
         }
-        if(!isWordEmpty && text.get(paragraphIndex-1).contains(originalWord)){
-            return true;
-        }else{
-            return false;
-        }
+        return !isWordEmpty && text.get(paragraphIndex - 1).contains(originalWord);
     }
 
     /**
@@ -268,15 +202,11 @@ public class TextManager {
      */
     boolean replaceParagraphSection(boolean isIndexNull, String originalWord, String replacingWord,
             Integer paragraphIndex) {
-        //boolean isSuccessful = false;
         if (isIndexNull) {
             return replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
-
         }else{
             return replaceWordInParagraph(paragraphIndex - 1, originalWord, replacingWord);
         }
-        //return false;
-        //output.createReplaceMessage(isSuccessful);
     }
 
     boolean isTextEmpty(){
@@ -310,6 +240,21 @@ public class TextManager {
 
     static String getDummyText(){
         return DUMMY_TEXT;
+    }
+
+    void setMaxWidth(Integer maxWidth) {
+        this.maxWidth = maxWidth;
+    }
+
+    boolean getIsFormatterFixSuccessful() {
+        return isFormatterFixSuccessful;
+    }
+
+    void setIsFormatterRaw(boolean isFormatterRaw) {
+        this.isFormatterRaw = isFormatterRaw;
+    }
+    private void setFormattedText(String formattedText) {
+        this.formattedText = formattedText;
     }
 
 

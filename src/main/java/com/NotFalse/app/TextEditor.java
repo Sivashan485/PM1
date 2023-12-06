@@ -142,7 +142,6 @@ public class TextEditor {
      */
     public void editText() {
         OutputManager.logAndPrintInfoMessage("-----------------------------------------------------------");
-        textManager.setValidationFailed(false);
         input.resetValues();
         input.parseInput();
         Integer paragraphIndex = input.getUserIndex();
@@ -202,8 +201,7 @@ public class TextEditor {
                 break;
             case FORMAT_RAW:
                 textManager.setIsFormatterRaw(true);
-                textManager.formatTextRaw();
-                //output.createFormatMessage(true);
+                output.createFormatMessage( textManager.formatTextRaw());
                 break;
             case FORMAT_FIX:
                 textManager.setIsFormatterRaw(false);

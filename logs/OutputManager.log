@@ -2,14 +2,14 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-06T16:51:34.435548700Z</date>
-  <millis>1701881494435</millis>
-  <nanos>548700</nanos>
+  <date>2023-12-06T17:32:43.135702Z</date>
+  <millis>1701883963135</millis>
+  <nanos>702000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
+  <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
   <message>
 🌊Welcome 🙌 to the TextEditor 
@@ -31,4 +31,158 @@
 +---------------------+
 </message>
 </record>
-</log>
+<record>
+  <date>2023-12-06T17:32:43.138609Z</date>
+  <millis>1701883963138</millis>
+  <nanos>609000</nanos>
+  <sequence>1</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T17:32:46.816068Z</date>
+  <millis>1701883966816</millis>
+  <nanos>68000</nanos>
+  <sequence>2</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>1: First Hello this is a Test sentence.
+2: Second Another Test sentence.
+3: Third useless Test sentence.
+4: Fourth Hello Hello Hello
+5: Fifth End of text.
+</message>
+</record>
+<record>
+  <date>2023-12-06T17:32:46.817050Z</date>
+  <millis>1701883966817</millis>
+  <nanos>50000</nanos>
+  <sequence>3</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T17:32:48.909732Z</date>
+  <millis>1701883968909</millis>
+  <nanos>732000</nanos>
+  <sequence>4</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Status: Text formatted successfully!</message>
+</record>
+<record>
+  <date>2023-12-06T17:32:48.910258Z</date>
+  <millis>1701883968910</millis>
+  <nanos>258000</nanos>
+  <sequence>5</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T17:32:49.721712Z</date>
+  <millis>1701883969721</millis>
+  <nanos>712000</nanos>
+  <sequence>6</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>Fi
+rs
+t
+He
+ll
+o
+th
+is
+is
+a
+Te
+st
+se
+nt
+en
+ce
+.
+Se
+co
+nd
+An
+ot
+he
+r
+Te
+st
+se
+nt
+en
+ce
+.
+Th
+ir
+d
+us
+el
+es
+s
+Te
+st
+se
+nt
+en
+ce
+.
+Fo
+ur
+th
+He
+ll
+o
+He
+ll
+o
+He
+ll
+o
+Fi
+ft
+h
+En
+d
+of
+te
+xt
+.
+</message>
+</record>
+<record>
+  <date>2023-12-06T17:32:49.722665Z</date>
+  <millis>1701883969722</millis>
+  <nanos>665000</nanos>
+  <sequence>7</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>

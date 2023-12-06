@@ -11,7 +11,7 @@ import java.util.List;
  * the user.
  */
 public class TextManager {
-    final static String DUMMYTEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+    private static final String DUMMY_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " +
             "when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
             " It has survived not only five centuries, but also the leap into electronic typesetting, " +
@@ -70,12 +70,10 @@ public class TextManager {
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
     void addDummyParagraph(boolean isIndexNull ,Integer paragraphIndex) {
-        addNewParagraph(isIndexNull, TextManager.DUMMYTEXT, paragraphIndex);
+        addNewParagraph(isIndexNull, TextManager.DUMMY_TEXT, paragraphIndex);
     }
 
-    String getFormattedText(){
-        return this.formattedText;
-    }
+
 
 
     /**
@@ -86,7 +84,6 @@ public class TextManager {
     void addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
         boolean isSuccessful;
         if (isIndexNull) {
-            System.out.println("hello");
             text.add(enteredText);
             isSuccessful = true;
         }else{
@@ -125,24 +122,23 @@ public class TextManager {
      * @return the formatted String
      */
     void formatTextRaw() {
-        String formattedText = "";
+        StringBuilder rawText = new StringBuilder();
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
-            formattedText += "<" + (paragraph + 1) + ">: " + text.get(paragraph) + "\n";
+            rawText.append((paragraph + 1)).append(": ").append(text.get(paragraph)).append("\n");
         }
-        setFormattedText(formattedText);
+        setFormattedText(rawText.toString());
     }
 
 
     /**
      * Formats the given text to fit within the specified maximum width.
      *
-     * @return The formatted text.
      */
     void formatTextFix() {
         if(maxWidth ==null){
             isFormatterFixSuccessful = false;
         }else{
-            StringBuilder fixFormatted = new StringBuilder();
+            StringBuilder fixText = new StringBuilder();
             int currentParagraphWidth = 0;
             for (String paragraph : text) {
                 String[] words = paragraph.split("\s+");
@@ -150,26 +146,26 @@ public class TextManager {
                     while (word.length() > maxWidth) {
                         // If the current line is not empty, start a new line.
                         if(currentParagraphWidth > 0){
-                            currentParagraphWidth = resetParagraphWidth(fixFormatted);
+                            currentParagraphWidth = resetParagraphWidth(fixText);
                         }
                         // Add the first maxWidth characters of the word to the current line.
-                        fixFormatted.append(word, 0, maxWidth);
+                        fixText.append(word, 0, maxWidth);
                         // Remove the first maxWidth characters from the word.
                         word = word.substring(maxWidth);
                         // If the word is not empty, start a new line.
                         if (!word.isEmpty()) {
-                            currentParagraphWidth = resetParagraphWidth(fixFormatted);
+                            currentParagraphWidth = resetParagraphWidth(fixText);
                         }
                     }
-                    currentParagraphWidth = appendNewLine(word, fixFormatted, currentParagraphWidth, maxWidth);
-                    currentParagraphWidth = appendSpace(fixFormatted, currentParagraphWidth);
-                    fixFormatted.append(word);
+                    currentParagraphWidth = appendNewLine(word, fixText, currentParagraphWidth, maxWidth);
+                    currentParagraphWidth = appendSpace(fixText, currentParagraphWidth);
+                    fixText.append(word);
                     currentParagraphWidth += word.length();
                 }
-                fixFormatted.append("\n\n");
+                fixText.append("\n\n");
                 currentParagraphWidth = 0;
             }
-            setFormattedText(fixFormatted.toString());
+            setFormattedText(fixText.toString());
             isFormatterFixSuccessful = true;
         }
     }
@@ -234,19 +230,8 @@ public class TextManager {
         }else{
             formatTextFix();
         }
-        System.out.print(formattedText);
+        OutputManager.logAndPrintInfoMessage(formattedText);
     }
-    /**
-     * Checks if the provided paragraph index is valid for the current text size.
-     * Displays a warning message if the index is out of bounds and returns false.
-     *
-     * @param paragraphIndex The index to be validated.
-     * @param textSize       The size of the current text.
-     * @return {@code true} if the index is valid; otherwise, {@code false}.
-     */
-    /*public boolean isIndexValid(Integer paragraphIndex) {
-        return (paragraphIndex <= 0 || paragraphIndex > text.size());
-    }*/
 
 
     /**
@@ -303,6 +288,10 @@ public class TextManager {
         output.createReplaceMessage(isSuccessful);
     }
 
+    boolean isTextEmpty(){
+        return text.isEmpty();
+    }
+
 
 
 
@@ -324,8 +313,15 @@ public class TextManager {
         this.text = text;
     }
 
-    boolean isTextEmpty(){
-        return text.isEmpty();
+    String getFormattedText(){
+        return this.formattedText;
     }
+
+    static String getDummyText(){
+        return DUMMY_TEXT;
+    }
+
+
+
 
 }

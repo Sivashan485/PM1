@@ -27,13 +27,13 @@ public class GlossaryApp {
      */
     public void printGlossary(List<String> text) {
         rebuildGlossary(text);
-        for (String word : glossary.keySet()) {
+        glossary.keySet().forEach(word -> {
             List<Integer> indexes = glossary.get(word);
             String indexStream = indexes.stream()
                     .map(String::valueOf)
                     .collect(Collectors.joining(", "));
             System.out.printf("%-10s %s%n", word, indexStream);
-        }
+        });
     }
 
     /**
@@ -55,7 +55,7 @@ public class GlossaryApp {
      */
     private void insertGlossaryEntries(List<String> text, Map<String, Integer> wordFrequency) {
         for (String word : wordFrequency.keySet()) {
-            glossary.put(word.trim(), searchWordInParagraphs(text, word));
+            glossary.put(word.trim(), findParagraphIndexes(text, word));
         }
     }
 
@@ -113,7 +113,7 @@ public class GlossaryApp {
      * @return returns a sorted ArrayList of the indexes of the paragraphs which
      * contain the word
      */
-    List<Integer> searchWordInParagraphs(List<String> text, String word) {
+    List<Integer> findParagraphIndexes(List<String> text, String word) {
         List<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < text.size(); i++) {
             if (text.get(i).contains(word)) {

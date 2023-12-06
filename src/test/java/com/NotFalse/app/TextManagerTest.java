@@ -33,10 +33,10 @@ public class TextManagerTest {
     @Test
     void testAddDummyIndexOne() {
         addDummyAuto(5);
-        assertEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(4));
+        assertEquals(TextManager.getDummyText(), textManager.getTextList().get(4));
         addDummyAuto(-11);
         for (int i = 0; i < textManager.getTextList().size(); i++) {
-            assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
+            assertNotEquals(TextManager.getDummyText(), textManager.getTextList().get(i));
         }
     }
 
@@ -44,7 +44,7 @@ public class TextManagerTest {
     @Test
     void testAddDummyIndexTwo() {
         addDummyAuto(5);
-        assertEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(4));
+        assertEquals(TextManager.getDummyText(), textManager.getTextList().get(4));
     }
 
 
@@ -52,7 +52,7 @@ public class TextManagerTest {
     void testAddDummyIndexThree() {
         addDummyAuto(-11);
         for (int i = 0; i < textManager.getTextList().size(); i++) {
-            assertNotEquals(TextManager.DUMMYTEXT, textManager.getTextList().get(i));
+            assertNotEquals(TextManager.getDummyText(), textManager.getTextList().get(i));
         }
     }
 

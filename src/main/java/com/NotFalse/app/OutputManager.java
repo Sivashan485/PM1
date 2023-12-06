@@ -36,17 +36,19 @@ public class OutputManager {
      *
      * @param logText logText to be displayed of level INFO
      */
-    public static void createUserInfoMessage(String logText) {
+    public static void logAndPrintInfoMessage(String logText) {
         System.out.println(logText);
         LOGGER.log(Level.INFO, logText);
     }
 
+
     /**
-     * Creates a log entry of level WARNING with the given logText.
+     * Creates a log entry of level WARNING with th
+     * e given logText.
      *
      * @param logText logText to be displayed of level WARNING
      */
-    public static void createUserErrorMessage(String logText) {
+    public static void logAndPrintWarningMessage(String logText) {
         System.err.println(logText);
         LOGGER.log(Level.WARNING, logText);
     }
@@ -56,7 +58,7 @@ public class OutputManager {
      */
     public void createWelcomeMessage() {
 
-        createUserInfoMessage("\nWelcome to the TextEditor created by NotFalse.\n"
+        logAndPrintInfoMessage("\nWelcome to the TextEditor created by NotFalse.\n"
                 + "\nYou can use following functions:\n" +
                 "add[i]\ndel[i]\nreplace[i]\nindex\nprint\nformat raw\nformat fix<b>\nhelp\nexit");
 
@@ -66,7 +68,7 @@ public class OutputManager {
      * Creates a goodbye message.
      */
     public void createExitMessage() {
-        createUserInfoMessage("Exiting TextEditor...\n" +
+        logAndPrintInfoMessage("Exiting TextEditor...\n" +
                 "Thank you for using TextEditor! Created by NotFalse.");
 
     }
@@ -75,7 +77,7 @@ public class OutputManager {
      * Creates a menu option message with the commands that can be used.
      */
     public void createHelpMessage() {
-        createUserInfoMessage("Here are the commands you can use:\n" + Command.getAllCommands());
+        logAndPrintInfoMessage("Here are the commands you can use:\n" + ApplicationCommand.getAllCommands());
     }
 
     /**
@@ -85,9 +87,9 @@ public class OutputManager {
      */
     public void createAddMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Status: Text added successfully!");
+            logAndPrintInfoMessage("Status: Text added successfully!");
         } else {
-            createUserErrorMessage("Status: Text has not been added");
+            logAndPrintWarningMessage("Status: Text has not been added");
         }
     }
 
@@ -98,9 +100,9 @@ public class OutputManager {
      */
     public void createDeleteMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Status: Text deleted successfully!");
+            logAndPrintInfoMessage("Status: Text deleted successfully!");
         } else {
-            createUserErrorMessage("Status: Text has not been deleted");
+            logAndPrintWarningMessage("Status: Text has not been deleted");
         }
     }
 
@@ -111,9 +113,9 @@ public class OutputManager {
      */
     public void createReplaceMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Status: Text replaced successfully!");
+            logAndPrintInfoMessage("Status: Text replaced successfully!");
         } else {
-            createUserErrorMessage("Status: Text has not been replaced");
+            logAndPrintWarningMessage("Status: Text has not been replaced");
         }
     }
 
@@ -125,9 +127,9 @@ public class OutputManager {
      */
     public void createFormatMessage(boolean success) {
         if (success) {
-            createUserInfoMessage("Status: Text formatted successfully!");
+            logAndPrintInfoMessage("Status: Text formatted successfully!");
         } else {
-            createUserErrorMessage("Status: Text has not been formatted");
+            logAndPrintWarningMessage("Status: Text has not been formatted");
         }
     }
 
@@ -135,14 +137,14 @@ public class OutputManager {
      * Creates a log message for an invalid command.
      */
     public void createInvalidCommandMessage() {
-        createUserErrorMessage("Invalid command! If you don't know which commands you can us, call the help function..");
+        logAndPrintWarningMessage("Invalid command! If you don't know which commands you can us, call the help function..");
     }
 
     /**
      * Creates a log message for an invalid index.
      */
     public void createIndexWarning() {
-        createUserErrorMessage("Invalid index. Please try again.");
+        logAndPrintWarningMessage("Invalid index. Please try again.");
 
     }
 
@@ -150,7 +152,7 @@ public class OutputManager {
      * Creates a log message for the empty text if you try to delete a text.
      */
     public void createEmptyTextWarning() {
-        createUserErrorMessage("Your TextEditor is empty...\n"
+        logAndPrintWarningMessage("Your TextEditor is empty...\n"
                 + "You can add new text, by calling the add function.");
     }
 
@@ -159,11 +161,11 @@ public class OutputManager {
      * The error message informs the user that the text width index is missing and prompts them to try again.
      */
     public void createInvalidMaxWidthWarning() {
-        createUserErrorMessage("The text width index is missing. Please try again");
+        logAndPrintWarningMessage("The text width index is missing. Please try again");
     }
 
     public void createInvalidWordWarning(){
-        createUserErrorMessage("This word doesn't exist in this paragraph. Please try again.");
+        logAndPrintWarningMessage("This word doesn't exist in this paragraph. Please try again.");
     }
 
     /**
@@ -171,7 +173,7 @@ public class OutputManager {
      * The error message notifies the user that their glossary is empty.
      */
     public void createEmptyGlossaryWarning() {
-        createUserErrorMessage("Your glossary is empty...");
+        logAndPrintWarningMessage("Your glossary is empty...");
     }
 
 }

@@ -7,15 +7,12 @@ import java.util.Scanner;
  */
 public class InputReceiver {
 
-    private final static String ALLOWED_REGEX = "[^A-Za-zäöüÄÖÜ 0-9 / .,:;\\-!?'\\\\()\\\"%@+*{}\\\\\\\\&#$\\[\\]]";
+    private static final String ALLOWED_REGEX = "[^A-Za-zäöüÄÖÜ 0-9 / .,:;\\-!?'\\\\()\\\"%@+*{}\\\\\\\\&#$\\[\\]]";
     private final Scanner userInput;
     private String userCommand;
     private Integer userIndex;
     private String restPart;
     private boolean isIndexValid;
-
-
-
 
 
     /**
@@ -50,13 +47,13 @@ public class InputReceiver {
     /**
      * Splits the user input into a command and its arguments.
      */
-    public void splitInputIntoCommandAndRestPart() {
-        String userInput = readAndFilterUserInput();
-        userCommand = extractCommand(userInput);
-        restPart = userInput.substring(userCommand.length()).trim();
-        validateAndSetIndex(userCommand, restPart);
-        System.out.println("command: " +userCommand);
-        System.out.println("index: " + restPart);
+    public void parseInput() {
+        String input = readAndFilterUserInput();
+        userCommand = extractCommand(input);
+        restPart = input.substring(userCommand.length()).trim();
+        if(!validateAndSetIndex(userCommand, restPart)){
+            userCommand = "unknown";
+        }
     }
 
 
@@ -64,33 +61,36 @@ public class InputReceiver {
     /**
      * Extracts the command from the input
      *
-     * @param userInput
+     * @param userInput adfisjoij
      * @return returns the command
      */
     String extractCommand(String userInput) {
         String[] userInputPartition = userInput.toLowerCase().split(" ");
-        Command command = Command.parseCommand(userInputPartition[0]);
-        if (command == Command.UNKNOWN && userInputPartition.length > 1) {
-            command = Command.parseCommand(userInputPartition[0] + " " + userInputPartition[1]);
+        ApplicationCommand command = ApplicationCommand.parseCommand(userInputPartition[0]);
+        if (command == ApplicationCommand.UNKNOWN && userInputPartition.length > 1) {
+            command = ApplicationCommand.parseCommand(userInputPartition[0] + " " + userInputPartition[1]);
         }
-        if (command != Command.UNKNOWN) {
+        if (command != ApplicationCommand.UNKNOWN) {
             return command.getCommand();
         }
         return "";
     }
-    private void validateAndSetIndex(String command, String restPart) {
-        if(Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()){
-            handleIndexCommand();
-        }else{
-            if(!"".equals(restPart)){
-                userCommand = "unknown";
+
+    private boolean validateAndSetIndex(String command, String restPart) {
+        if(ApplicationCommand.parseCommand(command).getCommandHasIndex()){
+            if(restPart != null && !restPart.isEmpty()){
+                handleIndexCommand();
+            }else{
+                setUserIndex();
             }
+        } else{
+            return "".equals(restPart);
         }
+        return true;
     }
 
     private void handleIndexCommand(){
-        String replaceUnallowedCharacters = restPart.replaceAll("[^0-9]", "");
-        if (restPart.equals(replaceUnallowedCharacters)) {
+        if (restPart.matches("^[0-9]+$")) {
             setUserIndex();
             isIndexValid = true;
         }else{
@@ -98,37 +98,17 @@ public class InputReceiver {
         }
     }
 
-    /**
-     * Validates the command and splits the input accordingly
-     */
-    /*
-    private void handleIndexCommand(String command, String restPart) {
-        if(Command.parseCommand(command).getCommandHasIndex()){
-            if(!restPart.isEmpty()){
-                String numericPartOfRest = restPart.replaceAll("[^0-9]", "");
-                if (restPart.equals(numericPartOfRest)) {
-                    setUserIndex();
-                    isIndexValid = true;
-            }isIndexValid = true;
-
-        }else{
-                isIndexValid = false;
+    private void setUserIndex(){
+        isIndexValid = true;
+        userIndex = null;
+        try{
+            if (restPart != null) {
+                userIndex = Integer.parseInt(restPart);
             }
-        }/*
-        if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
-            String numericPartOfRest = restPart.replaceAll("[^0-9]", "");
-            if (restPart.equals(numericPartOfRest)) {
-                setUserIndex();
-                isIndexValid = true;
-            }else{
-                isIndexValid = false;
-            }
-        }*/
-
-
-
-
-
+        }catch (NumberFormatException e){
+            //left empty
+        }
+    }
 
     /**
      * Checks if the 'restPart' is empty and sets 'indexIsNull' accordingly.
@@ -168,19 +148,7 @@ public class InputReceiver {
         return restPart;
     }
 
-    private void setUserIndex(){
-        isIndexValid = true;
-        try{
-            if (restPart != null) {
-                userIndex = Integer.parseInt(restPart);
-            } else {
-                userIndex = null;
-            }
-        }catch (Exception e){
-            //System.err.println("Unallowed character for index. Please try again.");
-        }
 
-    }
 
 
 }

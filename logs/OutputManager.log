@@ -2,14 +2,14 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-06T12:25:37.680842600Z</date>
-  <millis>1701865537680</millis>
-  <nanos>842600</nanos>
+  <date>2023-12-06T16:43:31.891413Z</date>
+  <millis>1701881011891</millis>
+  <nanos>413000</nanos>
   <sequence>0</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserInfoMessage</method>
+  <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
   <message>
 Welcome to the TextEditor created by NotFalse.
@@ -26,63 +26,206 @@ help
 exit</message>
 </record>
 <record>
-  <date>2023-12-06T12:25:42.734619900Z</date>
-  <millis>1701865542734</millis>
-  <nanos>619900</nanos>
+  <date>2023-12-06T16:43:31.894228Z</date>
+  <millis>1701881011894</millis>
+  <nanos>228000</nanos>
   <sequence>1</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
-  <message>Invalid index. Please try again.</message>
+  <message>-----------------------------------------------------------</message>
 </record>
 <record>
-  <date>2023-12-06T12:25:47.128326200Z</date>
-  <millis>1701865547128</millis>
-  <nanos>326200</nanos>
+  <date>2023-12-06T16:43:35.885476Z</date>
+  <millis>1701881015885</millis>
+  <nanos>476000</nanos>
   <sequence>2</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
-  <message>This word doesn't exist in this paragraph. Please try again.</message>
+  <message>-----------------------------------------------------------</message>
 </record>
 <record>
-  <date>2023-12-06T12:25:54.632248900Z</date>
-  <millis>1701865554632</millis>
-  <nanos>248900</nanos>
+  <date>2023-12-06T16:43:40.753709Z</date>
+  <millis>1701881020753</millis>
+  <nanos>709000</nanos>
   <sequence>3</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
-  <message>This word doesn't exist in this paragraph. Please try again.</message>
+  <message>-----------------------------------------------------------</message>
 </record>
 <record>
-  <date>2023-12-06T12:25:58.678268200Z</date>
-  <millis>1701865558678</millis>
-  <nanos>268200</nanos>
+  <date>2023-12-06T16:43:43.142871Z</date>
+  <millis>1701881023142</millis>
+  <nanos>871000</nanos>
   <sequence>4</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>logAndPrintWarningMessage</method>
   <thread>1</thread>
-  <message>This word doesn't exist in this paragraph. Please try again.</message>
+  <message>Invalid index. Please try again.</message>
 </record>
 <record>
-  <date>2023-12-06T12:25:58.995274200Z</date>
-  <millis>1701865558995</millis>
-  <nanos>274200</nanos>
+  <date>2023-12-06T16:43:43.143701Z</date>
+  <millis>1701881023143</millis>
+  <nanos>701000</nanos>
   <sequence>5</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:44.501908Z</date>
+  <millis>1701881024501</millis>
+  <nanos>908000</nanos>
+  <sequence>6</sequence>
   <logger>com.NotFalse.app.OutputManager</logger>
   <level>WARNING</level>
   <class>com.NotFalse.app.OutputManager</class>
-  <method>createUserErrorMessage</method>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:44.502755Z</date>
+  <millis>1701881024502</millis>
+  <nanos>755000</nanos>
+  <sequence>7</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:47.882494Z</date>
+  <millis>1701881027882</millis>
+  <nanos>494000</nanos>
+  <sequence>8</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:47.883451Z</date>
+  <millis>1701881027883</millis>
+  <nanos>451000</nanos>
+  <sequence>9</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:49.482956Z</date>
+  <millis>1701881029482</millis>
+  <nanos>956000</nanos>
+  <sequence>10</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Invalid index. Please try again.</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:49.484691Z</date>
+  <millis>1701881029484</millis>
+  <nanos>691000</nanos>
+  <sequence>11</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:55.107399Z</date>
+  <millis>1701881035107</millis>
+  <nanos>399000</nanos>
+  <sequence>12</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
   <thread>1</thread>
   <message>Invalid command! If you don't know which commands you can us, call the help function..</message>
 </record>
-</log>
+<record>
+  <date>2023-12-06T16:43:55.108602Z</date>
+  <millis>1701881035108</millis>
+  <nanos>602000</nanos>
+  <sequence>13</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:57.466861Z</date>
+  <millis>1701881037466</millis>
+  <nanos>861000</nanos>
+  <sequence>14</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>The text width index is missing. Please try again</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:57.467731Z</date>
+  <millis>1701881037467</millis>
+  <nanos>731000</nanos>
+  <sequence>15</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Status: Text has not been formatted</message>
+</record>
+<record>
+  <date>2023-12-06T16:43:57.468290Z</date>
+  <millis>1701881037468</millis>
+  <nanos>290000</nanos>
+  <sequence>16</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>
+<record>
+  <date>2023-12-06T16:44:00.933109Z</date>
+  <millis>1701881040933</millis>
+  <nanos>109000</nanos>
+  <sequence>17</sequence>
+  <logger>com.NotFalse.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.NotFalse.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>-----------------------------------------------------------</message>
+</record>

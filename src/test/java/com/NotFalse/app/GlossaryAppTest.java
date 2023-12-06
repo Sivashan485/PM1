@@ -61,7 +61,7 @@ class GlossaryAppTest {
     @Test
     void testSearchWordInParagraphs() {
         List<String> text = Arrays.asList("This is a Test", "Test for the glossary app.");
-        List<Integer> indexes = glossaryApp.searchWordInParagraphs(text, "Test");
+        List<Integer> indexes = glossaryApp.findParagraphIndexes(text, "Test");
 
         assertEquals(Arrays.asList(1, 2), indexes);
     }
@@ -69,14 +69,14 @@ class GlossaryAppTest {
     @Test
     void testFindParagraphIndexesOne() {
         List<String> text = Arrays.asList("This is a Test", "Test for the glossary app.");
-        List<Integer> nonexistentIndexes = glossaryApp.searchWordInParagraphs(text, "nonexistent");
+        List<Integer> nonexistentIndexes = glossaryApp.findParagraphIndexes(text, "nonexistent");
         assertTrue(nonexistentIndexes.isEmpty());
     }
 
     @Test
     void testFindParagraphIndexesTwo() {
         List<String> text = Arrays.asList("This is a Test", "Test Test for the glossary app.");
-        List<Integer> testIndexes = glossaryApp.searchWordInParagraphs(text, "Test");
+        List<Integer> testIndexes = glossaryApp.findParagraphIndexes(text, "Test");
         assertEquals(Arrays.asList(1, 2), testIndexes);
 
     }

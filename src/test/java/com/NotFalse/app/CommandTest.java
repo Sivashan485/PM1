@@ -9,10 +9,10 @@ class CommandTest {
     @Test
     void testParseCommand() {
         String[] testItems = {"exit", "add", "del", "dummy", "index", "print", "replace", "help", "format raw", "format fix", "unknown"};
-        Command[] resultItems = {Command.EXIT, Command.ADD, Command.DEL, Command.DUMMY, Command.INDEX, Command.PRINT,
-                Command.REPLACE, Command.HELP, Command.FORMAT_RAW, Command.FORMAT_FIX, Command.UNKNOWN};
+        ApplicationCommand[] resultItems = {ApplicationCommand.EXIT, ApplicationCommand.ADD, ApplicationCommand.DEL, ApplicationCommand.DUMMY, ApplicationCommand.INDEX, ApplicationCommand.PRINT,
+                ApplicationCommand.REPLACE, ApplicationCommand.HELP, ApplicationCommand.FORMAT_RAW, ApplicationCommand.FORMAT_FIX, ApplicationCommand.UNKNOWN};
         for (int i = 0; i < testItems.length; i++) {
-            Command result = Command.parseCommand(testItems[i]);
+            ApplicationCommand result = ApplicationCommand.parseCommand(testItems[i]);
             assertEquals(resultItems[i], result);
         }
     }
@@ -21,7 +21,7 @@ class CommandTest {
     void testGetAllCommands() {
 
         String expected = "exit, add, del, dummy, index, print, replace, help, format raw, format fix"; // Replace with actual command names
-        String actual = Command.getAllCommands();
+        String actual = ApplicationCommand.getAllCommands();
 
         assertEquals(expected, actual);
 
@@ -29,7 +29,7 @@ class CommandTest {
 
     @Test
     void testCommandExit() {
-        Command command = Command.EXIT;
+        ApplicationCommand command = ApplicationCommand.EXIT;
         assertEquals("exit", command.command);
         assertFalse(command.commandHasIndex);
         assertEquals("exit", command.getCommand());
@@ -40,7 +40,7 @@ class CommandTest {
 
     @Test
     void testCommandAdd() {
-        Command command = Command.ADD;
+        ApplicationCommand command = ApplicationCommand.ADD;
         assertEquals("add", command.command);
         assertTrue(command.commandHasIndex);
         assertEquals("add", command.getCommand());
@@ -51,7 +51,7 @@ class CommandTest {
 
     @Test
     void testCommandDel() {
-        Command command = Command.DEL;
+        ApplicationCommand command = ApplicationCommand.DEL;
         assertEquals("del", command.command);
         assertTrue(command.commandHasIndex);
         assertEquals("del", command.getCommand());
@@ -62,7 +62,7 @@ class CommandTest {
 
     @Test
     void testCommandDummy() {
-        Command command = Command.DUMMY;
+        ApplicationCommand command = ApplicationCommand.DUMMY;
         assertEquals("dummy", command.command);
         assertTrue(command.commandHasIndex);
         assertEquals("dummy", command.getCommand());
@@ -73,7 +73,7 @@ class CommandTest {
 
     @Test
     void testCommandIndex() {
-        Command command = Command.INDEX;
+        ApplicationCommand command = ApplicationCommand.INDEX;
         assertEquals("index", command.command);
         assertFalse(command.commandHasIndex);
         assertEquals("index", command.getCommand());
@@ -84,7 +84,7 @@ class CommandTest {
 
     @Test
     void testCommandPrint() {
-        Command command = Command.PRINT;
+        ApplicationCommand command = ApplicationCommand.PRINT;
         assertEquals("print", command.command);
         assertFalse(command.commandHasIndex);
         assertEquals("print", command.getCommand());
@@ -95,7 +95,7 @@ class CommandTest {
 
     @Test
     void testCommandReplace() {
-        Command command = Command.REPLACE;
+        ApplicationCommand command = ApplicationCommand.REPLACE;
         assertEquals("replace", command.command);
         assertTrue(command.commandHasIndex);
         assertEquals("replace", command.getCommand());
@@ -106,7 +106,7 @@ class CommandTest {
 
     @Test
     void testCommandHelp() {
-        Command command = Command.HELP;
+        ApplicationCommand command = ApplicationCommand.HELP;
         assertEquals("help", command.command);
         assertFalse(command.commandHasIndex);
         assertEquals("help", command.getCommand());
@@ -117,7 +117,7 @@ class CommandTest {
 
     @Test
     void testCommandFormatRaw() {
-        Command command = Command.FORMAT_RAW;
+        ApplicationCommand command = ApplicationCommand.FORMAT_RAW;
         assertEquals("format raw", command.command);
         assertFalse(command.commandHasIndex);
         assertEquals("format raw", command.getCommand());
@@ -128,7 +128,7 @@ class CommandTest {
 
     @Test
     void testCommandFormatFix() {
-        Command command = Command.FORMAT_FIX;
+        ApplicationCommand command = ApplicationCommand.FORMAT_FIX;
         assertEquals("format fix", command.command);
         assertTrue(command.commandHasIndex);
         assertEquals("format fix", command.getCommand());

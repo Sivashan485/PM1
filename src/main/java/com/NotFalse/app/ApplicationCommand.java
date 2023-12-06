@@ -6,7 +6,7 @@ package com.NotFalse.app;
  * input is a command,
  * a method to get all commands, and a method to get the command as a String.
  */
-public enum Command {
+public enum ApplicationCommand {
     EXIT("exit", false),
     ADD("add", true),
     DEL("del", true),
@@ -25,9 +25,10 @@ public enum Command {
     /**
      * Constructor for the enum class.
      *
-     * @param command
+     * @param command asdfiji
+     * @param commandHasIndex sodfij
      */
-    Command(String command, boolean commandHasIndex) {
+    ApplicationCommand(String command, boolean commandHasIndex) {
         this.command = command;
         this.commandHasIndex = commandHasIndex;
     }
@@ -38,14 +39,13 @@ public enum Command {
      * @param commandString to be checked
      * @return returns a Command if existing, otherwise UNKNOWN
      */
-    public static Command parseCommand(String commandString) {
-        for (Command value : Command.values()) {
+    public static ApplicationCommand parseCommand(String commandString) {
+        for (ApplicationCommand value : ApplicationCommand.values()) {
             if (value.getCommand().equals(commandString.toLowerCase())) {
                 return value;
             }
-
         }
-        return Command.UNKNOWN;
+        return ApplicationCommand.UNKNOWN;
     }
 
     /**
@@ -55,7 +55,7 @@ public enum Command {
      */
     public static String getAllCommands() {
         StringBuilder sb = new StringBuilder();
-        for (Command command : Command.values()) {
+        for (ApplicationCommand command : ApplicationCommand.values()) {
             if (!command.getCommand().equals("unknown")) {
                 sb.append(command.getCommand()).append(", ");
             }

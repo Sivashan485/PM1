@@ -26,15 +26,16 @@ public class TextManager {
     boolean isFormatterRaw;
 
     private boolean validationFailed;
-    public void setMaxWidth(Integer maxWidth){
+
+    public void setMaxWidth(Integer maxWidth) {
         this.maxWidth = maxWidth;
     }
 
-    public void setValidationFailed(boolean validationFailed)
-    {
+    public void setValidationFailed(boolean validationFailed) {
         this.validationFailed = validationFailed;
     }
-    public boolean getValidationFailed(){
+
+    public boolean getValidationFailed() {
         return validationFailed;
     }
 
@@ -53,52 +54,45 @@ public class TextManager {
         formattedText = "";
         formatTextRaw();
         isFormatterRaw = true;
-
     }
 
     List<String> getTextList() {
         return text;
     }
 
-
-
-
-
-
     /**
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    void addDummyParagraph(boolean isIndexNull ,Integer paragraphIndex) {
+    void addDummyParagraph(boolean isIndexNull, Integer paragraphIndex) {
         addNewParagraph(isIndexNull, TextManager.DUMMYTEXT, paragraphIndex);
     }
 
-    String getFormattedText(){
+    String getFormattedText() {
         return this.formattedText;
     }
 
-
     /**
      * Adds a new paragraph to the text based on user input.
-     * If the index is not provided or is invalid, the new paragraph is added at the end.
-     * If the index is valid, the new paragraph is inserted at the specified position.
+     * If the index is not provided or is invalid, the new paragraph is added at the
+     * end.
+     * If the index is valid, the new paragraph is inserted at the specified
+     * position.
      */
     void addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
         boolean isSuccessful;
         if (isIndexNull) {
             text.add(enteredText);
             isSuccessful = true;
-        } else if (paragraphIndex <= 0 || paragraphIndex -1 > text.size()) {
+        } else if (paragraphIndex <= 0 || paragraphIndex - 1 > text.size()) {
             isSuccessful = false;
             output.createIndexWarning();
-        }else{
-            text.add(paragraphIndex-1, enteredText);
+        } else {
+            text.add(paragraphIndex - 1, enteredText);
             isSuccessful = true;
         }
         output.createAddMessage(isSuccessful);
     }
-
-
 
     /**
      * Deletes the paragraph at the specified index.
@@ -111,24 +105,17 @@ public class TextManager {
         } else if (paragraphIndex <= 0 || paragraphIndex > text.size()) {
             isSuccessful = false;
             output.createIndexWarning();
-
-        }else{
+        } else {
             text.remove(paragraphIndex - 1);
             isSuccessful = true;
         }
         output.createDeleteMessage(isSuccessful);
     }
 
-
-
-
-
     /**
      * Formats the given ArrayList of Strings into a single String with each element
      * of the ArrayList
      * preceded by its index in the ArrayList enclosed in angle brackets.
-     *
-     * @return the formatted String
      */
     void formatTextRaw() {
         String formattedText = "";
@@ -138,16 +125,13 @@ public class TextManager {
         setFormattedText(formattedText);
     }
 
-
     /**
      * Formats the given text to fit within the specified maximum width.
-     *
-     * @return The formatted text.
      */
     void formatTextFix() {
-        if(maxWidth ==null){
+        if (maxWidth == null) {
             isFormatterFixSuccessful = false;
-        }else{
+        } else {
             StringBuilder fixFormatted = new StringBuilder();
             int currentParagraphWidth = 0;
             for (String paragraph : text) {
@@ -155,7 +139,7 @@ public class TextManager {
                 for (String word : words) {
                     while (word.length() > maxWidth) {
                         // If the current line is not empty, start a new line.
-                        if(currentParagraphWidth > 0){
+                        if (currentParagraphWidth > 0) {
                             currentParagraphWidth = resetParagraphWidth(fixFormatted);
                         }
                         // Add the first maxWidth characters of the word to the current line.
@@ -180,43 +164,43 @@ public class TextManager {
         }
     }
 
-    boolean getIsFormatterFixSuccessful(){
+    // Getter for isFormatterFixSuccessful.
+    boolean getIsFormatterFixSuccessful() {
         return isFormatterFixSuccessful;
     }
 
-    void setIsFormatterRaw(boolean isFormatterRaw){
+    // Setter for isFormatterRaw.
+    void setIsFormatterRaw(boolean isFormatterRaw) {
         this.isFormatterRaw = isFormatterRaw;
     }
 
-
-
-    int resetParagraphWidth(StringBuilder fixFormatted){
+    // Getter for isFormatterRaw.
+    int resetParagraphWidth(StringBuilder fixFormatted) {
         fixFormatted.append("\n");
         return 0;
     }
 
-
-
-
+    
     /**
-     * Check if adding the current word exceeds maxWidth, and if it does, add a new
-     * line.
-     *
-     * @param word                  The word to be appended.
-     * @param fixFormatted          The StringBuilder representing the formatted text.
-     * @param currentParagraphWidth The current width of the paragraph.
-     * @return The updated current paragraph width.
+     * Start a new line if the current line is full.
+     * @param word
+     * @param fixFormatted
+     * @param currentParagraphWidth
+     * @param maxWidth
+     * @return
      */
     int appendNewLine(String word, StringBuilder fixFormatted, int currentParagraphWidth, int maxWidth) {
         if (currentParagraphWidth + (currentParagraphWidth > 0 ? 1 : 0) + word.length() > maxWidth) {
             currentParagraphWidth = resetParagraphWidth(fixFormatted);
-        } return currentParagraphWidth;
+        }
+        return currentParagraphWidth;
     }
 
     /**
      * Add a space if it's not the first word on the paragraph.
      *
-     * @param fixFormatted          The StringBuilder representing the formatted text.
+     * @param fixFormatted          The StringBuilder representing the formatted
+     *                              text.
      * @param currentParagraphWidth The current width of the paragraph.
      * @return The updated current paragraph width.
      */
@@ -224,10 +208,12 @@ public class TextManager {
         if (currentParagraphWidth > 0) {
             fixFormatted.append(" ");
             currentParagraphWidth++;
-        } return currentParagraphWidth;
+        }
+        return currentParagraphWidth;
     }
 
-    public void setFormattedText(String formattedText){
+    // Setter for formattedText.
+    private void setFormattedText(String formattedText) {
         this.formattedText = formattedText;
     }
 
@@ -235,13 +221,14 @@ public class TextManager {
      * Print the text.
      */
     void printText() {
-        if(isFormatterRaw){
+        if (isFormatterRaw) {
             formatTextRaw();
-        }else{
+        } else {
             formatTextFix();
         }
         System.out.print(formattedText);
     }
+
     /**
      * Checks if the provided paragraph index is valid for the current text size.
      * Displays a warning message if the index is out of bounds and returns false.
@@ -254,11 +241,10 @@ public class TextManager {
         return (paragraphIndex <= 0 || paragraphIndex > text.size());
     }
 
-
     /**
      * Replaces occurrences of a specified word in the text list at the given index.
      *
-     * @param index           The index of the text to be modified.
+     * @param index The index of the text to be modified.
      */
 
     /**
@@ -277,47 +263,43 @@ public class TextManager {
         output.createReplaceMessage(isReplacementSuccessful);
     }
 
-    boolean containsWord(String originalWord, Integer paragraphIndex){
-        if(isIndexValid(paragraphIndex)){
+    boolean containsWord(String originalWord, Integer paragraphIndex) {
+        if (isIndexValid(paragraphIndex)) {
             output.createIndexWarning();
-        }else{
+        } else {
             boolean isWordEmpty = "".equals(originalWord);
-            if(paragraphIndex == null){
-                paragraphIndex = text.size()-1;
+            if (paragraphIndex == null) {
+                paragraphIndex = text.size() - 1;
             }
-            if(!isWordEmpty && text.get(paragraphIndex).contains(originalWord)){
+            if (!isWordEmpty && text.get(paragraphIndex).contains(originalWord)) {
                 return true;
-            }else{
+            } else {
                 output.createInvalidWordWarning();
                 return false;
             }
-        }return true;
+        }
+        return true;
     }
-
-
-
 
     /**
      * Replaces the paragraphs in the specified range with the given text.
      */
-    void replaceParagraphSection(boolean isIndexNull , String originalWord, String replacingWord, Integer paragraphIndex) {
+    void replaceParagraphSection(boolean isIndexNull, String originalWord, String replacingWord,
+            Integer paragraphIndex) {
         boolean isSuccessful;
         if (isIndexNull) {
             replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
             isSuccessful = true;
 
-        } else if(isIndexValid(paragraphIndex)){
+        } else if (isIndexValid(paragraphIndex)) {
             isSuccessful = false;
             output.createIndexWarning();
-        }else{
+        } else {
             replaceWordInParagraph(paragraphIndex - 1, originalWord, replacingWord);
             isSuccessful = true;
         }
         output.createReplaceMessage(isSuccessful);
     }
-
-
-
 
     /**
      * Getter for the text. It is used for testing.
@@ -337,7 +319,7 @@ public class TextManager {
         this.text = text;
     }
 
-    boolean isTextEmpty(){
+    boolean isTextEmpty() {
         return text.isEmpty();
     }
 

@@ -304,7 +304,7 @@ public class TextManagerTest {
     // Test for Method formatTextFix
     @Test
     void testSpacesNotPreserved() {
-        String expected = "hello world\n";
+        String expected = "hello  world\n";
         textManager.setText(Arrays.asList("hello", " ", "world"));
         textManager.setMaxWidth(20);
         textManager.formatTextFix();

@@ -151,7 +151,7 @@ public class TextManager {
             StringBuilder fixFormatted = new StringBuilder();
             int currentParagraphWidth = 0;
             for (String paragraph : text) {
-                String[] words = paragraph.split("\\s+");
+                String[] words = paragraph.split("\s+");
                 for (String word : words) {
                     while (word.length() > maxWidth) {
                         // If the current line is not empty, start a new line.
@@ -172,13 +172,14 @@ public class TextManager {
                     fixFormatted.append(word);
                     currentParagraphWidth += word.length();
                 }
+                fixFormatted.append("\n\n");
+                currentParagraphWidth = 0;
             }
-            fixFormatted.append("\n");
             setFormattedText(fixFormatted.toString());
             isFormatterFixSuccessful = true;
         }
-
     }
+
     boolean getIsFormatterFixSuccessful(){
         return isFormatterFixSuccessful;
     }

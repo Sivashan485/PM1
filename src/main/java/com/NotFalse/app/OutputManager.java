@@ -20,14 +20,14 @@ public class OutputManager {
         FileHandler fileHandler;
         try {
             fileHandler = new FileHandler("./logs/OutputManager.log");
+            LOGGER.addHandler(fileHandler);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getMessage());
         }
         LOGGER.setUseParentHandlers(false);
         Handler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.OFF);
         consoleHandler.setFormatter(new SimpleFormatter());
-        LOGGER.addHandler(fileHandler);
         LOGGER.setLevel(Level.ALL);
     }
 
@@ -59,20 +59,25 @@ public class OutputManager {
     public void createWelcomeMessage() {
 
         logAndPrintInfoMessage("\n" +
-                "\uD83C\uDF0AWelcome \uD83D\uDE4C to the TextEditor " +
-                "\n\uD83D\uDCD6\uD83D\uDD89 created by NotFalse.\uD83C\uDF0B\n"
-               +"+---------------------+\n" +
-                "| Available Functions |\n" +
-                "|  \uD83D\uDDA8\uFE0F \uD83D\uDCD6 \uD83D\uDD89 \uD83D\uDCDD \uD83D\uDCD6 \uFE0F\uD83D\uDDD1\uFE0F  |\n" +
+                "█   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀\n" +
+                "█   █ █   █   █   █  █ █▀▄▀█ █\n" +
+                "█   █ █▀▀ █   █   █  █ █ ▀ █ █▀▀\n" +
+                "█▄█▄█ █   █   █   █  █ █   █ █\n" +
+                " ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀\n" +
+                " ...to the TextEditor\n" +
+                " created by NotFalse...\n"+
+                " 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈\n" +
                 "+---------------------+\n" +
-                "| add[i]              |\n" +
-                "| dummy[i]            |\n" +
-                "| del[i]              |\n" +
-                "| replace[i]          |\n" +
+                "| Available Functions |\n" +
+                "+---------------------+\n" +
+                "| add [i]             |\n" +
+                "| dummy [i]           |\n" +
+                "| del [i]             |\n" +
+                "| replace [i]         |\n" +
+                "| format fix <b>      |\n" +
+                "| format raw          |\n" +
                 "| index               |\n" +
                 "| print               |\n" +
-                "| format raw          |\n" +
-                "| format fix<b>       |\n" +
                 "| help                |\n" +
                 "| exit                |\n" +
                 "+---------------------+\n");
@@ -82,8 +87,15 @@ public class OutputManager {
      * Creates a goodbye message.
      */
     public void createExitMessage() {
-        logAndPrintInfoMessage("Exiting TextEditor...\n" +
-                "Thank you for using TextEditor! Created by NotFalse.");
+        logAndPrintInfoMessage("                       88          \n" +
+                "                       \"\"   ,d     \n" +
+                "                            88     \n" +
+                " ,adPPYba, 8b,     ,d8 88 MM88MMM  \n" +
+                "a8P_____88  `Y8, ,8P'  88   88     \n" +
+                "8PP\"\"\"\"\"\"\"    )888(    88   88     \n" +
+                "\"8b,   ,aa  ,d8\" \"8b,  88   88,    \n" +
+                " `\"Ybbd8\"' 8P'     `Y8 88   \"Y888 \n\n\n" +
+                "Thank you for using TextEditor created by NotFalse.\uD83D\uDE2D\uD83D\uDE2D\uD83D\uDE2D\n");
 
     }
 

@@ -124,7 +124,6 @@ public class InputReceiver {
         return isIndexValid;
     }
 
-
     /**
      * Retrieves the current command.
      *

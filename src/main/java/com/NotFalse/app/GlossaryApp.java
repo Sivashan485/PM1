@@ -13,13 +13,11 @@ public class GlossaryApp {
 
     private final TreeMap<String, List<Integer>> glossary;
 
-
     /**
      * Constructor for GlossaryApp.
      */
     public GlossaryApp() {
         glossary = new TreeMap<>();
-
     }
 
     /**
@@ -32,7 +30,7 @@ public class GlossaryApp {
             String indexStream = indexes.stream()
                     .map(String::valueOf)
                     .collect(Collectors.joining(", "));
-            System.out.printf("%-10s %s%n", word, indexStream);
+            OutputManager.logAndPrintInfoMessage(String.format("%-10s %s", word, indexStream));
         });
     }
 

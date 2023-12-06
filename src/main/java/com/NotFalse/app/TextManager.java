@@ -18,7 +18,7 @@ public class TextManager {
             "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset" +
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
-    private List<String> text;
+    private final List<String> text;
     private Integer maxWidth;
     private String formattedText;
     boolean isFormatterFixSuccessful;
@@ -37,12 +37,8 @@ public class TextManager {
         text.add("Fourth Hello Hello Hello");
         text.add("Fifth End of text.");
         formattedText = "";
-        formatTextRaw();
         isFormatterRaw = true;
-    }
-
-    List<String> getTextList() {
-        return text;
+        formatTextRaw();
     }
 
     /**
@@ -214,24 +210,13 @@ public class TextManager {
     }
 
 
-
-
     /**
      * Getter for the text. It is used for testing.
      *
      * @return the text
      */
-    public List<String> getText() {
+    List<String> getText() {
         return Collections.unmodifiableList(text);
-    }
-
-    /**
-     * Setter for the text. It is used for testing.
-     *
-     * @param text The list of strings representing the text content.
-     */
-    void setText(List<String> text) {
-        this.text = text;
     }
 
     String getFormattedText(){
@@ -256,8 +241,5 @@ public class TextManager {
     private void setFormattedText(String formattedText) {
         this.formattedText = formattedText;
     }
-
-
-
 
 }

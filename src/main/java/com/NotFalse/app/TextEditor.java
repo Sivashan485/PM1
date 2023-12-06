@@ -47,6 +47,67 @@ public class TextEditor {
         } while (isRunning);
     }
 
+    /**
+     * Processes and executes text editing commands based on user input.
+     * Parses the input, updates the text manager, and performs operations according to the command received.
+     * Displays corresponding messages or triggers actions such as adding, deleting, replacing, formatting, or printing text.
+     */
+    private void editText() {
+        OutputManager.logAndPrintInfoMessage("▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫▫\n️");
+        input.resetValues();
+        input.parseInput();
+        Integer paragraphIndex = input.getUserIndex();
+        Integer maxWidth = input.getUserIndex();
+        int textSize = textManager.getText().size();
+        boolean isIndexValid = input.getIsIndexValid();
+        boolean executionSuccessfull = false;
+        boolean isIndexNull = input.isIndexNull();
+
+        switch (ApplicationCommand.parseCommand(input.getUserCommand())) {
+            case DUMMY:
+                dummy(paragraphIndex,textSize,isIndexValid,true,isIndexNull);
+                break;
+            case EXIT:
+                output.createExitMessage();
+                isExitTriggered = true;
+                break;
+            case ADD:
+                if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid, true)){
+                    executionSuccessfull = add(paragraphIndex, isIndexNull);
+                }
+                output.createAddMessage(executionSuccessfull);
+                break;
+            case DEL:
+                del(paragraphIndex,textSize,isIndexValid,false, isIndexNull);
+                break;
+            case INDEX:
+                index();
+                break;
+            case PRINT:
+                print();
+                break;
+            case REPLACE:
+                if(isTextNotEmpty() && (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false))){
+                        executionSuccessfull = replace(paragraphIndex, isIndexNull);
+                }
+                output.createReplaceMessage(executionSuccessfull);
+                break;
+            case HELP:
+                output.createHelpMessage();
+                break;
+            case FORMAT_RAW:
+                textManager.setIsFormatterRaw(true);
+                output.createFormatMessage(textManager.formatTextRaw());
+                break;
+            case FORMAT_FIX:
+                fixFormatter(maxWidth, isIndexValid);
+                break;
+            default:
+                output.createInvalidCommandMessage();
+                break;
+        }
+    }
+
 
     private boolean validateMaxWidth(Integer maxWidth,boolean isIndexValid){
         if(maxWidth == null && isIndexValid){
@@ -64,7 +125,7 @@ public class TextEditor {
         return true;
     }
 
-    public boolean validateParagraphIndex(Integer paragraphIndex, int textSize,boolean isIndexValid, boolean isAddFunction) {
+    private boolean validateParagraphIndex(Integer paragraphIndex, int textSize,boolean isIndexValid, boolean isAddFunction) {
         if(paragraphIndex == null && isIndexValid){
             return true;
         }
@@ -93,7 +154,7 @@ public class TextEditor {
      * @return {@code true} if the index is valid; otherwise, {@code false}.
      */
 
-    public boolean isTextNotEmpty(){
+    private boolean isTextNotEmpty(){
         if(textManager.isTextEmpty()){
             output.createEmptyTextWarning();
             return false;
@@ -101,17 +162,16 @@ public class TextEditor {
         return true;
     }
 
-    public void checkForEmptyGlossary(){
+    private void checkForEmptyGlossary(){
         glossary.rebuildGlossary(textManager.getText());
         if(glossary.isGlossaryEmpty()){
             output.createEmptyGlossaryWarning();
         }else{
             OutputManager.logAndPrintInfoMessage("Glossary:");
-
         }
     }
 
-    public boolean replace(Integer paragraphIndex, boolean isIndexNull){
+    private boolean replace(Integer paragraphIndex, boolean isIndexNull){
         OutputManager.logAndPrintInfoMessage("Replacing Word: ");
         String originalWord = input.readAndFilterUserInput();
         if(textManager.containsWord( originalWord,paragraphIndex)){
@@ -122,98 +182,49 @@ public class TextEditor {
             output.createInvalidWordWarning();
             return false;
         }
-
     }
 
-    public boolean add(Integer paragraphIndex, boolean isIndexNull){
+    private boolean add(Integer paragraphIndex, boolean isIndexNull){
         output.logAndPrintInfoMessage("Enter a Text you want to add:");
         String enteredText = input.readAndFilterUserInput();
         return textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
 
     }
 
-
-
-
-    /**
-     * Processes and executes text editing commands based on user input.
-     * Parses the input, updates the text manager, and performs operations according to the command received.
-     * Displays corresponding messages or triggers actions such as adding, deleting, replacing, formatting, or printing text.
-     */
-    public void editText() {
-        OutputManager.logAndPrintInfoMessage("-----------------------------------------------------------");
-        input.resetValues();
-        input.parseInput();
-        Integer paragraphIndex = input.getUserIndex();
-        Integer maxWidth = input.getUserIndex();
-        int textSize = textManager.getText().size();
-        boolean isIndexValid = input.getIsIndexValid();
+    private void del(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isAddFunction, boolean isIndexNull){
         boolean executionSuccessfull = false;
-
-
-        boolean isIndexNull = input.isIndexNull();
-
-        switch (ApplicationCommand.parseCommand(input.getUserCommand())) {
-            case DUMMY:
-                if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid,true)){
-                    executionSuccessfull = textManager.addDummyParagraph(isIndexNull, paragraphIndex);
-                }
-                output.createAddMessage(executionSuccessfull);
-
-                break;
-            case EXIT:
-                output.createExitMessage();
-                isExitTriggered = true;
-                break;
-            case ADD:
-                if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid, true)){
-                    executionSuccessfull = add(paragraphIndex, isIndexNull);
-                }
-                output.createAddMessage(executionSuccessfull);
-                break;
-            case DEL:
-                if(isTextNotEmpty()){
-                    if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
-                        executionSuccessfull = textManager.deleteParagraph(isIndexNull, paragraphIndex);
-                    }
-                }
-                output.createDeleteMessage(executionSuccessfull);
-                break;
-            case INDEX:
-                checkForEmptyGlossary();
-                glossary.printGlossary(textManager.getText());
-                break;
-            case PRINT:
-                if(isTextNotEmpty()){
-                    textManager.printText();
-                }
-                break;
-            case REPLACE:
-                if(isTextNotEmpty()){
-                    if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
-                        executionSuccessfull = replace(paragraphIndex, isIndexNull);
-                    }
-                }
-                output.createReplaceMessage(executionSuccessfull);
-                break;
-            case HELP:
-                output.createHelpMessage();
-                break;
-            case FORMAT_RAW:
-                textManager.setIsFormatterRaw(true);
-                output.createFormatMessage( textManager.formatTextRaw());
-                break;
-            case FORMAT_FIX:
-                textManager.setIsFormatterRaw(false);
-                if(validateMaxWidth(maxWidth,isIndexValid)){
-                    textManager.setMaxWidth(maxWidth);
-                    textManager.formatTextFix();
-                }
-                output.createFormatMessage(textManager.getIsFormatterFixSuccessful());
-                break;
-            default:
-                output.createInvalidCommandMessage();
-                break;
+        if(isTextNotEmpty()){
+            if (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false)){
+                executionSuccessfull = textManager.deleteParagraph(isIndexNull, paragraphIndex);
+            }
         }
+        output.createDeleteMessage(executionSuccessfull);
+    }
+    private void dummy(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isAddFunction, boolean isIndexNull){
+        boolean executionSuccessfull = false;
+        if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid,true)){
+            executionSuccessfull = textManager.addDummyParagraph(isIndexNull, paragraphIndex);
+        }
+        output.createAddMessage(executionSuccessfull);
+
+    }
+    private void print(){
+        if(isTextNotEmpty()){
+            textManager.printText();
+        }
+    }
+
+    private void index(){
+        checkForEmptyGlossary();
+        glossary.printGlossary(textManager.getText());
+    }
+
+    private void fixFormatter(Integer maxWidth, boolean isIndexValid){
+        textManager.setIsFormatterRaw(false);
+        if(validateMaxWidth(maxWidth,isIndexValid)){
+            textManager.setMaxWidth(maxWidth);
+            textManager.formatTextFix();
+        }
+        output.createFormatMessage(textManager.getIsFormatterFixSuccessful());
     }
 }

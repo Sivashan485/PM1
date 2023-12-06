@@ -146,10 +146,6 @@ public class OutputManager {
 
     }
 
-    public static void createUnallowedCharacterWarning(){
-        createUserErrorMessage("Unallowed character for index. Please try again.");
-    }
-
     /**
      * Creates a log message for the empty text if you try to delete a text.
      */
@@ -174,7 +170,7 @@ public class OutputManager {
      * Creates and displays an error message for an empty glossary scenario.
      * The error message notifies the user that their glossary is empty.
      */
-    public static void createEmptyGlossaryWarning() {
+    public void createEmptyGlossaryWarning() {
         createUserErrorMessage("Your glossary is empty...");
     }
 

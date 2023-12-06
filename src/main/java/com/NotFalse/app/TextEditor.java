@@ -5,12 +5,13 @@ package com.NotFalse.app;
  */
 public class TextEditor {
 
+    private static final int MAX_WIDTH = 2147483647;
     private final InputReceiver input;
     private final TextManager textManager;
     private final OutputManager output;
     private final GlossaryApp glossary;
     private boolean isExitTriggered;
-    private static final int MAX_WIDTH = 2147483647;
+
 
 
     /**
@@ -73,12 +74,19 @@ public class TextEditor {
      * @return {@code true} if the index is valid; otherwise, {@code false}.
      */
 
-
-    public void isTextEmpty(){
-        if(textManager.getText().isEmpty()){
+    public void checkForEmptyText(){
+        if(textManager.isTextEmpty()){
             output.createEmptyTextWarning();
         }
+    }
 
+    public void checkForEmptyGlossary(){
+        glossary.rebuildGlossary(textManager.getText());
+        if(glossary.isGlossaryEmpty()){
+            output.createEmptyGlossaryWarning();
+        }else{
+            System.out.println("Glossary:");
+        }
     }
 
     public void replace(Integer paragraphIndex, boolean isIndexNull ){
@@ -115,7 +123,7 @@ public class TextEditor {
         System.out.println("-----------------------------------------------------------");
         textManager.setValidationFailed(false);
         input.resetValues();
-        input.parseUserInput();
+        input.splitInputIntoCommandAndRestPart();
         Integer paragraphIndex = input.getUserIndex();
         Integer maxWidth = input.getUserIndex();
 
@@ -136,19 +144,20 @@ public class TextEditor {
                 add(paragraphIndex, isIndexNull);
                 break;
             case DEL:
-                isTextEmpty();
+                checkForEmptyText();
                 validateParagraphIndex(!input.getIsIndexValid());
                 textManager.deleteParagraph(isIndexNull, paragraphIndex);
                 break;
             case INDEX:
+                checkForEmptyGlossary();
                 glossary.printGlossary(textManager.getText());
                 break;
             case PRINT:
-                isTextEmpty();
+                checkForEmptyText();
                 textManager.printText();
                 break;
             case REPLACE:
-                isTextEmpty();
+                checkForEmptyText();
                 validateParagraphIndex(!input.getIsIndexValid());
                 replace(paragraphIndex, isIndexNull);
                 break;

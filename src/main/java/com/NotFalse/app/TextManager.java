@@ -315,7 +315,7 @@ public class TextManager {
      *
      * @return the text
      */
-    List<String> getText() {
+    public List<String> getText() {
         return Collections.unmodifiableList(text);
     }
 
@@ -326,6 +326,10 @@ public class TextManager {
      */
     void setText(List<String> text) {
         this.text = text;
+    }
+
+    boolean isTextEmpty(){
+        return text.isEmpty();
     }
 
 }

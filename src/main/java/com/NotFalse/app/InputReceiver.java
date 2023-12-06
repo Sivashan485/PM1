@@ -50,11 +50,11 @@ public class InputReceiver {
     /**
      * Splits the user input into a command and its arguments.
      */
-    public void parseUserInput() {
+    public void splitInputIntoCommandAndRestPart() {
         String userInput = readAndFilterUserInput();
         userCommand = extractCommand(userInput);
         restPart = userInput.substring(userCommand.length()).trim();
-        validateAndSetIndex(userCommand, restPart);
+        handleIndexCommand(userCommand, restPart);
         System.out.println("command: " +userCommand);
         System.out.println("index: " + restPart);
     }
@@ -82,24 +82,17 @@ public class InputReceiver {
     /**
      * Validates the command and splits the input accordingly
      */
-    private void validateAndSetIndex(String command, String restPart) {
-        // Handles commands that require an index
+    private void handleIndexCommand(String command, String restPart) {
         if (Command.parseCommand(command).getCommandHasIndex() && !restPart.isEmpty()) {
-            handleIndexCommand();
+            String numericPartOfRest = restPart.replaceAll("[^0-9]", "");
+            if (restPart.equals(numericPartOfRest)) {
+                setUserIndex();
+                isIndexValid = true;
+            }else{
+                isIndexValid = false;
+            }
         }
     }
-
-    private void handleIndexCommand(){
-        String replaceUnallowedCharacters = restPart.replaceAll("[^0-9]", "");
-        if (restPart.equals(replaceUnallowedCharacters)) {
-            setUserIndex();
-            isIndexValid = true;
-        }else{
-            isIndexValid = false;
-        }
-    }
-
-
 
 
     /**
@@ -136,11 +129,11 @@ public class InputReceiver {
     }
 
 
-    public String getRestPart() {
+    String getRestPart() {
         return restPart;
     }
 
-    public void setUserIndex(){
+    private void setUserIndex(){
         try{
             if (restPart != null) {
                 userIndex = Integer.parseInt(restPart);
@@ -148,7 +141,7 @@ public class InputReceiver {
                 userIndex = null;
             }
         }catch (Exception e){
-            OutputManager.createUnallowedCharacterWarning();
+            System.err.println("Unallowed character for index. Please try again.");
         }
 
     }

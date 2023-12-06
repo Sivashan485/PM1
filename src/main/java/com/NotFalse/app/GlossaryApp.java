@@ -27,17 +27,12 @@ public class GlossaryApp {
      */
     public void printGlossary(List<String> text) {
         rebuildGlossary(text);
-        if (glossary.isEmpty()) {
-            OutputManager.createEmptyGlossaryWarning();
-        } else {
-            System.out.println("Glossary:");
-            for (String word : glossary.keySet()) {
-                List<Integer> indexes = glossary.get(word);
-                String indexStream = indexes.stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(", "));
-                System.out.printf("%-10s %s%n", word, indexStream);
-            }
+        for (String word : glossary.keySet()) {
+            List<Integer> indexes = glossary.get(word);
+            String indexStream = indexes.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", "));
+            System.out.printf("%-10s %s%n", word, indexStream);
         }
     }
 
@@ -58,7 +53,7 @@ public class GlossaryApp {
      * @param text          text to be mapped
      * @param wordFrequency a map with the frequency of each word
      */
-    void insertGlossaryEntries(List<String> text, Map<String, Integer> wordFrequency) {
+    private void insertGlossaryEntries(List<String> text, Map<String, Integer> wordFrequency) {
         for (String word : wordFrequency.keySet()) {
             glossary.put(word.trim(), searchWordInParagraphs(text, word));
         }
@@ -78,11 +73,7 @@ public class GlossaryApp {
             String[] words = cleanedParagraph.split("\\s+");
             for (String word : words) {
                 if (startWithUpperCase(word.trim())) {
-                    if (!wordFrequency.containsKey(word)) {
-                        wordFrequency.put(word, 0);
-                    }
-                    int counter = wordFrequency.get(word);
-                    wordFrequency.put(word, ++counter);
+                    wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
                 }
             }
         }
@@ -129,7 +120,6 @@ public class GlossaryApp {
                 indexes.add(i + 1);
             }
         }
-        // sorts the indexes
         Collections.sort(indexes);
         return indexes;
     }
@@ -139,8 +129,12 @@ public class GlossaryApp {
      *
      * @return returns the Glossary Map
      */
-    TreeMap<String, List<Integer>> getGlossary() {
+    public SortedMap<String, List<Integer>> getGlossary() {
         return glossary;
+    }
+
+    public boolean isGlossaryEmpty(){
+        return glossary.isEmpty();
     }
 
 

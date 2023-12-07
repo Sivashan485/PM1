@@ -1,7 +1,10 @@
 package com.texteditor.app;
 
 /**
- * Main class for the TextEditor application.
+ * The TextEditor class encapsulates the main functionality of a text editing
+ * application. It manages user input, text processing, and output display.
+ * The class facilitates adding, deleting, replacing, formatting and printing
+ * text, as well as managing a glossary of terms within the text.
  */
 public class TextEditor {
 

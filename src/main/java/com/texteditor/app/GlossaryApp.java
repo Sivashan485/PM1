@@ -3,13 +3,10 @@ package com.texteditor.app;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * This class is responsible for managing a glossary of words and their
- * occurrences in text.
- * The glossary is a TreeMap, which contains words as keys and the indexes
- * of the paragraphs containing the word as values. The glossary is rebuilt and
- * printed
- * each time the printGlossary method is called with a new list of words.
+ /**
+ * The GlossaryApp class manages a glossary of words, mapping them to their
+ * occurrences in a given text. The class provides methods to build and
+ * retrieve a glossary from a list of words, and to perform related operations.
  */
 public class GlossaryApp {
 

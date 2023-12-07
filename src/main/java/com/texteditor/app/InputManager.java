@@ -3,7 +3,10 @@ package com.texteditor.app;
 import java.util.Scanner;
 
 /**
- * Class for receiving user input and filtering the input with a regex.
+ * The InputReceiver class is responsible for handling and processing user inputs.
+ * It filters, parses, and extracts relevant parts of the user input such as
+ * commands, indexes, and other arguments. The class ensures the input is valid
+ * and conforms to the expected format for further processing.
  */
 public class InputManager {
 

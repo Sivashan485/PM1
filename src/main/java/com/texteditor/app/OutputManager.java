@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.logging.*;
 
 /**
- * Class for managing the output of the TextEditor application.
+ * Manages output operations such as logging and printing messages
+ * to both console and log files. This class provides various
+ * methods to create and display different types of messages, including
+ * informational, warning, and error messages.
  */
 public class OutputManager {
 

@@ -101,4 +101,30 @@ class GlossaryAppTest {
     void testFilterParagraphEmptyString() {
         assertEquals("", glossaryApp.filterParagraph(""));
     }
+
+    @Test
+    void testStartWithUpperCase() {
+        assertTrue(glossaryApp.startWithUpperCase("Hello"));
+        assertFalse(glossaryApp.startWithUpperCase("hello"));
+        assertFalse(glossaryApp.startWithUpperCase("1Hello"));
+        assertFalse(glossaryApp.startWithUpperCase(""));
+    }
+
+    @Test
+    void testIsGlossaryEmpty() {
+        assertTrue(glossaryApp.isGlossaryEmpty());
+
+        List<String> text = Arrays.asList("Hello World", "Hello Again");
+        glossaryApp.rebuildGlossary(text);
+
+        assertFalse(glossaryApp.isGlossaryEmpty());
+    }
+
+    @Test
+    void testPrintGlossary() {
+        List<String> text = Arrays.asList("Hello World", "Hello Again");
+        glossaryApp.printGlossary(text);
+
+        assertFalse(glossaryApp.isGlossaryEmpty());
+    }
 }

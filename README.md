@@ -161,8 +161,23 @@ We appreciate your understanding and will do our best to assist you with any pro
 
 Thank you for choosing our texteditor created by **!False**, and we hope you enjoy your experience!
 
+## Dealing with non-permitted symbols
 
- 
- 
- 
+```bash
+——————————————————————————————————————————————————————————————————————————————————————
+add _
+Enter a Text you want to add:
+Text
+➤ STATUS: Text added successfully
+——————————————————————————————————————————————————————————————————————————————————————
+```
+```bash
+——————————————————————————————————————————————————————————————————————————————————————
+add 1
+Enter a Text you want to add:
+_T_e_x_t_
+Disallowed characters have been removed.
+➤ STATUS: Text added successfully
+——————————————————————————————————————————————————————————————————————————————————————
+ ```
 ##### *Disclaimer: "IntelliJ IDEA" is a trademark of JetBrains s.r.o., which is not affiliated with the developers of this game. This readme is provided for informational purposes only and does not imply any endorsement or sponsorship by JetBrains s.r.o.*

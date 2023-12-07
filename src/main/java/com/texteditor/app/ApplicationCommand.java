@@ -25,8 +25,8 @@ public enum ApplicationCommand {
     /**
      * Constructor for the enum class.
      *
-     * @param command asdfiji
-     * @param commandHasIndex sodfij
+     * @param command
+     * @param commandHasIndex
      */
     ApplicationCommand(String command, boolean commandHasIndex) {
         this.command = command;
@@ -49,9 +49,9 @@ public enum ApplicationCommand {
     }
 
     /**
-     * Gets all commands as a concatenation of Strings.
+     * Gets all commands as a concatenation of a String.
      *
-     * @return all commands as Strings
+     * @return all commands as a String
      */
     public static String getAllCommands() {
         StringBuilder sb = new StringBuilder();
@@ -75,9 +75,9 @@ public enum ApplicationCommand {
     }
 
     /**
-     * Getter for the index.
+     * Getter for the commandHasIndex, as a boolean.
      *
-     * @return index
+     * @return commandHasIndex
      */
     public boolean getCommandHasIndex() {
         return commandHasIndex;

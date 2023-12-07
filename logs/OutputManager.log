@@ -2,49 +2,59 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-07T17:36:44.046644Z</date>
-  <millis>1701970604046</millis>
-  <nanos>644000</nanos>
-  <sequence>0</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>
- █   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀
- █   █ █   █   █   █  █ █▀▄▀█ █
- █   █ █▀▀ █   █   █  █ █ ▀ █ █▀▀
- █▄█▄█ █   █   █   █  █ █   █ █
-  ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀
- ...to the TextEditor
- created by NotFalse...
- 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈
-
- Available Functions              
-——————————————————————————————————————————————————————————————————————————————————————
-
- ☒ add[i]         ☒ dummy[i]          ☒ del[i]     ☒ replace[i]    ☒ index    
- ☒ format raw     ☒ format fix&lt;b&gt;     ☒ print      ☒ help          ☒ exit                
-</message>
-</record>
-<record>
-  <date>2023-12-07T17:36:46.372092Z</date>
-  <millis>1701970606372</millis>
-  <nanos>92000</nanos>
+  <date>2023-12-07T18:29:59.774499Z</date>
+  <millis>1701973799774</millis>
+  <nanos>499000</nanos>
   <sequence>1</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
+  <level>WARNING</level>
   <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
+  <method>logAndPrintWarningMessage</method>
   <thread>1</thread>
-  <message>Enter a Text you want to add:</message>
+  <message>Invalid index! Please try again.</message>
 </record>
 <record>
-  <date>2023-12-07T17:36:47.560146Z</date>
-  <millis>1701970607560</millis>
-  <nanos>146000</nanos>
+  <date>2023-12-07T18:29:59.775522Z</date>
+  <millis>1701973799775</millis>
+  <nanos>522000</nanos>
   <sequence>2</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Invalid index! Please try again.</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.776587Z</date>
+  <millis>1701973799776</millis>
+  <nanos>587000</nanos>
+  <sequence>3</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Your TextEditor is empty.
+You can add a new paragraph, by calling the add function.</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.776736Z</date>
+  <millis>1701973799776</millis>
+  <nanos>736000</nanos>
+  <sequence>4</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Invalid index! Please try again.</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.776865Z</date>
+  <millis>1701973799776</millis>
+  <nanos>865000</nanos>
+  <sequence>5</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.texteditor.app.OutputManager</class>
@@ -52,3 +62,89 @@
   <thread>1</thread>
   <message>➤ STATUS: Text added successfully</message>
 </record>
+<record>
+  <date>2023-12-07T18:29:59.777114Z</date>
+  <millis>1701973799777</millis>
+  <nanos>114000</nanos>
+  <sequence>6</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Your TextEditor is empty.
+You can add a new paragraph, by calling the add function.</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.778391Z</date>
+  <millis>1701973799778</millis>
+  <nanos>391000</nanos>
+  <sequence>7</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Invalid index! Please try again.</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.778692Z</date>
+  <millis>1701973799778</millis>
+  <nanos>692000</nanos>
+  <sequence>8</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Invalid index! Please try again.</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.779656Z</date>
+  <millis>1701973799779</millis>
+  <nanos>656000</nanos>
+  <sequence>9</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Your glossary is empty.</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.779867Z</date>
+  <millis>1701973799779</millis>
+  <nanos>867000</nanos>
+  <sequence>10</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Invalid index! Please try again.</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.780051Z</date>
+  <millis>1701973799780</millis>
+  <nanos>51000</nanos>
+  <sequence>11</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>➤ STATUS: Text added successfully</message>
+</record>
+<record>
+  <date>2023-12-07T18:29:59.780317Z</date>
+  <millis>1701973799780</millis>
+  <nanos>317000</nanos>
+  <sequence>12</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Your glossary is empty.</message>
+</record>
+</log>

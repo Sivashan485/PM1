@@ -5,7 +5,7 @@ package com.texteditor.app;
  */
 public class TextEditor {
 
-    private final InputReceiver input;
+    private final InputManager input;
     private final TextManager textManager;
     private final OutputManager output;
     private final GlossaryApp glossary;
@@ -19,7 +19,7 @@ public class TextEditor {
         textManager = new TextManager();
         glossary = new GlossaryApp();
         output = new OutputManager();
-        input = new InputReceiver();
+        input = new InputManager();
         isExitTriggered = false;
     }
 
@@ -166,7 +166,7 @@ public class TextEditor {
      *
      * @return Returns true if the text is not empty, false otherwise.
      */
-    private boolean isTextNotEmpty() {
+    boolean isTextNotEmpty() {
         if (textManager.isTextEmpty()) {
             output.createEmptyTextWarning();
             return false;
@@ -180,7 +180,7 @@ public class TextEditor {
      *
      * @return Returns true if the glossary is not empty, false otherwise.
      */
-    private boolean isGlossaryEmpty() {
+    boolean isGlossaryEmpty() {
         glossary.rebuildGlossary(textManager.getText());
         if (glossary.isGlossaryEmpty()) {
             output.createEmptyGlossaryWarning();
@@ -196,7 +196,7 @@ public class TextEditor {
      * @param paragraphIndex The paragraph index to replace the word in.
      * @param isIndexNull    A boolean indicating whether the index is null or not.
      */
-    private void executeReplaceFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
+    void executeReplaceFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if(isTextNotEmpty() && isParagraphIndexValid(paragraphIndex, false)){
             OutputManager.logAndPrintInfoMessage("Replacing Section: ");
             String originalSection = input.readAndFilterUserInput();
@@ -221,7 +221,7 @@ public class TextEditor {
      * @param paragraphIndex The paragraph index to add the new paragraph to.
      * @param isIndexNull    A boolean indicating whether the index is null or not.
      */
-    private void executeAddFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
+    void executeAddFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if(isParagraphIndexValid(paragraphIndex, true)){
             OutputManager.logAndPrintInfoMessage("Enter a Text you want to add:");
             String enteredText = input.readAndFilterUserInput();
@@ -239,7 +239,7 @@ public class TextEditor {
      * @param paragraphIndex The paragraph index to delete.
      * @param isIndexNull    A boolean indicating whether the index is null or not.
      */
-    private void executeDeleteFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
+    void executeDeleteFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if (isTextNotEmpty() && (isParagraphIndexValid(paragraphIndex, false))) {
             isExecutionSuccessful = textManager.deleteParagraph(isIndexNull, paragraphIndex);
         }
@@ -254,7 +254,7 @@ public class TextEditor {
      * @param paragraphIndex The paragraph index to add the dummy paragraph to.
      * @param isIndexNull    A boolean indicating whether the index is null or not.
      */
-    private void executeDummyFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
+    void executeDummyFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if (isParagraphIndexValid(paragraphIndex, true)) {
             isExecutionSuccessful = textManager.addDummyParagraph(isIndexNull, paragraphIndex);
         }
@@ -265,7 +265,7 @@ public class TextEditor {
      * Prints the text.
      * Displays a warning message if the text is empty.
      */
-    private void executePrintFunction() {
+    void executePrintFunction() {
         if (isTextNotEmpty()) {
             textManager.printText();
         }
@@ -275,7 +275,7 @@ public class TextEditor {
      * Prints the glossary.
      * Displays a warning message if the glossary is empty.
      */
-    private void executeIndexFunction() {
+    void executeIndexFunction() {
         if(!isGlossaryEmpty()){
             OutputManager.logAndPrintInfoMessage("Glossary:");
             glossary.printGlossary(textManager.getText());
@@ -288,7 +288,7 @@ public class TextEditor {
      *
      * @param maxWidth     The maximum width to format the text to.
      */
-    private void executeFormatFixFunction(Integer maxWidth,boolean isExecutionSuccessful){
+    void executeFormatFixFunction(Integer maxWidth,boolean isExecutionSuccessful){
         if(isTextNotEmpty() && isMaxWidthValid(maxWidth)) {
                 textManager.setIsFormatterRaw(false);
                 textManager.setMaxWidth(maxWidth);
@@ -301,7 +301,7 @@ public class TextEditor {
      * Formats the text using the raw formatter.
      * @param isExecutionSuccessful A boolean indicating whether the execution was successful or not.
      */
-    private void executeFormatRawFunction(boolean isExecutionSuccessful){
+    void executeFormatRawFunction(boolean isExecutionSuccessful){
         if(isTextNotEmpty()){
             textManager.setIsFormatterRaw(true);
             isExecutionSuccessful = textManager.formatTextRaw();

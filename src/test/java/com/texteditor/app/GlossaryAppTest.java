@@ -1,16 +1,11 @@
 package com.texteditor.app;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class GlossaryAppTest {
 
@@ -25,16 +20,9 @@ class GlossaryAppTest {
     void testRebuildGlossary() {
         List<String> text = Arrays.asList("Another Another Text Text Text.", "Another Text Text.", "More Text here.");
 
-        // Initial glossary is empty
         assertTrue(glossaryApp.getGlossary().isEmpty());
-
-        // Rebuild glossary with the given text
         glossaryApp.rebuildGlossary(text);
-
-        // Check if the glossary is not empty after rebuilding
         assertFalse(glossaryApp.getGlossary().isEmpty());
-
-        // Check if the glossary contains the expected entries
         TreeMap<String, List<Integer>> expectedGlossary = new TreeMap<>();
         expectedGlossary.put("Text", Arrays.asList(1, 2, 3));
         expectedGlossary.put("Another", Arrays.asList(1, 2));
@@ -45,12 +33,9 @@ class GlossaryAppTest {
     void testComputeWordFrequency() {
         List<String> text = Arrays.asList("This is a test Test.", "Test Test for the glossary App App App.",
                 "Text Text Text Text Text Text.");
-
-        // Compute the word frequency
         Map<String, Integer> wordFrequency = glossaryApp.computeWordFrequency(text);
-
-        // Check if the word frequency is as expected
         TreeMap<String, Integer> expectedWordFrequency = new TreeMap<>();
+
         expectedWordFrequency.put("Test", 3);
         expectedWordFrequency.put("App", 3);
         expectedWordFrequency.put("Text", 6);
@@ -117,14 +102,81 @@ class GlossaryAppTest {
         List<String> text = Arrays.asList("Hello World", "Hello Again");
         glossaryApp.rebuildGlossary(text);
 
-        assertFalse(glossaryApp.isGlossaryEmpty());
+        assertTrue(glossaryApp.isGlossaryEmpty());
     }
 
     @Test
     void testPrintGlossary() {
-        List<String> text = Arrays.asList("Hello World", "Hello Again");
+        List<String> text = Arrays.asList("Hello World", "Hello Again","Hello Hello Hello");
         glossaryApp.printGlossary(text);
 
         assertFalse(glossaryApp.isGlossaryEmpty());
     }
+
+    @Test
+    void testComputeWordFrequencyWithMultipleOccurrences() {
+        GlossaryApp glossaryApp = new GlossaryApp();
+        List<String> text = Arrays.asList("Hello Hello Hello", "Hello Again", "Hello Hello Hello");
+        Map<String, Integer> wordFrequency = glossaryApp.computeWordFrequency(text);
+        assertEquals(7, wordFrequency.get("Hello"));
+    }
+
+    @Test
+    void testComputeWordFrequencyWithSingleOccurrence() {
+        GlossaryApp glossaryApp = new GlossaryApp();
+        List<String> text = Arrays.asList("Hello World", "Hello Again");
+        Map<String, Integer> wordFrequency = glossaryApp.computeWordFrequency(text);
+        assertNull(wordFrequency.get("World"));
+    }
+
+    @Test
+    void testComputeWordFrequencyWithNoOccurrences() {
+        GlossaryApp glossaryApp = new GlossaryApp();
+        List<String> text = Arrays.asList("Hello World", "Hello Again");
+        Map<String, Integer> wordFrequency = glossaryApp.computeWordFrequency(text);
+        assertNull(wordFrequency.get("Test"));
+    }
+
+    @Test
+    void testComputeWordFrequencyWithEmptyList() {
+        GlossaryApp glossaryApp = new GlossaryApp();
+        List<String> text = new ArrayList<>();
+        Map<String, Integer> wordFrequency = glossaryApp.computeWordFrequency(text);
+        assertTrue(wordFrequency.isEmpty());
+    }
+
+
+    @Test
+    void testFilterParagraphWithSpecialCharacters() {
+        GlossaryApp glossaryApp = new GlossaryApp();
+        String paragraph = "Hello, World!";
+        String filteredParagraph = glossaryApp.filterParagraph(paragraph);
+        assertEquals("Hello World", filteredParagraph);
+    }
+
+    @Test
+    void testFilterParagraphWithNumbers() {
+        GlossaryApp glossaryApp = new GlossaryApp();
+        String paragraph = "Hello123 World456";
+        String filteredParagraph = glossaryApp.filterParagraph(paragraph);
+        assertEquals("Hello World", filteredParagraph);
+    }
+
+    @Test
+    void testFilterParagraphWithEmptyString() {
+        GlossaryApp glossaryApp = new GlossaryApp();
+        String paragraph = "";
+        String filteredParagraph = glossaryApp.filterParagraph(paragraph);
+        assertEquals("", filteredParagraph);
+    }
+
+    @Test
+    void testFilterParagraphWithSpacesOnly() {
+        GlossaryApp glossaryApp = new GlossaryApp();
+        String paragraph = "     ";
+        String filteredParagraph = glossaryApp.filterParagraph(paragraph);
+        assertEquals("     ", filteredParagraph);
+    }
+
+
 }

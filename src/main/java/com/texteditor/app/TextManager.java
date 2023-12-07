@@ -294,6 +294,10 @@ public class TextManager {
         this.isFormatterRaw = isFormatterRaw;
     }
 
+    boolean getIsFormatterRaw() {
+        return this.isFormatterRaw;
+    }
+
     /**
      * Setter for the formatted text. It is used for testing.
      *
@@ -303,4 +307,6 @@ public class TextManager {
         this.formattedText = formattedText;
     }
 
+
 }
+

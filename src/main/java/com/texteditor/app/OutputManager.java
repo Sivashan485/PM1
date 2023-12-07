@@ -46,8 +46,7 @@ public class OutputManager {
     }
 
     /**
-     * Creates a log entry of level WARNING with th
-     * e given logText.
+     * Creates a log entry of level WARNING with the given logText.
      *
      * @param logText logText to be displayed of level WARNING
      */
@@ -90,7 +89,6 @@ public class OutputManager {
                 " `\"Ybbd8\"' 8P'     `Y8 88   \"Y888 \n\n\n" +
                 "Thank you for using TextEditor created by NotFalse.\uD83D\uDE2D\uD83D\uDE2D\uD83D\uDE2D\n" +
                 "_____________________________________________________________________________________\n");
-
     }
 
     /**
@@ -158,7 +156,8 @@ public class OutputManager {
      * Creates a log message for an invalid command.
      */
     void createInvalidCommandMessage() {
-        logAndPrintWarningMessage("Invalid command! If you don't know which commands you can us, call the help function.");
+        logAndPrintWarningMessage(
+                "Invalid command! If you don't know which commands you can us, call the help function.");
     }
 
     /**
@@ -166,7 +165,6 @@ public class OutputManager {
      */
     void createIndexWarning() {
         logAndPrintWarningMessage("Invalid index! Please try again.");
-
     }
 
     /**
@@ -207,7 +205,7 @@ public class OutputManager {
      * Creates and displays an error message for an invalid glossary scenario.
      * The error message notifies the user that the word they are trying to.
      */
-    void createDisallowedCharacterWarning(){
+    void createDisallowedCharacterWarning() {
         logAndPrintInfoMessage("Disallowed characters have been removed.");
     }
 }

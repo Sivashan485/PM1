@@ -65,16 +65,16 @@ public class TextEditor {
 
         switch (CommandApp.parseCommand(input.getUserCommand())) {
             case ADD:
-                executeAddFunction(paragraphIndex,isIndexNull,isExecutionSuccessful);
+                executeAddFunction(paragraphIndex, isIndexNull, isExecutionSuccessful);
                 break;
             case DUMMY:
                 executeDummyFunction(paragraphIndex, isIndexNull, isExecutionSuccessful);
                 break;
             case DEL:
-                executeDeleteFunction(paragraphIndex, isIndexNull,isExecutionSuccessful);
+                executeDeleteFunction(paragraphIndex, isIndexNull, isExecutionSuccessful);
                 break;
             case REPLACE:
-                executeReplaceFunction(paragraphIndex,isIndexNull,isExecutionSuccessful);
+                executeReplaceFunction(paragraphIndex, isIndexNull, isExecutionSuccessful);
                 break;
             case INDEX:
                 executeIndexFunction();
@@ -83,7 +83,7 @@ public class TextEditor {
                 executeFormatRawFunction(isExecutionSuccessful);
                 break;
             case FORMAT_FIX:
-                executeFormatFixFunction(maxWidth,isExecutionSuccessful);
+                executeFormatFixFunction(maxWidth, isExecutionSuccessful);
                 break;
             case PRINT:
                 executePrintFunction();
@@ -104,8 +104,8 @@ public class TextEditor {
     /**
      * Validates the maximum width of the text editor.
      *
-     * @param maxWidth     The maximum width to validate. This should be a positive
-     *                     integer and less than or equal to MAX_WIDTH.
+     * @param maxWidth The maximum width to validate. This should be a positive
+     *                 integer and less than or equal to MAX_WIDTH.
      * @return Returns true if the maximum width and index are valid, false
      *         otherwise.
      */
@@ -115,7 +115,7 @@ public class TextEditor {
             output.createInvalidMaxWidthWarning();
             return false;
         }
-        if(!isWidthValid || maxWidth <= 0){
+        if (!isWidthValid || maxWidth <= 0) {
             output.createIndexWarning();
             return false;
         }
@@ -154,8 +154,15 @@ public class TextEditor {
         return true;
     }
 
-    void validateCharacters(boolean isCharacterValid){
-        if(!isCharacterValid){
+    /**
+     * Validates the characters in the text.
+     * Displays a warning message if the characters are invalid.
+     *
+     * @param isCharacterValid A boolean indicating whether the characters are valid
+     *                         or not.
+     */
+    void validateCharacters(boolean isCharacterValid) {
+        if (!isCharacterValid) {
             output.createDisallowedCharacterWarning();
         }
     }
@@ -193,18 +200,22 @@ public class TextEditor {
      * Replaces a word in the text.
      * Displays a warning message if the word is not found and returns false.
      *
-     * @param paragraphIndex The paragraph index to replace the word in.
-     * @param isIndexNull    A boolean indicating whether the index is null or not.
+     * @param paragraphIndex        The paragraph index to replace the word in.
+     * @param isIndexNull           A boolean indicating whether the index is null
+     *                              or not.
+     * @param isExecutionSuccessful A boolean indicating whether the execution was
+     *                              successful or not.
      */
     private void executeReplaceFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
-        if(isTextNotEmpty() && isParagraphIndexValid(paragraphIndex, false)){
+        if (isTextNotEmpty() && isParagraphIndexValid(paragraphIndex, false)) {
             OutputManager.logAndPrintInfoMessage("Replacing Section: ");
             String originalSection = input.readAndFilterUserInput();
             if (textManager.containsWord(originalSection, paragraphIndex)) {
                 OutputManager.logAndPrintInfoMessage("Replacing with: ");
                 String replacingText = input.readAndFilterUserInput();
                 validateCharacters(input.getIsCharacterValid());
-                isExecutionSuccessful =  textManager.replaceParagraphSection(isIndexNull, originalSection, replacingText, paragraphIndex);
+                isExecutionSuccessful = textManager.replaceParagraphSection(isIndexNull, originalSection, replacingText,
+                        paragraphIndex);
             } else {
                 output.createInvalidSectionWarning();
             }
@@ -212,32 +223,39 @@ public class TextEditor {
         output.createReplaceMessage(isExecutionSuccessful);
     }
 
-
     /**
      * Adds a new paragraph to the text.
-     * Displays a warning message if the paragraph index is out of bounds and returns
+     * Displays a warning message if the paragraph index is out of bounds and
+     * returns
      * false.
      *
-     * @param paragraphIndex The paragraph index to add the new paragraph to.
-     * @param isIndexNull    A boolean indicating whether the index is null or not.
+     * @param paragraphIndex        The paragraph index to add the new paragraph to.
+     * @param isIndexNull           A boolean indicating whether the index is null
+     *                              or not.
+     * @param isExecutionSuccessful A boolean indicating whether the execution was
+     *                              successful or not.
      */
     private void executeAddFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
-        if(isParagraphIndexValid(paragraphIndex, true)){
+        if (isParagraphIndexValid(paragraphIndex, true)) {
             OutputManager.logAndPrintInfoMessage("Enter a Text you want to add:");
             String enteredText = input.readAndFilterUserInput();
             validateCharacters(input.getIsCharacterValid());
-            isExecutionSuccessful =textManager.addNewParagraph(isIndexNull, enteredText, paragraphIndex);
+            isExecutionSuccessful = textManager.addNewParagraph(isIndexNull, enteredText, paragraphIndex);
         }
         output.createAddMessage(isExecutionSuccessful);
     }
 
     /**
      * Deletes a paragraph from the text.
-     * Displays a warning message if the paragraph index is out of bounds and returns
+     * Displays a warning message if the paragraph index is out of bounds and
+     * returns
      * false.
      *
-     * @param paragraphIndex The paragraph index to delete.
-     * @param isIndexNull    A boolean indicating whether the index is null or not.
+     * @param paragraphIndex        The paragraph index to delete.
+     * @param isIndexNull           A boolean indicating whether the index is null
+     *                              or not.
+     * @param isExecutionSuccessful A boolean indicating whether the execution was
+     *                              successful or not.
      */
     private void executeDeleteFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if (isTextNotEmpty() && (isParagraphIndexValid(paragraphIndex, false))) {
@@ -248,11 +266,16 @@ public class TextEditor {
 
     /**
      * Adds a dummy paragraph to the text.
-     * Displays a warning message if the paragraph index is out of bounds and returns
+     * Displays a warning message if the paragraph index is out of bounds and
+     * returns
      * false.
      *
-     * @param paragraphIndex The paragraph index to add the dummy paragraph to.
-     * @param isIndexNull    A boolean indicating whether the index is null or not.
+     * @param paragraphIndex        The paragraph index to add the dummy paragraph
+     *                              to.
+     * @param isIndexNull           A boolean indicating whether the index is null
+     *                              or not.
+     * @param isExecutionSuccessful A boolean indicating whether the execution was
+     *                              successful or not.
      */
     private void executeDummyFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if (isParagraphIndexValid(paragraphIndex, true)) {
@@ -276,7 +299,7 @@ public class TextEditor {
      * Displays a warning message if the glossary is empty.
      */
     private void executeIndexFunction() {
-        if(!isGlossaryEmpty()){
+        if (!isGlossaryEmpty()) {
             OutputManager.logAndPrintInfoMessage("Glossary:");
             glossary.printGlossary(textManager.getText());
         }
@@ -286,23 +309,27 @@ public class TextEditor {
      * Formats the text using the fix formatter.
      * Displays a warning message if the maximum width is invalid.
      *
-     * @param maxWidth     The maximum width to format the text to.
+     * @param maxWidth              The maximum width to format the text to.
+     * @param isExecutionSuccessful A boolean indicating whether the execution was
+     *                              successful or not.
      */
-    private void executeFormatFixFunction(Integer maxWidth,boolean isExecutionSuccessful){
-        if(isTextNotEmpty() && isMaxWidthValid(maxWidth)) {
-                textManager.setIsFormatterRaw(false);
-                textManager.setMaxWidth(maxWidth);
-                isExecutionSuccessful = textManager.formatTextFix();
+    private void executeFormatFixFunction(Integer maxWidth, boolean isExecutionSuccessful) {
+        if (isTextNotEmpty() && isMaxWidthValid(maxWidth)) {
+            textManager.setIsFormatterRaw(false);
+            textManager.setMaxWidth(maxWidth);
+            isExecutionSuccessful = textManager.formatTextFix();
         }
         output.createFormatMessage(isExecutionSuccessful);
     }
 
     /**
      * Formats the text using the raw formatter.
-     * @param isExecutionSuccessful A boolean indicating whether the execution was successful or not.
+     * 
+     * @param isExecutionSuccessful A boolean indicating whether the execution was
+     *                              successful or not.
      */
-    private void executeFormatRawFunction(boolean isExecutionSuccessful){
-        if(isTextNotEmpty()){
+    private void executeFormatRawFunction(boolean isExecutionSuccessful) {
+        if (isTextNotEmpty()) {
             textManager.setIsFormatterRaw(true);
             isExecutionSuccessful = textManager.formatTextRaw();
         }

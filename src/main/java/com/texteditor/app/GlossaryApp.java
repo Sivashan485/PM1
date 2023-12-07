@@ -10,13 +10,15 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
- * This class is responsible for managing a glossary of words and their occurrences in text.
+ * This class is responsible for managing a glossary of words and their
+ * occurrences in text.
  * The glossary is a TreeMap, which contains words as keys and the indexes
- * of the paragraphs containing the word as values. The glossary is rebuilt and printed
+ * of the paragraphs containing the word as values. The glossary is rebuilt and
+ * printed
  * each time the printGlossary method is called with a new list of words.
  */
 public class GlossaryApp {
-    
+
     private final TreeMap<String, List<Integer>> glossary;
 
     /**
@@ -91,10 +93,9 @@ public class GlossaryApp {
      * Checks if the given word starts with an uppercase letter.
      *
      * @param word The word to be checked.
-     * @return {@code true} if the word starts with an uppercase letter,
-     *         {@code false} otherwise.
+     * @return true if the word starts with an uppercase letter, false otherwise.
      */
-     boolean startWithUpperCase(String word) {
+    boolean startWithUpperCase(String word) {
         word = word.trim();
         if (word.isEmpty()) {
             return false;
@@ -146,10 +147,9 @@ public class GlossaryApp {
     /**
      * Check if the glossary is empty.
      *
-     * @return {@code true} if the glossary is empty, {@code false} otherwise.
+     * @return true if the glossary is empty, false otherwise.
      */
     boolean isGlossaryEmpty() {
         return glossary.isEmpty();
     }
-
 }

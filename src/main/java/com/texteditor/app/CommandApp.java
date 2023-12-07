@@ -7,7 +7,6 @@ package com.texteditor.app;
  * a method to get all commands, and a method to get the command as a String.
  */
 public enum CommandApp {
-    
 
     ADD("add", true),
     DUMMY("dummy", true),
@@ -27,7 +26,7 @@ public enum CommandApp {
     /**
      * Constructor for the enum class.
      *
-     * @param command        command as a String
+     * @param command         command as a String
      * @param commandHasIndex commandHasIndex as a boolean
      */
     CommandApp(String command, boolean commandHasIndex) {

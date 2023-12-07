@@ -12,8 +12,7 @@ import java.util.List;
  */
 public class TextManager {
 
-    private static final String DUMMY_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            +
+    private static final String DUMMY_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."+
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " +
             "when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
             " It has survived not only five centuries, but also the leap into electronic typesetting, " +
@@ -26,8 +25,7 @@ public class TextManager {
     boolean isFormatterRaw;
 
     /**
-     * Constructor for the TextManager class. It initializes the input, output,
-     * glossary, text, isExitTriggered and isFormatterRaw variables.
+     * Initializes a new instance of the TextManager class.
      */
     TextManager() {
         text = new ArrayList<>();
@@ -45,11 +43,13 @@ public class TextManager {
     }
 
     /**
-     * Adds a new paragraph to the text based on user input.
-     * If the index is not provided or is invalid, the new paragraph is added at the
-     * end.
-     * If the index is valid, the new paragraph is inserted at the specified
-     * position.
+     * Adds a new paragraph to the specified index. If the index is larger than the
+     * size of the text, the paragraph is added to the end of the text.
+     * 
+     * @param isIndexNull   Indicates if the index is null.
+     * @param enteredText   The text to be added.
+     * @param paragraphIndex The index of the paragraph to be added.
+     * @return true if the addition was successful, false otherwise.
      */
     boolean addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
         if (isIndexNull) {
@@ -62,6 +62,11 @@ public class TextManager {
 
     /**
      * Deletes the paragraph at the specified index.
+     * If the index is not provided or is invalid, the last paragraph is deleted.
+     * 
+     * @param isIndexNull   Indicates if the index is null.
+     * @param paragraphIndex The index of the paragraph to be deleted.
+     * @return true if the deletion was successful, false otherwise.
      */
     boolean deleteParagraph(boolean isIndexNull, Integer paragraphIndex) {
         if (isIndexNull) {
@@ -75,13 +80,14 @@ public class TextManager {
     /**
      * Formats the given ArrayList of Strings into a single String with each element
      * of the ArrayList
-     * preceded by its index in the ArrayList enclosed in angle brackets.
+     * 
+     * @return true if the formatting was successful.
      */
     boolean formatTextRaw() {
         StringBuilder rawText = new StringBuilder();
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
             rawText.append((paragraph + 1)).append(": ").append(text.get(paragraph));
-            if(paragraph < text.size() -1){
+            if (paragraph < text.size() - 1) {
                 rawText.append("\n");
             }
         }

@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-07T17:36:44.046644Z</date>
-  <millis>1701970604046</millis>
-  <nanos>644000</nanos>
+  <date>2023-12-07T18:19:54.776101800Z</date>
+  <millis>1701973194776</millis>
+  <nanos>101800</nanos>
   <sequence>0</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
   <level>INFO</level>
@@ -27,28 +27,4 @@
  ☒ add[i]         ☒ dummy[i]          ☒ del[i]     ☒ replace[i]    ☒ index    
  ☒ format raw     ☒ format fix&lt;b&gt;     ☒ print      ☒ help          ☒ exit                
 </message>
-</record>
-<record>
-  <date>2023-12-07T17:36:46.372092Z</date>
-  <millis>1701970606372</millis>
-  <nanos>92000</nanos>
-  <sequence>1</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>Enter a Text you want to add:</message>
-</record>
-<record>
-  <date>2023-12-07T17:36:47.560146Z</date>
-  <millis>1701970607560</millis>
-  <nanos>146000</nanos>
-  <sequence>2</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text added successfully</message>
 </record>

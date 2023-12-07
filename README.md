@@ -183,7 +183,7 @@ Disallowed characters have been removed.
 ➤ STATUS: Text added successfully
 ——————————————————————————————————————————————————————————————————————————————————————
  ```
-### Known issues 
+## Known issues 
 
 When entering an russian text it crashes:
 for example был Ласкйдфсёлдакфьслёкдайфльк.

@@ -62,7 +62,6 @@ public enum ApplicationCommand {
         }
         // Remove the trailing comma and space
         return sb.substring(0, sb.length() - 2);
-
     }
 
     /**
@@ -82,5 +81,4 @@ public enum ApplicationCommand {
     public boolean getCommandHasIndex() {
         return commandHasIndex;
     }
-
 }

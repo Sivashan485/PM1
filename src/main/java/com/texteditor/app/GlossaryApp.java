@@ -1,27 +1,34 @@
 package com.texteditor.app;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
- * This class is responsible for creating the glossary and updating it.
- * The glossary is a TreeMap, which contains the words as keys and the indexes
- * of the paragraphs
- * which contain the word as values.
+ * This class is responsible for managing a glossary of words and their occurrences in text.
+ * The glossary is a TreeMap, which contains words as keys and the indexes
+ * of the paragraphs containing the word as values. The glossary is rebuilt and printed
+ * each time the printGlossary method is called with a new list of words.
  */
 public class GlossaryApp {
-
     private final TreeMap<String, List<Integer>> glossary;
 
     /**
-     * Constructor for GlossaryApp.
+     * Initializes a new instance of the GlossaryApp class.
      */
     public GlossaryApp() {
         glossary = new TreeMap<>();
     }
 
     /**
-     * Prints the glossary.
+     * Rebuilds the glossary with the new text and prints it.
+     * 
+     * @param text The list of words to be included in the glossary.
      */
     public void printGlossary(List<String> text) {
         rebuildGlossary(text);
@@ -37,7 +44,7 @@ public class GlossaryApp {
     /**
      * Rebuilds the glossary with the new text.
      *
-     * @param text new text to be mapped
+     * @param text The new text to be mapped in the glossary.
      */
     void rebuildGlossary(List<String> text) {
         glossary.clear();
@@ -56,7 +63,6 @@ public class GlossaryApp {
             glossary.put(word.trim(), findParagraphIndexes(text, word));
         }
     }
-
 
     /**
      * Calculates the frequency of each word, puts them into the wordFrequency Map
@@ -79,12 +85,12 @@ public class GlossaryApp {
         return wordFrequency;
     }
 
-
     /**
      * Checks if the given word starts with an uppercase letter.
      *
      * @param word The word to be checked.
-     * @return {@code true} if the word starts with an uppercase letter, {@code false} otherwise.
+     * @return {@code true} if the word starts with an uppercase letter,
+     *         {@code false} otherwise.
      */
     private boolean startWithUpperCase(String word) {
         word = word.trim();
@@ -94,17 +100,17 @@ public class GlossaryApp {
         return Character.isUpperCase(word.charAt(0));
     }
 
-
     /**
-     * Filters the given paragraph by removing all characters that are not letters (A-Z or a-z) or spaces.
+     * Filters the given paragraph by removing all characters that are not letters
+     * (A-Z or a-z) or spaces.
      *
      * @param paragraph The input paragraph to be filtered.
-     * @return A new string containing only letters and spaces from the original paragraph.
+     * @return A new string containing only letters and spaces from the original
+     *         paragraph.
      */
     String filterParagraph(String paragraph) {
         return paragraph.replaceAll("[^A-Za-z ]", "");
     }
-
 
     /**
      * Finds the indexes of the paragraphs which contain the word and returns them
@@ -113,7 +119,7 @@ public class GlossaryApp {
      * @param text text to be mapped
      * @param word word to be searched
      * @return returns a sorted ArrayList of the indexes of the paragraphs which
-     * contain the word
+     *         contain the word
      */
     List<Integer> findParagraphIndexes(List<String> text, String word) {
         List<Integer> indexes = new ArrayList<>();
@@ -135,9 +141,8 @@ public class GlossaryApp {
         return glossary;
     }
 
-    public boolean isGlossaryEmpty(){
+    public boolean isGlossaryEmpty() {
         return glossary.isEmpty();
     }
-
 
 }

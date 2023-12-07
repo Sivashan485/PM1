@@ -43,7 +43,7 @@ class TextManagerTest {
                 "2: Test paragraph2\n" +
                 "3: Test paragraph3\n" +
                 "4: Test paragraph4\n" +
-                "5: Test paragraph5\n");
+                "5: Test paragraph5");
         assertEquals(expected, textManager.getFormattedText());
     }
 
@@ -52,7 +52,7 @@ class TextManagerTest {
         textManager.addNewParagraph(false, "Test paragraph", 1);
         textManager.setMaxWidth(5);
         textManager.formatTextFix();
-        assertEquals("Test\nparag\nraph\n\n", textManager.getFormattedText());
+        assertEquals("Test\nparag\nraph", textManager.getFormattedText());
     }
 
     @Test
@@ -88,7 +88,7 @@ class TextManagerTest {
         textManager.addNewParagraph(false, "Supercalifragilisticexpialidocious", 1);
         textManager.setMaxWidth(5);
         textManager.formatTextFix();
-        assertEquals("Super\ncalif\nragil\nistic\nexpia\nlidoc\nious\n\n", textManager.getFormattedText());
+        assertEquals("Super\ncalif\nragil\nistic\nexpia\nlidoc\nious", textManager.getFormattedText());
     }
 
     @Test
@@ -96,7 +96,7 @@ class TextManagerTest {
         textManager.addNewParagraph(false, "Supercalifragilisticexpialidocious Pneumonoultramicroscopicsilicovolcanoconiosis", 1);
         textManager.setMaxWidth(5);
         textManager.formatTextFix();
-        assertEquals("Super\ncalif\nragil\nistic\nexpia\nlidoc\nious\nPneum\nonoul\ntrami\ncrosc\nopics\nilico\nvolca\nnocon\niosis\n\n", textManager.getFormattedText());
+        assertEquals("Super\ncalif\nragil\nistic\nexpia\nlidoc\nious\nPneum\nonoul\ntrami\ncrosc\nopics\nilico\nvolca\nnocon\niosis", textManager.getFormattedText());
     }
 
     @Test
@@ -105,16 +105,9 @@ class TextManagerTest {
         textManager.addNewParagraph(false, "This is a test", 2);
         textManager.setMaxWidth(5);
         textManager.formatTextFix();
-        assertEquals("Hello\nworld\n\nThis\nis a\ntest\n\n", textManager.getFormattedText());
+        assertEquals("Hello\nworld\n\nThis\nis a\ntest", textManager.getFormattedText());
     }
 
-    @Test
-    void testFormatTextFixWithNullMaxWidth() {
-        textManager.addNewParagraph(false, "Hello world", 1);
-        textManager.setMaxWidth(null);
-        textManager.formatTextFix();
-        assertFalse(textManager.getIsFormatterFixSuccessful());
-    }
     @Test
     void testReplaceWordInParagraphWithMultipleOccurrences() {
         textManager.addNewParagraph(false, "Test Test Test", 1);

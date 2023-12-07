@@ -1,9 +1,12 @@
 package com.texteditor.app;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class TextManagerTest {
 
@@ -79,6 +82,7 @@ class TextManagerTest {
         textManager.addNewParagraph(false, "Test paragraph", 1);
         assertFalse(textManager.isTextEmpty());
     }
+
     @Test
     void testFormatTextFixWithSingleWordExceedingMaxWidth() {
         textManager.addNewParagraph(false, "Supercalifragilisticexpialidocious", 1);
@@ -153,7 +157,6 @@ class TextManagerTest {
         assertEquals("Test paragraph2", textManager.getText().get(0));
     }
 
-
     @Test
     void testDeleteParagraphWithNullIndex() {
         textManager.addNewParagraph(false, "Test paragraph1", 1);
@@ -161,6 +164,7 @@ class TextManagerTest {
         assertTrue(textManager.deleteParagraph(true, null));
         assertEquals("Test paragraph1", textManager.getText().get(0));
     }
+    
     @Test
     void testAddNewParagraphAtSpecificIndex() {
         textManager.addNewParagraph(false, "Test paragraph1", 1);
@@ -189,5 +193,4 @@ class TextManagerTest {
         assertTrue(textManager.addNewParagraph(false, "Test paragraph1", 1));
         assertEquals("Test paragraph1", textManager.getText().get(0));
     }
-
 }

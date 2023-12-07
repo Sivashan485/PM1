@@ -1,13 +1,11 @@
 package com.texteditor.app;
 
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class InputReceiverTest {
 
@@ -117,7 +115,6 @@ public class InputReceiverTest {
         assertEquals("is to del some text In The Text Editor.", input.getRestPart());
     }
 
-
     @Test
     void testSplitInputShouldHandleEmptyInput() {
         System.setIn(new ByteArrayInputStream("\n".getBytes()));
@@ -127,6 +124,4 @@ public class InputReceiverTest {
         assertNull(input.getUserIndex());
         assertEquals("", input.getRestPart());
     }
-
-
 }

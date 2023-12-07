@@ -161,8 +161,26 @@ We appreciate your understanding and will do our best to assist you with any pro
 
 Thank you for choosing our texteditor created by **!False**, and we hope you enjoy your experience!
 
-
- 
- 
- 
+## Dealing with non-permitted symbols
+### In command selection
+Entering unallowed symbol in the command selection will be permitted. The system will subsequently remove any unallowed symbols. And the user won't be informed.
+```bash
+——————————————————————————————————————————————————————————————————————————————————————
+add _
+Enter a Text you want to add:
+Text
+➤ STATUS: Text added successfully
+——————————————————————————————————————————————————————————————————————————————————————
+```
+### In add or replacement text
+Entering unallowed symbol in the add or replace text field is permitted. The system will remove the unallowed symbol from the text and notify the user that the entered text contained an unallowed word which was replaced with an empty space.
+```bash
+——————————————————————————————————————————————————————————————————————————————————————
+add 1
+Enter a Text you want to add:
+_T_e_x_t_
+Disallowed characters have been removed.
+➤ STATUS: Text added successfully
+——————————————————————————————————————————————————————————————————————————————————————
+ ```
 ##### *Disclaimer: "IntelliJ IDEA" is a trademark of JetBrains s.r.o., which is not affiliated with the developers of this game. This readme is provided for informational purposes only and does not imply any endorsement or sponsorship by JetBrains s.r.o.*

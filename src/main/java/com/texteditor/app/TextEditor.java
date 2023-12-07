@@ -13,8 +13,8 @@ public class TextEditor {
     private boolean isExitTriggered;
 
     /**
-     * This is the constructor for the TextEditor class.
-     * It initializes the input, text manager, output manager, and glossary.
+     * Constructor for the TextEditor class.
+     * Initializes the text manager, glossary, output manager, and input receiver.
      */
     public TextEditor() {
         textManager = new TextManager();
@@ -233,7 +233,6 @@ public class TextEditor {
         OutputManager.logAndPrintInfoMessage("Enter a Text you want to add:");
         String enteredText = input.readAndFilterUserInput();
         return textManager.addNewParagraph(isIndexNull, enteredText, paragraphIndex);
-
     }
 
     /**

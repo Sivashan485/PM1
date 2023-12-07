@@ -1,5 +1,9 @@
 package com.texteditor.app;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,18 +12,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class GlossaryAppTest {
 
     private GlossaryApp glossaryApp;
-
 
     @BeforeEach
     void setUp() {
         glossaryApp = new GlossaryApp();
     }
-
 
     @Test
     void testRebuildGlossary() {
@@ -41,10 +41,10 @@ class GlossaryAppTest {
         assertEquals(expectedGlossary, glossaryApp.getGlossary());
     }
 
-
     @Test
     void testComputeWordFrequency() {
-        List<String> text = Arrays.asList("This is a test Test.", "Test Test for the glossary App App App.", "Text Text Text Text Text Text.");
+        List<String> text = Arrays.asList("This is a test Test.", "Test Test for the glossary App App App.",
+                "Text Text Text Text Text Text.");
 
         // Compute the word frequency
         Map<String, Integer> wordFrequency = glossaryApp.computeWordFrequency(text);
@@ -62,7 +62,6 @@ class GlossaryAppTest {
     void testSearchWordInParagraphs() {
         List<String> text = Arrays.asList("This is a Test", "Test for the glossary app.");
         List<Integer> indexes = glossaryApp.findParagraphIndexes(text, "Test");
-
         assertEquals(Arrays.asList(1, 2), indexes);
     }
 
@@ -78,7 +77,6 @@ class GlossaryAppTest {
         List<String> text = Arrays.asList("This is a Test", "Test Test for the glossary app.");
         List<Integer> testIndexes = glossaryApp.findParagraphIndexes(text, "Test");
         assertEquals(Arrays.asList(1, 2), testIndexes);
-
     }
 
     @Test
@@ -103,6 +101,4 @@ class GlossaryAppTest {
     void testFilterParagraphEmptyString() {
         assertEquals("", glossaryApp.filterParagraph(""));
     }
-
-
 }

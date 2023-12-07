@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
  * each time the printGlossary method is called with a new list of words.
  */
 public class GlossaryApp {
+    
     private final TreeMap<String, List<Integer>> glossary;
 
     /**

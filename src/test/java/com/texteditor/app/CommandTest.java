@@ -1,16 +1,22 @@
 package com.texteditor.app;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class CommandTest {
 
     @Test
     void testParseCommand() {
-        String[] testItems = {"exit", "add", "del", "dummy", "index", "print", "replace", "help", "format raw", "format fix", "unknown"};
-        ApplicationCommand[] resultItems = {ApplicationCommand.EXIT, ApplicationCommand.ADD, ApplicationCommand.DEL, ApplicationCommand.DUMMY, ApplicationCommand.INDEX, ApplicationCommand.PRINT,
-                ApplicationCommand.REPLACE, ApplicationCommand.HELP, ApplicationCommand.FORMAT_RAW, ApplicationCommand.FORMAT_FIX, ApplicationCommand.UNKNOWN};
+        String[] testItems = { "exit", "add", "del", "dummy", "index", "print", "replace", "help", "format raw",
+                "format fix", "unknown" };
+        ApplicationCommand[] resultItems = { ApplicationCommand.EXIT, ApplicationCommand.ADD, ApplicationCommand.DEL,
+                ApplicationCommand.DUMMY, ApplicationCommand.INDEX, ApplicationCommand.PRINT,
+                ApplicationCommand.REPLACE, ApplicationCommand.HELP, ApplicationCommand.FORMAT_RAW,
+                ApplicationCommand.FORMAT_FIX, ApplicationCommand.UNKNOWN };
         for (int i = 0; i < testItems.length; i++) {
             ApplicationCommand result = ApplicationCommand.parseCommand(testItems[i]);
             assertEquals(resultItems[i], result);
@@ -19,12 +25,9 @@ class CommandTest {
 
     @Test
     void testGetAllCommands() {
-
         String expected = "exit, add, del, dummy, index, print, replace, help, format raw, format fix"; // Replace with actual command names
         String actual = ApplicationCommand.getAllCommands();
-
         assertEquals(expected, actual);
-
     }
 
     @Test
@@ -136,5 +139,4 @@ class CommandTest {
         assertNotEquals("formatsufix fixsufix", command.command);
         assertNotEquals("prefixformat prefixfix", command.command);
     }
-
 }

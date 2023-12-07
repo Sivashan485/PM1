@@ -1,25 +1,19 @@
 package com.texteditor.app;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class TextEditorTest {
 
     private TextEditor textEditor;
-    private InputReceiver input;
     private TextManager textManager;
-    private OutputManager output;
-    private GlossaryApp glossary;
 
     @BeforeEach
     void setUp() {
-        input = new InputReceiver();
         textManager = new TextManager();
-        output = new OutputManager();
-        glossary = new GlossaryApp();
         textEditor = new TextEditor();
     }
     @Test
@@ -65,8 +59,4 @@ class TextEditorTest {
         textManager.addNewParagraph(false, "Test paragraph", 1);
         assertFalse(textEditor.validateParagraphIndex(1, textManager.getText().size(), false, false));
     }
-
-
-
-
 }

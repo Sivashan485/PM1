@@ -11,23 +11,23 @@ public class TextEditor {
     private final GlossaryApp glossary;
     private boolean isExitTriggered;
 
-
-
     /**
      * Constructor for the TextEditor class.
+     * Initializes the text manager, glossary, output manager, and input receiver.
      */
     public TextEditor() {
-        input = new InputReceiver();
         textManager = new TextManager();
-        output = new OutputManager();
-        isExitTriggered = false;
         glossary = new GlossaryApp();
+        output = new OutputManager();
+        input = new InputReceiver();
+        isExitTriggered = false;
     }
 
     /**
-     * Main method for the TextEditor application.
+     * This is the main method for the TextEditor application.
+     * It creates an instance of TextEditor and starts the application.
      *
-     * @param args args
+     * @param args The command line arguments.
      */
     public static void main(String[] args) {
         TextEditor textEditor = new TextEditor();
@@ -35,7 +35,8 @@ public class TextEditor {
     }
 
     /**
-     * Runs the TextEditor application.
+     * This method starts and runs the TextEditor application.
+     * It continues running until an exit condition is triggered.
      */
     private void runTextEditor() {
         boolean isRunning;
@@ -48,8 +49,10 @@ public class TextEditor {
 
     /**
      * Processes and executes text editing commands based on user input.
-     * Parses the input, updates the text manager, and performs operations according to the command received.
-     * Displays corresponding messages or triggers actions such as adding, deleting, replacing, formatting, or printing text.
+     * Parses the input, updates the text manager, and performs operations according
+     * to the command received.
+     * Displays corresponding messages or triggers actions such as adding, deleting,
+     * replacing, formatting, or printing text.
      */
     private void editText() {
         System.out.println("_____________________________________________________________________________________");
@@ -62,10 +65,9 @@ public class TextEditor {
         boolean isExecutionSuccessful = false;
         boolean isIndexNull = input.isIndexNull();
 
-
         switch (ApplicationCommand.parseCommand(input.getUserCommand())) {
             case DUMMY:
-                dummy(paragraphIndex,textSize,isIndexValid,isIndexNull);
+                dummy(paragraphIndex, textSize, isIndexValid, isIndexNull);
                 break;
             case EXIT:
                 output.createExitMessage();
@@ -78,7 +80,7 @@ public class TextEditor {
                 output.createAddMessage(isExecutionSuccessful);
                 break;
             case DEL:
-                del(paragraphIndex,textSize,isIndexValid, isIndexNull);
+                del(paragraphIndex, textSize, isIndexValid, isIndexNull);
                 break;
             case INDEX:
                 index();
@@ -107,9 +109,17 @@ public class TextEditor {
         }
     }
 
-
-    boolean validateMaxWidth(Integer maxWidth,boolean isIndexValid){
-        if(maxWidth == null && isIndexValid){
+    /**
+     * Validates the maximum width of the text editor.
+     *
+     * @param maxWidth     The maximum width to validate. This should be a positive
+     *                     integer and less than or equal to MAX_WIDTH.
+     * @param isIndexValid A boolean indicating whether the index is valid or not.
+     * @return Returns true if the maximum width and index are valid, false
+     *         otherwise.
+     */
+    boolean validateMaxWidth(Integer maxWidth, boolean isIndexValid) {
+        if (maxWidth == null && isIndexValid) {
             output.createInvalidMaxWidthWarning();
             return false;
         }
@@ -120,99 +130,168 @@ public class TextEditor {
         return true;
     }
 
-    boolean validateParagraphIndex(Integer paragraphIndex, int textSize,boolean isIndexValid, boolean isAddFunction) {
-        if(paragraphIndex == null && isIndexValid){
+    /**
+     * Validates the paragraph index.
+     * Displays a warning message if the index is out of bounds and returns false.
+     *
+     * @param paragraphIndex The paragraph index to validate. This should be a
+     *                       positive integer and less than or equal to the text
+     *                       size.
+     * @param textSize       The size of the text.
+     * @param isIndexValid   A boolean indicating whether the index is valid or not.
+     * @param isAddFunction  A boolean indicating whether the add function is called
+     *                       or not.
+     * @return Returns true if the index is valid, false otherwise.
+     */
+    boolean validateParagraphIndex(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isAddFunction) {
+        if (paragraphIndex == null && isIndexValid) {
             return true;
         }
-        if(!isIndexValid){
+        if (!isIndexValid) {
             output.createIndexWarning();
             return false;
         }
-        if(isAddFunction && (paragraphIndex <= 0 || paragraphIndex -1 > textSize)) {
-                output.createIndexWarning();
-                return false;
+        if (isAddFunction && (paragraphIndex <= 0 || paragraphIndex - 1 > textSize)) {
+            output.createIndexWarning();
+            return false;
 
         }
-        if(!isAddFunction && (paragraphIndex <= 0 || paragraphIndex -1 > textSize-1)) {
-                output.createIndexWarning();
-                return false;
+        if (!isAddFunction && (paragraphIndex <= 0 || paragraphIndex - 1 > textSize - 1)) {
+            output.createIndexWarning();
+            return false;
         }
         return true;
     }
 
-
     /**
-     * Checks if the provided paragraph index is valid for the current text size.
-     * Displays a warning message if the index is out of bounds and returns false.
+     * Checks if the text is empty.
+     * Displays a warning message if the text is empty and returns false.
      *
-
-     * @return {@code true} if the index is valid; otherwise, {@code false}.
+     * @return Returns true if the text is not empty, false otherwise.
      */
-
-    private boolean isTextNotEmpty(){
-        if(textManager.isTextEmpty()){
+    private boolean isTextNotEmpty() {
+        if (textManager.isTextEmpty()) {
             output.createEmptyTextWarning();
             return false;
         }
         return true;
     }
 
-    private void checkForEmptyGlossary(){
+    /**
+     * Checks if the glossary is empty.
+     * Displays a warning message if the glossary is empty and returns false.
+     *
+     * @return Returns true if the glossary is not empty, false otherwise.
+     */
+    private void checkForEmptyGlossary() {
         glossary.rebuildGlossary(textManager.getText());
-        if(glossary.isGlossaryEmpty()){
+        if (glossary.isGlossaryEmpty()) {
             output.createEmptyGlossaryWarning();
-        }else{
+        } else {
             OutputManager.logAndPrintInfoMessage("Glossary:");
         }
     }
 
-    private boolean replace(Integer paragraphIndex, boolean isIndexNull){
+    /**
+     * Replaces a word in the text.
+     * Displays a warning message if the word is not found and returns false.
+     *
+     * @param paragraphIndex The paragraph index to replace the word in.
+     * @param isIndexNull    A boolean indicating whether the index is null or not.
+     * @return Returns true if the word is found and replaced, false otherwise.
+     */
+    private boolean replace(Integer paragraphIndex, boolean isIndexNull) {
         OutputManager.logAndPrintInfoMessage("Replacing Word: ");
         String originalWord = input.readAndFilterUserInput();
-        if(textManager.containsWord( originalWord,paragraphIndex)){
+        if (textManager.containsWord(originalWord, paragraphIndex)) {
             OutputManager.logAndPrintInfoMessage("Replacing with: ");
             String replacingWord = input.readAndFilterUserInput();
-            return textManager.replaceParagraphSection(isIndexNull,originalWord, replacingWord,paragraphIndex);
-        }else{
+            return textManager.replaceParagraphSection(isIndexNull, originalWord, replacingWord, paragraphIndex);
+        } else {
             output.createInvalidWordWarning();
             return false;
         }
     }
 
-    private boolean add(Integer paragraphIndex, boolean isIndexNull){
+    /**
+     * Adds a new paragraph to the text.
+     * Displays a warning message if the paragraph index is out of bounds and returns
+     * false.
+     *
+     * @param paragraphIndex The paragraph index to add the new paragraph to.
+     * @param isIndexNull    A boolean indicating whether the index is null or not.
+     * @return Returns true if the paragraph index is valid and the paragraph is
+     *         added, false otherwise.
+     */
+    private boolean add(Integer paragraphIndex, boolean isIndexNull) {
         OutputManager.logAndPrintInfoMessage("Enter a Text you want to add:");
         String enteredText = input.readAndFilterUserInput();
-        return textManager.addNewParagraph(isIndexNull,enteredText, paragraphIndex);
-
+        return textManager.addNewParagraph(isIndexNull, enteredText, paragraphIndex);
     }
 
-    private void del(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isIndexNull){
+    /**
+     * Deletes a paragraph from the text.
+     * Displays a warning message if the paragraph index is out of bounds and returns
+     * false.
+     *
+     * @param paragraphIndex The paragraph index to delete.
+     * @param textSize       The size of the text.
+     * @param isIndexValid   A boolean indicating whether the index is valid or not.
+     * @param isIndexNull    A boolean indicating whether the index is null or not.
+     */
+    private void del(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isIndexNull) {
         boolean executionSuccessful = false;
-        if(isTextNotEmpty() && (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false))){
-                executionSuccessful = textManager.deleteParagraph(isIndexNull, paragraphIndex);
+        if (isTextNotEmpty() && (validateParagraphIndex(paragraphIndex, textSize, isIndexValid, false))) {
+            executionSuccessful = textManager.deleteParagraph(isIndexNull, paragraphIndex);
 
         }
         output.createDeleteMessage(executionSuccessful);
     }
-    private void dummy(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isIndexNull){
+
+    /**
+     * Adds a dummy paragraph to the text.
+     * Displays a warning message if the paragraph index is out of bounds and returns
+     * false.
+     *
+     * @param paragraphIndex The paragraph index to add the dummy paragraph to.
+     * @param textSize       The size of the text.
+     * @param isIndexValid   A boolean indicating whether the index is valid or not.
+     * @param isIndexNull    A boolean indicating whether the index is null or not.
+     */
+    private void dummy(Integer paragraphIndex, int textSize, boolean isIndexValid, boolean isIndexNull) {
         boolean executionSuccessful = false;
-        if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid,true)){
+        if (validateParagraphIndex(paragraphIndex, textSize, isIndexValid, true)) {
             executionSuccessful = textManager.addDummyParagraph(isIndexNull, paragraphIndex);
         }
         output.createAddMessage(executionSuccessful);
-
     }
-    private void print(){
-        if(isTextNotEmpty()){
+
+    /**
+     * Prints the text.
+     * Displays a warning message if the text is empty.
+     */
+    private void print() {
+        if (isTextNotEmpty()) {
             textManager.printText();
         }
     }
 
-    private void index(){
+    /**
+     * Prints the glossary.
+     * Displays a warning message if the glossary is empty.
+     */
+    private void index() {
         checkForEmptyGlossary();
         glossary.printGlossary(textManager.getText());
     }
 
+    /**
+     * Formats the text using the fix formatter.
+     * Displays a warning message if the maximum width is invalid.
+     *
+     * @param maxWidth     The maximum width to format the text to.
+     * @param isIndexValid A boolean indicating whether the index is valid or not.
+     */
     private void fixFormatter(Integer maxWidth, boolean isIndexValid){
         if(isTextNotEmpty()){
             if(validateMaxWidth(maxWidth,isIndexValid)){

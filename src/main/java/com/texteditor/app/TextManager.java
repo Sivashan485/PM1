@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * This class is responsible for managing the text. It contains the text, the
- * glossary and the methods for editing the text. It also contains the methods
- * for formatting the text. It is also responsible for the communication with
- * the user.
+ * The TextManager class manages the text for a text editing application.
+ * It provides functionalities for adding, deleting, and replacing text,
+ * as well as formatting it in various ways. It also maintains the raw
+ * and formatted text states.
  */
 public class TextManager {
 

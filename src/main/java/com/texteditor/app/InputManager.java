@@ -46,14 +46,13 @@ public class InputManager {
         resetValues();
         String input = this.userInput.nextLine();
         String[] characters = input.split("");
-        for(String character: characters){
+        for (String character : characters) {
             if (character.matches(DISALLOWED_CHARACTERS)) {
                 isCharacterValid = false;
                 break;
             }
         }
         return input.replaceAll(DISALLOWED_CHARACTERS, "");
-
     }
 
     /**
@@ -120,16 +119,15 @@ public class InputManager {
      */
     private void handleIndexCommand() {
         isIndexValid = true;
-        try{
+        try {
             if (restPart.matches(MAX_INT_VALUE)) {
                 setUserIndex();
             } else {
                 isIndexValid = false;
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             // left empty
         }
-
     }
 
     /**
@@ -152,10 +150,10 @@ public class InputManager {
     }
 
     /**
-     * Checks if the 'restPart' is empty and sets 'indexIsNull' accordingly.
+     * Checks if the userIndex is empty and sets 'indexIsNull' accordingly.
      * Returns the value of 'indexIsNull' after the check.
      *
-     * @return {@code true} if 'restPart' is empty; otherwise, {@code false}.
+     * @return true if userIndex is empty; otherwise false.
      */
     boolean isIndexNull() {
         return userIndex == null;
@@ -191,7 +189,7 @@ public class InputManager {
     /**
      * Retrieves the rest part of the command.
      *
-     * @return The rest part of the command as a string.
+     * @return The restpart of the command as a string.
      */
     String getRestPart() {
         return restPart;
@@ -199,9 +197,10 @@ public class InputManager {
 
     /**
      * Retrieves the validity of the character.
+     * 
      * @return true if the character is valid, false otherwise.
      */
-    boolean getIsCharacterValid(){
+    boolean getIsCharacterValid() {
         return isCharacterValid;
     }
 }

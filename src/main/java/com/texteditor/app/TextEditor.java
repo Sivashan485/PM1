@@ -110,7 +110,7 @@ public class TextEditor {
      * @param maxWidth The maximum width to validate. This should be a positive
      *                 integer and less than or equal to MAX_WIDTH.
      * @return Returns true if the maximum width and index are valid, false
-     * otherwise.
+     *         otherwise.
      */
     boolean isMaxWidthValid(Integer maxWidth) {
         boolean isWidthValid = input.getIsIndexValid();
@@ -164,7 +164,7 @@ public class TextEditor {
      * @param isCharacterValid A boolean indicating whether the characters are valid
      *                         or not.
      */
-    void validateCharacters(boolean isCharacterValid) {
+    private void validateCharacters(boolean isCharacterValid) {
         if (!isCharacterValid) {
             output.createDisallowedCharacterWarning();
         }
@@ -209,7 +209,7 @@ public class TextEditor {
      * @param isExecutionSuccessful A boolean indicating whether the execution was
      *                              successful or not.
      */
-    void executeReplaceFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
+    private void executeReplaceFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if (isParagraphIndexValid(paragraphIndex, false) && isTextNotEmpty()) {
             OutputManager.logAndPrintInfoMessage("Replacing Section: ");
             String originalSection = input.readAndFilterUserInput();
@@ -238,7 +238,7 @@ public class TextEditor {
      * @param isExecutionSuccessful A boolean indicating whether the execution was
      *                              successful or not.
      */
-    void executeAddFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
+    private void executeAddFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if (isParagraphIndexValid(paragraphIndex, true)) {
             OutputManager.logAndPrintInfoMessage("Enter a Text you want to add:");
             String enteredText = input.readAndFilterUserInput();
@@ -260,7 +260,7 @@ public class TextEditor {
      * @param isExecutionSuccessful A boolean indicating whether the execution was
      *                              successful or not.
      */
-    void executeDeleteFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
+    private void executeDeleteFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if (isParagraphIndexValid(paragraphIndex, false) && isTextNotEmpty()) {
             isExecutionSuccessful = textManager.deleteParagraph(isIndexNull, paragraphIndex);
         }
@@ -280,7 +280,7 @@ public class TextEditor {
      * @param isExecutionSuccessful A boolean indicating whether the execution was
      *                              successful or not.
      */
-    void executeDummyFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
+    private void executeDummyFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
         if (isParagraphIndexValid(paragraphIndex, true)) {
             isExecutionSuccessful = textManager.addDummyParagraph(isIndexNull, paragraphIndex);
         }
@@ -291,7 +291,7 @@ public class TextEditor {
      * Prints the text.
      * Displays a warning message if the text is empty.
      */
-    void executePrintFunction() {
+    private void executePrintFunction() {
         if (isTextNotEmpty()) {
             textManager.printText();
         }
@@ -301,7 +301,7 @@ public class TextEditor {
      * Prints the glossary.
      * Displays a warning message if the glossary is empty.
      */
-    void executeIndexFunction() {
+    private void executeIndexFunction() {
         if (!isGlossaryEmpty()) {
             OutputManager.logAndPrintInfoMessage("Glossary:");
             glossary.printGlossary(textManager.getText());
@@ -316,7 +316,7 @@ public class TextEditor {
      * @param isExecutionSuccessful A boolean indicating whether the execution was
      *                              successful or not.
      */
-    void executeFormatFixFunction(Integer maxWidth, boolean isExecutionSuccessful) {
+    private void executeFormatFixFunction(Integer maxWidth, boolean isExecutionSuccessful) {
         if (isMaxWidthValid(maxWidth) && isTextNotEmpty()) {
             textManager.setIsFormatterRaw(false);
             textManager.setMaxWidth(maxWidth);
@@ -331,7 +331,7 @@ public class TextEditor {
      * @param isExecutionSuccessful A boolean indicating whether the execution was
      *                              successful or not.
      */
-    void executeFormatRawFunction(boolean isExecutionSuccessful) {
+    private void executeFormatRawFunction(boolean isExecutionSuccessful) {
         if (isTextNotEmpty()) {
             textManager.setIsFormatterRaw(true);
             isExecutionSuccessful = textManager.formatTextRaw();

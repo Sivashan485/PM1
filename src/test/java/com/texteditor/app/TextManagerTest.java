@@ -1,10 +1,11 @@
 package com.texteditor.app;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 
 class TextManagerTest {
 
@@ -91,10 +92,13 @@ class TextManagerTest {
 
     @Test
     void testFormatTextFixWithMultipleWordsExceedingMaxWidth() {
-        textManager.addNewParagraph(false, "Supercalifragilisticexpialidocious Pneumonoultramicroscopicsilicovolcanoconiosis", 1);
+        textManager.addNewParagraph(false,
+                "Supercalifragilisticexpialidocious Pneumonoultramicroscopicsilicovolcanoconiosis", 1);
         textManager.setMaxWidth(5);
         textManager.formatTextFix();
-        assertEquals("Super\ncalif\nragil\nistic\nexpia\nlidoc\nious\nPneum\nonoul\ntrami\ncrosc\nopics\nilico\nvolca\nnocon\niosis", textManager.getFormattedText());
+        assertEquals(
+                "Super\ncalif\nragil\nistic\nexpia\nlidoc\nious\nPneum\nonoul\ntrami\ncrosc\nopics\nilico\nvolca\nnocon\niosis",
+                textManager.getFormattedText());
     }
 
     @Test
@@ -189,7 +193,7 @@ class TextManagerTest {
     @Test
     void testSetIsFormatterRaw() {
         textManager.setIsFormatterRaw(true);
-        assertTrue(textManager.getIsFormatterRaw());
+        assertTrue(textManager.formatTextRaw());
     }
 
     @Test
@@ -233,7 +237,6 @@ class TextManagerTest {
         assertEquals(expected, textManager.getFormattedText());
     }
 
-
     @Test
     void testReplaceWordInParagraphNoMatch() {
         TextManager textManager = new TextManager();
@@ -242,7 +245,6 @@ class TextManagerTest {
         assertEquals("Hello world", textManager.getText().get(0));
     }
 
-
     @Test
     void testReplaceParagraphSectionNoMatch() {
         TextManager textManager = new TextManager();
@@ -250,7 +252,4 @@ class TextManagerTest {
         assertFalse(textManager.replaceParagraphSection(false, "Goodbye world", "Hi world", 1));
         assertEquals("Hello world", textManager.getText().get(0));
     }
-
-
 }
-

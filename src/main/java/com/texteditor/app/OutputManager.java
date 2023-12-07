@@ -1,7 +1,12 @@
 package com.texteditor.app;
 
 import java.io.IOException;
-import java.util.logging.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Manages output operations such as logging and printing messages
@@ -48,7 +53,7 @@ public class OutputManager {
      *
      * @param logText logText to be displayed of level WARNING
      */
-    public static void logAndPrintWarningMessage(String logText) {
+    private static void logAndPrintWarningMessage(String logText) {
         System.err.println(logText);
         LOGGER.log(Level.WARNING, logText);
     }

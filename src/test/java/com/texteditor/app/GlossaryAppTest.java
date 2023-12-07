@@ -1,11 +1,18 @@
 package com.texteditor.app;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 class GlossaryAppTest {
 
@@ -145,7 +152,6 @@ class GlossaryAppTest {
         assertTrue(wordFrequency.isEmpty());
     }
 
-
     @Test
     void testFilterParagraphWithSpecialCharacters() {
         GlossaryApp glossaryApp = new GlossaryApp();
@@ -177,6 +183,4 @@ class GlossaryAppTest {
         String filteredParagraph = glossaryApp.filterParagraph(paragraph);
         assertEquals("     ", filteredParagraph);
     }
-
-
 }

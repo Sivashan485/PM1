@@ -3,7 +3,8 @@ package com.texteditor.app;
 import java.util.Scanner;
 
 /**
- * The InputReceiver class is responsible for handling and processing user inputs.
+ * The InputReceiver class is responsible for handling and processing user
+ * inputs.
  * It filters, parses, and extracts relevant parts of the user input such as
  * commands, indexes, and other arguments. The class ensures the input is valid
  * and conforms to the expected format for further processing.
@@ -77,7 +78,7 @@ public class InputManager {
      *
      * @param userInput The user's input.
      * @return The recognized command, or an empty string if no command is
-     * recognized.
+     *         recognized.
      */
     private String extractCommand(String userInput) {
         String[] userInputPartition = userInput.toLowerCase().split(" ");
@@ -98,7 +99,7 @@ public class InputManager {
      * @param command  The command to validate.
      * @param restPart The rest part of the user input.
      * @return True if the command does not require an index and the rest part is
-     * empty, false otherwise.
+     *         empty, false otherwise.
      */
     private boolean validateAndSetIndex(String command, String restPart) {
         if (CommandApp.parseCommand(command).getCommandHasIndex()) {
@@ -190,7 +191,7 @@ public class InputManager {
     }
 
     /**
-     * Retrieves the rest part of the command.
+     * Retrieves the rest part of the command. Used for tests.
      *
      * @return The restpart of the command as a string.
      */

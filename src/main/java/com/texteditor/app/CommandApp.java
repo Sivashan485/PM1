@@ -59,19 +59,13 @@ public enum CommandApp {
     EXIT("exit", false),
 
     /**
-     * The UNKNOWN command, which does not require an index. This is used as a default for unrecognized commands.
+     * The UNKNOWN command, which does not require an index. This is used as a
+     * default for unrecognized commands.
      */
     UNKNOWN("unknown", false);
 
-    /**
-     * The command as a String.
-     */
-    public final String command;
-
-    /**
-     * The commandHasIndex as a boolean.
-     */
-    public final boolean commandHasIndex;
+    private final String command;
+    private final boolean commandHasIndex;
 
     /**
      * Constructor for the enum class.
@@ -79,7 +73,7 @@ public enum CommandApp {
      * @param command         command as a String
      * @param commandHasIndex commandHasIndex as a boolean
      */
-    CommandApp(String command, boolean commandHasIndex) {
+    private CommandApp(String command, boolean commandHasIndex) {
         this.command = command;
         this.commandHasIndex = commandHasIndex;
     }

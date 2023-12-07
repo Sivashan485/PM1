@@ -1,10 +1,13 @@
 package com.texteditor.app;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class InputManagerTest {
 
@@ -89,7 +92,7 @@ public class InputManagerTest {
         System.setIn(new ByteArrayInputStream(("exit 1212").getBytes()));
         input = new InputManager();
         input.parseInput();
-        assertEquals(CommandApp.UNKNOWN.command, input.getUserCommand());
+        assertEquals(CommandApp.UNKNOWN.getCommand(), input.getUserCommand());
         assertNull(input.getUserIndex());
         assertEquals("1212", input.getRestPart());
     }
@@ -271,4 +274,3 @@ public class InputManagerTest {
         assertFalse(input.getIsIndexValid());
     }
 }
-

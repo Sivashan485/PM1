@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-07T19:11:05.543833Z</date>
-  <millis>1701976265543</millis>
-  <nanos>833000</nanos>
+  <date>2023-12-07T21:29:35.401415300Z</date>
+  <millis>1701984575401</millis>
+  <nanos>415300</nanos>
   <sequence>0</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
   <level>INFO</level>
@@ -29,9 +29,9 @@
 </message>
 </record>
 <record>
-  <date>2023-12-07T19:11:08.166543Z</date>
-  <millis>1701976268166</millis>
-  <nanos>543000</nanos>
+  <date>2023-12-07T21:29:37.340078100Z</date>
+  <millis>1701984577340</millis>
+  <nanos>78100</nanos>
   <sequence>1</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
   <level>WARNING</level>
@@ -42,27 +42,63 @@
 You can add a new paragraph, by calling the add function.</message>
 </record>
 <record>
-  <date>2023-12-07T19:11:09.233510Z</date>
-  <millis>1701976269233</millis>
-  <nanos>510000</nanos>
+  <date>2023-12-07T21:29:39.578422400Z</date>
+  <millis>1701984579578</millis>
+  <nanos>422400</nanos>
   <sequence>2</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.texteditor.app.OutputManager</class>
   <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
-  <message>                       88          
-                       ""   ,d     
-                            88     
- ,adPPYba, 8b,     ,d8 88 MM88MMM  
-a8P_____88  `Y8, ,8P'  88   88     
-8PP"""""""    )888(    88   88     
-"8b,   ,aa  ,d8" "8b,  88   88,    
- `"Ybbd8"' 8P'     `Y8 88   "Y888 
-
-
-Thank you for using TextEditor created by NotFalse.😭😭😭
-_____________________________________________________________________________________
-</message>
+  <message>Enter a Text you want to add:</message>
 </record>
-</log>
+<record>
+  <date>2023-12-07T21:29:40.619384900Z</date>
+  <millis>1701984580619</millis>
+  <nanos>384900</nanos>
+  <sequence>3</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>➤ STATUS: Text added successfully</message>
+</record>
+<record>
+  <date>2023-12-07T21:29:42.130464100Z</date>
+  <millis>1701984582130</millis>
+  <nanos>464100</nanos>
+  <sequence>4</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>1: sdfgknaegf</message>
+</record>
+<record>
+  <date>2023-12-07T21:29:45.967876400Z</date>
+  <millis>1701984585967</millis>
+  <nanos>876400</nanos>
+  <sequence>5</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>➤ STATUS: Text deleted successfully</message>
+</record>
+<record>
+  <date>2023-12-07T21:29:47.438605700Z</date>
+  <millis>1701984587438</millis>
+  <nanos>605700</nanos>
+  <sequence>6</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Your TextEditor is empty.
+You can add a new paragraph, by calling the add function.</message>
+</record>

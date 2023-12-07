@@ -20,14 +20,14 @@ public class TextManager {
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
     private final List<String> text;
-    boolean isFormatterRaw;
+    private boolean isFormatterRaw;
     private Integer maxWidth;
     private String formattedText;
 
     /**
      * Initializes a new instance of the TextManager class.
      */
-    TextManager() {
+    public TextManager() {
         text = new ArrayList<>();
         formattedText = "";
         isFormatterRaw = true;
@@ -38,7 +38,7 @@ public class TextManager {
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
      */
-    boolean addDummyParagraph(boolean isIndexNull, Integer paragraphIndex) {
+    public boolean addDummyParagraph(boolean isIndexNull, Integer paragraphIndex) {
         return addNewParagraph(isIndexNull, TextManager.DUMMY_TEXT, paragraphIndex);
     }
 
@@ -51,7 +51,7 @@ public class TextManager {
      * @param paragraphIndex The index of the paragraph to be added.
      * @return true if the addition was successful, false otherwise.
      */
-    boolean addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
+    public boolean addNewParagraph(boolean isIndexNull, String enteredText, Integer paragraphIndex) {
         if (isIndexNull) {
             text.add(enteredText);
         } else {
@@ -68,7 +68,7 @@ public class TextManager {
      * @param paragraphIndex The index of the paragraph to be deleted.
      * @return true if the deletion was successful, false otherwise.
      */
-    boolean deleteParagraph(boolean isIndexNull, Integer paragraphIndex) {
+    public boolean deleteParagraph(boolean isIndexNull, Integer paragraphIndex) {
         if (isIndexNull) {
             text.removeLast();
         } else {
@@ -83,7 +83,7 @@ public class TextManager {
      *
      * @return true if the formatting was successful.
      */
-    boolean formatTextRaw() {
+    public boolean formatTextRaw() {
         StringBuilder rawText = new StringBuilder();
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
             rawText.append((paragraph + 1)).append(": ").append(text.get(paragraph));
@@ -101,7 +101,7 @@ public class TextManager {
      * Otherwise, it splits the text into paragraphs and words, handles word
      * wrapping, and sets the formatted text.
      */
-    boolean formatTextFix() {
+    public boolean formatTextFix() {
         if (!isMaxWidthValid()) {
             return false;
         } else {
@@ -205,7 +205,7 @@ public class TextManager {
     /**
      * Prints the text to the console.
      */
-    void printText() {
+    public void printText() {
         if (isFormatterRaw) {
             formatTextRaw();
         } else {
@@ -251,7 +251,7 @@ public class TextManager {
      * Replaces the paragraphs in the specified range with the given text.
      */
     boolean replaceParagraphSection(boolean isIndexNull, String originalWord, String replacingWord,
-                                    Integer paragraphIndex) {
+            Integer paragraphIndex) {
         if (isIndexNull) {
             return replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
         } else {
@@ -269,7 +269,7 @@ public class TextManager {
     }
 
     /**
-     * Getter for the text. It is used for testing.
+     * Getter for the text.
      *
      * @return the text
      */
@@ -287,7 +287,7 @@ public class TextManager {
     }
 
     /**
-     * Setter for the formatted text. It is used for testing.
+     * Setter for the formatted text.
      *
      * @param formattedText the formatted text
      */
@@ -298,12 +298,8 @@ public class TextManager {
     /**
      * Setter for the max width.
      */
-    void setMaxWidth(Integer maxWidth) {
+    public void setMaxWidth(Integer maxWidth) {
         this.maxWidth = maxWidth;
-    }
-
-    boolean getIsFormatterRaw() {
-        return this.isFormatterRaw;
     }
 
     /**
@@ -313,6 +309,4 @@ public class TextManager {
         this.isFormatterRaw = isFormatterRaw;
     }
 
-
 }
-

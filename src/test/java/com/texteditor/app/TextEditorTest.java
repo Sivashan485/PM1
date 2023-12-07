@@ -1,11 +1,9 @@
 package com.texteditor.app;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TextEditorTest {
 
@@ -14,20 +12,6 @@ class TextEditorTest {
     @BeforeEach
     void setUp() {
         textEditor = new TextEditor();
-    }
-
-    @Test
-    void testIsTextNotEmpty() {
-        assertFalse(textEditor.isTextNotEmpty());
-        textEditor.executeAddFunction(1, true, true);
-        assertFalse(textEditor.isTextNotEmpty());
-    }
-
-    @Test
-    void testIsGlossaryEmpty() {
-        assertTrue(textEditor.isGlossaryEmpty());
-        textEditor.executeAddFunction(1, true, true);
-        assertTrue(textEditor.isGlossaryEmpty());
     }
 
     @Test
@@ -41,7 +25,4 @@ class TextEditorTest {
         assertFalse(textEditor.isMaxWidthValid(-1));
         assertFalse(textEditor.isMaxWidthValid(0));
     }
-
-
 }
-

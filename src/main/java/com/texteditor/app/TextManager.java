@@ -12,7 +12,8 @@ import java.util.List;
  */
 public class TextManager {
 
-    private static final String DUMMY_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
+    private static final String DUMMY_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            +
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " +
             "when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
             " It has survived not only five centuries, but also the leap into electronic typesetting, " +
@@ -37,6 +38,10 @@ public class TextManager {
     /**
      * Adds a dummy paragraph to the specified index. If the index is larger than
      * the size of the text, the dummy paragraph is added to the end of the text.
+     * 
+     * @param isIndexNull    Indicates if the index is null.
+     * @param paragraphIndex The index of the paragraph to be added.
+     * @return true if the addition was successful, false otherwise.
      */
     public boolean addDummyParagraph(boolean isIndexNull, Integer paragraphIndex) {
         return addNewParagraph(isIndexNull, TextManager.DUMMY_TEXT, paragraphIndex);
@@ -81,7 +86,7 @@ public class TextManager {
      * Formats the given ArrayList of Strings into a single String with each element
      * of the ArrayList
      *
-     * @return true if the formatting was successful.
+     * @return true if the formatting was successful, false otherwise.
      */
     public boolean formatTextRaw() {
         StringBuilder rawText = new StringBuilder();
@@ -100,6 +105,8 @@ public class TextManager {
      * formatter is unsuccessful.
      * Otherwise, it splits the text into paragraphs and words, handles word
      * wrapping, and sets the formatted text.
+     * 
+     * @return true if the formatting was successful, false otherwise.
      */
     public boolean formatTextFix() {
         if (!isMaxWidthValid()) {
@@ -153,9 +160,10 @@ public class TextManager {
      * Appends a space to the given StringBuilder if the currentParagraphWidth is
      * greater than 0.
      *
+     * @param currentParagraphWidth the current width of the paragraph.
      * @param fixText               the StringBuilder to which the space is
      *                              appended.
-     * @param currentParagraphWidth the current width of the paragraph.
+     * @param word                  the word to be wrapped.
      * @return the updated paragraph width.
      */
     private int appendNewLine(int currentParagraphWidth, StringBuilder fixText, String word) {
@@ -249,6 +257,12 @@ public class TextManager {
 
     /**
      * Replaces the paragraphs in the specified range with the given text.
+     * If the index is not provided or is invalid, the last paragraph is replaced.
+     * 
+     * @param isIndexNull    Indicates if the index is null.
+     * @param paragraphIndex The index of the paragraph to be replaced.
+     * @param enteredText    The text to be added.
+     * @return true if the replacement was successful, false otherwise.
      */
     boolean replaceParagraphSection(boolean isIndexNull, String originalWord, String replacingWord,
             Integer paragraphIndex) {
@@ -297,6 +311,8 @@ public class TextManager {
 
     /**
      * Setter for the max width.
+     * 
+     * @param maxWidth the max width
      */
     public void setMaxWidth(Integer maxWidth) {
         this.maxWidth = maxWidth;
@@ -304,6 +320,8 @@ public class TextManager {
 
     /**
      * Setter for the isFormatterRaw variable.
+     * 
+     * @param isFormatterRaw the isFormatterRaw variable
      */
     void setIsFormatterRaw(boolean isFormatterRaw) {
         this.isFormatterRaw = isFormatterRaw;

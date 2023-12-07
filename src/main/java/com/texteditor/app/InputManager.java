@@ -157,7 +157,7 @@ public class InputManager {
      * Checks if the userIndex is empty and sets 'indexIsNull' accordingly.
      * Returns the value of 'indexIsNull' after the check.
      *
-     * @return true if userIndex is empty; otherwise false.
+     * @return true if userIndex is empty, false otherwise.
      */
     boolean isIndexNull() {
         return userIndex == null;

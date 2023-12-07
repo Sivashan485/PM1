@@ -70,6 +70,7 @@ public class GlossaryApp {
      * and filters them.
      *
      * @param text text to be mapped
+     * @return returns a Map with the frequency of each word
      */
     Map<String, Integer> computeWordFrequency(List<String> text) {
         Map<String, Integer> wordFrequency = new HashMap<>();

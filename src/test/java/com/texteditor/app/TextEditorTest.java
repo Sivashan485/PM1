@@ -1,10 +1,10 @@
 package com.texteditor.app;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class TextEditorTest {
 
@@ -59,8 +59,4 @@ class TextEditorTest {
         textManager.addNewParagraph(false, "Test paragraph", 1);
         assertFalse(textEditor.validateParagraphIndex(1, textManager.getText().size(), false, false));
     }
-
-
-
-
 }

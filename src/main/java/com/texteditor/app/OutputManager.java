@@ -1,15 +1,18 @@
 package com.texteditor.app;
 
 import java.io.IOException;
-import java.util.logging.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Class for managing the output of the TextEditor application.
  */
 public class OutputManager {
-
     private static final Logger LOGGER = Logger.getLogger(OutputManager.class.getName());
-
 
     /**
      * Initializes the consoleHandler and the LOGGER.
@@ -41,7 +44,6 @@ public class OutputManager {
         LOGGER.log(Level.INFO, logText);
     }
 
-
     /**
      * Creates a log entry of level WARNING with th
      * e given logText.
@@ -57,7 +59,6 @@ public class OutputManager {
      * Creates a welcome message for the user.
      */
     public void createWelcomeMessage() {
-
         logAndPrintInfoMessage("\n" +
                 "█   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀\n" +
                 "█   █ █   █   █   █  █ █▀▄▀█ █\n" +
@@ -65,7 +66,7 @@ public class OutputManager {
                 "█▄█▄█ █   █   █   █  █ █   █ █\n" +
                 " ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀\n" +
                 " ...to the TextEditor\n" +
-                " created by NotFalse...\n"+
+                " created by NotFalse...\n" +
                 " 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈\n\n" +
 
                 "               Available Functions              \n" +
@@ -90,7 +91,6 @@ public class OutputManager {
                 " `\"Ybbd8\"' 8P'     `Y8 88   \"Y888 \n\n\n" +
                 "Thank you for using TextEditor created by NotFalse.\uD83D\uDE2D\uD83D\uDE2D\uD83D\uDE2D\n" +
                 "________________________________________________\n");
-
     }
 
     /**
@@ -141,7 +141,8 @@ public class OutputManager {
 
     /**
      * Creates and displays a formatted message based on the success status.
-     * If 'success' is true, a success message is created; otherwise, an error message is created.
+     * If 'success' is true, a success message is created; otherwise, an error
+     * message is created.
      *
      * @param success Indicates the success status of the operation.
      */
@@ -157,7 +158,8 @@ public class OutputManager {
      * Creates a log message for an invalid command.
      */
     public void createInvalidCommandMessage() {
-        logAndPrintWarningMessage("Invalid command! If you don't know which commands you can us, call the help function..");
+        logAndPrintWarningMessage(
+                "Invalid command! If you don't know which commands you can us, call the help function..");
     }
 
     /**
@@ -165,7 +167,6 @@ public class OutputManager {
      */
     public void createIndexWarning() {
         logAndPrintWarningMessage("Invalid index. Please try again.");
-
     }
 
     /**
@@ -178,13 +179,14 @@ public class OutputManager {
 
     /**
      * Creates and displays an error message for an invalid maximum width scenario.
-     * The error message informs the user that the text width index is missing and prompts them to try again.
+     * The error message informs the user that the text width index is missing and
+     * prompts them to try again.
      */
     public void createInvalidMaxWidthWarning() {
         logAndPrintWarningMessage("The text width index is missing. Please try again");
     }
 
-    public void createInvalidWordWarning(){
+    public void createInvalidWordWarning() {
         logAndPrintWarningMessage("This word doesn't exist in this paragraph. Please try again.");
     }
 
@@ -195,5 +197,4 @@ public class OutputManager {
     public void createEmptyGlossaryWarning() {
         logAndPrintWarningMessage("Your glossary is empty...");
     }
-
 }

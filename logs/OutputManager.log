@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-12-07T19:11:05.543833Z</date>
+  <millis>1701976265543</millis>
+  <nanos>833000</nanos>
+  <sequence>0</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>
+ █   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀
+ █   █ █   █   █   █  █ █▀▄▀█ █
+ █   █ █▀▀ █   █   █  █ █ ▀ █ █▀▀
+ █▄█▄█ █   █   █   █  █ █   █ █
+  ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀
+ ...to the TextEditor
+ created by NotFalse...
+ 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈
+
+ Available Functions              
+——————————————————————————————————————————————————————————————————————————————————————
+
+ ☒ add[i]         ☒ dummy[i]          ☒ del[i]     ☒ replace[i]    ☒ index    
+ ☒ format raw     ☒ format fix&lt;b&gt;     ☒ print      ☒ help          ☒ exit                
+</message>
+</record>
+<record>
+  <date>2023-12-07T19:11:08.166543Z</date>
+  <millis>1701976268166</millis>
+  <nanos>543000</nanos>
+  <sequence>1</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>WARNING</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintWarningMessage</method>
+  <thread>1</thread>
+  <message>Your TextEditor is empty.
+You can add a new paragraph, by calling the add function.</message>
+</record>
+<record>
+  <date>2023-12-07T19:11:09.233510Z</date>
+  <millis>1701976269233</millis>
+  <nanos>510000</nanos>
+  <sequence>2</sequence>
+  <logger>com.texteditor.app.OutputManager</logger>
+  <level>INFO</level>
+  <class>com.texteditor.app.OutputManager</class>
+  <method>logAndPrintInfoMessage</method>
+  <thread>1</thread>
+  <message>                       88          
+                       ""   ,d     
+                            88     
+ ,adPPYba, 8b,     ,d8 88 MM88MMM  
+a8P_____88  `Y8, ,8P'  88   88     
+8PP"""""""    )888(    88   88     
+"8b,   ,aa  ,d8" "8b,  88   88,    
+ `"Ybbd8"' 8P'     `Y8 88   "Y888 
+
+
+Thank you for using TextEditor created by NotFalse.😭😭😭
+_____________________________________________________________________________________
+</message>
+</record>
+</log>

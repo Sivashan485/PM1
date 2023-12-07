@@ -8,19 +8,69 @@ package com.texteditor.app;
  */
 public enum CommandApp {
 
+    /**
+     * The ADD command, which requires an index.
+     */
     ADD("add", true),
+
+    /**
+     * The DUMMY command, which requires an index.
+     */
     DUMMY("dummy", true),
+
+    /**
+     * The DEL command, which requires an index.
+     */
     DEL("del", true),
+
+    /**
+     * The REPLACE command, which requires an index.
+     */
     REPLACE("replace", true),
+
+    /**
+     * The INDEX command, which does not require an index.
+     */
     INDEX("index", false),
+
+    /**
+     * The FORMAT_RAW command, which does not require an index.
+     */
     FORMAT_RAW("format raw", false),
+
+    /**
+     * The FORMAT_FIX command, which requires an index.
+     */
     FORMAT_FIX("format fix", true),
+
+    /**
+     * The PRINT command, which does not require an index.
+     */
     PRINT("print", false),
+
+    /**
+     * The HELP command, which does not require an index.
+     */
     HELP("help", false),
+
+    /**
+     * The EXIT command, which does not require an index.
+     */
     EXIT("exit", false),
+
+    /**
+     * The UNKNOWN command, which does not require an index. This is used as a default for unrecognized commands.
+     */
     UNKNOWN("unknown", false);
 
+    /**
+     * The command as a String.
+     */
     public final String command;
+
+    /**
+     * The commandHasIndex as a boolean.
+     */
     public final boolean commandHasIndex;
 
     /**

@@ -3,7 +3,7 @@ package com.texteditor.app;
 import java.util.*;
 import java.util.stream.Collectors;
 
- /**
+/**
  * The GlossaryApp class manages a glossary of words, mapping them to their
  * occurrences in a given text. The class provides methods to build and
  * retrieve a glossary from a list of words, and to perform related operations.

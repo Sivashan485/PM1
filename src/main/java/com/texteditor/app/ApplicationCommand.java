@@ -7,6 +7,7 @@ package com.texteditor.app;
  * a method to get all commands, and a method to get the command as a String.
  */
 public enum ApplicationCommand {
+    
     EXIT("exit", false),
     ADD("add", true),
     DEL("del", true),

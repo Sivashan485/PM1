@@ -12,6 +12,7 @@ import java.util.logging.SimpleFormatter;
  * Class for managing the output of the TextEditor application.
  */
 public class OutputManager {
+
     private static final Logger LOGGER = Logger.getLogger(OutputManager.class.getName());
 
     /**
@@ -186,6 +187,11 @@ public class OutputManager {
         logAndPrintWarningMessage("The text width index is missing. Please try again");
     }
 
+    /**
+     * Creates and displays an error message for an invalid word scenario.
+     * The error message notifies the user that the word they are trying to
+     * replace does not exist in the paragraph.
+     */
     public void createInvalidWordWarning() {
         logAndPrintWarningMessage("This word doesn't exist in this paragraph. Please try again.");
     }

@@ -3,6 +3,7 @@ package com.texteditor.app;
 import java.io.IOException;
 import java.util.logging.*;
 
+
 /**
  * Class for managing the output of the TextEditor application.
  */
@@ -68,12 +69,10 @@ public class OutputManager {
                 " created by NotFalse...\n"+
                 " 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈\n\n" +
 
-                "               Available Functions              \n" +
-                "________________________________________________\n\n" +
-                "      ☒ add[i]        ☒ dummy[i]    ☒ del[i]      \n" +
-                "      ☒ replace [i]   ☒ index       ☒ print       \n" +
-                "      ☒ format raw    ☒ format fix <b>         \n" +
-                "      ☒ help          ☒ exit                    ");
+                "   Available Functions              \n" +
+                "_____________________________________________________________________________________\n\n" +
+                "   ☒ add[i]      ☒ dummy[i]    ☒ del[i]    ☒ replace [i]    ☒ index    \n" +
+                "   ☒ print       ☒ help        ☒ exit      ☒ format raw     ☒ format fix <b>        \n");
     }
 
     /**
@@ -89,7 +88,7 @@ public class OutputManager {
                 "\"8b,   ,aa  ,d8\" \"8b,  88   88,    \n" +
                 " `\"Ybbd8\"' 8P'     `Y8 88   \"Y888 \n\n\n" +
                 "Thank you for using TextEditor created by NotFalse.\uD83D\uDE2D\uD83D\uDE2D\uD83D\uDE2D\n" +
-                "________________________________________________\n");
+                "_____________________________________________________________________________________\n");
 
     }
 
@@ -107,9 +106,9 @@ public class OutputManager {
      */
     public void createAddMessage(boolean success) {
         if (success) {
-            logAndPrintInfoMessage("Status: Text added successfully!");
+            logAndPrintInfoMessage("➤ STATUS: Text added successfully");
         } else {
-            logAndPrintWarningMessage("Status: Text has not been added");
+            logAndPrintWarningMessage("➤ STATUS: Text has not been added");
         }
     }
 
@@ -120,9 +119,9 @@ public class OutputManager {
      */
     public void createDeleteMessage(boolean success) {
         if (success) {
-            logAndPrintInfoMessage("Status: Text deleted successfully!");
+            logAndPrintInfoMessage("➤ STATUS: Text deleted successfully");
         } else {
-            logAndPrintWarningMessage("Status: Text has not been deleted");
+            logAndPrintWarningMessage("➤ STATUS: Text has not been deleted");
         }
     }
 
@@ -133,9 +132,9 @@ public class OutputManager {
      */
     public void createReplaceMessage(boolean success) {
         if (success) {
-            logAndPrintInfoMessage("Status: Text replaced successfully!");
+            logAndPrintInfoMessage("➤ STATUS: Text replaced successfully");
         } else {
-            logAndPrintWarningMessage("Status: Text has not been replaced");
+            logAndPrintWarningMessage("➤ STATUS: Text has not been replaced");
         }
     }
 
@@ -147,9 +146,9 @@ public class OutputManager {
      */
     public void createFormatMessage(boolean success) {
         if (success) {
-            logAndPrintInfoMessage("Status: Text formatted successfully!");
+            logAndPrintInfoMessage("➤ STATUS: Text formatted successfully");
         } else {
-            logAndPrintWarningMessage("Status: Text has not been formatted");
+            logAndPrintWarningMessage("➤ STATUS: Text has not been formatted");
         }
     }
 
@@ -157,14 +156,14 @@ public class OutputManager {
      * Creates a log message for an invalid command.
      */
     public void createInvalidCommandMessage() {
-        logAndPrintWarningMessage("Invalid command! If you don't know which commands you can us, call the help function..");
+        logAndPrintWarningMessage("Invalid command! If you don't know which commands you can us, call the help function.");
     }
 
     /**
      * Creates a log message for an invalid index.
      */
     public void createIndexWarning() {
-        logAndPrintWarningMessage("Invalid index. Please try again.");
+        logAndPrintWarningMessage("Invalid index! Please try again.");
 
     }
 
@@ -172,8 +171,8 @@ public class OutputManager {
      * Creates a log message for the empty text if you try to delete a text.
      */
     public void createEmptyTextWarning() {
-        logAndPrintWarningMessage("Your TextEditor is empty...\n"
-                + "You can add new text, by calling the add function.");
+        logAndPrintWarningMessage("Your TextEditor is empty.\n"
+                + "You can add a new paragraph, by calling the add function.");
     }
 
     /**
@@ -181,7 +180,7 @@ public class OutputManager {
      * The error message informs the user that the text width index is missing and prompts them to try again.
      */
     public void createInvalidMaxWidthWarning() {
-        logAndPrintWarningMessage("The text width index is missing. Please try again");
+        logAndPrintWarningMessage("The text width index is missing. Please try again.");
     }
 
     public void createInvalidWordWarning(){
@@ -193,7 +192,7 @@ public class OutputManager {
      * The error message notifies the user that their glossary is empty.
      */
     public void createEmptyGlossaryWarning() {
-        logAndPrintWarningMessage("Your glossary is empty...");
+        logAndPrintWarningMessage("Your glossary is empty.");
     }
 
 }

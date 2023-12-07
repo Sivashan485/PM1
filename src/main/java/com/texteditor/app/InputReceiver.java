@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class InputReceiver {
 
     private static final String DISALLOWED_CHARACTERS_REGEX = "[^A-Za-zäöüÄÖÜ 0-9 / .,:;\\-!?'\\\\()\\\"%@+*{}\\\\\\\\&#$\\[\\]]";
+    private static final String MAX_INT_VALUE = "^(214748364[0-7]|21474836[0-3][0-9]|2147483[0-5][0-9]{2}|214748[0-2][0-9]{3}|21474[0-7][0-9]{4}|2147[0-3][0-9]{5}|214[0-6][0-9]{6}|21[0-3][0-9]{7}|20[0-9]{8}|1[0-9]{9}|[1-9][0-9]{0,8}|0)$";
     private final Scanner userInput;
     private String userCommand;
     private Integer userIndex;
@@ -107,12 +108,17 @@ public class InputReceiver {
      * index.
      */
     private void handleIndexCommand() {
-        if (restPart.matches("^[0-9]+$")) {
-            setUserIndex();
-            isIndexValid = true;
-        } else {
-            isIndexValid = false;
+        isIndexValid = true;
+        try{
+            if (restPart.matches(MAX_INT_VALUE)) {
+                setUserIndex();
+            } else {
+                isIndexValid = false;
+            }
+        }catch (NullPointerException e){
+            // left empty
         }
+
     }
 
     /**

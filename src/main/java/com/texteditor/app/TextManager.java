@@ -78,13 +78,15 @@ public class TextManager {
      * of the ArrayList
      * preceded by its index in the ArrayList enclosed in angle brackets.
      */
-    boolean formatTextRaw() {
+    void formatTextRaw() {
         StringBuilder rawText = new StringBuilder();
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
-            rawText.append((paragraph + 1)).append(": ").append(text.get(paragraph)).append("\n");
+            rawText.append((paragraph + 1)).append(": ").append(text.get(paragraph));
+            if(paragraph < text.size() -1){
+                rawText.append("\n");
+            }
         }
         setFormattedText(rawText.toString());
-        return true;
     }
 
     /**
@@ -97,12 +99,16 @@ public class TextManager {
         } else {
             StringBuilder fixText = new StringBuilder();
             int currentParagraphWidth = 0;
-            for (String paragraph : text) {
+            int paragraphCount = text.size();
+            for (int i = 0; i < paragraphCount; i++) {
+                String paragraph = text.get(i);
                 String[] words = paragraph.split("\\s+");
                 for (String word : words) {
                     currentParagraphWidth = handleWordWrapping(currentParagraphWidth, word, fixText);
                 }
-                fixText.append("\n\n");
+                if (i < paragraphCount - 1) {
+                    fixText.append("\n\n");
+                }
                 currentParagraphWidth = 0;
             }
             setFormattedText(fixText.toString());

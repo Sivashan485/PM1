@@ -34,6 +34,7 @@ public class GlossaryApp {
         rebuildGlossary(text);
         glossary.keySet().forEach(word -> {
             List<Integer> indexes = glossary.get(word);
+
             String indexStream = indexes.stream()
                     .map(String::valueOf)
                     .collect(Collectors.joining(", "));
@@ -141,6 +142,11 @@ public class GlossaryApp {
         return glossary;
     }
 
+    /**
+     * Check if the glossary is empty.
+     *
+     * @return {@code true} if the glossary is empty, {@code false} otherwise.
+     */
     public boolean isGlossaryEmpty() {
         return glossary.isEmpty();
     }

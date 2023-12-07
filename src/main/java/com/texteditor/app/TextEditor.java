@@ -5,7 +5,6 @@ package com.texteditor.app;
  */
 public class TextEditor {
 
-    private static final int MAX_WIDTH = 2147483647;
     private final InputReceiver input;
     private final TextManager textManager;
     private final OutputManager output;
@@ -53,15 +52,16 @@ public class TextEditor {
      * Displays corresponding messages or triggers actions such as adding, deleting, replacing, formatting, or printing text.
      */
     private void editText() {
-        OutputManager.logAndPrintInfoMessage("________________________________________________\n️");
+        System.out.println("_____________________________________________________________________________________");
         input.resetValues();
         input.parseInput();
         Integer paragraphIndex = input.getUserIndex();
         Integer maxWidth = input.getUserIndex();
         int textSize = textManager.getText().size();
         boolean isIndexValid = input.getIsIndexValid();
-        boolean executionSuccessful = false;
+        boolean isExecutionSuccessful = false;
         boolean isIndexNull = input.isIndexNull();
+
 
         switch (ApplicationCommand.parseCommand(input.getUserCommand())) {
             case DUMMY:
@@ -72,10 +72,10 @@ public class TextEditor {
                 isExitTriggered = true;
                 break;
             case ADD:
-                if( validateParagraphIndex(paragraphIndex,textSize,isIndexValid, true)){
-                    executionSuccessful = add(paragraphIndex, isIndexNull);
+                if(validateParagraphIndex(paragraphIndex,textSize,isIndexValid, true)){
+                    isExecutionSuccessful = add(paragraphIndex, isIndexNull);
                 }
-                output.createAddMessage(executionSuccessful);
+                output.createAddMessage(isExecutionSuccessful);
                 break;
             case DEL:
                 del(paragraphIndex,textSize,isIndexValid, isIndexNull);
@@ -88,16 +88,15 @@ public class TextEditor {
                 break;
             case REPLACE:
                 if(isTextNotEmpty() && (validateParagraphIndex(paragraphIndex,textSize, isIndexValid, false))){
-                        executionSuccessful = replace(paragraphIndex, isIndexNull);
+                        isExecutionSuccessful = replace(paragraphIndex, isIndexNull);
                 }
-                output.createReplaceMessage(executionSuccessful);
+                output.createReplaceMessage(isExecutionSuccessful);
                 break;
             case HELP:
                 output.createHelpMessage();
                 break;
             case FORMAT_RAW:
-                textManager.setIsFormatterRaw(true);
-                output.createFormatMessage(textManager.formatTextRaw());
+                rawFormatter();
                 break;
             case FORMAT_FIX:
                 fixFormatter(maxWidth, isIndexValid);
@@ -114,11 +113,7 @@ public class TextEditor {
             output.createInvalidMaxWidthWarning();
             return false;
         }
-        if(!isIndexValid){
-            output.createIndexWarning();
-            return false;
-        }
-        if(!input.getIsIndexValid() && (maxWidth <= 0 || maxWidth > MAX_WIDTH)){
+        if(!isIndexValid || maxWidth <= 0){
             output.createIndexWarning();
             return false;
         }
@@ -219,11 +214,28 @@ public class TextEditor {
     }
 
     private void fixFormatter(Integer maxWidth, boolean isIndexValid){
-        textManager.setIsFormatterRaw(false);
-        if(validateMaxWidth(maxWidth,isIndexValid)){
-            textManager.setMaxWidth(maxWidth);
-            textManager.formatTextFix();
+        if(isTextNotEmpty()){
+            if(validateMaxWidth(maxWidth,isIndexValid)){
+                textManager.setIsFormatterRaw(false);
+                textManager.setMaxWidth(maxWidth);
+                textManager.formatTextFix();
+                output.createFormatMessage(textManager.getIsFormatterFixSuccessful());
+            }else{
+                output.createFormatMessage(false);
+            }
+
+        }else{
+            output.createFormatMessage(false);
         }
-        output.createFormatMessage(textManager.getIsFormatterFixSuccessful());
+    }
+
+    private void rawFormatter(){
+        if(isTextNotEmpty()){
+            textManager.setIsFormatterRaw(true);
+            textManager.formatTextRaw();
+            output.createFormatMessage(true);
+        }else{
+            output.createFormatMessage(false);
+        }
     }
 }

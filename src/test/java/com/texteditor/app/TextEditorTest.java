@@ -18,45 +18,45 @@ class TextEditorTest {
     }
     @Test
     void testValidateMaxWidthWithValidWidth() {
-        assertTrue(textEditor.validateMaxWidth(10, true));
+        assertTrue(textEditor.isMaxWidthValid(10, true));
     }
 
     @Test
     void testValidateMaxWidthWithInvalidWidth() {
-        assertFalse(textEditor.validateMaxWidth(-1, true));
+        assertFalse(textEditor.isMaxWidthValid(-1, true));
     }
 
     @Test
     void testValidateMaxWidthWithNullWidth() {
-        assertFalse(textEditor.validateMaxWidth(null, true));
+        assertFalse(textEditor.isMaxWidthValid(null, true));
     }
 
     @Test
     void testValidateMaxWidthWithInvalidIndex() {
-        assertFalse(textEditor.validateMaxWidth(10, false));
+        assertFalse(textEditor.isMaxWidthValid(10, false));
     }
 
     @Test
     void testValidateParagraphIndexWithValidIndex() {
         textManager.addNewParagraph(false, "Test paragraph", 1);
-        assertTrue(textEditor.validateParagraphIndex(1, textManager.getText().size(), true, false));
+        assertTrue(textEditor.isParagraphIndexValid(1, textManager.getText().size(), true, false));
     }
 
     @Test
     void testValidateParagraphIndexWithInvalidIndex() {
         textManager.addNewParagraph(false, "Test paragraph", 1);
-        assertFalse(textEditor.validateParagraphIndex(3, textManager.getText().size(), true, false));
+        assertFalse(textEditor.isParagraphIndexValid(3, textManager.getText().size(), true, false));
     }
 
     @Test
     void testValidateParagraphIndexWithNullIndex() {
         textManager.addNewParagraph(false, "Test paragraph", 1);
-        assertTrue(textEditor.validateParagraphIndex(null, textManager.getText().size(), true, true));
+        assertTrue(textEditor.isParagraphIndexValid(null, textManager.getText().size(), true, true));
     }
 
     @Test
     void testValidateParagraphIndexWithInvalidIndexValidity() {
         textManager.addNewParagraph(false, "Test paragraph", 1);
-        assertFalse(textEditor.validateParagraphIndex(1, textManager.getText().size(), false, false));
+        assertFalse(textEditor.isParagraphIndexValid(1, textManager.getText().size(), false, false));
     }
 }

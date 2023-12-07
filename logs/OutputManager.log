@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-12-07T13:35:19.982268Z</date>
-  <millis>1701956119982</millis>
-  <nanos>268000</nanos>
+  <date>2023-12-07T17:36:44.046644Z</date>
+  <millis>1701970604046</millis>
+  <nanos>644000</nanos>
   <sequence>0</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
   <level>INFO</level>
@@ -12,308 +12,43 @@
   <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
   <message>
-█   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀
-█   █ █   █   █   █  █ █▀▄▀█ █
-█   █ █▀▀ █   █   █  █ █ ▀ █ █▀▀
-█▄█▄█ █   █   █   █  █ █   █ █
- ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀
+ █   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀
+ █   █ █   █   █   █  █ █▀▄▀█ █
+ █   █ █▀▀ █   █   █  █ █ ▀ █ █▀▀
+ █▄█▄█ █   █   █   █  █ █   █ █
+  ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀
  ...to the TextEditor
  created by NotFalse...
  🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈
 
-   Available Functions              
-_____________________________________________________________________________________
+ Available Functions              
+——————————————————————————————————————————————————————————————————————————————————————
 
-   ☒ add[i]      ☒ dummy[i]    ☒ del[i]    ☒ replace [i]    ☒ index    
-   ☒ print       ☒ help        ☒ exit      ☒ format raw     ☒ format fix &lt;b&gt;        
+ ☒ add[i]         ☒ dummy[i]          ☒ del[i]     ☒ replace[i]    ☒ index    
+ ☒ format raw     ☒ format fix&lt;b&gt;     ☒ print      ☒ help          ☒ exit                
 </message>
 </record>
 <record>
-  <date>2023-12-07T13:35:25.246456Z</date>
-  <millis>1701956125246</millis>
-  <nanos>456000</nanos>
+  <date>2023-12-07T17:36:46.372092Z</date>
+  <millis>1701970606372</millis>
+  <nanos>92000</nanos>
   <sequence>1</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
+  <level>INFO</level>
   <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
+  <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
-  <message>Your TextEditor is empty.
-You can add a new paragraph, by calling the add function.</message>
+  <message>Enter a Text you want to add:</message>
 </record>
 <record>
-  <date>2023-12-07T13:35:25.247057Z</date>
-  <millis>1701956125247</millis>
-  <nanos>57000</nanos>
+  <date>2023-12-07T17:36:47.560146Z</date>
+  <millis>1701970607560</millis>
+  <nanos>146000</nanos>
   <sequence>2</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text has not been formatted</message>
-</record>
-<record>
-  <date>2023-12-07T13:35:40.774534Z</date>
-  <millis>1701956140774</millis>
-  <nanos>534000</nanos>
-  <sequence>3</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>Your TextEditor is empty.
-You can add a new paragraph, by calling the add function.</message>
-</record>
-<record>
-  <date>2023-12-07T13:35:40.775332Z</date>
-  <millis>1701956140775</millis>
-  <nanos>332000</nanos>
-  <sequence>4</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text has not been formatted</message>
-</record>
-<record>
-  <date>2023-12-07T13:35:46.676877Z</date>
-  <millis>1701956146676</millis>
-  <nanos>877000</nanos>
-  <sequence>5</sequence>
   <logger>com.texteditor.app.OutputManager</logger>
   <level>INFO</level>
   <class>com.texteditor.app.OutputManager</class>
   <method>logAndPrintInfoMessage</method>
   <thread>1</thread>
   <message>➤ STATUS: Text added successfully</message>
-</record>
-<record>
-  <date>2023-12-07T13:35:50.453121Z</date>
-  <millis>1701956150453</millis>
-  <nanos>121000</nanos>
-  <sequence>6</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>1: Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</message>
-</record>
-<record>
-  <date>2023-12-07T13:35:52.598920Z</date>
-  <millis>1701956152598</millis>
-  <nanos>920000</nanos>
-  <sequence>7</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>The text width index is missing. Please try again.</message>
-</record>
-<record>
-  <date>2023-12-07T13:35:52.599583Z</date>
-  <millis>1701956152599</millis>
-  <nanos>583000</nanos>
-  <sequence>8</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text has not been formatted</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:01.372081Z</date>
-  <millis>1701956161372</millis>
-  <nanos>81000</nanos>
-  <sequence>9</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>Invalid index! Please try again.</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:01.372693Z</date>
-  <millis>1701956161372</millis>
-  <nanos>693000</nanos>
-  <sequence>10</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text has not been formatted</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:05.523182Z</date>
-  <millis>1701956165523</millis>
-  <nanos>182000</nanos>
-  <sequence>11</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>Invalid index! Please try again.</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:05.524Z</date>
-  <millis>1701956165524</millis>
-  <sequence>12</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text has not been formatted</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:07.938128Z</date>
-  <millis>1701956167938</millis>
-  <nanos>128000</nanos>
-  <sequence>13</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>Invalid index! Please try again.</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:07.938816Z</date>
-  <millis>1701956167938</millis>
-  <nanos>816000</nanos>
-  <sequence>14</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text has not been formatted</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:11.318840Z</date>
-  <millis>1701956171318</millis>
-  <nanos>840000</nanos>
-  <sequence>15</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>Invalid index! Please try again.</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:11.319801Z</date>
-  <millis>1701956171319</millis>
-  <nanos>801000</nanos>
-  <sequence>16</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>WARNING</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintWarningMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text has not been formatted</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:25.346256Z</date>
-  <millis>1701956185346</millis>
-  <nanos>256000</nanos>
-  <sequence>17</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>Glossary:</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:25.350418Z</date>
-  <millis>1701956185350</millis>
-  <nanos>418000</nanos>
-  <sequence>18</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>Ipsum      1</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:25.350815Z</date>
-  <millis>1701956185350</millis>
-  <nanos>815000</nanos>
-  <sequence>19</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>Lorem      1</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:32.721029Z</date>
-  <millis>1701956192721</millis>
-  <nanos>29000</nanos>
-  <sequence>20</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>Replacing Word: </message>
-</record>
-<record>
-  <date>2023-12-07T13:36:35.167374Z</date>
-  <millis>1701956195167</millis>
-  <nanos>374000</nanos>
-  <sequence>21</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>Replacing with: </message>
-</record>
-<record>
-  <date>2023-12-07T13:36:37.432097Z</date>
-  <millis>1701956197432</millis>
-  <nanos>97000</nanos>
-  <sequence>22</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>➤ STATUS: Text replaced successfully</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:41.471286Z</date>
-  <millis>1701956201471</millis>
-  <nanos>286000</nanos>
-  <sequence>23</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>Glossary:</message>
-</record>
-<record>
-  <date>2023-12-07T13:36:41.472543Z</date>
-  <millis>1701956201472</millis>
-  <nanos>543000</nanos>
-  <sequence>24</sequence>
-  <logger>com.texteditor.app.OutputManager</logger>
-  <level>INFO</level>
-  <class>com.texteditor.app.OutputManager</class>
-  <method>logAndPrintInfoMessage</method>
-  <thread>1</thread>
-  <message>Ipsum      1</message>
 </record>

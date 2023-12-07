@@ -23,7 +23,6 @@ public class TextManager {
     private final List<String> text;
     private Integer maxWidth;
     private String formattedText;
-    boolean isFormatterFixSuccessful;
     boolean isFormatterRaw;
 
     /**
@@ -66,7 +65,7 @@ public class TextManager {
      */
     boolean deleteParagraph(boolean isIndexNull, Integer paragraphIndex) {
         if (isIndexNull) {
-            text.remove(text.size() - 1);
+            text.removeLast();
         } else {
             text.remove(paragraphIndex - 1);
         }
@@ -78,7 +77,7 @@ public class TextManager {
      * of the ArrayList
      * preceded by its index in the ArrayList enclosed in angle brackets.
      */
-    void formatTextRaw() {
+    boolean formatTextRaw() {
         StringBuilder rawText = new StringBuilder();
         for (int paragraph = 0; paragraph < text.size(); paragraph++) {
             rawText.append((paragraph + 1)).append(": ").append(text.get(paragraph));
@@ -87,6 +86,7 @@ public class TextManager {
             }
         }
         setFormattedText(rawText.toString());
+        return true;
     }
 
     /**
@@ -95,9 +95,9 @@ public class TextManager {
      * Otherwise, it splits the text into paragraphs and words, handles word
      * wrapping, and sets the formatted text.
      */
-    void formatTextFix() {
+    boolean formatTextFix() {
         if (!isMaxWidthValid()) {
-            isFormatterFixSuccessful = false;
+            return false;
         } else {
             StringBuilder fixText = new StringBuilder();
             int currentParagraphWidth = 0;
@@ -114,7 +114,7 @@ public class TextManager {
                 currentParagraphWidth = 0;
             }
             setFormattedText(fixText.toString());
-            isFormatterFixSuccessful = true;
+            return true;
         }
     }
 
@@ -282,20 +282,9 @@ public class TextManager {
 
     /**
      * Setter for the max width.
-     *
-     * @return the max width
      */
     void setMaxWidth(Integer maxWidth) {
         this.maxWidth = maxWidth;
-    }
-
-    /**
-     * Getter for the isFormatterRaw variable.
-     *
-     * @return the isFormatterRaw variable
-     */
-    boolean getIsFormatterFixSuccessful() {
-        return isFormatterFixSuccessful;
     }
 
     /**

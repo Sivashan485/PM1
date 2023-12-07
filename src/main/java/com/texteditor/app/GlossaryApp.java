@@ -31,7 +31,7 @@ public class GlossaryApp {
      * 
      * @param text The list of words to be included in the glossary.
      */
-    public void printGlossary(List<String> text) {
+    void printGlossary(List<String> text) {
         rebuildGlossary(text);
         glossary.keySet().forEach(word -> {
             List<Integer> indexes = glossary.get(word);
@@ -139,7 +139,7 @@ public class GlossaryApp {
      *
      * @return returns the Glossary Map
      */
-    public SortedMap<String, List<Integer>> getGlossary() {
+    SortedMap<String, List<Integer>> getGlossary() {
         return glossary;
     }
 
@@ -148,7 +148,7 @@ public class GlossaryApp {
      *
      * @return {@code true} if the glossary is empty, {@code false} otherwise.
      */
-    public boolean isGlossaryEmpty() {
+    boolean isGlossaryEmpty() {
         return glossary.isEmpty();
     }
 

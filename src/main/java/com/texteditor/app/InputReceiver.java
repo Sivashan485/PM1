@@ -7,13 +7,14 @@ import java.util.Scanner;
  */
 public class InputReceiver {
 
-    private static final String DISALLOWED_CHARACTERS_REGEX = "[^A-Za-zäöüÄÖÜ 0-9 / .,:;\\-!?'\\\\()\\\"%@+*{}\\\\\\\\&#$\\[\\]]";
+    private static final String DISALLOWED_CHARACTERS = "[^A-Za-zäöüÄÖÜ 0-9 / .,:;\\-!?'\\\\()\\\"%@+*{}\\\\\\\\&#$\\[\\]]";
     private static final String MAX_INT_VALUE = "^(214748364[0-7]|21474836[0-3][0-9]|2147483[0-5][0-9]{2}|214748[0-2][0-9]{3}|21474[0-7][0-9]{4}|2147[0-3][0-9]{5}|214[0-6][0-9]{6}|21[0-3][0-9]{7}|20[0-9]{8}|1[0-9]{9}|[1-9][0-9]{0,8}|0)$";
     private final Scanner userInput;
     private String userCommand;
     private Integer userIndex;
     private String restPart;
     private boolean isIndexValid;
+    private boolean isCharacterValid;
 
     /**
      * Constructor for InputReceiver.
@@ -32,6 +33,7 @@ public class InputReceiver {
         userIndex = null;
         userCommand = "";
         restPart = "";
+        isCharacterValid = true;
     }
 
     /**
@@ -41,15 +43,24 @@ public class InputReceiver {
      * @return The filtered input text.
      */
     String readAndFilterUserInput() {
-        String inputText = userInput.nextLine();
-        return inputText.replaceAll(DISALLOWED_CHARACTERS_REGEX, "");
+        resetValues();
+        String input = this.userInput.nextLine();
+        String[] characters = input.split("");
+        for(String character: characters){
+            if (character.matches(DISALLOWED_CHARACTERS)) {
+                isCharacterValid = false;
+                break;
+            }
+        }
+        return input.replaceAll(DISALLOWED_CHARACTERS, "");
+
     }
 
     /**
      * Splits the user input into a command and its arguments. If the command
      * requires an index and it's not provided, it sets the command to "unknown".
      */
-    public void parseInput() {
+    void parseInput() {
         String input = readAndFilterUserInput();
         userCommand = extractCommand(input);
         restPart = input.substring(userCommand.length()).trim();
@@ -66,13 +77,13 @@ public class InputReceiver {
      * @return The recognized command, or an empty string if no command is
      *         recognized.
      */
-    String extractCommand(String userInput) {
+    private String extractCommand(String userInput) {
         String[] userInputPartition = userInput.toLowerCase().split(" ");
-        ApplicationCommand command = ApplicationCommand.parseCommand(userInputPartition[0]);
-        if (command == ApplicationCommand.UNKNOWN && userInputPartition.length > 1) {
-            command = ApplicationCommand.parseCommand(userInputPartition[0] + " " + userInputPartition[1]);
+        CommandApp command = CommandApp.parseCommand(userInputPartition[0]);
+        if (command == CommandApp.UNKNOWN && userInputPartition.length > 1) {
+            command = CommandApp.parseCommand(userInputPartition[0] + " " + userInputPartition[1]);
         }
-        if (command != ApplicationCommand.UNKNOWN) {
+        if (command != CommandApp.UNKNOWN) {
             return command.getCommand();
         }
         return "";
@@ -88,7 +99,7 @@ public class InputReceiver {
      *         empty, false otherwise.
      */
     private boolean validateAndSetIndex(String command, String restPart) {
-        if (ApplicationCommand.parseCommand(command).getCommandHasIndex()) {
+        if (CommandApp.parseCommand(command).getCommandHasIndex()) {
             if (restPart != null && !restPart.isEmpty()) {
                 handleIndexCommand();
             } else {
@@ -146,7 +157,7 @@ public class InputReceiver {
      *
      * @return {@code true} if 'restPart' is empty; otherwise, {@code false}.
      */
-    public boolean isIndexNull() {
+    boolean isIndexNull() {
         return userIndex == null;
     }
 
@@ -155,7 +166,7 @@ public class InputReceiver {
      *
      * @return true if the index is valid, false otherwise.
      */
-    public boolean getIsIndexValid() {
+    boolean getIsIndexValid() {
         return isIndexValid;
     }
 
@@ -164,7 +175,7 @@ public class InputReceiver {
      *
      * @return The current command as a string.
      */
-    public String getUserCommand() {
+    String getUserCommand() {
         return userCommand;
     }
 
@@ -173,7 +184,7 @@ public class InputReceiver {
      *
      * @return The current index as an integer.
      */
-    public Integer getUserIndex() {
+    Integer getUserIndex() {
         return userIndex;
     }
 
@@ -184,5 +195,13 @@ public class InputReceiver {
      */
     String getRestPart() {
         return restPart;
+    }
+
+    /**
+     * Retrieves the validity of the character.
+     * @return true if the character is valid, false otherwise.
+     */
+    boolean getIsCharacterValid(){
+        return isCharacterValid;
     }
 }

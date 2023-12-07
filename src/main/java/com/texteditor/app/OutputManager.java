@@ -59,27 +59,27 @@ public class OutputManager {
     /**
      * Creates a welcome message for the user.
      */
-    public void createWelcomeMessage() {
+    void createWelcomeMessage() {
         logAndPrintInfoMessage("\n" +
-                "█   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀\n" +
-                "█   █ █   █   █   █  █ █▀▄▀█ █\n" +
-                "█   █ █▀▀ █   █   █  █ █ ▀ █ █▀▀\n" +
-                "█▄█▄█ █   █   █   █  █ █   █ █\n" +
-                " ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀\n" +
+                " █   █ ▄▀▀ █   ▄▀▀ ▄▀▀▄ █▄ ▄█ ▄▀▀\n" +
+                " █   █ █   █   █   █  █ █▀▄▀█ █\n" +
+                " █   █ █▀▀ █   █   █  █ █ ▀ █ █▀▀\n" +
+                " █▄█▄█ █   █   █   █  █ █   █ █\n" +
+                "  ▀ ▀   ▀▀  ▀▀  ▀▀  ▀▀  ▀   ▀  ▀▀\n" +
                 " ...to the TextEditor\n" +
                 " created by NotFalse...\n" +
                 " 🙈🙈🙈🙈🙈🙈🙈🙈🙈🙈\n\n" +
 
-                "   Available Functions              \n" +
-                "_____________________________________________________________________________________\n\n" +
-                "   ☒ add[i]      ☒ dummy[i]    ☒ del[i]    ☒ replace [i]    ☒ index    \n" +
-                "   ☒ print       ☒ help        ☒ exit      ☒ format raw     ☒ format fix <b>        \n");
+                " Available Functions              \n" +
+                "——————————————————————————————————————————————————————————————————————————————————————\n\n" +
+                " ☒ add[i]         ☒ dummy[i]          ☒ del[i]     ☒ replace[i]    ☒ index    \n" +
+                " ☒ format raw     ☒ format fix<b>     ☒ print      ☒ help          ☒ exit                \n");
     }
 
     /**
      * Creates a goodbye message.
      */
-    public void createExitMessage() {
+    void createExitMessage() {
         logAndPrintInfoMessage("                       88          \n" +
                 "                       \"\"   ,d     \n" +
                 "                            88     \n" +
@@ -96,8 +96,8 @@ public class OutputManager {
     /**
      * Creates a menu option message with the commands that can be used.
      */
-    public void createHelpMessage() {
-        logAndPrintInfoMessage("Here are the commands you can use:\n" + ApplicationCommand.getAllCommands());
+    void createHelpMessage() {
+        logAndPrintInfoMessage("Here are the commands you can use:\n" + CommandApp.getAllCommands());
     }
 
     /**
@@ -105,7 +105,7 @@ public class OutputManager {
      *
      * @param success status of adding a text
      */
-    public void createAddMessage(boolean success) {
+    void createAddMessage(boolean success) {
         if (success) {
             logAndPrintInfoMessage("➤ STATUS: Text added successfully");
         } else {
@@ -118,7 +118,7 @@ public class OutputManager {
      *
      * @param success status of deleting a text
      */
-    public void createDeleteMessage(boolean success) {
+    void createDeleteMessage(boolean success) {
         if (success) {
             logAndPrintInfoMessage("➤ STATUS: Text deleted successfully");
         } else {
@@ -131,7 +131,7 @@ public class OutputManager {
      *
      * @param success status of replacing a text
      */
-    public void createReplaceMessage(boolean success) {
+    void createReplaceMessage(boolean success) {
         if (success) {
             logAndPrintInfoMessage("➤ STATUS: Text replaced successfully");
         } else {
@@ -146,7 +146,7 @@ public class OutputManager {
      *
      * @param success Indicates the success status of the operation.
      */
-    public void createFormatMessage(boolean success) {
+    void createFormatMessage(boolean success) {
         if (success) {
             logAndPrintInfoMessage("➤ STATUS: Text formatted successfully");
         } else {
@@ -157,14 +157,14 @@ public class OutputManager {
     /**
      * Creates a log message for an invalid command.
      */
-    public void createInvalidCommandMessage() {
+    void createInvalidCommandMessage() {
         logAndPrintWarningMessage("Invalid command! If you don't know which commands you can us, call the help function.");
     }
 
     /**
      * Creates a log message for an invalid index.
      */
-    public void createIndexWarning() {
+    void createIndexWarning() {
         logAndPrintWarningMessage("Invalid index! Please try again.");
 
     }
@@ -172,7 +172,7 @@ public class OutputManager {
     /**
      * Creates a log message for the empty text if you try to delete a text.
      */
-    public void createEmptyTextWarning() {
+    void createEmptyTextWarning() {
         logAndPrintWarningMessage("Your TextEditor is empty.\n"
                 + "You can add a new paragraph, by calling the add function.");
     }
@@ -182,7 +182,7 @@ public class OutputManager {
      * The error message informs the user that the text width index is missing and
      * prompts them to try again.
      */
-    public void createInvalidMaxWidthWarning() {
+    void createInvalidMaxWidthWarning() {
         logAndPrintWarningMessage("The text width index is missing. Please try again.");
     }
 
@@ -191,7 +191,7 @@ public class OutputManager {
      * The error message notifies the user that the word they are trying to
      * replace does not exist in the paragraph.
      */
-    public void createInvalidWordWarning() {
+    void createInvalidSectionWarning() {
         logAndPrintWarningMessage("This word doesn't exist in this paragraph. Please try again.");
     }
 
@@ -199,7 +199,15 @@ public class OutputManager {
      * Creates and displays an error message for an empty glossary scenario.
      * The error message notifies the user that their glossary is empty.
      */
-    public void createEmptyGlossaryWarning() {
+    void createEmptyGlossaryWarning() {
         logAndPrintWarningMessage("Your glossary is empty.");
+    }
+
+    /**
+     * Creates and displays an error message for an invalid glossary scenario.
+     * The error message notifies the user that the word they are trying to.
+     */
+    void createDisallowedCharacterWarning(){
+        logAndPrintInfoMessage("Disallowed characters have been removed.");
     }
 }

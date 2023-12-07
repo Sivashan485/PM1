@@ -6,18 +6,19 @@ package com.texteditor.app;
  * input is a command,
  * a method to get all commands, and a method to get the command as a String.
  */
-public enum ApplicationCommand {
+public enum CommandApp {
     
-    EXIT("exit", false),
+
     ADD("add", true),
-    DEL("del", true),
     DUMMY("dummy", true),
-    INDEX("index", false),
-    PRINT("print", false),
+    DEL("del", true),
     REPLACE("replace", true),
-    HELP("help", false),
+    INDEX("index", false),
     FORMAT_RAW("format raw", false),
     FORMAT_FIX("format fix", true),
+    PRINT("print", false),
+    HELP("help", false),
+    EXIT("exit", false),
     UNKNOWN("unknown", false);
 
     public final String command;
@@ -26,10 +27,10 @@ public enum ApplicationCommand {
     /**
      * Constructor for the enum class.
      *
-     * @param command
-     * @param commandHasIndex
+     * @param command        command as a String
+     * @param commandHasIndex commandHasIndex as a boolean
      */
-    ApplicationCommand(String command, boolean commandHasIndex) {
+    CommandApp(String command, boolean commandHasIndex) {
         this.command = command;
         this.commandHasIndex = commandHasIndex;
     }
@@ -40,13 +41,13 @@ public enum ApplicationCommand {
      * @param commandString to be checked
      * @return returns a Command if existing, otherwise UNKNOWN
      */
-    public static ApplicationCommand parseCommand(String commandString) {
-        for (ApplicationCommand value : ApplicationCommand.values()) {
+    public static CommandApp parseCommand(String commandString) {
+        for (CommandApp value : CommandApp.values()) {
             if (value.getCommand().equals(commandString.toLowerCase())) {
                 return value;
             }
         }
-        return ApplicationCommand.UNKNOWN;
+        return CommandApp.UNKNOWN;
     }
 
     /**
@@ -56,7 +57,7 @@ public enum ApplicationCommand {
      */
     public static String getAllCommands() {
         StringBuilder sb = new StringBuilder();
-        for (ApplicationCommand command : ApplicationCommand.values()) {
+        for (CommandApp command : CommandApp.values()) {
             if (!command.getCommand().equals("unknown")) {
                 sb.append(command.getCommand()).append(", ");
             }

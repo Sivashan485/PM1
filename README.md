@@ -183,4 +183,11 @@ Disallowed characters have been removed.
 ➤ STATUS: Text added successfully
 ——————————————————————————————————————————————————————————————————————————————————————
  ```
+## Known issues 
+
+When entering an russian text it crashes:
+for example был Ласкйдфсёлдакфьслёкдайфльк.
+
+E.g When entering an thai text the tool will not crash. 
+
 ##### *Disclaimer: "IntelliJ IDEA" is a trademark of JetBrains s.r.o., which is not affiliated with the developers of this game. This readme is provided for informational purposes only and does not imply any endorsement or sponsorship by JetBrains s.r.o.*

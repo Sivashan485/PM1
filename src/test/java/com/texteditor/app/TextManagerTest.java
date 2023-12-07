@@ -186,4 +186,71 @@ class TextManagerTest {
         assertTrue(textManager.addNewParagraph(false, "Test paragraph1", 1));
         assertEquals("Test paragraph1", textManager.getText().get(0));
     }
+
+    @Test
+    void testSetIsFormatterRaw() {
+        textManager.setIsFormatterRaw(true);
+        assertTrue(textManager.getIsFormatterRaw());
+    }
+
+    @Test
+    void testReplaceWordInParagraphWithMultipleWords() {
+        textManager.addNewParagraph(false, "Hello Hello Hello", 1);
+        assertTrue(textManager.replaceWordInParagraph(0, "Hello", "Hi"));
+        assertEquals("Hi Hi Hi", textManager.getText().get(0));
+    }
+
+    @Test
+    void testReplaceWordInParagraphWithNoMatch() {
+        textManager.addNewParagraph(false, "Hello Hello Hello", 1);
+        assertFalse(textManager.replaceWordInParagraph(0, "Hi", "Hello"));
+        assertEquals("Hello Hello Hello", textManager.getText().get(0));
+    }
+    @Test
+    void testFormatTextRawWithMultipleParagraphs() {
+        TextManager textManager = new TextManager();
+        textManager.addNewParagraph(false, "Hello world", 1);
+        textManager.addNewParagraph(false, "This is a test", 2);
+        textManager.formatTextRaw();
+        String expected = "1: Hello world\n2: This is a test";
+        assertEquals(expected, textManager.getFormattedText());
+    }
+
+    @Test
+    void testFormatTextRawWithEmptyText() {
+        TextManager textManager = new TextManager();
+        textManager.formatTextRaw();
+        String expected = "";
+        assertEquals(expected, textManager.getFormattedText());
+    }
+
+    @Test
+    void testFormatTextFixWithEmptyText() {
+        TextManager textManager = new TextManager();
+        textManager.setMaxWidth(5);
+        textManager.formatTextFix();
+        String expected = "";
+        assertEquals(expected, textManager.getFormattedText());
+    }
+
+
+    @Test
+    void testReplaceWordInParagraphNoMatch() {
+        TextManager textManager = new TextManager();
+        textManager.addNewParagraph(false, "Hello world", 1);
+        assertFalse(textManager.replaceWordInParagraph(0, "Goodbye", "Hi"));
+        assertEquals("Hello world", textManager.getText().get(0));
+    }
+
+
+    @Test
+    void testReplaceParagraphSectionNoMatch() {
+        TextManager textManager = new TextManager();
+        textManager.addNewParagraph(false, "Hello world", 1);
+        assertFalse(textManager.replaceParagraphSection(false, "Goodbye world", "Hi world", 1));
+        assertEquals("Hello world", textManager.getText().get(0));
+    }
+
+
 }
+

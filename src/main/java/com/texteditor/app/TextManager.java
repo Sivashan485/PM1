@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class TextManager {
 
-    private static final String DUMMY_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."+
+    private static final String DUMMY_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry." +
             "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, " +
             "when an unknown printer took a galley of type and scrambled it to make a type specimen book." +
             " It has survived not only five centuries, but also the leap into electronic typesetting, " +
@@ -20,9 +20,9 @@ public class TextManager {
             " sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like " +
             "Aldus PageMaker including versions of Lorem Ipsum.";
     private final List<String> text;
+    boolean isFormatterRaw;
     private Integer maxWidth;
     private String formattedText;
-    boolean isFormatterRaw;
 
     /**
      * Initializes a new instance of the TextManager class.
@@ -45,9 +45,9 @@ public class TextManager {
     /**
      * Adds a new paragraph to the specified index. If the index is larger than the
      * size of the text, the paragraph is added to the end of the text.
-     * 
-     * @param isIndexNull   Indicates if the index is null.
-     * @param enteredText   The text to be added.
+     *
+     * @param isIndexNull    Indicates if the index is null.
+     * @param enteredText    The text to be added.
      * @param paragraphIndex The index of the paragraph to be added.
      * @return true if the addition was successful, false otherwise.
      */
@@ -63,8 +63,8 @@ public class TextManager {
     /**
      * Deletes the paragraph at the specified index.
      * If the index is not provided or is invalid, the last paragraph is deleted.
-     * 
-     * @param isIndexNull   Indicates if the index is null.
+     *
+     * @param isIndexNull    Indicates if the index is null.
      * @param paragraphIndex The index of the paragraph to be deleted.
      * @return true if the deletion was successful, false otherwise.
      */
@@ -80,7 +80,7 @@ public class TextManager {
     /**
      * Formats the given ArrayList of Strings into a single String with each element
      * of the ArrayList
-     * 
+     *
      * @return true if the formatting was successful.
      */
     boolean formatTextRaw() {
@@ -251,7 +251,7 @@ public class TextManager {
      * Replaces the paragraphs in the specified range with the given text.
      */
     boolean replaceParagraphSection(boolean isIndexNull, String originalWord, String replacingWord,
-            Integer paragraphIndex) {
+                                    Integer paragraphIndex) {
         if (isIndexNull) {
             return replaceWordInParagraph(text.size() - 1, originalWord, replacingWord);
         } else {
@@ -287,17 +287,19 @@ public class TextManager {
     }
 
     /**
+     * Setter for the formatted text. It is used for testing.
+     *
+     * @param formattedText the formatted text
+     */
+    private void setFormattedText(String formattedText) {
+        this.formattedText = formattedText;
+    }
+
+    /**
      * Setter for the max width.
      */
     void setMaxWidth(Integer maxWidth) {
         this.maxWidth = maxWidth;
-    }
-
-    /**
-     * Setter for the isFormatterRaw variable.
-     */
-    void setIsFormatterRaw(boolean isFormatterRaw) {
-        this.isFormatterRaw = isFormatterRaw;
     }
 
     boolean getIsFormatterRaw() {
@@ -305,12 +307,10 @@ public class TextManager {
     }
 
     /**
-     * Setter for the formatted text. It is used for testing.
-     *
-     * @param formattedText the formatted text
+     * Setter for the isFormatterRaw variable.
      */
-    private void setFormattedText(String formattedText) {
-        this.formattedText = formattedText;
+    void setIsFormatterRaw(boolean isFormatterRaw) {
+        this.isFormatterRaw = isFormatterRaw;
     }
 
 

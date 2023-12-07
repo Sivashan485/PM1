@@ -3,7 +3,9 @@ package com.texteditor.app;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TextEditorTest {
 
@@ -13,6 +15,7 @@ class TextEditorTest {
     void setUp() {
         textEditor = new TextEditor();
     }
+
     @Test
     void testIsTextNotEmpty() {
         assertFalse(textEditor.isTextNotEmpty());
@@ -26,6 +29,7 @@ class TextEditorTest {
         textEditor.executeAddFunction(1, true, true);
         assertTrue(textEditor.isGlossaryEmpty());
     }
+
     @Test
     void testIsParagraphIndexValid() {
         assertFalse(textEditor.isParagraphIndexValid(-1, false));
@@ -37,9 +41,6 @@ class TextEditorTest {
         assertFalse(textEditor.isMaxWidthValid(-1));
         assertFalse(textEditor.isMaxWidthValid(0));
     }
-
-
-
 
 
 }

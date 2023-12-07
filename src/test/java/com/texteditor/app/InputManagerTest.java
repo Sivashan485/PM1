@@ -163,6 +163,7 @@ public class InputManagerTest {
         input.parseInput();
         assertFalse(input.getIsCharacterValid());
     }
+
     @Test
     void testResetValues() {
         InputManager input = new InputManager();
@@ -186,7 +187,7 @@ public class InputManagerTest {
         System.setIn(new ByteArrayInputStream("add 1 Hello World\n".getBytes()));
         InputManager input = new InputManager();
         input.parseInput();
-        assertEquals(null, input.getUserIndex());
+        assertNull(input.getUserIndex());
         assertFalse(input.getIsIndexValid());
     }
 
@@ -213,7 +214,7 @@ public class InputManagerTest {
         System.setIn(new ByteArrayInputStream("add 2147483648".getBytes()));
         InputManager input = new InputManager();
         input.parseInput();
-        assertEquals(null, input.getUserIndex());
+        assertNull(input.getUserIndex());
         assertFalse(input.getIsIndexValid());
     }
 
@@ -225,6 +226,7 @@ public class InputManagerTest {
         assertEquals(0, input.getUserIndex());
         assertTrue(input.getIsIndexValid());
     }
+
     @Test
     void testExtractCommandWithUnknownCommand() {
         System.setIn(new ByteArrayInputStream("unknown\n".getBytes()));

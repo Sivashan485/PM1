@@ -107,11 +107,11 @@ public class TextEditor {
      * @param maxWidth The maximum width to validate. This should be a positive
      *                 integer and less than or equal to MAX_WIDTH.
      * @return Returns true if the maximum width and index are valid, false
-     *         otherwise.
+     * otherwise.
      */
     boolean isMaxWidthValid(Integer maxWidth) {
         boolean isWidthValid = input.getIsIndexValid();
-        if (maxWidth == null && isWidthValid) {
+        if (isWidthValid && maxWidth == null) {
             output.createInvalidMaxWidthWarning();
             return false;
         }
@@ -207,7 +207,7 @@ public class TextEditor {
      *                              successful or not.
      */
     void executeReplaceFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
-        if(isTextNotEmpty() && isParagraphIndexValid(paragraphIndex, false)){
+        if (isParagraphIndexValid(paragraphIndex, false) && isTextNotEmpty()) {
             OutputManager.logAndPrintInfoMessage("Replacing Section: ");
             String originalSection = input.readAndFilterUserInput();
             if (textManager.containsWord(originalSection, paragraphIndex)) {
@@ -236,7 +236,7 @@ public class TextEditor {
      *                              successful or not.
      */
     void executeAddFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
-        if(isParagraphIndexValid(paragraphIndex, true)){
+        if (isParagraphIndexValid(paragraphIndex, true)) {
             OutputManager.logAndPrintInfoMessage("Enter a Text you want to add:");
             String enteredText = input.readAndFilterUserInput();
             validateCharacters(input.getIsCharacterValid());
@@ -258,7 +258,7 @@ public class TextEditor {
      *                              successful or not.
      */
     void executeDeleteFunction(Integer paragraphIndex, boolean isIndexNull, boolean isExecutionSuccessful) {
-        if (isTextNotEmpty() && (isParagraphIndexValid(paragraphIndex, false))) {
+        if (isParagraphIndexValid(paragraphIndex, false) && isTextNotEmpty()) {
             isExecutionSuccessful = textManager.deleteParagraph(isIndexNull, paragraphIndex);
         }
         output.createDeleteMessage(isExecutionSuccessful);
@@ -299,7 +299,7 @@ public class TextEditor {
      * Displays a warning message if the glossary is empty.
      */
     void executeIndexFunction() {
-        if(!isGlossaryEmpty()){
+        if (!isGlossaryEmpty()) {
             OutputManager.logAndPrintInfoMessage("Glossary:");
             glossary.printGlossary(textManager.getText());
         }
@@ -313,11 +313,11 @@ public class TextEditor {
      * @param isExecutionSuccessful A boolean indicating whether the execution was
      *                              successful or not.
      */
-    void executeFormatFixFunction(Integer maxWidth,boolean isExecutionSuccessful){
-        if(isTextNotEmpty() && isMaxWidthValid(maxWidth)) {
-                textManager.setIsFormatterRaw(false);
-                textManager.setMaxWidth(maxWidth);
-                isExecutionSuccessful = textManager.formatTextFix();
+    void executeFormatFixFunction(Integer maxWidth, boolean isExecutionSuccessful) {
+        if (isMaxWidthValid(maxWidth) && isTextNotEmpty()) {
+            textManager.setIsFormatterRaw(false);
+            textManager.setMaxWidth(maxWidth);
+            isExecutionSuccessful = textManager.formatTextFix();
         }
         output.createFormatMessage(isExecutionSuccessful);
     }
@@ -328,8 +328,8 @@ public class TextEditor {
      * @param isExecutionSuccessful A boolean indicating whether the execution was
      *                              successful or not.
      */
-    void executeFormatRawFunction(boolean isExecutionSuccessful){
-        if(isTextNotEmpty()){
+    void executeFormatRawFunction(boolean isExecutionSuccessful) {
+        if (isTextNotEmpty()) {
             textManager.setIsFormatterRaw(true);
             isExecutionSuccessful = textManager.formatTextRaw();
         }

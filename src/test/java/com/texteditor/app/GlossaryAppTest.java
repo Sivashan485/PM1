@@ -107,7 +107,7 @@ class GlossaryAppTest {
 
     @Test
     void testPrintGlossary() {
-        List<String> text = Arrays.asList("Hello World", "Hello Again","Hello Hello Hello");
+        List<String> text = Arrays.asList("Hello World", "Hello Again", "Hello Hello Hello");
         glossaryApp.printGlossary(text);
 
         assertFalse(glossaryApp.isGlossaryEmpty());

@@ -1,12 +1,6 @@
 package com.texteditor.app;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +24,7 @@ public class GlossaryApp {
 
     /**
      * Rebuilds the glossary with the new text and prints it.
-     * 
+     *
      * @param text The list of words to be included in the glossary.
      */
     void printGlossary(List<String> text) {
@@ -109,7 +103,7 @@ public class GlossaryApp {
      *
      * @param paragraph The input paragraph to be filtered.
      * @return A new string containing only letters and spaces from the original
-     *         paragraph.
+     * paragraph.
      */
     String filterParagraph(String paragraph) {
         return paragraph.replaceAll("[^A-Za-z ]", "");
@@ -122,7 +116,7 @@ public class GlossaryApp {
      * @param text text to be mapped
      * @param word word to be searched
      * @return returns a sorted ArrayList of the indexes of the paragraphs which
-     *         contain the word
+     * contain the word
      */
     List<Integer> findParagraphIndexes(List<String> text, String word) {
         List<Integer> indexes = new ArrayList<>();

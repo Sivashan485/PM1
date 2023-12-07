@@ -1,11 +1,9 @@
 package com.texteditor.app;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class TextManagerTest {
@@ -142,6 +140,7 @@ class TextManagerTest {
         assertTrue(textManager.replaceParagraphSection(true, "Test", "Best", null));
         assertEquals("Best Best Best", textManager.getText().get(0));
     }
+
     @Test
     void testDeleteParagraphWithValidIndex() {
         textManager.addNewParagraph(false, "Test paragraph1", 1);
@@ -157,7 +156,7 @@ class TextManagerTest {
         assertTrue(textManager.deleteParagraph(true, null));
         assertEquals("Test paragraph1", textManager.getText().get(0));
     }
-    
+
     @Test
     void testAddNewParagraphAtSpecificIndex() {
         textManager.addNewParagraph(false, "Test paragraph1", 1);
@@ -206,6 +205,7 @@ class TextManagerTest {
         assertFalse(textManager.replaceWordInParagraph(0, "Hi", "Hello"));
         assertEquals("Hello Hello Hello", textManager.getText().get(0));
     }
+
     @Test
     void testFormatTextRawWithMultipleParagraphs() {
         TextManager textManager = new TextManager();

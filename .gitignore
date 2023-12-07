@@ -140,4 +140,3 @@ fabric.properties
 
 # Adds the log file
 /logs/*
-!/logs/OutputManager.log.lck
